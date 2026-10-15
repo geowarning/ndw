@@ -88,8 +88,8 @@
     return {
       targets: level,
       time: 30 + level * 9,          // L1=39s … L7=93s
-      rangeMin: 25 + (level - 1) * 2.5,
-      rangeMax: 32 + (level - 1) * 2.5,   // L7: 40–47m
+      rangeMin: 11,
+      rangeMax: 20,   // 等于 v0=15 的实际射程范围
       spread: 2 + level * 1.6       // 目标横向散布
     };
   }
