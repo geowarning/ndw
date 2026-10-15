@@ -80,7 +80,7 @@
     cd: 0.8,          // 阻力系数
     rho: 1.225,       // 空气密度
     area: 0.025,      // 平飞时环边缘朝前的迎风面积 m²
-    v0: 22            // 发射初速度 m/s（最大射程约 20m，比原 30 减半）
+    v0: 18            // 发射初速度 m/s
   };
   PHYS.k = 0.5 * PHYS.rho * PHYS.cd * PHYS.area / PHYS.mass;
 
@@ -101,7 +101,7 @@
       yaw: 0, pitch: 42 * Math.PI / 180,
       targets: [], rings: [], shots: 0, hits: 0,
       saved: 0, timeLeft: cfg.time,
-      cooldown: 0, cooldownMax: 1.5,
+      cooldown: 0, cooldownMax: 3,
       over: false, startWall: performance.now(),
       yawGroup: null, headGroup: null,
       marker: null, trajDots: [],
