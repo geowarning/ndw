@@ -80,7 +80,7 @@
     cd: 0.8,          // 阻力系数
     rho: 1.225,       // 空气密度
     area: 0.025,      // 平飞时环边缘朝前的迎风面积 m²
-    v0: 20            // 发射初速度 m/s（最大射程约 16m）
+    v0: 25            // 发射初速度 m/s（最大射程约 25m）
   };
   PHYS.k = 0.5 * PHYS.rho * PHYS.cd * PHYS.area / PHYS.mass;
 
@@ -88,8 +88,8 @@
     return {
       targets: level,
       time: 30 + level * 9,          // L1=39s … L7=93s
-      rangeMin: 10 + (level - 1) * 1.5,
-      rangeMax: 14 + (level - 1) * 1.5,   // L7: 19–23m
+      rangeMin: 15 + (level - 1) * 1.8,
+      rangeMax: 20 + (level - 1) * 1.8,   // L7: 26–31m
       spread: 2 + level * 1.6       // 目标横向散布
     };
   }
