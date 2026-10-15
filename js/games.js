@@ -101,7 +101,7 @@
       yaw: 0, pitch: 42 * Math.PI / 180,
       targets: [], rings: [], shots: 0, hits: 0,
       saved: 0, timeLeft: cfg.time,
-      cooldown: 0, cooldownMax: 3,
+      cooldown: 0, cooldownMax: 1,
       over: false, startWall: performance.now(),
       yawGroup: null, headGroup: null,
       marker: null, trajDots: [],
@@ -354,7 +354,7 @@
     if (S.input.u) S.pitch += lift;
     if (S.input.d) S.pitch -= lift;
     S.yaw = Math.max(-0.7, Math.min(0.7, S.yaw));
-    S.pitch = Math.max(0.15, Math.min(1.35, S.pitch));
+    S.pitch = Math.max(0.15, Math.min(Math.PI / 4, S.pitch));
     S.yawGroup.rotation.y = S.yaw;
     S.headGroup.rotation.x = S.pitch;
     // 轮子动画
@@ -383,8 +383,8 @@
         tg.rotation.z += dt * 2;
         return;
       }
-      tg.userData.bob += dt * 2.2;
-      tg.position.x = tg.userData.home.x + Math.sin(tg.userData.bob * 0.4) * 0.3;
+      tg.userData.bob += dt * 4;
+      tg.position.x = tg.userData.home.x + Math.sin(tg.userData.bob * 0.8) * 0.5;
       tg.position.y = Math.sin(tg.userData.bob) * 0.08;
       tg.userData.arm.rotation.z = Math.sin(tg.userData.bob * 2) * 0.6;
     });
@@ -987,7 +987,7 @@
     var ny = -((e.clientY - r.top) / r.height) * 2 + 1;
     state.yaw = -nx * 0.7;
     state.pitch = 0.75 + ny * 0.55;
-    state.pitch = Math.max(0.15, Math.min(1.35, state.pitch));
+    state.pitch = Math.max(0.15, Math.min(Math.PI / 4, state.pitch));
     if (e.type === 'click') { fireAqua(state); }
   }
 
