@@ -88,8 +88,8 @@
     return {
       targets: level,
       time: 30 + level * 9,          // L1=39s … L7=93s
-      rangeMin: 26 + (level - 1) * 2.5,
-      rangeMax: 33 + (level - 1) * 2.3,   // L7: 41–47m
+      rangeMin: 26 + (level - 1) * 1.5,
+      rangeMax: 29 + (level - 1) * 1.62,   // L7: 35–38.7m
       spread: 2 + level * 1.6       // 目标横向散布
     };
   }
