@@ -1372,18 +1372,71 @@
   /* ================================================================
    * 产品目录（占位页）
    * ================================================================ */
+  /* ================================================================
+   * 产品目录（互动游戏原型）
+   * ================================================================ */
+  var productsState = { game: null };
+
   function renderProducts() {
     var t = T();
+    if (productsState.game) {
+      renderGameView();
+      return;
+    }
+    var cards = [
+      {
+        type: 'aqua',
+        name: t.gameAquaName,
+        desc: t.gameAquaDesc,
+        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#43e8cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"/><circle cx="12" cy="14" r="2.2"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg>'
+      },
+      {
+        type: 'pyro',
+        name: t.gamePyroName,
+        desc: t.gamePyroDesc,
+        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3-2 4-2 7 0 1.5 1 2.5 2 3 0-2 1.5-3 2-5 .5 2 .5 4-1 6 1.5 0 3-1 3-3 0-2-2-3-2-5 0-1.5.5-2.5 1-3z"/><path d="M8 21h8"/></svg>'
+      }
+    ];
     var html =
       '<section class="section"><div class="container">' +
-        '<div class="placeholder-page">' +
-          '<div class="placeholder-icon">' + SVG.products + '</div>' +
-          '<h1>' + esc(t.navProducts) + '</h1>' +
-          '<p>' + esc(t.productsHint) + '</p>' +
+        '<div class="page-head">' +
+          '<h1>' + esc(t.productsTitle) + '</h1>' +
+          '<p>' + esc(t.productsSubtitle) + '</p>' +
+        '</div>' +
+        '<div class="product-grid">';
+    cards.forEach(function (c) {
+      html +=
+        '<div class="product-card">' +
+          '<div class="product-icon">' + c.icon + '</div>' +
+          '<h3>' + esc(c.name) + '</h3>' +
+          '<p>' + esc(c.desc) + '</p>' +
+          '<button class="btn btn-green" data-action="open-game" data-type="' + c.type + '">' + esc(t.startDemo) + '</button>' +
+        '</div>';
+    });
+    html += '</div></div></section>';
+    viewEl.innerHTML = html;
+    document.title = t.productsTitle;
+  }
+
+  function renderGameView() {
+    var t = T();
+    var g = productsState.game;
+    var name = g === 'aqua' ? t.gameAquaName : t.gamePyroName;
+    var how = g === 'aqua' ? t.gameAquaHow : t.gamePyroHow;
+    viewEl.innerHTML =
+      '<section class="section"><div class="container">' +
+        '<button class="btn btn-outline" data-action="back-products">' + esc(t.backToProducts) + '</button>' +
+        '<div class="game-frame">' +
+          '<div class="game-title"><h2>' + esc(name) + '</h2><p>' + esc(how) + '</p></div>' +
+          '<div class="game-hud" id="gameHUD"></div>' +
+          '<canvas id="gameCanvas" class="game-canvas"></canvas>' +
         '</div>' +
       '</div></section>';
-    viewEl.innerHTML = html;
-    document.title = t.navProducts;
+    document.title = name;
+    var cv = document.getElementById('gameCanvas');
+    if (window.NDGames && cv) {
+      window.NDGames.start(cv, g, T());
+    }
   }
 
   /* ================================================================
@@ -1628,6 +1681,10 @@
     renderNav(path);
     closeDrawer();
     clearInterval(countdownTimer);
+    if (path !== '/products') {
+      if (window.NDGames) { window.NDGames.stop(); }
+      productsState.game = null;
+    }
     switch (path) {
       case '/detail': renderDetail(query.id); break;
       case '/guide': renderGuide(); break;
@@ -1683,6 +1740,16 @@
         renderPicker();
         break;
       case 'share': shareAlert(); break;
+      case 'open-game':
+        if (window.NDGames) { window.NDGames.stop(); }
+        productsState.game = d.type || 'aqua';
+        renderProducts();
+        break;
+      case 'back-products':
+        if (window.NDGames) { window.NDGames.stop(); }
+        productsState.game = null;
+        renderProducts();
+        break;
       case 'quiz-answer':
         if (quizState[d.qid] && quizState[d.qid].picked >= 0) { break; }
         quizState[d.qid] = { picked: parseInt(d.pick, 10) };
