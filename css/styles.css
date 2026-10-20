@@ -421,6 +421,8 @@ main { display: block; padding-top: var(--nav-h); min-height: calc(100vh - var(-
 .ch-city:hover .ch-label { fill: var(--holo-bright); }
 .ch-city.st-none .ch-dot { fill: #2f8a80; }
 .ch-city.st-none .ch-halo { stroke: rgba(67, 232, 207, 0.3); }
+.ch-city.st-safe .ch-dot { fill: #46c263; }
+.ch-city.st-safe .ch-halo { stroke: rgba(70, 194, 99, 0.35); }
 .ch-city.st-normal .ch-dot { fill: var(--yellow); }
 .ch-city.st-normal .ch-halo { stroke: rgba(247, 201, 72, 0.55); animation: chHaloPulse 2.2s ease-in-out infinite; }
 .ch-city.st-normal .ch-label { fill: var(--text-mid); }

@@ -311,7 +311,7 @@
       if (st) {
         if (st.high) { color = '#ff5252'; level = 'red'; }
         else if (st.count) { color = '#f7c948'; level = 'normal'; }
-        else { color = '#46c263'; level = ''; }
+        else { color = '#46c263'; level = 'safe'; }
       }
       return { lng: c.lng, lat: c.lat, color: color, level: level, label: c.name, adcode: c.adcode };
     });
@@ -319,6 +319,65 @@
   function refreshMaps() {
     if (globe) { globe.setCities(globeCities()); }
     if (chinaMap) { chinaMap.setStatus(sessionStatus); }
+  }
+
+  /* ---------- 全国态势扫描（打开网站即给所有城市上色） ---------- */
+  var NATIONAL_STATUS_KEY = 'national_status';
+  var NATIONAL_SWEEP_TTL = 60 * 60 * 1000;   /* 全国扫描节流 60 分钟，节省每日配额 */
+  var nationalSweeping = false;
+
+  /* 先读取上次扫描快照，让所有城市立即显示颜色 */
+  function hydrateNationalStatus() {
+    var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
+    if (snap && snap.value && typeof snap.value === 'object') {
+      Object.keys(snap.value).forEach(function (ad) {
+        sessionStatus[ad] = snap.value[ad];
+      });
+      refreshMaps();
+    }
+  }
+
+  function saveNationalStatus() {
+    try {
+      wx.setStorageSync(NATIONAL_STATUS_KEY, { time: Date.now(), value: sessionStatus });
+    } catch (e) { /* 存储失败不影响主流程 */ }
+  }
+
+  /* 后台串行扫描全国城市预警（只取预警，不取天气），边扫边更新地图 */
+  function sweepNationalStatus() {
+    if (nationalSweeping) { return; }
+    var all = districts.allCityGeo();
+    var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
+    if (snap && snap.time && (Date.now() - snap.time) < NATIONAL_SWEEP_TTL &&
+        snap.value && Object.keys(snap.value).length >= all.length) {
+      return; /* 60 分钟内已完整扫描过 */
+    }
+    nationalSweeping = true;
+    var i = 0;
+    function next() {
+      if (i >= all.length) {
+        nationalSweeping = false;
+        saveNationalStatus();
+        refreshMaps();
+        return;
+      }
+      var c = all[i++];
+      api.fetchAlertsOnly({ province: c.province, city: c.name, adcode: c.adcode })
+        .then(function (list) {
+          if (list) {
+            sessionStatus[c.adcode] = {
+              high: list.some(function (a) { return a.level === 'red'; }),
+              count: list.length
+            };
+          }
+          if (i % 6 === 0 || i === all.length) {
+            saveNationalStatus();
+            refreshMaps();
+          }
+          setTimeout(next, 300);   /* 控制请求频率，避免触发限流 */
+        });
+    }
+    next();
   }
 
   /* ---------- 数据加载 ---------- */
@@ -613,6 +672,8 @@
     if (wrap) {
       chinaMap = __require('china-holo').create(wrap, onMapClickCity);
       chinaMap.setStatus(sessionStatus);
+      hydrateNationalStatus();   /* 立即显示上次扫描结果 */
+      sweepNationalStatus();     /* 后台刷新全国城市状态 */
     }
     /* 图表 */
     var dc = document.getElementById('typeDonut');
@@ -1626,6 +1687,11 @@
       success: function (res) {
         if (res.confirm) {
           var n = api.clearCaches();
+          try { wx.removeStorageSync(NATIONAL_STATUS_KEY); } catch (e) {}
+          Object.keys(sessionStatus).forEach(function (k) { delete sessionStatus[k]; });
+          nationalSweeping = false;
+          refreshMaps();
+          sweepNationalStatus();
           wx.showToast({ title: i18n.t('cacheCleared', l) + ' (' + n + ')', icon: 'none' });
           renderSettings();
         }

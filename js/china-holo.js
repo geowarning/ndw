@@ -101,11 +101,12 @@
       cities.forEach(function (c) {
         var node = svg.querySelector('.ch-city[data-city="' + c.adcode + '"]');
         if (!node) { return; }
-        node.classList.remove('st-none', 'st-normal', 'st-high');
+        node.classList.remove('st-none', 'st-safe', 'st-normal', 'st-high');
         var s = map[c.adcode];
         if (!s) { node.classList.add('st-none'); }
         else if (s.high) { node.classList.add('st-high'); }
-        else { node.classList.add('st-normal'); }
+        else if (s.count > 0) { node.classList.add('st-normal'); }
+        else { node.classList.add('st-safe'); }
       });
     }
 

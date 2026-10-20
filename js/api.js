@@ -60,7 +60,9 @@ function request(url) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data);
         } else {
-          reject(new Error('请求失败（HTTP ' + res.statusCode + '）'));
+          var err = new Error('请求失败（HTTP ' + res.statusCode + '）');
+          err.statusCode = res.statusCode;
+          reject(err);
         }
       },
       fail: function () {
@@ -446,6 +448,12 @@ function weathercnFetchAlerts(apiKey, host, locationKey, region) {
         return normalizeAlert(item, { city: region && region.city, lang: i18n.getLang() });
       })
       .filter(Boolean);
+  }, function (err) {
+    /* 华风接口在该城市无生效预警时返回 404，等价于“无预警” */
+    if (err && err.statusCode === 404) {
+      return [];
+    }
+    throw err;
   });
 }
 
@@ -694,9 +702,69 @@ function getAlertById(id) {
 }
 
 /**
+ * 仅拉取预警列表（不含实况天气），用于全国态势图/省份状态扫描，省一半接口调用。
+ * 预警缓存命中时直接返回缓存；网络失败返回 null（调用方不应把失败城市标为“无预警”）。
+ * @param {{province?: string, city?: string, adcode?: string}} region
+ * @returns {Promise<Array|null>}
+ */
+function fetchAlertsOnly(region) {
+  const source = effectiveDataSource();
+  const r = normalizeRegion(region);
+  const alertCacheKey = ALERT_CACHE_PREFIX + r.cacheKey;
+
+  if (source === 'weathercn') {
+    const cfg = config.weathercn;
+    if (!cfg.apiKey) {
+      return Promise.resolve(null);
+    }
+    const cached = readCache(alertCacheKey);
+    if (cached) {
+      rememberAlerts(cached);
+      return Promise.resolve(cached);
+    }
+    function doFetch() {
+      return weathercnResolveKey(cfg.apiKey, cfg.host, r)
+        .then(function (locationKey) {
+          return weathercnFetchAlerts(cfg.apiKey, cfg.host, locationKey, r);
+        })
+        .then(function (list) {
+          writeAlertCache(alertCacheKey, list);
+          return list;
+        }, function (err) {
+          /* 触发限流时等待 1.2 秒重试一次 */
+          if (err && err.statusCode === 429) {
+            return new Promise(function (resolve, reject) {
+              setTimeout(function () {
+                weathercnResolveKey(cfg.apiKey, cfg.host, r)
+                  .then(function (locationKey) {
+                    return weathercnFetchAlerts(cfg.apiKey, cfg.host, locationKey, r);
+                  })
+                  .then(function (list) {
+                    writeAlertCache(alertCacheKey, list);
+                    resolve(list);
+                  })
+                  .catch(reject);
+              }, 1200);
+            });
+          }
+          throw err;
+        });
+    }
+    return doFetch().catch(function () {
+      return null;
+    });
+  }
+
+  /* 备选数据源：复用 fetchAll，只取预警 */
+  return fetchAll(r).then(function (res) {
+    return res.ok ? (res.alerts || []) : null;
+  });
+}
+
+/**
  * 批量获取一批城市的预警状态（用于省份城市列表的状态点）。
  * 状态：none=无预警（绿） / normal=有预警（黄） / high=含红色预警（红） / unknown=查询失败（灰）
- * 说明：逐个串行查询以控制接口频率（华风约 5 QPS）；5 分钟内命中本地缓存，不重复请求。
+ * 说明：逐个串行查询以控制接口频率（华风约 5 QPS）；只取预警不取天气；缓存命中不请求。
  * @param {Array<{name: string, adcode?: string}>} cities
  * @returns Promise<Array<{name, adcode, status, count}>>
  */
@@ -707,19 +775,17 @@ function fetchCitiesStatus(cities) {
       return Promise.resolve(results);
     }
     const c = cities[i];
-    return fetchAll({ city: c.name, adcode: c.adcode || '' })
-      .then(function (res) {
-        const list = res.alerts || [];
-        const count = list.length;
-        const hasRed = list.some(function (a) {
-          return a.level === 'red';
-        });
-        const status = hasRed ? 'high' : count > 0 ? 'normal' : 'none';
-        results.push({ name: c.name, adcode: c.adcode || '', status: status, count: count });
-        return next(i + 1);
-      })
-      .catch(function () {
-        results.push({ name: c.name, adcode: c.adcode || '', status: 'unknown', count: 0 });
+    return fetchAlertsOnly({ city: c.name, adcode: c.adcode || '' })
+      .then(function (list) {
+        if (list === null) {
+          results.push({ name: c.name, adcode: c.adcode || '', status: 'unknown', count: 0 });
+        } else {
+          const hasRed = list.some(function (a) {
+            return a.level === 'red';
+          });
+          const status = hasRed ? 'high' : list.length > 0 ? 'normal' : 'none';
+          results.push({ name: c.name, adcode: c.adcode || '', status: status, count: list.length });
+        }
         return next(i + 1);
       });
   }
@@ -776,6 +842,7 @@ function getCacheInfo() {
 
 module.exports = {
   fetchAll: fetchAll,
+  fetchAlertsOnly: fetchAlertsOnly,
   fetchCitiesStatus: fetchCitiesStatus,
   getAlertById: getAlertById,
   getGuides: getGuides,
