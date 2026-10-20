@@ -1211,6 +1211,129 @@ function placeName(zhName, lang) {
   return PLACES[zhName] || zhName;
 }
 
+/* 常见区县标准英文名（多音字/约定译名优先于拼音转换） */
+var DISTRICTS_EN = {
+  /* 广州 */
+  '荔湾区': 'Liwan District', '越秀区': 'Yuexiu District', '海珠区': 'Haizhu District',
+  '天河区': 'Tianhe District', '白云区': 'Baiyun District', '黄埔区': 'Huangpu District',
+  '番禺区': 'Panyu District', '花都区': 'Huadu District', '南沙区': 'Nansha District',
+  '从化区': 'Conghua District', '增城区': 'Zengcheng District',
+  /* 深圳 */
+  '罗湖区': 'Luohu District', '福田区': 'Futian District', '南山区': 'Nanshan District',
+  '宝安区': "Bao'an District", '龙岗区': 'Longgang District', '盐田区': 'Yantian District',
+  '龙华区': 'Longhua District', '坪山区': 'Pingshan District', '光明区': 'Guangming District',
+  '大鹏新区': 'Dapeng New Area',
+  /* 珠海 */
+  '香洲区': 'Xiangzhou District', '斗门区': 'Doumen District', '金湾区': 'Jinwan District',
+  /* 佛山 */
+  '禅城区': 'Chancheng District', '南海区': 'Nanhai District', '顺德区': 'Shunde District',
+  '三水区': 'Sanshui District', '高明区': 'Gaoming District',
+  /* 北京 */
+  '东城区': 'Dongcheng District', '西城区': 'Xicheng District', '朝阳区': 'Chaoyang District',
+  '丰台区': 'Fengtai District', '石景山区': 'Shijingshan District', '海淀区': 'Haidian District',
+  '门头沟区': 'Mentougou District', '房山区': 'Fangshan District', '通州区': 'Tongzhou District',
+  '顺义区': 'Shunyi District', '昌平区': 'Changping District', '大兴区': 'Daxing District',
+  '怀柔区': 'Huairou District', '平谷区': 'Pinggu District', '密云区': 'Miyun District',
+  '延庆区': 'Yanqing District',
+  /* 上海 */
+  '黄浦区': 'Huangpu District', '徐汇区': 'Xuhui District', '长宁区': 'Changning District',
+  '静安区': "Jing'an District", '普陀区': 'Putuo District', '虹口区': 'Hongkou District',
+  '杨浦区': 'Yangpu District', '闵行区': 'Minhang District', '宝山区': 'Baoshan District',
+  '嘉定区': 'Jiading District', '浦东新区': 'Pudong New Area', '金山区': 'Jinshan District',
+  '松江区': 'Songjiang District', '青浦区': 'Qingpu District', '奉贤区': 'Fengxian District',
+  '崇明区': 'Chongming District',
+  /* 天津 */
+  '和平区': 'Heping District', '河东区': 'Hedong District', '河西区': 'Hexi District',
+  '南开区': 'Nankai District', '河北区': 'Hebei District', '红桥区': 'Hongqiao District',
+  '东丽区': 'Dongli District', '西青区': 'Xiqing District', '津南区': 'Jinnan District',
+  '北辰区': 'Beichen District', '武清区': 'Wuqing District', '宝坻区': 'Baodi District',
+  '滨海新区': 'Binhai New Area', '宁河区': 'Ninghe District', '静海区': 'Jinghai District',
+  '蓟州区': 'Jizhou District',
+  /* 重庆 */
+  '渝中区': 'Yuzhong District', '江北区': 'Jiangbei District', '沙坪坝区': 'Shapingba District',
+  '九龙坡区': 'Jiulongpo District', '南岸区': "Nan'an District", '北碚区': 'Beibei District',
+  '綦江区': 'Qijiang District', '大足区': 'Dazu District', '渝北区': 'Yubei District',
+  '巴南区': 'Banan District', '黔江区': 'Qianjiang District', '万州区': 'Wanzhou District',
+  '涪陵区': 'Fuling District',
+  /* 成都 */
+  '锦江区': 'Jinjiang District', '青羊区': 'Qingyang District', '金牛区': 'Jinniu District',
+  '武侯区': 'Wuhou District', '成华区': 'Chenghua District', '龙泉驿区': 'Longquanyi District',
+  '青白江区': 'Qingbaijiang District', '新都区': 'Xindu District', '温江区': 'Wenjiang District',
+  '双流区': 'Shuangliu District', '郫都区': 'Pidu District',
+  /* 武汉 */
+  '江岸区': "Jiang'an District", '江汉区': 'Jianghan District', '硚口区': 'Qiaokou District',
+  '汉阳区': 'Hanyang District', '武昌区': 'Wuchang District', '青山区': 'Qingshan District',
+  '洪山区': 'Hongshan District', '东西湖区': 'Dongxihu District', '汉南区': 'Hannan District',
+  '蔡甸区': 'Caidian District', '江夏区': 'Jiangxia District', '黄陂区': 'Huangpi District',
+  '新洲区': 'Xinzhou District',
+  /* 杭州 */
+  '上城区': 'Shangcheng District', '拱墅区': 'Gongshu District', '西湖区': 'Xihu District',
+  '滨江区': 'Binjiang District', '萧山区': 'Xiaoshan District', '余杭区': 'Yuhang District',
+  '临平区': 'Linping District', '钱塘区': 'Qiantang District', '富阳区': 'Fuyang District',
+  '临安区': "Lin'an District",
+  /* 南京 */
+  '玄武区': 'Xuanwu District', '秦淮区': 'Qinhuai District', '建邺区': 'Jianye District',
+  '鼓楼区': 'Gulou District', '浦口区': 'Pukou District', '栖霞区': 'Qixia District',
+  '雨花台区': 'Yuhuatai District', '江宁区': 'Jiangning District', '六合区': 'Luhe District',
+  '溧水区': 'Lishui District', '高淳区': 'Gaochun District',
+  /* 西安 */
+  '新城区': 'Xincheng District', '碑林区': 'Beilin District', '莲湖区': 'Lianhu District',
+  '灞桥区': 'Baqiao District', '未央区': 'Weiyang District', '雁塔区': 'Yanta District',
+  '阎良区': 'Yanliang District', '临潼区': 'Lintong District', '长安区': "Chang'an District",
+  '高陵区': 'Gaoling District', '鄠邑区': 'Huyi District',
+  /* 香港 */
+  '中西区': 'Central & Western District', '湾仔区': 'Wan Chai District', '东区': 'Eastern District',
+  '南区': 'Southern District', '油尖旺区': 'Yau Tsim Mong District', '深水埗区': 'Sham Shui Po District',
+  '九龙城区': 'Kowloon City District', '黄大仙区': 'Wong Tai Sin District', '观塘区': 'Kwun Tong District',
+  '荃湾区': 'Tsuen Wan District', '屯门区': 'Tuen Mun District', '元朗区': 'Yuen Long District',
+  '北区': 'North District', '大埔区': 'Tai Po District', '西贡区': 'Sai Kung District',
+  '沙田区': 'Sha Tin District', '葵青区': 'Kwai Tsing District', '离岛区': 'Islands District'
+};
+
+/* 行政区后缀英文（顺序：先匹配长后缀） */
+var SUFFIX_EN = [
+  ['自治县', 'Autonomous County'], ['自治旗', 'Autonomous Banner'],
+  ['新区', 'New Area'], ['区', 'District'], ['县', 'County'],
+  ['县级市', 'City'], ['旗', 'Banner'], ['市', 'City'],
+  ['地区', 'Prefecture'], ['盟', 'League']
+];
+
+/** 区县名翻译：字典优先，其余按拼音 + 行政后缀；非中文语言统一使用英文 */
+function districtName(zhName, lang) {
+  var l = lang || getLang();
+  if (l === 'zh' || !zhName) {
+    return zhName;
+  }
+  var name = String(zhName);
+  /* 若后缀后还有多余描述（如“天河区最严重”），截取到后缀为止 */
+  for (var i = 0; i < SUFFIX_EN.length; i++) {
+    var idx = name.indexOf(SUFFIX_EN[i][0]);
+    if (idx > 0 && idx + SUFFIX_EN[i][0].length < name.length) {
+      name = name.slice(0, idx + SUFFIX_EN[i][0].length);
+      break;
+    }
+  }
+  if (DISTRICTS_EN[name]) {
+    return DISTRICTS_EN[name];
+  }
+  var suffix = '';
+  for (var j = 0; j < SUFFIX_EN.length; j++) {
+    var s = SUFFIX_EN[j][0];
+    if (name.length > s.length && name.slice(-s.length) === s) {
+      suffix = SUFFIX_EN[j][1];
+      name = name.slice(0, -s.length);
+      break;
+    }
+  }
+  var py = name;
+  if (window.pinyinPro && name) {
+    var arr = window.pinyinPro.pinyin(name, { toneType: 'none', type: 'array' }) || [];
+    py = arr.join('');
+    py = py ? py.charAt(0).toUpperCase() + py.slice(1) : name;
+  }
+  return py + (suffix ? ' ' + suffix : '');
+}
+
 /** 预警级别名称（red→“红色预警” / Red Alert / Alerta Roja ...） */
 function levelName(level, lang) {
   var l = lang || getLang();
@@ -1874,11 +1997,36 @@ function areaName(area, cityName, lang) {
   if (l === 'zh' || !area) {
     return area;
   }
-  if (cityName && area.indexOf(cityName) === 0) {
-    return placeName(cityName, l) + area.slice(cityName.length);
-  }
-  var p = placeName(area, l);
-  return p === area ? area : p;
+  var tokens = String(area).split(/[、,，;；]/);
+  var out = tokens.map(function (tok) {
+    tok = tok.trim();
+    if (!tok) {
+      return '';
+    }
+    /* 去除中文引导词（其中/包括/重点关注/特别是等） */
+    tok = tok.replace(/^(重点关注|其中|尤其是|特别是|包括|预计|位于|主要在|重点|关注|全市|及|和|点)/, '');
+    if (!tok) {
+      return '';
+    }
+    var city = '';
+    if (cityName && tok.indexOf(cityName) === 0) {
+      city = placeName(cityName, l);
+      tok = tok.slice(cityName.length);
+    }
+    var rest = tok ? districtName(tok, l) : '';
+    if (city && rest) {
+      return city + ' ' + rest;
+    }
+    if (rest) {
+      var m = rest.match(/^(.+?市)\s+(.+)$/);
+      if (m && PLACES[m[1]]) {
+        return PLACES[m[1]] + ' ' + m[2];
+      }
+      return rest;
+    }
+    return city || tok;
+  }).filter(Boolean);
+  return out.join(', ');
 }
 
 // ---- 防御要点（非中文界面：按预警类型给出本地化标准防御要点） ----
@@ -2143,6 +2291,7 @@ module.exports = {
   pack: pack,
   disasterName: disasterName,
   placeName: placeName,
+  districtName: districtName,
   levelName: levelName,
   levelWord: levelWord,
   dataSourceName: dataSourceName,

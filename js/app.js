@@ -432,7 +432,7 @@
     if (!s.loading && (s.rawAlerts.length || s.rawWeather)) { deriveHome(l); }
     var displayCity = i18n.placeName(s.city, l);
     var displayProvince = s.province ? i18n.placeName(s.province, l) : '';
-    var districtLabel = s.district ? s.district : t.allDistricts;
+    var districtLabel = s.district ? i18n.districtName(s.district, l) : t.allDistricts;
 
     /* ---- Hero ---- */
     var tempNum = s.weather && s.weather.temp ? parseFloat(s.weather.temp) : '';
@@ -685,7 +685,7 @@
         ? '<div class="state-box" style="padding:30px"><div class="spinner"></div>' + esc(t.loading) + '</div>'
         : homeState.districtList.map(function (d) {
           return '<button class="picker-city" data-action="select-district" data-name="' + esc(d.name) + '">' +
-            '<span class="pc-left"><span class="status-dot status-' + esc(d.status) + '"></span>' + esc(d.name) +
+            '<span class="pc-left"><span class="status-dot status-' + esc(d.status) + '"></span>' + esc(i18n.districtName(d.name, l)) +
             (homeState.district === d.name ? ' <b>✓</b>' : '') + '</span>' +
             '<span class="pc-count">' + (d.count ? d.count + '' : '') + ' ›</span></button>';
         }).join('');
@@ -920,7 +920,7 @@
     var focusChips = extractChips(alert.focusArea);
     var chipsHtml = allChips.length
       ? '<div class="district-chips">' + allChips.map(function (d) {
-        return '<span class="district-chip ' + (focusChips.indexOf(d) > -1 ? 'focus' : '') + '">' + esc(d) +
+        return '<span class="district-chip ' + (focusChips.indexOf(d) > -1 ? 'focus' : '') + '">' + esc(i18n.districtName(d, l)) +
           (focusChips.indexOf(d) > -1 ? ' ●' : '') + '</span>';
       }).join('') + '</div>'
       : '';
