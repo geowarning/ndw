@@ -504,7 +504,7 @@
       n: 4 + level,              // 网格边长 L1=5 … L7=11
       piles: Math.min(level + 1, 8),
       obstacle: 0.13 + level * 0.018,
-      time: 360
+      time: 45
     };
   }
   var CELL = 2; // 每格 2 米
@@ -682,15 +682,10 @@
     var hull = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.42, 1.4), bodyMat);
     hull.position.y = 0.55;
     g.add(hull);
-    // 炮塔
-    var turret = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.46, 0.32, 10), bodyMat);
-    turret.position.y = 0.92;
-    var barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.9, 8), darkMat);
-    barrel.rotation.x = Math.PI / 2;
-    barrel.position.set(0, 0.92, -0.6);
-    var hatch = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.1, 8), metal(0x667a3a, 0.4));
-    hatch.position.set(0.15, 1.13, 0.1);
-    g.add(turret); g.add(barrel); g.add(hatch);
+    // 底盘顶盖（无炮塔，仅底盘）
+    var deck = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.08, 1.15), metal(0x667a3a, 0.4));
+    deck.position.y = 0.8;
+    g.add(deck);
     g.traverse(function (m) { if (m.isMesh) m.castShadow = true; });
     return g;
   }

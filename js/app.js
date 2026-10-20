@@ -98,7 +98,7 @@
 
   /* ---------- 内联 SVG ---------- */
   var SVG = {
-    brand: '<svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 2 3 7v9c0 8.2 5.6 12.4 13 14 7.4-1.6 13-5.8 13-14V7L16 2Z" fill="#76b900"/><path d="M16 9v7" stroke="#0a0c0f" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="20.4" r="1.5" fill="#0a0c0f"/></svg>',
+    brand: '<svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 2 3 7v9c0 8.2 5.6 12.4 13 14V2Z" fill="#1565c0"/><path d="M16 2v28c7.4-1.6 13-5.8 13-14V7L16 2Z" fill="#2e7d32"/><path d="M16.4 23.2C14.8 16.8 18.2 10.6 25.6 8.4c1.2 8-2.8 13.8-9.2 14.8Z" fill="#81c784"/><path d="M16.8 22.4c1.8-4 4.4-7.4 8-11.2" stroke="#2e7d32" stroke-width="0.8" fill="none"/><circle cx="10.4" cy="14.8" r="4.1" fill="none" stroke="#fff" stroke-width="1.7"/><circle cx="10.4" cy="14.8" r="1.4" fill="#fff"/><path d="M21.6 10.6c1.6 2 2.8 3.3 2.8 5.4a3.2 3.2 0 0 1-6.4 0c0-1.3.7-2.2 1.3-2.9.1 1.1.6 1.6 1.2 1.9-.4-1.7-.1-3 1.1-4.4Z" fill="#ff8a00"/><path d="M21.6 12.3c.8 1.2 1.3 2.1 1.3 3.4a1.7 1.7 0 0 1-3.4 0c0-.8.4-1.3.8-1.8.2.7.5 1 .9 1.2-.2-1.1 0-1.9.4-2.8Z" fill="#ffd54f"/><path d="M16 2 3 7v9c0 8.2 5.6 12.4 13 14 7.4-1.6 13-5.8 13-14V7L16 2Z" stroke="#0d1321" stroke-width="1" stroke-linejoin="round"/><line x1="16" y1="3" x2="16" y2="29" stroke="#0d1321" stroke-width="0.8"/></svg>',
     menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
     check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
@@ -483,8 +483,7 @@
 
     /* ---- 全国全息态势图 ---- */
     html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.nationalSituation) + '</h2>' +
-      '<span class="head-hint">' + esc(t.nationalHint) + '</span></div>' +
+      '<div class="section-head"><h2>' + esc(t.nationalSituation) + '</h2></div>' +
       '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
