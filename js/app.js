@@ -344,14 +344,15 @@
   }
 
   /* 后台串行扫描全国城市预警（只取预警，不取天气），边扫边更新地图 */
-  function sweepNationalStatus() {
+  function sweepNationalStatus(force) {
     if (nationalSweeping) { return; }
     var all = districts.allCityGeo();
     var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
-    if (snap && snap.time && (Date.now() - snap.time) < NATIONAL_SWEEP_TTL &&
+    if (!force && snap && snap.time && (Date.now() - snap.time) < NATIONAL_SWEEP_TTL &&
         snap.value && Object.keys(snap.value).length >= all.length) {
       return; /* 60 分钟内已完整扫描过 */
     }
+    setScanButtonState(true);
     nationalSweeping = true;
     var i = 0;
     function next() {
@@ -359,6 +360,8 @@
         nationalSweeping = false;
         saveNationalStatus();
         refreshMaps();
+        setScanButtonState(false);
+        wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' });
         return;
       }
       var c = all[i++];
@@ -379,6 +382,21 @@
         });
     }
     next();
+  }
+
+  /* 地图旁扫描按钮的加载状态 */
+  function setScanButtonState(loading) {
+    var btn = document.querySelector('[data-action="refresh-map"]');
+    if (!btn) { return; }
+    if (loading) {
+      btn.classList.add('is-loading');
+      btn.setAttribute('disabled', 'disabled');
+      btn.innerHTML = '<span class="map-scan-spin"></span>' + esc(i18n.t('scanning', lang()));
+    } else {
+      btn.classList.remove('is-loading');
+      btn.removeAttribute('disabled');
+      btn.innerHTML = SVG.refresh + esc(i18n.t('mapScan', lang()));
+    }
   }
 
   /* ---------- 数据加载 ---------- */
@@ -550,7 +568,12 @@
 
     /* ---- 全国全息态势图 ---- */
     html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.nationalSituation) + '</h2></div>' +
+      '<div class="section-head"><h2>' + esc(t.nationalSituation) + '</h2>' +
+        '<button class="map-scan-btn' + (nationalSweeping ? ' is-loading' : '') + '" data-action="refresh-map"' +
+        (nationalSweeping ? ' disabled' : '') + '>' +
+        (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
+                          : SVG.refresh + esc(t.mapScan)) +
+        '</button></div>' +
       '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
@@ -1805,6 +1828,9 @@
         homeState.error = '';
         renderHome();
         loadHomeData();
+        break;
+      case 'refresh-map':
+        sweepNationalStatus(true);
         break;
       case 'select-province': selectProvince(d.name); break;
       case 'select-city': selectCity(d.name); break;

@@ -191,6 +191,30 @@ main { display: block; padding-top: var(--nav-h); min-height: calc(100vh - var(-
 .section-head h2 { font-size: 1.4rem; }
 .section-head .head-hint { color: var(--text-dim); font-size: 0.86rem; }
 
+.map-scan-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  border: 1px solid rgba(67, 232, 207, 0.4);
+  background: rgba(67, 232, 207, 0.08);
+  color: var(--holo-bright);
+  padding: 8px 16px; border-radius: 999px;
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; transition: all .18s ease;
+}
+.map-scan-btn svg { width: 15px; height: 15px; }
+.map-scan-btn:hover:not(:disabled) {
+  background: rgba(67, 232, 207, 0.18);
+  border-color: var(--holo-bright);
+}
+.map-scan-btn:disabled { opacity: 0.7; cursor: default; }
+.map-scan-spin {
+  width: 13px; height: 13px; border-radius: 50%;
+  border: 2px solid rgba(67, 232, 207, 0.3);
+  border-top-color: var(--holo-bright);
+  display: inline-block; animation: mapScanSpin 0.8s linear infinite;
+}
+@keyframes mapScanSpin { to { transform: rotate(360deg); } }
+
+
 /* ============================================================
    Hero
    ============================================================ */
