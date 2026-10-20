@@ -20,7 +20,8 @@ module.exports = {
   // 华风爱科天气 API（中国气象局官方授权，推荐）
   // 注册：https://platform.weathercn.com
   // 步骤：注册开发者账号 → 实名认证 → 控制台创建应用 → 获取 OpenAPI Key
-  // 说明：标准测试 Key 开通 30 天试用，每日 500 次免费调用（5 QPS），超额后需与企业商务洽谈配额
+  // 说明：标准测试 Key，每日配额以控制台为准（当前显示每个接口 50 次/天、5 QPS），
+  //       超额后需与企业商务洽谈配额；页面已做 15/30/60 分钟多级缓存降低消耗
   weathercn: {
     apiKey: 'eVfsbObyqjCduc0dTT2AnnQfmDc2xzHt',
     host: 'https://openapi.weathercn.com'
