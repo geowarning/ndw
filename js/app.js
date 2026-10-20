@@ -369,6 +369,7 @@
               high: list.some(function (a) { return a.level === 'red'; }),
               count: list.length
             };
+            recordTrend(c.adcode, list.length);
           }
           if (i % 6 === 0 || i === all.length) {
             saveNationalStatus();
@@ -519,6 +520,13 @@
             '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || t.loading) + '</div>' +
             '<h1 class="hero-title">' + esc(t.heroTitle) + '</h1>' +
             '<p class="hero-sub">' + esc(t.heroSub) + '</p>' +
+            '<div class="home-lang">' +
+              i18n.LANGUAGES.map(function (lg) {
+                var shortName = lg.code === 'zh' ? '中文' : lg.code.toUpperCase();
+                return '<button class="home-lang-btn' + (lg.code === l ? ' active' : '') +
+                  '" data-action="select-lang" data-code="' + lg.code + '">' + esc(shortName) + '</button>';
+              }).join('') +
+            '</div>' +
             '<div class="hero-location">' +
               '<div class="hero-city">' + esc(displayCity) +
                 '<small>' + esc(displayProvince) + '</small></div>' +
@@ -643,21 +651,28 @@
       '</div>' +
     '</div></section>';
 
-    /* ---- 趋势 ---- */
-    var trendOb = (wx.getStorageSync('daily_trend') || {})[s.adcode] || {};
+    /* ---- 趋势（全国城市汇总） ---- */
+    var trendAll = wx.getStorageSync('daily_trend') || {};
+    var trendAds = Object.keys(trendAll);
     var days = [], vals = [];
+    var recorded = 0;
     for (var i = 13; i >= 0; i--) {
       var dt = new Date(Date.now() - i * 86400000);
       var key = pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
       days.push(key);
-      vals.push(trendOb[key] || 0);
+      var total = 0, hasData = false;
+      trendAds.forEach(function (ad) {
+        var v = trendAll[ad] && trendAll[ad][key];
+        if (typeof v === 'number') { total += v; hasData = true; }
+      });
+      vals.push(total);
+      if (hasData) { recorded++; }
     }
-    var recorded = Object.keys(trendOb).length;
 
     html += '<section class="section section-alt"><div class="container">' +
       '<div class="section-head"><h2>' + esc(t.trend) + '</h2>' +
-        '<span class="head-hint">' + esc(displayCity) + ' · 14 ' + esc(t.dayShort) + '</span></div>';
-    if (recorded < 2) {
+        '<span class="head-hint">' + esc(t.trendNationwide) + ' · 14 ' + esc(t.dayShort) + '</span></div>';
+    if (recorded < 1) {
       html += '<div class="state-box">' + esc(t.trendBuilding) + '</div>';
     } else {
       html += '<canvas id="trendLine" data-h="220"></canvas>';
