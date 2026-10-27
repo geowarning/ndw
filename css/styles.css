@@ -188,8 +188,21 @@ main { display: block; padding-top: var(--nav-h); min-height: calc(100vh - var(-
   display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
   margin-bottom: 26px; flex-wrap: wrap;
 }
-.section-head h2 { font-size: 1.4rem; }
+.section-head h2 { font-size: 1.4rem; display: flex; align-items: center; gap: 9px; }
 .section-head .head-hint { color: var(--text-dim); font-size: 0.86rem; }
+
+/* 小图标统一尺寸与对齐 */
+.h2-ic { display: inline-flex; align-items: center; color: var(--holo-bright); flex: none; }
+.h2-ic svg { display: block; }
+.wc-ic { color: var(--holo-bright); margin-right: 4px; }
+.btn-ic { margin-right: 6px; color: inherit; }
+.btn-green .btn-ic { color: #04121c; }
+
+/* 导航链接里的小图标 */
+.nav-link { display: inline-flex; align-items: center; gap: 6px; }
+.nav-link svg { width: 15px; height: 15px; }
+.nav-drawer a { display: flex; align-items: center; gap: 9px; }
+.nav-drawer a svg { width: 17px; height: 17px; }
 
 .map-scan-btn {
   display: inline-flex; align-items: center; gap: 7px;

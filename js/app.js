@@ -104,7 +104,22 @@
     check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
     checkBox: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0c0f06" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
     products: '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>',
-    refresh: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>'
+    refresh: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>',
+    /* ---- 统一描边小图标（16px，继承 currentColor） ---- */
+    iHome: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
+    iGuide: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
+    iTools: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 4.7-3.7z"/></svg>',
+    iProducts: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>',
+    iSettings: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+    iGlobe: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+    iBell: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+    iChart: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>',
+    iClock: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    iWarn: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
+    iPin: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+    iTemp: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.8V5a2 2 0 1 0-4 0v9.3a4.5 4.5 0 1 0 4 0z"/></svg>',
+    iWind: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h8"/></svg>',
+    iLang: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M9 3v2M6 5c0 4-2 8-4 10M5 9c1.8 3 4 5 7 6"/><path d="M13 21l4-10 4 10M14.5 17h5"/></svg>'
   };
 
   /* ---------- DOM 句柄 ---------- */
@@ -154,11 +169,11 @@
    * ================================================================ */
   function navItems(l) {
     return [
-      { path: '/home', hash: '#/home', label: i18n.t('tabIndex', l) },
-      { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l) },
-      { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l) },
-      { path: '/products', hash: '#/products', label: i18n.t('navProducts', l) },
-      { path: '/settings', hash: '#/settings', label: i18n.t('tabSettings', l) }
+      { path: '/home', hash: '#/home', label: i18n.t('tabIndex', l), icon: SVG.iHome },
+      { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l), icon: SVG.iGuide },
+      { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l), icon: SVG.iTools },
+      { path: '/products', hash: '#/products', label: i18n.t('navProducts', l), icon: SVG.iProducts },
+      { path: '/settings', hash: '#/settings', label: i18n.t('tabSettings', l), icon: SVG.iSettings }
     ];
   }
 
@@ -166,7 +181,8 @@
     var l = lang();
     var items = navItems(l);
     var links = items.map(function (it) {
-      return '<a class="nav-link ' + (it.path === activePath ? 'active' : '') + '" href="' + it.hash + '">' + esc(it.label) + '</a>';
+      return '<a class="nav-link ' + (it.path === activePath ? 'active' : '') + '" href="' + it.hash + '">' +
+        it.icon + '<span>' + esc(it.label) + '</span></a>';
     }).join('');
     var brand = '<a class="brand" href="#/home">' + SVG.brand +
       '<span class="brand-name">' + esc(i18n.t('appName', l)) + '</span></a>';
@@ -520,11 +536,11 @@
       ? '<div class="weather-card">' +
           '<div class="wc-label">' + esc(t.realtimeWeather) + '</div>' +
           '<div class="weather-main">' +
-            '<div class="weather-temp">' + esc(tempNum) + '<small>' + esc(tempUnit || '°') + '</small></div>' +
+            '<div class="weather-temp"><span class="h2-ic wc-ic">' + SVG.iTemp + '</span>' + esc(tempNum) + '<small>' + esc(tempUnit || '°') + '</small></div>' +
             '<div class="weather-text">' + esc(s.weather.weather) + '</div>' +
           '</div>' +
           '<div class="weather-rows">' +
-            '<div class="wr-item"><b>' + esc(t.wind) + '</b>' + esc(s.weather.wind) + '</div>' +
+            '<div class="wr-item"><span class="h2-ic wc-ic">' + SVG.iWind + '</span><b>' + esc(t.wind) + '</b>' + esc(s.weather.wind) + '</div>' +
           '</div>' +
           '<div class="wc-source">' + esc(t.cityWeatherNote) + '</div>' +
           '<div class="wc-source">' + esc(i18n.tpl('providedBy', { source: s.dataSource }, l)) + '</div>' +
@@ -551,7 +567,7 @@
               '<button class="district-pill" data-action="open-district"><span class="status-dot status-' +
                 (s.levelStats.red ? 'high' : s.shownAlerts.length ? 'normal' : 'none') + '"></span>' +
                 esc(districtLabel) + ' <b>›</b></button>' +
-              '<button class="btn btn-green btn-lg" data-action="open-picker">' + esc(t.ctaChooseCity) + '</button>' +
+              '<button class="btn btn-green btn-lg" data-action="open-picker"><span class="h2-ic btn-ic">' + SVG.iPin + '</span>' + esc(t.ctaChooseCity) + '</button>' +
               '<button class="btn btn-outline btn-lg icon-btn" data-action="refresh" aria-label="' + esc(t.refresh) + '">' + SVG.refresh + '</button>' +
             '</div>' +
           '</div>' +
@@ -568,7 +584,7 @@
 
     /* ---- 全国全息态势图 ---- */
     html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.nationalSituation) + '</h2>' +
+      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iGlobe + '</span>' + esc(t.nationalSituation) + '</h2>' +
         '<button class="map-scan-btn' + (nationalSweeping ? ' is-loading' : '') + '" data-action="refresh-map"' +
         (nationalSweeping ? ' disabled' : '') + '>' +
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
@@ -584,7 +600,7 @@
 
     /* ---- 预警列表 ---- */
     html += '<section class="section"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.activeAlerts) + '</h2>' +
+      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iBell + '</span>' + esc(t.activeAlerts) + '</h2>' +
       '<span class="head-hint">' + esc(i18n.tpl('total', { n: s.shownAlerts.length }, l)) +
       (s.fromCache ? ' · ' + esc(t.cached) : '') +
       (s.lastUpdate ? ' · ' + esc(i18n.tpl('updatedAt', { time: s.lastUpdate }, l)) : '') +
@@ -619,7 +635,7 @@
       return String(b.time) < String(a.time) ? 1 : String(b.time) > String(a.time) ? -1 : 0;
     });
     html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.timeline) + '</h2></div>';
+      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iClock + '</span>' + esc(t.timeline) + '</h2></div>';
     if (tlAlerts.length) {
       html += '<ul class="timeline">' + tlAlerts.map(function (a) {
         return '<li>' +
@@ -662,9 +678,9 @@
       .sort(function (a, b) { return b.prob - a.prob; }).slice(0, 5);
 
     html += '<section class="section"><div class="container two-col-grid">' +
-      '<div class="panel-card"><div class="panel-card-title">' + esc(t.typeDist) + '</div>' +
+      '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.typeDist) + '</div>' +
         '<canvas id="typeDonut" data-h="240"></canvas></div>' +
-      '<div class="panel-card"><div class="panel-card-title">' + esc(t.topRisks) + '</div>' +
+      '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(t.topRisks) + '</div>' +
         (topRisks.length ? topRisks.map(function (r) {
           var nm = i18n.riskItem(r.key, l);
           return '<div class="mini-risk"><span class="mini-risk-name">' + esc(nm.name) + '</span>' +
@@ -693,7 +709,7 @@
     }
 
     html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2>' + esc(t.trend) + '</h2>' +
+      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.trend) + '</h2>' +
         '<span class="head-hint">' + esc(t.trendNationwide) + ' · 14 ' + esc(t.dayShort) + '</span></div>';
     if (recorded < 1) {
       html += '<div class="state-box">' + esc(t.trendBuilding) + '</div>';
