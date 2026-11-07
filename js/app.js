@@ -32,8 +32,8 @@
   function lang() { return i18n.getLang(); }
   function T(l) { return i18n.pack(l || lang()).t; }
 
-  function formatNow() {
-    var d = new Date();
+  function formatNow(time) {
+    var d = new Date(time || Date.now());
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
       ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
   }
@@ -62,6 +62,14 @@
 
   /* ---------- 网页版特有文案（5 语言） ---------- */
   var WEB = {
+    dataUnavailable: {
+      zh: '数据暂不可用', en: 'Data unavailable', es: 'Datos no disponibles',
+      fr: 'Données indisponibles', it: 'Dati non disponibili'
+    },
+    lastSuccess: {
+      zh: '上次成功获取：', en: 'Last successful fetch: ', es: 'Última consulta correcta: ',
+      fr: 'Dernière récupération réussie : ', it: 'Ultimo recupero riuscito: '
+    },
     configHint: {
       zh: '请检查网络连接，或稍后重试；如持续失败，可能是当日接口免费配额已用尽',
       en: 'Check your network or try again later; persistent failures may mean the daily API quota is exhausted',
@@ -244,7 +252,7 @@
     rawAlerts: [],
     shownAlerts: [],
     levelStats: { red: 0, orange: 0, yellow: 0, blue: 0 },
-    loading: true, error: '', dataSource: '', fromCache: false, lastUpdate: '',
+    loading: true, error: '', dataSource: '', fromCache: false, lastUpdate: '', hasData: false,
     pickerVisible: false, pickerView: 'province', pickerProvince: '',
     pickerCity: null, cities: [], pickerCitiesLoading: false,
     districtList: [], districtLoading: false
@@ -303,6 +311,7 @@
   /* 城市下各区县的状态点 */
   function districtStatuses(cityAdcode, rawAlerts) {
     return districts.getDistricts(cityAdcode).map(function (d) {
+      if (!rawAlerts) { return { name: d.name, status: 'unknown', count: null }; }
       var hits = rawAlerts.filter(function (a) { return alertAffectsDistrict(a, d.name); });
       var high = hits.some(function (a) { return a.level === 'red'; });
       return { name: d.name, status: hits.length ? (high ? 'high' : 'normal') : 'none', count: hits.length };
@@ -347,7 +356,10 @@
     var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
     if (snap && snap.value && typeof snap.value === 'object') {
       Object.keys(snap.value).forEach(function (ad) {
-        sessionStatus[ad] = snap.value[ad];
+        var entry = snap.value[ad];
+        if (entry.checkedAt && Date.now() - entry.checkedAt < 21600000) {
+          sessionStatus[ad] = entry;
+        }
       });
       refreshMaps();
     }
@@ -386,9 +398,12 @@
           if (list) {
             sessionStatus[c.adcode] = {
               high: list.some(function (a) { return a.level === 'red'; }),
-              count: list.length
+              count: list.length,
+              checkedAt: list.fetchedAt || Date.now()
             };
             recordTrend(c.adcode, list.length);
+          } else {
+            delete sessionStatus[c.adcode];
           }
           if (i % 6 === 0 || i === all.length) {
             saveNationalStatus();
@@ -414,6 +429,13 @@
       btn.innerHTML = SVG.refresh + esc(i18n.t('mapScan', lang()));
     }
   }
+
+  // Read shared snapshots periodically; these reads never call the provider.
+  setInterval(function () {
+    if (!document.hidden && (location.hash || '#/home') === '#/home') {
+      sweepNationalStatus(true);
+    }
+  }, 60000);
 
   /* ---------- 数据加载 ---------- */
   function localizeList(raw, l) {
@@ -452,11 +474,18 @@
     s.dataSource = i18n.dataSourceName(s.rawSource, l);
   }
 
+  var homeRequest = 0;
   function loadHomeData() {
+    var requestId = ++homeRequest;
     var region = currentRegion();
     var l = lang();
+    homeState.rawAlerts = [];
+    homeState.rawWeather = null;
+    homeState.hasData = false;
+    deriveHome(l);
     homeState.adcode = region.adcode;
     api.fetchAll(region).then(function (res) {
+      if (requestId !== homeRequest) { return; }
       var raw = res.alerts || [];
 
       homeState.rawWeather = res.weather || null;
@@ -465,15 +494,22 @@
       deriveHome(l);
 
       homeState.loading = false;
-      homeState.error = res.ok ? '' : (res.error || '');
+      homeState.hasData = !!res.ok;
+      homeState.error = res.ok ? '' : (res.error || web('dataUnavailable'));
       homeState.fromCache = !!res.fromCache;
-      homeState.lastUpdate = formatNow();
+      if (res.ok && (!res.fromCache || res.fetchedAt)) {
+        homeState.lastUpdate = formatNow(res.fetchedAt);
+      }
 
-      sessionStatus[region.adcode] = {
-        high: raw.some(function (a) { return a.level === 'red'; }),
-        count: raw.length
-      };
-      if (region.adcode) { recordTrend(region.adcode, raw.length); }
+      if (res.ok) {
+        sessionStatus[region.adcode] = {
+          high: raw.some(function (a) { return a.level === 'red'; }),
+          count: raw.length
+        };
+      } else {
+        delete sessionStatus[region.adcode];
+      }
+      if (res.ok && region.adcode) { recordTrend(region.adcode, raw.length); }
       refreshMaps();
 
       if ((location.hash || '#/home').indexOf('#/home') === 0) {
@@ -503,6 +539,9 @@
   }
 
   function applyRegion(r) {
+    if (r.city !== homeState.city || r.province !== homeState.province) {
+      homeState.lastUpdate = '';
+    }
     wx.setStorageSync(REGION_KEY, r);
     homeState.province = r.province;
     homeState.city = r.city;
@@ -523,6 +562,8 @@
     var l = lang();
     var t = T(l);
     var s = homeState;
+    var dataReady = s.hasData && !s.loading && !s.error;
+    var dataState = s.loading ? t.loading : web('dataUnavailable');
     if (!s.loading && (s.rawAlerts.length || s.rawWeather)) { deriveHome(l); }
     var displayCity = i18n.placeName(s.city, l);
     var displayProvince = s.province ? i18n.placeName(s.province, l) : '';
@@ -545,7 +586,7 @@
           '<div class="wc-source">' + esc(t.cityWeatherNote) + '</div>' +
           '<div class="wc-source">' + esc(i18n.tpl('providedBy', { source: s.dataSource }, l)) + '</div>' +
         '</div>'
-      : '<div class="weather-card"><div class="spinner"></div><div style="text-align:center;color:var(--text-dim);font-size:.86rem">' + esc(t.loading) + '</div></div>';
+      : '<div class="weather-card">' + (s.loading ? '<div class="spinner"></div>' : '') + '<div style="text-align:center;color:var(--text-dim);font-size:.86rem">' + esc(s.loading ? t.loading : web('dataUnavailable')) + '</div></div>';
 
     var html =
       '<section class="hero"><div class="container">' +
@@ -565,7 +606,7 @@
               '<div class="hero-city">' + esc(displayCity) +
                 '<small>' + esc(displayProvince) + '</small></div>' +
               '<button class="district-pill" data-action="open-district"><span class="status-dot status-' +
-                (s.levelStats.red ? 'high' : s.shownAlerts.length ? 'normal' : 'none') + '"></span>' +
+                (!dataReady ? 'unknown' : s.levelStats.red ? 'high' : s.shownAlerts.length ? 'normal' : 'none') + '" title="' + esc(dataReady ? (s.shownAlerts.length ? t.legendAlert : t.noAlerts) : dataState) + '"></span>' +
                 esc(districtLabel) + ' <b>›</b></button>' +
               '<button class="btn btn-green btn-lg" data-action="open-picker"><span class="h2-ic btn-ic">' + SVG.iPin + '</span>' + esc(t.ctaChooseCity) + '</button>' +
               '<button class="btn btn-outline btn-lg icon-btn" data-action="refresh" aria-label="' + esc(t.refresh) + '">' + SVG.refresh + '</button>' +
@@ -575,11 +616,13 @@
         '</div>' +
 
         '<div class="stat-row">' +
-          statBox('lv-red', s.levelStats.red, t.redAlert) +
-          statBox('lv-orange', s.levelStats.orange, t.orangeAlert) +
-          statBox('lv-yellow', s.levelStats.yellow, t.yellowAlert) +
-          statBox('lv-blue', s.levelStats.blue, t.blueAlert) +
+          statBox('lv-red', dataReady ? s.levelStats.red : null, t.redAlert) +
+          statBox('lv-orange', dataReady ? s.levelStats.orange : null, t.orangeAlert) +
+          statBox('lv-yellow', dataReady ? s.levelStats.yellow : null, t.yellowAlert) +
+          statBox('lv-blue', dataReady ? s.levelStats.blue : null, t.blueAlert) +
         '</div>' +
+        '<p class="head-hint" role="status">' + (!dataReady ? esc(dataState) + (s.lastUpdate ? ' · ' : '') : '') +
+          (s.lastUpdate ? esc(web('lastSuccess') + s.lastUpdate) : '') + '</p>' +
       '</div></section>';
 
     /* ---- 全国全息态势图 ---- */
@@ -601,9 +644,9 @@
     /* ---- 预警列表 ---- */
     html += '<section class="section"><div class="container">' +
       '<div class="section-head"><h2><span class="h2-ic">' + SVG.iBell + '</span>' + esc(t.activeAlerts) + '</h2>' +
-      '<span class="head-hint">' + esc(i18n.tpl('total', { n: s.shownAlerts.length }, l)) +
+      '<span class="head-hint">' + esc(dataReady ? i18n.tpl('total', { n: s.shownAlerts.length }, l) : dataState) +
       (s.fromCache ? ' · ' + esc(t.cached) : '') +
-      (s.lastUpdate ? ' · ' + esc(i18n.tpl('updatedAt', { time: s.lastUpdate }, l)) : '') +
+      (s.lastUpdate ? ' · ' + esc(web('lastSuccess') + s.lastUpdate) : '') +
       '</span></div>';
 
     if (s.error) {
@@ -631,7 +674,7 @@
     html += '</div></section>';
 
     /* ---- 预警动态时间线 ---- */
-    var tlAlerts = s.shownAlerts.slice().sort(function (a, b) {
+    var tlAlerts = (dataReady ? s.shownAlerts : []).slice().sort(function (a, b) {
       return String(b.time) < String(a.time) ? 1 : String(b.time) > String(a.time) ? -1 : 0;
     });
     html += '<section class="section section-alt"><div class="container">' +
@@ -646,13 +689,13 @@
           '</a></li>';
       }).join('') + '</ul>';
     } else {
-      html += '<div class="state-box">' + esc(t.noTimeline) + '</div>';
+      html += '<div class="state-box">' + esc(dataReady ? t.noTimeline : dataState) + '</div>';
     }
     html += '</div></section>';
 
     /* ---- 类型分布 + TOP 风险 ---- */
     var typeCount = {}, typeOrder = [];
-    var shownRaw = s.district
+    var shownRaw = !dataReady ? [] : s.district
       ? s.rawAlerts.filter(function (a) { return alertAffectsDistrict(a, s.district); })
       : s.rawAlerts;
     shownRaw.forEach(function (a) {
@@ -679,14 +722,14 @@
 
     html += '<section class="section"><div class="container two-col-grid">' +
       '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.typeDist) + '</div>' +
-        '<canvas id="typeDonut" data-h="240"></canvas></div>' +
+        (dataReady ? '<canvas id="typeDonut" data-h="240"></canvas>' : '<div class="state-box">' + esc(dataState) + '</div>') + '</div>' +
       '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(t.topRisks) + '</div>' +
         (topRisks.length ? topRisks.map(function (r) {
           var nm = i18n.riskItem(r.key, l);
           return '<div class="mini-risk"><span class="mini-risk-name">' + esc(nm.name) + '</span>' +
             '<span class="mini-risk-bar"><i style="width:' + r.prob + '%;background:' + r.color + '"></i></span>' +
             '<b>' + r.prob + '%</b></div>';
-        }).join('') : '<div class="state-box">' + esc(t.noAlerts) + '</div>') +
+        }).join('') : '<div class="state-box">' + esc(dataReady ? t.noAlerts : dataState) + '</div>') +
       '</div>' +
     '</div></section>';
 
@@ -746,7 +789,7 @@
 
   function statBox(cls, num, label) {
     return '<div class="stat-box ' + cls + '">' +
-      '<span class="stat-num" data-count="' + num + '">' + num + '</span>' +
+      '<span class="stat-num">' + (num === null ? '—' : num) + '</span>' +
       '<span class="stat-label">' + esc(label) + '</span></div>';
   }
 
@@ -791,7 +834,7 @@
       head = i18n.placeName(pc.name, l);
       back = '<button class="picker-back" data-action="back-city">‹ ' + esc(i18n.placeName(pc.name, l)) + '</button>';
       var allStatus = sessionStatus[pc.adcode];
-      var allCls = allStatus ? (allStatus.high ? 'high' : allStatus.count ? 'normal' : 'none') : 'none';
+      var allCls = allStatus ? (allStatus.high ? 'high' : allStatus.count ? 'normal' : 'none') : 'unknown';
       var allRow = '<button class="picker-city" data-action="select-district" data-name="__ALL__">' +
         '<span class="pc-left"><span class="status-dot status-' + allCls + '"></span><b>' + esc(t.allDistricts) + '</b></span>' +
         '<span class="pp-arrow">›</span></button>';
@@ -839,7 +882,8 @@
     homeState.districtList = [];
     renderPicker();
     api.fetchAll(currentRegion()).then(function (res) {
-      homeState.districtList = districtStatuses(homeState.adcode, res.alerts || []);
+      if (!res.ok) { delete sessionStatus[homeState.adcode]; }
+      homeState.districtList = districtStatuses(homeState.adcode, res.ok ? (res.alerts || []) : null);
       homeState.districtLoading = false;
       renderPicker();
     });
@@ -863,8 +907,10 @@
       homeState.cities = cityList.map(function (c) {
         var st = map[c.name];
         if (!st) { return c; }
-        if (st.adcode) {
+        if (st.adcode && st.status !== 'unknown') {
           sessionStatus[st.adcode] = { high: st.status === 'high', count: st.count };
+        } else if (st.adcode) {
+          delete sessionStatus[st.adcode];
         }
         return {
           name: c.name, adcode: c.adcode, label: i18n.placeName(c.name, l),
@@ -892,12 +938,14 @@
       adcode: item.adcode
     }).then(function (res) {
       var raw = res.alerts || [];
-      homeState.districtList = districtStatuses(item.adcode, raw);
-      if (item.adcode) {
+      homeState.districtList = districtStatuses(item.adcode, res.ok ? raw : null);
+      if (item.adcode && res.ok) {
         sessionStatus[item.adcode] = {
           high: raw.some(function (a) { return a.level === 'red'; }),
           count: raw.length
         };
+      } else if (item.adcode) {
+        delete sessionStatus[item.adcode];
       }
       homeState.districtLoading = false;
       renderPicker();

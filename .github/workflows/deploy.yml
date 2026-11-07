@@ -4,15 +4,17 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -22,9 +24,42 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test collector
+        run: node --test backend/collect.test.mjs
+      - name: Configure data commit identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Reserve quota before collection
+        if: github.event_name != 'push'
+        env:
+          WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
+        run: node backend/collect.mjs reserve
+      - name: Collect reserved cities
+        if: github.event_name != 'push'
+        env:
+          WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
+        run: node backend/collect.mjs collect
+      - name: Restore shared snapshot for publication
+        run: |
+          remote_ref=$(git ls-remote --heads origin ndw-data)
+          if [ -n "$remote_ref" ]; then
+            git fetch origin ndw-data
+            git show FETCH_HEAD:public-data/warnings.json > public-data/warnings.json
+          fi
       - uses: actions/configure-pages@v5
+      - name: Stage public assets only
+        run: |
+          mkdir -p "$RUNNER_TEMP/ndw-public"
+          cp index.html CNAME favicon.svg "$RUNNER_TEMP/ndw-public/"
+          cp -R js css public-data "$RUNNER_TEMP/ndw-public/"
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ${{ runner.temp }}/ndw-public
       - id: deployment
         uses: actions/deploy-pages@v4

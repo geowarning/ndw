@@ -50,25 +50,30 @@ function effectiveDataSource() {
 /* ---------- 基础工具 ---------- */
 
 function request(url) {
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      url: url,
-      method: 'GET',
-      timeout: 8000,
-      header: { 'Accept': 'application/json' },
-      success: function (res) {
-        if (res.statusCode >= 200 && res.statusCode < 300) {
-          resolve(res.data);
-        } else {
-          var err = new Error('请求失败（HTTP ' + res.statusCode + '）');
-          err.statusCode = res.statusCode;
-          reject(err);
-        }
-      },
-      fail: function () {
-        reject(new Error('网络请求失败，请检查网络连接'));
-      }
-    });
+  return readSharedSnapshot(new URL(url).pathname);
+}
+
+var snapshotPromise = null, snapshotLoadedAt = 0;
+function readSharedSnapshot(route) {
+  if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
+    snapshotLoadedAt = Date.now();
+    snapshotPromise = fetch('public-data/warnings.json', { cache: 'no-cache', signal: AbortSignal.timeout(10000) })
+      .then(function (res) {
+        if (!res.ok) { throw new Error('Shared snapshot unavailable'); }
+        return res.json();
+      }).then(function (snapshot) {
+        if (snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
+        return snapshot;
+      });
+  }
+  return snapshotPromise.then(function (snapshot) {
+    var entry = snapshot.entries[route];
+    if (!entry || !Number.isFinite(entry.checkedAt) || Date.now() - entry.checkedAt >= 21600000) {
+      throw new Error('预警数据尚未更新或已过期 / Warning data unavailable or outdated');
+    }
+    var data = JSON.parse(JSON.stringify(entry.data));
+    data.fetchedAt = entry.checkedAt;
+    return data;
   });
 }
 
@@ -83,6 +88,7 @@ function readCache(key, minutes) {
     if (Date.now() - data.time > expires) {
       return null;
     }
+    if (Array.isArray(data.value)) { data.value.fetchedAt = data.time; }
     return data.value;
   } catch (e) {
     return null;
@@ -91,10 +97,15 @@ function readCache(key, minutes) {
 
 function writeCache(key, value) {
   try {
-    wx.setStorageSync(key, { time: Date.now(), value: value });
+    wx.setStorageSync(key, { time: value && value.fetchedAt || Date.now(), value: value });
   } catch (e) {
     // 缓存失败不影响主流程
   }
+}
+
+function cacheTime(key) {
+  try { return (wx.getStorageSync(key) || {}).time || null; }
+  catch (e) { return null; }
 }
 
 /* 内存预警注册表：缓存 TTL 过期或跨缓存读取时，详情页仍可凭 id 取到本次会话已加载的预警 */
@@ -443,11 +454,13 @@ function weathercnFetchAlerts(apiKey, host, locationKey, region) {
     '&details=true&language=zh-cn';
   return request(url).then(function (data) {
     const list = Array.isArray(data) ? data : (data && data.alerts) || [];
-    return list
+    var normalized = list
       .map(function (item) {
         return normalizeAlert(item, { city: region && region.city, lang: i18n.getLang() });
       })
       .filter(Boolean);
+    normalized.fetchedAt = data.fetchedAt || Date.now();
+    return normalized;
   }, function (err) {
     /* 华风接口在该城市无生效预警时返回 404，等价于“无预警” */
     if (err && err.statusCode === 404) {
@@ -579,7 +592,8 @@ function fetchAll(region) {
           source: '华风爱科天气API（中国气象局授权）',
           alerts: cachedAlerts,
           weather: readCache(weatherCacheKey, config.cacheWeatherMinutes),
-          fromCache: true
+          fromCache: true,
+          fetchedAt: cacheTime(alertCacheKey)
         });
         return;
       }
@@ -601,7 +615,8 @@ function fetchAll(region) {
             mock: false,
             source: '华风爱科天气API（中国气象局授权）',
             alerts: results[0],
-            weather: results[1]
+            weather: results[1],
+            fetchedAt: cacheTime(alertCacheKey) || Date.now()
           });
         })
         .catch(function (err) {
@@ -639,7 +654,8 @@ function fetchAll(region) {
           source: '高德天气API',
           alerts: cachedAlerts,
           weather: readCache(weatherCacheKey, config.cacheWeatherMinutes),
-          fromCache: true
+          fromCache: true,
+          fetchedAt: cacheTime(alertCacheKey)
         });
         return;
       }
@@ -657,7 +673,8 @@ function fetchAll(region) {
             mock: false,
             source: '高德天气API',
             alerts: result.alerts,
-            weather: result.weather
+            weather: result.weather,
+            fetchedAt: cacheTime(alertCacheKey) || Date.now()
           });
         })
         .catch(function (err) {

@@ -1,0 +1,77 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const modules = {};
+const context = vm.createContext({ window: { __modules: modules } });
+for (const file of ['cities', 'districts']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
+export const cities = modules.districts.allCityGeo().map(c => ({ ...c, key: modules.cities.getLocationKey(c.name) })).filter(c => c.key);
+
+export function reserve(state, now, limit = 450, batch = 4) {
+  if (!Array.isArray(state.calls) || !state.entries || !Number.isInteger(state.cursor)) throw Error('Invalid quota ledger');
+  state.calls = state.calls.filter(t => now - t < 86400000);
+  state.pending = [];
+  // Manual runs and delayed schedules cannot accelerate collection.
+  if (now - (state.lastAttempt || 0) < 15 * 60000) return state;
+  const count = Math.max(0, Math.min(batch, limit - state.calls.length));
+  for (let i = 0; i < count; i++) {
+    state.pending.push(cities[state.cursor % cities.length]);
+    state.cursor = (state.cursor + 1) % cities.length;
+    state.calls.push(now);
+  }
+  if (count) state.lastAttempt = now;
+  return state;
+}
+
+export async function collect(state, key, fetcher = fetch, now = Date.now) {
+  for (const city of state.pending || []) {
+    const route = '/alerts/v1/' + city.key + '.json';
+    try {
+      const res = await fetcher('https://openapi.weathercn.com' + route + '?apikey=' + encodeURIComponent(key) + '&details=true&language=zh-cn', { signal: AbortSignal.timeout(10000), redirect: 'error' });
+      const data = res.status === 404 ? [] : await res.json();
+      if (res.status !== 404 && (!res.ok || (!Array.isArray(data) && !Array.isArray(data?.alerts)))) throw Error('Invalid response');
+      // Do not publish credential strings echoed by an upstream service.
+      const safe = JSON.parse(JSON.stringify(data).split(key).join('[redacted]'));
+      state.entries[route] = { data: safe, checkedAt: now() };
+    } catch { console.error('City update failed; last good result retained.'); }
+  }
+  state.pending = [];
+  return state;
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+  const phase = process.argv[2];
+  const statePath = path.join(root, 'backend/data/state.json');
+  const snapshotPath = path.join(root, 'public-data/warnings.json');
+  let parent = '';
+  const remote = git('ls-remote', '--heads', 'origin', 'ndw-data');
+  if (remote) {
+    git('fetch', 'origin', 'ndw-data'); parent = git('rev-parse', 'FETCH_HEAD');
+  }
+  let state;
+  if (phase === 'reserve') {
+    if (!process.env.WEATHERCN_API_KEY) throw Error('Set the WEATHERCN_API_KEY Actions secret');
+    state = parent ? JSON.parse(git('show', parent + ':backend/data/state.json')) : { calls: [], entries: {}, cursor: 0, lastAttempt: 0 };
+    reserve(state, Date.now());
+  } else if (phase === 'collect') {
+    if (!parent || !process.env.WEATHERCN_API_KEY) throw Error('Missing reservation or key');
+    state = JSON.parse(git('show', parent + ':backend/data/state.json'));
+    await collect(state, process.env.WEATHERCN_API_KEY);
+  } else throw Error('Expected reserve or collect');
+  fs.mkdirSync(path.dirname(statePath), { recursive: true });
+  fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
+  fs.writeFileSync(statePath, JSON.stringify(state));
+  fs.writeFileSync(snapshotPath, JSON.stringify({ version: 1, generatedAt: Date.now(), entries: state.entries }));
+  // A separate index creates a data-only branch without modifying the source checkout.
+  process.env.GIT_INDEX_FILE = path.join(root, '.git/ndw-data-index');
+  git('read-tree', '--empty');
+  git('add', '-f', 'backend/data/state.json', 'public-data/warnings.json');
+  const tree = git('write-tree');
+  const commit = git('commit-tree', tree, ...(parent ? ['-p', parent] : []), '-m', 'Update shared warning ' + phase);
+  // Reservation push MUST succeed before the collect phase can spend quota.
+  git('push', 'origin', commit + ':refs/heads/ndw-data');
+}
