@@ -62,6 +62,24 @@
 
   /* ---------- 网页版特有文案（5 语言） ---------- */
   var WEB = {
+    overviewTitle: {
+      zh: '自然灾害预警总览', en: 'Disaster warning overview', es: 'Resumen de alertas',
+      fr: 'Vue d’ensemble des alertes', it: 'Panoramica delle allerte'
+    },
+    overviewSubtitle: {
+      zh: '关注所在城市，了解全国预警态势。', en: 'Your local warnings, with a view across the country.',
+      es: 'Alertas locales y una visión de todo el país.', fr: 'Vos alertes locales et une vue sur tout le pays.',
+      it: 'Allerte locali e una panoramica nazionale.'
+    },
+    mapHint: {
+      zh: '点击城市，查看当地预警。', en: 'Select a city to view its warnings.',
+      es: 'Seleccione una ciudad para ver sus alertas.', fr: 'Sélectionnez une ville pour voir ses alertes.',
+      it: 'Seleziona una città per vedere le allerte.'
+    },
+    unknown: {
+      zh: '未知 / 已过期', en: 'Unknown / outdated', es: 'Desconocido / desactualizado',
+      fr: 'Inconnu / obsolète', it: 'Sconosciuto / obsoleto'
+    },
     dataUnavailable: {
       zh: '数据暂不可用', en: 'Data unavailable', es: 'Datos no disponibles',
       fr: 'Données indisponibles', it: 'Dati non disponibili'
@@ -586,20 +604,21 @@
           '<div class="wc-source">' + esc(t.cityWeatherNote) + '</div>' +
           '<div class="wc-source">' + esc(i18n.tpl('providedBy', { source: s.dataSource }, l)) + '</div>' +
         '</div>'
-      : '<div class="weather-card">' + (s.loading ? '<div class="spinner"></div>' : '') + '<div style="text-align:center;color:var(--text-dim);font-size:.86rem">' + esc(s.loading ? t.loading : web('dataUnavailable')) + '</div></div>';
+      : '';
 
     var html =
-      '<section class="hero"><div class="container">' +
+      '<div class="home-dashboard"><section class="hero"><div class="container">' +
         '<div class="hero-inner">' +
           '<div class="hero-left">' +
+            '<div class="home-intro">' +
             '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || t.loading) + '</div>' +
-            '<h1 class="hero-title">' + esc(t.heroTitle) + '</h1>' +
-            '<p class="hero-sub">' + esc(t.heroSub) + '</p>' +
+            '<h1 class="hero-title">' + esc(web('overviewTitle')) + '</h1>' +
+            '<p class="hero-sub">' + esc(web('overviewSubtitle')) + '</p></div>' +
             '<div class="home-lang">' +
               i18n.LANGUAGES.map(function (lg) {
                 var shortName = lg.code === 'zh' ? '中文' : lg.code.toUpperCase();
                 return '<button class="home-lang-btn' + (lg.code === l ? ' active' : '') +
-                  '" data-action="select-lang" data-code="' + lg.code + '">' + esc(shortName) + '</button>';
+                  '" data-action="select-lang" data-code="' + lg.code + '" aria-pressed="' + (lg.code === l) + '">' + esc(shortName) + '</button>';
               }).join('') +
             '</div>' +
             '<div class="hero-location">' +
@@ -621,32 +640,34 @@
           statBox('lv-yellow', dataReady ? s.levelStats.yellow : null, t.yellowAlert) +
           statBox('lv-blue', dataReady ? s.levelStats.blue : null, t.blueAlert) +
         '</div>' +
-        '<p class="head-hint" role="status">' + (!dataReady ? esc(dataState) + (s.lastUpdate ? ' · ' : '') : '') +
+        '<p class="home-freshness" role="status">' + (!dataReady ? esc(dataState) + (s.lastUpdate ? ' · ' : '') : '') +
           (s.lastUpdate ? esc(web('lastSuccess') + s.lastUpdate) : '') + '</p>' +
       '</div></section>';
 
     /* ---- 全国全息态势图 ---- */
-    html += '<section class="section section-alt"><div class="container">' +
-      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iGlobe + '</span>' + esc(t.nationalSituation) + '</h2>' +
+    var nationalPanel = '<section class="overview-panel national-panel" aria-labelledby="nationalHeading">' +
+      '<div class="section-head"><h2 id="nationalHeading"><span class="h2-ic">' + SVG.iGlobe + '</span>' + esc(t.nationalSituation) + '</h2>' +
         '<button class="map-scan-btn' + (nationalSweeping ? ' is-loading' : '') + '" data-action="refresh-map"' +
         (nationalSweeping ? ' disabled' : '') + '>' +
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
                           : SVG.refresh + esc(t.mapScan)) +
         '</button></div>' +
+      '<p class="map-hint">' + esc(web('mapHint')) + '</p>' +
       '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
         '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
         '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+        '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
       '</div>' +
-    '</div></section>';
+    '</section>';
 
     /* ---- 预警列表 ---- */
-    html += '<section class="section"><div class="container">' +
-      '<div class="section-head"><h2><span class="h2-ic">' + SVG.iBell + '</span>' + esc(t.activeAlerts) + '</h2>' +
+    html += '<div class="container"><div class="home-overview">' +
+      '<section class="overview-panel local-panel" aria-labelledby="localHeading">' +
+      '<div class="section-head"><h2 id="localHeading"><span class="h2-ic">' + SVG.iBell + '</span>' + esc(t.activeAlerts) + '</h2>' +
       '<span class="head-hint">' + esc(dataReady ? i18n.tpl('total', { n: s.shownAlerts.length }, l) : dataState) +
       (s.fromCache ? ' · ' + esc(t.cached) : '') +
-      (s.lastUpdate ? ' · ' + esc(web('lastSuccess') + s.lastUpdate) : '') +
       '</span></div>';
 
     if (s.error) {
@@ -671,7 +692,7 @@
         '</a>';
       }).join('') + '</div>';
     }
-    html += '</div></section>';
+    html += '</section>' + nationalPanel + '</div></div>';
 
     /* ---- 预警动态时间线 ---- */
     var tlAlerts = (dataReady ? s.shownAlerts : []).slice().sort(function (a, b) {
@@ -761,6 +782,7 @@
     }
     html += '</div></section>';
 
+    html += '</div>';
     viewEl.innerHTML = html;
     document.title = t.tabIndex;
 
