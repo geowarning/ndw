@@ -143,6 +143,35 @@ button, .btn { touch-action: manipulation; }
 .ch-city:focus-visible { outline-offset: 8px; }
 .national-panel .map-legend { margin-top: 16px; gap: 10px 18px; font-size: .7rem; }
 
+/* The homepage preview links to a larger, keyboard-accessible map page. */
+.map-preview-link { display: block; margin-block: auto; border-radius: 10px; }
+.map-preview-link .china-map-wrap { transition: border-color .18s ease; }
+.map-preview-link:hover .china-map-wrap { border-color: var(--holo); }
+.map-preview-link .ch-city { cursor: inherit; }
+.expanded-map-page { padding: 28px 0 36px; }
+.expanded-map-page .back-link { margin-bottom: 20px; }
+.expanded-map-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.expanded-map-heading h1 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: -.035em; }
+.expanded-map-heading p { color: var(--text-mid); font-size: .85rem; margin-top: 10px; }
+.expanded-map-heading .map-scan-btn { flex-shrink: 0; border-radius: 8px; }
+.expanded-map-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin: 22px 0 16px; color: var(--holo); font-size: .8rem; }
+.expanded-map-meta .map-legend { margin: 0; gap: 12px 20px; font-size: .75rem; }
+.expanded-map-viewport { width: 100%; overflow: auto; border: 1px solid var(--border); border-radius: 14px; background: radial-gradient(ellipse at 50% 45%, #172b31, #0e171e 75%); }
+#expandedMap { min-width: 960px; padding: 20px; }
+.expanded-map-page .ch-label { font-size: 13px; opacity: .9; }
+.expanded-map-page .ch-city:hover .ch-dot, .expanded-map-page .ch-city:focus-visible .ch-dot { stroke: var(--text); stroke-width: 2; }
+@media (max-width: 1000px) {
+  .map-preview-link { width: 100%; max-width: 680px; align-self: center; }
+}
+@media (max-width: 760px) {
+  .expanded-map-page { padding: 20px 0 28px; }
+  .expanded-map-heading { align-items: flex-start; flex-wrap: wrap; gap: 14px; }
+  .expanded-map-heading p { font-size: .8rem; }
+  .expanded-map-meta { font-size: .75rem; }
+  .expanded-map-meta .map-legend { gap: 10px 14px; font-size: .7rem; }
+  .expanded-map-viewport { max-height: 70vh; max-height: 70dvh; }
+}
+
 /* Existing analytics form one readable row instead of three full-width bands. */
 .home-analytics { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 18px; margin-top: 18px; }
 .home-analytics .panel-card { min-width: 0; }

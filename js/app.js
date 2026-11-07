@@ -1,6 +1,6 @@
 /* ================================================================
  * app.js —— 网页主控（全息预警系统 · NVIDIA 风深色科技主题）
- * hash 路由：#/home | #/detail?id= | #/guide | #/tools | #/products | #/settings
+ * hash 路由：#/home | #/map | #/detail?id= | #/guide | #/tools | #/products | #/settings
  * ================================================================ */
 (function () {
   var api = __require('api');
@@ -62,6 +62,21 @@
 
   /* ---------- 网页版特有文案（5 语言） ---------- */
   var WEB = {
+    expandMap: {
+      zh: '展开地图', en: 'Open larger map', es: 'Ampliar mapa',
+      fr: 'Agrandir la carte', it: 'Apri la mappa ingrandita'
+    },
+    backToWarnings: {
+      zh: '返回预警总览', en: 'Back to warnings', es: 'Volver a las alertas',
+      fr: 'Retour aux alertes', it: 'Torna alle allerte'
+    },
+    expandedMapHint: {
+      zh: '滑动或滚动查看地图，选择城市即可查看当地预警。',
+      en: 'Swipe or scroll to explore. Select a city to view its warnings.',
+      es: 'Deslice o desplácese para explorar. Seleccione una ciudad para ver sus alertas.',
+      fr: 'Faites défiler la carte. Sélectionnez une ville pour voir ses alertes.',
+      it: 'Scorri per esplorare. Seleziona una città per vedere le allerte.'
+    },
     pendingData: {
       zh: '该城市的数据尚未发布，请稍后刷新。', en: 'This city has not been checked yet. Please check again shortly.',
       es: 'Esta ciudad aún no se ha consultado. Vuelva más tarde.', fr: 'Cette ville n’a pas encore été vérifiée. Réessayez bientôt.', it: 'Questa città non è ancora stata controllata. Riprova tra poco.'
@@ -473,7 +488,7 @@
 
   // Read shared snapshots periodically; these reads never call the provider.
   setInterval(function () {
-    if (!document.hidden && (location.hash || '#/home') === '#/home') {
+    if (!document.hidden && ['#/home', '#/map'].indexOf(location.hash || '#/home') >= 0) {
       sweepNationalStatus(true);
     }
   }, 60000);
@@ -676,10 +691,12 @@
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
                           : SVG.refresh + esc(t.mapScan)) +
         '</button></div>' +
-      '<div class="map-meta"><p class="map-hint">' + esc(web('mapHint')) + '</p>' +
+      '<div class="map-meta"><p class="map-hint">' + esc(web('expandMap')) + ' ↗</p>' +
       '<p class="map-hint" id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + api.getSnapshotInfo().checked + ' / ' + api.getSnapshotInfo().total + '</p>' +
       '</div>' +
-      '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
+      '<a class="map-preview-link" href="#/map" aria-label="' + esc(web('expandMap')) + '">' +
+        '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
+      '</a>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
         '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
@@ -815,7 +832,7 @@
     /* 中国态势图 */
     var wrap = document.getElementById('chinaMapWrap');
     if (wrap) {
-      chinaMap = __require('china-holo').create(wrap, onMapClickCity);
+      chinaMap = __require('china-holo').create(wrap);
       chinaMap.setStatus(sessionStatus);
       hydrateNationalStatus();   /* 立即显示上次扫描结果 */
       sweepNationalStatus();     /* 后台刷新全国城市状态 */
@@ -833,6 +850,38 @@
     applyRegion({ province: geo.province, city: geo.name, adcode: adcode, district: '' });
     if ((location.hash || '') !== '#/home') { location.hash = '#/home'; }
     pickerEl.innerHTML = '';
+  }
+
+  function renderExpandedMap() {
+    var t = T();
+    var info = api.getSnapshotInfo();
+    viewEl.innerHTML = '<section class="expanded-map-page"><div class="container">' +
+      '<a class="back-link" href="#/home">← ' + esc(web('backToWarnings')) + '</a>' +
+      '<div class="expanded-map-heading"><div><h1 id="expandedMapHeading">' + esc(t.nationalSituation) + '</h1>' +
+        '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
+        '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(t.mapScan) + '</button>' +
+      '</div>' +
+      '<div class="expanded-map-meta"><span id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + info.checked + ' / ' + info.total + '</span>' +
+        '<div class="map-legend">' +
+          '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
+          '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
+          '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+          '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="expanded-map-viewport" id="expandedMapViewport" role="region" tabindex="0" aria-labelledby="expandedMapHeading" aria-describedby="expandedMapHint">' +
+        '<div id="expandedMap"></div>' +
+      '</div>' +
+    '</div></section>';
+    document.title = t.nationalSituation;
+    chinaMap = __require('china-holo').create(document.getElementById('expandedMap'), onMapClickCity);
+    chinaMap.setStatus(sessionStatus);
+    hydrateNationalStatus();
+    sweepNationalStatus();
+    setScanButtonState(nationalSweeping);
+    var viewport = document.getElementById('expandedMapViewport');
+    viewport.scrollLeft = (viewport.scrollWidth - viewport.clientWidth) / 2;
+    viewport.scrollTop = (viewport.scrollHeight - viewport.clientHeight) / 2;
   }
 
   function statBox(cls, num, label) {
@@ -1893,7 +1942,7 @@
     var path = parts[0] || '/home';
     var query = parseQuery(parts[1]);
     window.scrollTo(0, 0);
-    renderNav(path);
+    renderNav(path === '/map' ? '/home' : path);
     closeDrawer();
     clearInterval(countdownTimer);
     if (path !== '/products') {
@@ -1901,6 +1950,7 @@
       productsState.game = null;
     }
     switch (path) {
+      case '/map': renderExpandedMap(); break;
       case '/detail': renderDetail(query.id); break;
       case '/guide': renderGuide(); break;
       case '/tools': renderTools(); break;

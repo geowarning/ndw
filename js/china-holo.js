@@ -45,7 +45,7 @@
       var x = X(c.lng).toFixed(1), y = Y(c.lat).toFixed(1);
       var label = window.__modules['i18n'].placeName(c.name, window.__modules['i18n'].getLang()).replace(/市$/, '');
       cityNodes +=
-        '<g class="ch-city" role="button" tabindex="0" aria-label="' + label + '" data-city="' + c.adcode + '" data-name="' + c.name + '">' +
+        '<g class="ch-city"' + (onClickCity ? ' role="button" tabindex="0" aria-label="' + label + '"' : '') + ' data-city="' + c.adcode + '" data-name="' + c.name + '">' +
         '<circle class="ch-halo" cx="' + x + '" cy="' + y + '" r="9"/>' +
         '<circle class="ch-dot" cx="' + x + '" cy="' + y + '" r="3.2"/>' +
         '<text class="ch-label" x="' + (parseFloat(x) + 7) + '" y="' + (parseFloat(y) - 6) + '">' + label + '</text>' +
