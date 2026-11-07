@@ -55,6 +55,7 @@ function request(url) {
 
 var snapshotPromise = null, snapshotLoadedAt = 0;
 var snapshotInfo = { checked: 0, total: 77 };
+var snapshotEntries = {};
 function readSharedSnapshot(route) {
   if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
     snapshotLoadedAt = Date.now();
@@ -64,15 +65,16 @@ function readSharedSnapshot(route) {
         return res.json();
       }).then(function (snapshot) {
         if (snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
+        snapshotEntries = snapshot.entries;
         snapshotInfo.checked = Object.keys(snapshot.entries).filter(function (key) {
-          return Date.now() - snapshot.entries[key].checkedAt < 21600000;
+          return window.__modules.reliability.freshness(snapshot.entries[key].checkedAt) === 'available';
         }).length;
         return snapshot;
       });
   }
   return snapshotPromise.then(function (snapshot) {
     var entry = snapshot.entries[route];
-    if (!entry || !Number.isFinite(entry.checkedAt) || Date.now() - entry.checkedAt >= 21600000) {
+    if (!entry || window.__modules.reliability.freshness(entry.checkedAt) !== 'available') {
       var error = new Error(entry ? 'outdated' : 'pending');
       error.code = entry ? 'outdated' : 'pending';
       throw error;
@@ -95,6 +97,7 @@ function readCache(key, minutes) {
       return null;
     }
     if (Array.isArray(data.value)) { data.value.fetchedAt = data.time; }
+    if (Array.isArray(data.value)) data.value.forEach(function (alert) { if (alert && typeof alert === 'object') alert.checkedAt = data.time; });
     return data.value;
   } catch (e) {
     return null;
@@ -353,7 +356,7 @@ function normalizeAlert(item, opts) {
   const startTime =
     item.StartTime || item.startTime || item.IssueTime || item.issueTime ||
     (firstArea && (firstArea.StartTime || firstArea.startTime)) ||
-    Date.now();
+    '';
   const endTime =
     item.ExpirationTime || item.expirationTime || item.EndTime || item.endTime ||
     (firstArea && (firstArea.EndTime || firstArea.endTime)) || '';
@@ -382,12 +385,28 @@ function normalizeAlert(item, opts) {
     focusArea: areaInfo.focus.length ? areaInfo.focus.join('、') : '',
     time: formatTime(startTime),
     source: publisher,
+    sourceUrl: safeSourceUrl(item.MobileLink || item.Link || ''),
     status: '生效中',
     duration: formatTime(startTime) + (endTime ? ' 至 ' + formatTime(endTime) : ''),
     summary: (firstArea && (firstArea.Summary || firstArea.summary)) || item.Summary || item.summary || '',
     content: content || title,
     defense: splitDefense(content)
   };
+}
+
+function safeSourceUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !url.username && !url.password ? url.href : '';
+  } catch (e) { return ''; }
+}
+
+function cityFreshness(region) {
+  const r = normalizeRegion(region);
+  const key = cities.getLocationKey(r.city) || (r.city === config.defaultCity.name && config.defaultCity.locationKey);
+  const entry = key && snapshotEntries['/alerts/v1/' + key + '.json'];
+  const cached = wx.getStorageSync(ALERT_CACHE_PREFIX + r.cacheKey);
+  return { checkedAt: entry ? entry.checkedAt : (cached && cached.time || null) };
 }
 
 /* ---------- 区域处理 ---------- */
@@ -466,6 +485,7 @@ function weathercnFetchAlerts(apiKey, host, locationKey, region) {
       })
       .filter(Boolean);
     normalized.fetchedAt = data.fetchedAt || Date.now();
+    normalized.forEach(function (alert) { alert.checkedAt = normalized.fetchedAt; });
     return normalized;
   }, function (err) {
     /* 华风接口在该城市无生效预警时返回 404，等价于“无预警” */
@@ -569,6 +589,9 @@ function amapFetchWeather(key, host, adcode, cityName) {
  * @returns Promise<{ ok, mock, source, alerts, weather, error }>
  */
 function fetchAll(region) {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+    return Promise.resolve({ ok: false, alerts: [], weather: null, error: 'offline', errorCode: 'offline' });
+  }
   return new Promise(function (resolve) {
     const source = effectiveDataSource();
     const r = normalizeRegion(region);
@@ -732,6 +755,7 @@ function getAlertById(id) {
  * @returns {Promise<Array|null>}
  */
 function fetchAlertsOnly(region) {
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return Promise.resolve(null);
   const source = effectiveDataSource();
   const r = normalizeRegion(region);
   const alertCacheKey = ALERT_CACHE_PREFIX + r.cacheKey;
@@ -865,6 +889,7 @@ function getCacheInfo() {
 }
 
 module.exports = {
+  getCityFreshness: cityFreshness,
   refreshSnapshot: function () {
     snapshotPromise = null;
     snapshotLoadedAt = 0;

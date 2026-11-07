@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import { validateSnapshot } from './publish-snapshot.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const modules = {};
@@ -38,6 +39,7 @@ export async function collect(state, key, fetcher = fetch, now = Date.now, pause
       if (res.status !== 404 && (!res.ok || (!Array.isArray(data) && !Array.isArray(data?.alerts)))) throw Error('Invalid response');
       // Do not publish credential strings echoed by an upstream service.
       const safe = JSON.parse(JSON.stringify(data).split(key).join('[redacted]'));
+      validateSnapshot({ version: 1, generatedAt: now(), entries: { [route]: { data: safe, checkedAt: now() } } });
       state.entries[route] = { data: safe, checkedAt: now() };
     } catch { console.error('City update failed; last good result retained.'); }
     await pause();

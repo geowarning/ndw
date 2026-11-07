@@ -10,6 +10,8 @@
   var risk = __require('risk');
   var data = __require('data');
   var districts = __require('districts');
+  var reliability = __require('reliability');
+  function safetyText(key) { return reliability.text(key, lang()); }
   var charts = __require('charts');
   var holo = __require('holo-globe');
   __require('china-geo');
@@ -276,7 +278,7 @@
       '<div class="footer-grid">' +
         '<div class="footer-col">' +
           '<a class="brand" href="#/home">' + SVG.brand + '<span class="brand-name">' + esc(t.appName) + '</span></a>' +
-          '<p class="footer-brand-desc">' + esc(t.heroSub) + '</p>' +
+          '<p class="footer-brand-desc">' + esc(web('overviewSubtitle')) + '</p>' +
         '</div>' +
         '<div class="footer-col"><h4>' + esc(t.tabIndex) + '</h4><ul>' +
           items.map(function (it) { return '<li><a href="' + it.hash + '">' + esc(it.label) + '</a></li>'; }).join('') +
@@ -287,7 +289,7 @@
         '</div>' +
         '<div class="footer-col"><h4>' + esc(t.disclaimer) + '</h4>' +
           '<ul><li><a data-action="show-disclaimer">' + esc(t.disclaimerTitle) + '</a></li></ul>' +
-          '<p>' + esc(t.riskTip) + '</p>' +
+          '<p>' + esc(safetyText('hazardNote')) + '</p>' +
         '</div>' +
       '</div>' +
       '<div class="footer-bottom"><span>' + esc(t.footerRights) + '</span><span>' + esc(t.version) + ' ' + APP_VERSION + '</span></div>';
@@ -386,7 +388,7 @@
     return districts.allCityGeo().map(function (c) {
       var st = sessionStatus[c.adcode];
       var color = '#2f8a80', level = '';
-      if (st) {
+      if (st && !st.unavailable && reliability.freshness(st.checkedAt) === 'available') {
         if (st.high) { color = '#ff5252'; level = 'red'; }
         else if (st.count) { color = '#f7c948'; level = 'normal'; }
         else { color = '#46c263'; level = 'safe'; }
@@ -397,6 +399,7 @@
   function refreshMaps() {
     if (globe) { globe.setCities(globeCities()); }
     if (chinaMap) { chinaMap.setStatus(sessionStatus); }
+    if (selectedMapCity && document.getElementById('cityInspection')) { inspectMapCity(selectedMapCity); }
   }
 
   /* ---------- 全国态势扫描（打开网站即给所有城市上色） ---------- */
@@ -410,7 +413,7 @@
     if (snap && snap.value && typeof snap.value === 'object') {
       Object.keys(snap.value).forEach(function (ad) {
         var entry = snap.value[ad];
-        if (entry.checkedAt && Date.now() - entry.checkedAt < 21600000) {
+        if (entry.checkedAt && (!sessionStatus[ad] || entry.checkedAt > sessionStatus[ad].checkedAt)) {
           sessionStatus[ad] = entry;
         }
       });
@@ -430,7 +433,7 @@
     var all = districts.allCityGeo();
     var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
     if (!force && snap && snap.time && (Date.now() - snap.time) < NATIONAL_SWEEP_TTL &&
-        snap.value && Object.keys(snap.value).length >= all.length) {
+        snap.value && all.every(function (city) { var s = snap.value[city.adcode]; return s && !s.unavailable && reliability.freshness(s.checkedAt) === 'available'; })) {
       return; /* 60 分钟内已完整扫描过 */
     }
     setScanButtonState(true);
@@ -459,7 +462,7 @@
             };
             recordTrend(c.adcode, list.length);
           } else {
-            delete sessionStatus[c.adcode];
+            sessionStatus[c.adcode] = { count: null, high: false, unavailable: true, checkedAt: api.getCityFreshness({ city: c.name, adcode: c.adcode }).checkedAt || (sessionStatus[c.adcode] || {}).checkedAt || null };
           }
           if (i % 6 === 0 || i === all.length) {
             saveNationalStatus();
@@ -564,10 +567,11 @@
       if (res.ok) {
         sessionStatus[region.adcode] = {
           high: raw.some(function (a) { return a.level === 'red'; }),
-          count: raw.length
+          count: raw.length,
+          checkedAt: res.fetchedAt || api.getCityFreshness(region).checkedAt
         };
       } else {
-        delete sessionStatus[region.adcode];
+        sessionStatus[region.adcode] = { count: null, unavailable: true, checkedAt: api.getCityFreshness(region).checkedAt };
       }
       if (res.ok && region.adcode) { recordTrend(region.adcode, raw.length); }
       refreshMaps();
@@ -791,14 +795,12 @@
     html += '<div class="container"><div class="home-analytics">' +
       '<section class="panel-card"><h2 class="panel-card-title"><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.typeDist) + '</h2>' +
         (dataReady ? '<canvas id="typeDonut" data-h="180"></canvas>' : '<div class="state-box">' + esc(dataState) + '</div>') + '</section>' +
-      '<section class="panel-card"><h2 class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(t.topRisks) + '</h2>' +
+      '<section class="panel-card"><h2 class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(safetyText('hazards')) + '</h2>' +
         (topRisks.length ? topRisks.map(function (r) {
           var nm = i18n.riskItem(r.key, l);
-          return '<div class="mini-risk"><span class="mini-risk-name">' + esc(nm.name) + '</span>' +
-            '<span class="mini-risk-bar"><i style="width:' + r.prob + '%;background:' + r.color + '"></i></span>' +
-            '<b>' + r.prob + '%</b></div>';
+          return '<div class="potential-hazard"><b>' + esc(nm.name) + '</b><p>' + esc(nm.note) + '</p></div>';
         }).join('') : '<div class="state-box">' + esc(dataReady ? t.noAlerts : dataState) + '</div>') +
-      '</section>';
+      '<p class="hazard-explanation">' + esc(safetyText('hazardNote')) + '</p></section>';
 
     /* ---- 趋势（全国城市汇总） ---- */
     var trendAll = wx.getStorageSync('daily_trend') || {};
@@ -872,12 +874,19 @@
           '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
         '</div>' +
       '</div>' +
+      '<div id="cityInspection" class="city-inspection" role="status">' + esc(safetyText('selectCity')) + '</div>' +
       '<div class="expanded-map-viewport" id="expandedMapViewport" role="region" tabindex="0" aria-labelledby="expandedMapHeading" aria-describedby="expandedMapHint">' +
         '<div id="expandedMap"></div>' +
       '</div>' +
     '</div></section>';
     document.title = t.nationalSituation;
-    chinaMap = __require('china-holo').create(document.getElementById('expandedMap'), onMapClickCity);
+    chinaMap = __require('china-holo').create(document.getElementById('expandedMap'), function (adcode) {
+      inspectMapCity(adcode);
+      document.querySelector('#cityInspection button').focus({ preventScroll: true });
+    }, function (adcode) {
+      // Keep an explicitly chosen city stable while its action button has focus.
+      if (!document.activeElement.closest('#cityInspection')) inspectMapCity(adcode);
+    });
     chinaMap.setStatus(sessionStatus);
     hydrateNationalStatus();
     sweepNationalStatus();
@@ -885,6 +894,23 @@
     var viewport = document.getElementById('expandedMapViewport');
     viewport.scrollLeft = (viewport.scrollWidth - viewport.clientWidth) / 2;
     viewport.scrollTop = (viewport.scrollHeight - viewport.clientHeight) / 2;
+  }
+
+  var selectedMapCity = '';
+  function inspectMapCity(adcode) {
+    var city = districts.getCityGeo(adcode);
+    var box = document.getElementById('cityInspection');
+    if (!city || !box) return;
+    selectedMapCity = adcode;
+    var state = sessionStatus[adcode] || {};
+    var freshness = reliability.freshness(state.checkedAt);
+    if (freshness === 'available' && (state.unavailable || navigator.onLine === false)) freshness = 'unavailable';
+    var signature = [adcode, state.checkedAt, freshness, lang()].join('|');
+    if (box.dataset.signature !== signature) box.innerHTML = '<div><b>' + esc(i18n.placeName(city.name, lang())) + '</b><span class="freshness-tag freshness-' + freshness + '">' + esc(safetyText(freshness)) + '</span>' +
+      '<p>' + esc(reliability.checkedAt(state.checkedAt, lang())) + '</p></div>' +
+      '<button class="btn btn-outline" data-action="view-map-city" data-adcode="' + esc(adcode) + '">' + esc(safetyText('viewWarnings')) + '</button>';
+    box.dataset.signature = signature;
+    document.querySelectorAll('#expandedMap .ch-city').forEach(function (node) { node.classList.toggle('is-selected', node.getAttribute('data-city') === adcode); });
   }
 
   function statBox(cls, num, label) {
@@ -934,7 +960,7 @@
       head = i18n.placeName(pc.name, l);
       back = '<button class="picker-back" data-action="back-city">‹ ' + esc(i18n.placeName(pc.name, l)) + '</button>';
       var allStatus = sessionStatus[pc.adcode];
-      var allCls = allStatus ? (allStatus.high ? 'high' : allStatus.count ? 'normal' : 'none') : 'unknown';
+      var allCls = allStatus && !allStatus.unavailable && reliability.freshness(allStatus.checkedAt) === 'available' ? (allStatus.high ? 'high' : allStatus.count ? 'normal' : 'none') : 'unknown';
       var allRow = '<button class="picker-city" data-action="select-district" data-name="__ALL__">' +
         '<span class="pc-left"><span class="status-dot status-' + allCls + '"></span><b>' + esc(t.allDistricts) + '</b></span>' +
         '<span class="pp-arrow">›</span></button>';
@@ -1008,7 +1034,7 @@
         var st = map[c.name];
         if (!st) { return c; }
         if (st.adcode && st.status !== 'unknown') {
-          sessionStatus[st.adcode] = { high: st.status === 'high', count: st.count };
+          sessionStatus[st.adcode] = { high: st.status === 'high', count: st.count, checkedAt: api.getCityFreshness({ city: c.name, adcode: st.adcode }).checkedAt };
         } else if (st.adcode) {
           delete sessionStatus[st.adcode];
         }
@@ -1042,7 +1068,8 @@
       if (item.adcode && res.ok) {
         sessionStatus[item.adcode] = {
           high: raw.some(function (a) { return a.level === 'red'; }),
-          count: raw.length
+          count: raw.length,
+          checkedAt: res.fetchedAt
         };
       } else if (item.adcode) {
         delete sessionStatus[item.adcode];
@@ -1129,9 +1156,7 @@
     var l = lang();
     var risks = risk.getRisks(alert).map(function (r) {
       var item = i18n.riskItem(r.key, l);
-      var riskText = r.risk === '高' ? i18n.t('riskHigh', l)
-        : r.risk === '中' ? i18n.t('riskMedium', l) : i18n.t('riskLow', l);
-      return Object.assign({}, r, { name: item.name || r.name, note: item.note || r.note, riskText: riskText });
+      return Object.assign({}, r, { name: item.name || r.name, note: item.note || r.note });
     });
     var localized = Object.assign({}, alert, {
       risks: risks,
@@ -1147,6 +1172,7 @@
       localized.content = i18n.alertSummary(Object.assign({}, alert, { risks: risks }), l);
       localized.defense = i18n.defenseByType(alert.type, l);
     }
+    if (!localized.defense || !localized.defense.length) localized.defense = i18n.defenseByType(alert.type, l);
     return localized;
   }
   function i18t(k, l) { return i18n.t(k, l); }
@@ -1195,17 +1221,22 @@
         '<h1>' + esc(a.title) + '</h1>' +
         '<div class="detail-meta"><span>' + esc(i18n.disasterName(a.type, l)) + '</span>' +
         '<span class="dot-sep">•</span><span>' + esc(a.source) + '</span></div>' +
+        '<div class="detail-overview info-rows">' + infoRow(t.affectedArea, a.area) + infoRow(t.issueTime, a.time) +
+          infoRow(safetyText('checked'), alert.checkedAt ? new Date(alert.checkedAt).toLocaleString(l) : '—') + '</div>' +
       '</div></section>';
 
     html += '<section class="section"><div class="container detail-grid">' +
       '<div class="detail-main">' +
+        (a.defense && a.defense.length ? '<div class="dcard priority-actions"><h2 class="dcard-title">' + esc(t.defensePoints) + '</h2><ul class="defense-list">' + a.defense.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul></div>' : '') +
 
         /* 正文 */
-        '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(t.alertContent) + '</div>' +
+        '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(safetyText('noticeSummary')) + '</div>' +
           chipsHtml +
           '<div class="alert-body">' + esc(a.content) + '</div>' +
           '<div class="source-line"><span>' + esc(t.affectedArea) + '：</span><span class="source-tag">' + esc(a.area) + '</span></div>' +
           (a.focusArea ? '<div class="source-line"><span>' + esc(t.focusArea) + '：</span><span class="source-tag">' + esc(a.focusArea) + '</span></div>' : '') +
+          '<details class="official-notice"><summary>' + esc(safetyText('original')) + '</summary><div lang="zh-CN"><h3>' + esc(alert.title) + '</h3><p class="alert-body">' + esc(alert.content) + '</p></div></details>' +
+          (alert.sourceUrl ? '<a class="btn btn-outline official-link" href="' + esc(alert.sourceUrl) + '" target="_blank" rel="noopener noreferrer">' + esc(safetyText('originalLink')) + ' ↗</a>' : '') +
         '</div>';
 
     /* 影响范围图 */
@@ -1216,16 +1247,11 @@
 
     /* 次生风险 */
     if (a.risks && a.risks.length) {
-      html += '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(t.riskPrediction) + '</div>' +
+      html += '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(safetyText('hazards')) + '</div>' +
         a.risks.map(function (r) {
-          var lvlClass = r.risk === '高' ? 'risk-level-high' : r.risk === '中' ? 'risk-level-mid' : 'risk-level-low';
-          return '<div class="risk-item"><div class="risk-item-head">' +
-            '<span class="risk-name">' + esc(r.name) + '</span>' +
-            '<span class="risk-prob ' + lvlClass + '">' + r.prob + '% · ' + esc(r.riskText) + '</span></div>' +
-            '<div class="risk-bar"><div class="risk-bar-inner" style="width:' + r.prob + '%;background:' + r.color + '"></div></div>' +
-            '<div class="risk-note">' + esc(r.note) + '</div></div>';
+          return '<div class="potential-hazard"><b>' + esc(r.name) + '</b><p>' + esc(r.note) + '</p></div>';
         }).join('') +
-        '<div class="risk-tip">' + esc(t.riskTip) + '</div></div>';
+        '<div class="risk-tip">' + esc(safetyText('hazardNote')) + '</div></div>';
     }
 
     /* 推荐物资 */
@@ -1248,7 +1274,7 @@
     /* 倒计时 */
     var end = parseEndTime(alert.duration);
     html += '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(t.countdown) + '</div>' +
-      '<div class="countdown-box" id="countdownBox">' + (end ? '' : esc(t.countdownEnded)) + '</div></div>';
+      '<div class="countdown-box" id="countdownBox">' + (end ? '' : '—') + '</div></div>';
 
     /* 发布信息 */
     html += '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(t.publishInfo) + '</div>' +
@@ -1257,12 +1283,6 @@
         infoRow(t.issueTime, a.time) +
         infoRow(t.validPeriod, a.duration) +
       '</div></div>';
-
-    /* 防御 */
-    if (a.defense && a.defense.length) {
-      html += '<div class="dcard"><div class="dcard-title"><span class="title-bar"></span>' + esc(t.defenseGuide) + '</div>' +
-        '<ul class="defense-list">' + a.defense.map(function (d) { return '<li>' + esc(d) + '</li>'; }).join('') + '</ul></div>';
-    }
 
     html += '<div class="detail-actions">' +
       '<a class="btn btn-green" href="tel:12121">' + esc(t.callHotline) + '</a>' +
@@ -1276,7 +1296,7 @@
 
   function infoRow(label, value) {
     return '<div class="info-row"><span class="info-label">' + esc(label) + '</span>' +
-      '<span class="info-value">' + esc(value) + '</span></div>';
+      '<span class="info-value">' + esc(value || '—') + '</span></div>';
   }
 
   function shareAlert() {
@@ -1396,6 +1416,7 @@
     var html =
       '<section class="page-top"><div class="container"><h1>' + esc(t.tabGuide) + '</h1>' +
       '<p>' + esc(t.guideNote) + '</p>' +
+      '<p class="offline-guide-status" id="offlineGuideStatus">' + esc(offlineGuideText()) + '</p>' +
       '<div class="read-progress"><span>' + esc(t.readProgress) + ' ' + read.length + '/12</span>' +
         '<span class="read-progress-bar"><i style="width:' + Math.round(read.length / 12 * 100) + '%"></i></span>' +
       '</div></div></section>' +
@@ -1768,6 +1789,7 @@
         '<button class="btn btn-outline" data-action="notif-test">' + esc(t.notifTest) + '</button></div>');
 
     /* 数据源 */
+    html += '<p class="notification-limit">' + esc(safetyText('notificationLimit')) + '</p>';
     html += staticCard(t.dataSource,
       '<div class="option-list">' +
         sources.map(function (sc) {
@@ -1834,7 +1856,7 @@
       if (fresh.length) {
         fresh.forEach(function (a) {
           try {
-            new Notification(i18n.alertTitle(a.title, a.type, a.level, lang()), { body: a.area || '' });
+            new Notification(i18n.alertTitle(a.title, a.type, a.level, lang()), { body: i18n.areaName(a.area, a.cityName, lang()) || '' });
           } catch (e) { }
         });
         wx.setStorageSync('notif_notified', notified.concat(fresh.map(function (a) { return a.id; })));
@@ -1966,6 +1988,7 @@
         break;
     }
     renderFooter();
+    updateConnectionNotice();
   }
 
   /* 保持滚动位置的重绘（答题/勾选时） */
@@ -1985,6 +2008,7 @@
     var d = el.dataset;
     switch (action) {
       case 'toggle-drawer': toggleDrawer(); break;
+      case 'view-map-city': onMapClickCity(d.adcode); break;
       case 'open-picker': openPicker(); break;
       case 'open-district': openDistrictPicker(); break;
       case 'close-picker': closePicker(); break;
@@ -2121,6 +2145,28 @@
   });
 
   /* ---------- 启动 ---------- */
+  function offlineGuideText() {
+    return safetyText(!('serviceWorker' in navigator) ? 'offlineUnsupported' : window.NDWOfflineReady ? 'offlineReady' : 'offlinePreparing');
+  }
+  function updateConnectionNotice() {
+    var notice = document.getElementById('connectionNotice');
+    if (notice) { notice.hidden = navigator.onLine !== false; notice.textContent = safetyText('offline'); }
+    var guideStatus = document.getElementById('offlineGuideStatus');
+    if (guideStatus) guideStatus.textContent = offlineGuideText();
+  }
+  window.addEventListener('ndw-offline-ready', updateConnectionNotice);
+  window.addEventListener('offline', function () {
+    Object.keys(sessionStatus).forEach(function (key) { sessionStatus[key].unavailable = true; });
+    refreshMaps();
+    if ((location.hash || '#/home') === '#/home') { homeState.hasData = false; homeState.loading = false; homeState.error = safetyText('offline'); renderHome(); }
+    updateConnectionNotice();
+  });
+  window.addEventListener('online', function () {
+    api.refreshSnapshot();
+    if ((location.hash || '#/home') === '#/home') loadHomeData();
+    else if (location.hash === '#/map') sweepNationalStatus(true);
+    updateConnectionNotice();
+  });
   loadAccess();
 
   /* 全息地球背景 */

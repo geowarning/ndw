@@ -160,10 +160,32 @@ button, .btn { touch-action: manipulation; }
 #expandedMap { min-width: 960px; padding: 20px; }
 .expanded-map-page .ch-label { font-size: 13px; opacity: .9; }
 .expanded-map-page .ch-city:hover .ch-dot, .expanded-map-page .ch-city:focus-visible .ch-dot { stroke: var(--text); stroke-width: 2; }
+.ch-city.label-hidden .ch-label { opacity: 0; }
+.ch-city:hover .ch-label, .ch-city:focus-visible .ch-label, .ch-city.is-selected .ch-label { opacity: 1 !important; paint-order: stroke; stroke: var(--card-2); stroke-width: 3px; stroke-linejoin: round; }
+.city-inspection { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 16px 18px; margin-bottom: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card-solid); color: var(--text-mid); font-size: .82rem; }
+.city-inspection p { margin-top: 6px; font-size: .75rem; }
+.freshness-tag { display: inline-block; margin-left: 12px; font-size: .72rem; color: var(--text-mid); }
+.freshness-available { color: var(--holo); }
+.freshness-outdated { color: var(--yellow); }
+.potential-hazard { padding: 12px 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+.potential-hazard p, .hazard-explanation, .offline-guide-status, .notification-limit { color: var(--text-mid); font-size: .77rem; line-height: 1.7; margin-top: 8px; overflow-wrap: anywhere; }
+.detail-overview { margin-top: 22px; max-width: 760px; }
+.detail-overview .info-row { flex-wrap: wrap; }
+.priority-actions { border-color: var(--holo-line); }
+.plan-card { grid-template-columns: minmax(0, 1fr); }
+.plan-card .btn { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+.plan-field, .phone-card { min-width: 0; overflow-wrap: anywhere; }
+.official-notice { margin-top: 22px; border-top: 1px solid var(--border); padding-top: 16px; }
+.official-notice summary { cursor: pointer; color: var(--holo); font-size: .85rem; }
+.official-notice h3 { font-size: .95rem; margin: 16px 0 10px; }
+.official-link { margin-top: 16px; font-size: .8rem; white-space: normal; }
+#connectionNotice:not([hidden]) { position: relative; z-index: 90; padding: 12px 18px; background: var(--yellow-soft); border-bottom: 1px solid var(--border); color: var(--yellow); font-size: .83rem; margin-top: var(--nav-h); }
+#app:has(#connectionNotice:not([hidden])) main { padding-top: 0; }
 @media (max-width: 1000px) {
   .map-preview-link { width: 100%; max-width: 680px; align-self: center; }
 }
 @media (max-width: 760px) {
+  .phone-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .expanded-map-page { padding: 20px 0 28px; }
   .expanded-map-heading { align-items: flex-start; flex-wrap: wrap; gap: 14px; }
   .expanded-map-heading p { font-size: .8rem; }
@@ -171,6 +193,8 @@ button, .btn { touch-action: manipulation; }
   .expanded-map-meta .map-legend { gap: 10px 14px; font-size: .7rem; }
   .expanded-map-viewport { max-height: 70vh; max-height: 70dvh; }
 }
+
+.expanded-map-page .city-inspection { position: sticky; top: calc(var(--nav-h) + 8px); z-index: 4; }
 
 /* Existing analytics form one readable row instead of three full-width bands. */
 .home-analytics { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 18px; margin-top: 18px; }
@@ -186,9 +210,9 @@ button, .btn { touch-action: manipulation; }
 .page-top { background: none; padding: 38px 0 26px; }
 .page-top h1 { font-weight: 600; letter-spacing: -.035em; }
 .page-top p { font-size: .9rem; line-height: 1.7; }
-.guide-content, .dcard, .set-card, .plan-form { box-shadow: var(--shadow-card); }
+.guide-content, .dcard, .set-card, .plan-card { box-shadow: var(--shadow-card); }
 .guide-content, .dcard { border-radius: 14px; }
-.guide-note, .guide-cause, .set-card, .plan-form, .product-card { background: var(--card-solid); }
+.guide-note, .guide-cause, .set-card, .plan-card, .product-card { background: var(--card-solid); }
 .guide-side { background: var(--card-solid); }
 .guide-side-item { min-height: 44px; }
 .product-card { box-shadow: none; border-color: var(--border); }

@@ -30,7 +30,7 @@
     return d;
   }
 
-  function ChinaHolo(container, onClickCity) {
+  function ChinaHolo(container, onClickCity, onInspectCity) {
     var geo = window.__modules['china-geo'];
     var distMod = window.__modules['districts'];
     var cities = distMod.allCityGeo();
@@ -46,6 +46,7 @@
       var label = window.__modules['i18n'].placeName(c.name, window.__modules['i18n'].getLang()).replace(/市$/, '');
       cityNodes +=
         '<g class="ch-city"' + (onClickCity ? ' role="button" tabindex="0" aria-label="' + label + '"' : '') + ' data-city="' + c.adcode + '" data-name="' + c.name + '">' +
+        '<circle class="ch-hit" cx="' + x + '" cy="' + y + '" r="12" fill="transparent"/>' +
         '<circle class="ch-halo" cx="' + x + '" cy="' + y + '" r="9"/>' +
         '<circle class="ch-dot" cx="' + x + '" cy="' + y + '" r="3.2"/>' +
         '<text class="ch-label" x="' + (parseFloat(x) + 7) + '" y="' + (parseFloat(y) - 6) + '">' + label + '</text>' +
@@ -103,6 +104,27 @@
         onClickCity(city.getAttribute('data-city'), city.getAttribute('data-name'));
       }
     });
+    ['pointerover', 'focusin'].forEach(function (event) {
+      svg.addEventListener(event, function (e) {
+        var city = e.target.closest('.ch-city');
+        if (city && onInspectCity) onInspectCity(city.getAttribute('data-city'));
+      });
+    });
+
+    function layoutLabels(map) {
+      var nodes = Array.from(svg.querySelectorAll('.ch-city'));
+      nodes.sort(function (a, b) {
+        function priority(node) {
+          var status = map[node.getAttribute('data-city')] || {};
+          if (node.classList.contains('is-selected')) return 3;
+          if (status.unavailable || window.__modules.reliability.freshness(status.checkedAt) !== 'available') return 0;
+          return status.high ? 2 : status.count > 0 ? 1 : 0;
+        }
+        return priority(b) - priority(a);
+      });
+      var visible = window.__modules.reliability.visibleLabels(nodes.map(function (node) { return node.querySelector('.ch-label').getBBox(); }));
+      nodes.forEach(function (node, index) { node.classList.toggle('label-hidden', !visible[index]); });
+    }
 
     function setStatus(map) {
       map = map || {};
@@ -111,11 +133,20 @@
         if (!node) { return; }
         node.classList.remove('st-none', 'st-safe', 'st-normal', 'st-high');
         var s = map[c.adcode];
-        if (!s) { node.classList.add('st-none'); }
+        var reliability = window.__modules.reliability;
+        var state = reliability.freshness(s && s.checkedAt);
+        if (state === 'available' && (s.unavailable || navigator.onLine === false)) state = 'unavailable';
+        var description = reliability.text(state, window.__modules.i18n.getLang()) + '. ' + reliability.checkedAt(s && s.checkedAt, window.__modules.i18n.getLang());
+        var tooltip = node.querySelector('title');
+        if (!tooltip) { tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'title'); node.prepend(tooltip); }
+        tooltip.textContent = window.__modules.i18n.placeName(c.name, window.__modules.i18n.getLang()) + ' — ' + description;
+        if (onClickCity) node.setAttribute('aria-label', tooltip.textContent);
+        if (!s || state !== 'available') { node.classList.add('st-none'); }
         else if (s.high) { node.classList.add('st-high'); }
         else if (s.count > 0) { node.classList.add('st-normal'); }
         else { node.classList.add('st-safe'); }
       });
+      layoutLabels(map);
     }
 
     function setAlertLabels(names) {

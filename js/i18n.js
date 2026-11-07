@@ -2274,7 +2274,7 @@ function alertSummary(alert, lang) {
     .replace(/ 至 /, ' ' + t('durationTo', l) + ' ');
   var risks = (alert.risks || []).map(function (r) {
     var item = riskItem(r.key, l);
-    return (item.name || r.name) + ' ' + r.prob + '%';
+    return item.name || r.name;
   });
   var parts = [title];
   if (area) {

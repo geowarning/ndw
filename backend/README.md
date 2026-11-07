@@ -44,7 +44,33 @@ a later source deployment cannot replace live data with an empty placeholder.
 Refresh and Rescan discard browser snapshot caches; they only download public
 JSON and never call the provider directly. Do not edit the generated JSON by hand.
 
-## Local checks
+## Reliability and offline behavior
+
+Map cities show their actual successful-check time. Labels are thinned to avoid
+overlap; all markers remain selectable with touch or keyboard. Selecting a city
+shows freshness and a separate action to open its warnings. The six-hour maximum
+age remains unchanged and does not imply real-time coverage.
+
+Secondary hazards are descriptive guidance, without numerical probability claims.
+Warning details prioritize actions, area, authority and publication/check times.
+The Chinese original is available in a labeled disclosure; source links are
+shown only when the provider supplies a valid HTTPS URL. Missing issue times
+are not fabricated from the current time.
+
+The service worker caches the app and safety knowledge after a successful online
+visit. It never caches `public-data/warnings.json`. Offline pages show an explicit
+notice and unknown warning status, while Guide content remains usable. Storage
+is browser-specific and can be cleared or evicted. Notifications still require
+the page to remain open, and background tabs can delay checks; there is no server
+push or guarantee of emergency notification.
+
+Before publishing, the workflow validates payloads and requires at least one fresh
+city, checks every referenced asset, and hashes static assets into the offline
+cache version. A final health check reads the published snapshot without weather
+API calls. Pre-collection tests intentionally do not require fresh real data, so
+a delayed workflow can still run the collector and recover.
+
+## Running local checks
 
 Use Node.js 22+: `node --test backend/*.test.mjs`.
 Serve the site with `python3 -m http.server 8000`.
