@@ -23,7 +23,7 @@ module.exports = {
   // 说明：标准测试 Key，每日配额以控制台为准（当前显示每个接口 50 次/天、5 QPS），
   //       超额后需与企业商务洽谈配额；页面已做 15/30/60 分钟多级缓存降低消耗
   weathercn: {
-    apiKey: 'eVfsbObyqjCduc0dTT2AnnQfmDc2xzHt',
+    apiKey: 'backend-managed',
     host: 'https://openapi.weathercn.com'
   },
 
