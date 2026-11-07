@@ -58,7 +58,7 @@ var snapshotInfo = { checked: 0, total: 77 };
 function readSharedSnapshot(route) {
   if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
     snapshotLoadedAt = Date.now();
-    snapshotPromise = fetch('public-data/warnings.json', { cache: 'no-cache', signal: AbortSignal.timeout(10000) })
+    snapshotPromise = fetch('public-data/warnings.json?updated=' + snapshotLoadedAt, { cache: 'no-store', signal: AbortSignal.timeout(10000) })
       .then(function (res) {
         if (!res.ok) { throw new Error('Shared snapshot unavailable'); }
         return res.json();
@@ -865,6 +865,11 @@ function getCacheInfo() {
 }
 
 module.exports = {
+  refreshSnapshot: function () {
+    snapshotPromise = null;
+    snapshotLoadedAt = 0;
+    clearCaches();
+  },
   getSnapshotInfo: function () { return snapshotInfo; },
   fetchAll: fetchAll,
   fetchAlertsOnly: fetchAlertsOnly,

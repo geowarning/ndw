@@ -38,11 +38,16 @@ warning coverage. This is periodic coverage, not instant emergency notification.
 
 Only public assets and the snapshot enter the Pages artifact. The API key stays
 in Actions Secrets. The data branch contains warning data and quota metadata.
+The workflow also commits the public snapshot to `main` before publishing.
+This keeps branch-based Pages builds and the Actions artifact consistent, so
+a later source deployment cannot replace live data with an empty placeholder.
+Refresh and Rescan discard browser snapshot caches; they only download public
+JSON and never call the provider directly. Do not edit the generated JSON by hand.
 
 ## Local checks
 
-Use Node.js 22+: `node --test backend/collect.test.mjs`.
+Use Node.js 22+: `node --test backend/*.test.mjs`.
 Serve the site with `python3 -m http.server 8000`.
-The committed snapshot is intentionally empty; tests use fake provider responses
-and consume no quota. The collector CLI is intended for Actions and pushes its
+The committed snapshot mirrors the last published data; tests use fake provider
+responses and consume no quota. The collector CLI is intended for Actions and pushes its
 data commits; do not run it locally unless that is intended.

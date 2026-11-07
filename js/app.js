@@ -442,7 +442,10 @@
         saveNationalStatus();
         refreshMaps();
         setScanButtonState(false);
-        if (notify) { wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' }); }
+        if (notify) {
+          wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' });
+          if (homeState.city) { loadHomeData(); }
+        }
         return;
       }
       var c = all[i++];
@@ -1986,12 +1989,14 @@
       case 'close-picker': closePicker(); break;
       case 'noop': break;
       case 'refresh':
+        api.refreshSnapshot();
         homeState.loading = true;
         homeState.error = '';
         renderHome();
         loadHomeData();
         break;
       case 'refresh-map':
+        api.refreshSnapshot();
         sweepNationalStatus(true, true);
         break;
       case 'select-province': selectProvince(d.name); break;

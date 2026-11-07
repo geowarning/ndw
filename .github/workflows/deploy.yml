@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: '22'
       - name: Test collector
-        run: node --test backend/collect.test.mjs
+        run: node --test backend/*.test.mjs
       - name: Configure data commit identity
         run: |
           git config user.name 'github-actions[bot]'
@@ -48,7 +48,15 @@ jobs:
           remote_ref=$(git ls-remote --heads origin ndw-data)
           if [ -n "$remote_ref" ]; then
             git fetch origin ndw-data
-            git show FETCH_HEAD:public-data/warnings.json > public-data/warnings.json
+            node backend/publish-snapshot.mjs FETCH_HEAD
+          fi
+      - name: Keep branch-based Pages builds in sync
+        run: |
+          git add public-data/warnings.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish shared warning snapshot [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
       - uses: actions/configure-pages@v5
       - name: Stage public assets only
