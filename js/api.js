@@ -54,6 +54,7 @@ function request(url) {
 }
 
 var snapshotPromise = null, snapshotLoadedAt = 0;
+var snapshotInfo = { checked: 0, total: 77 };
 function readSharedSnapshot(route) {
   if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
     snapshotLoadedAt = Date.now();
@@ -63,13 +64,18 @@ function readSharedSnapshot(route) {
         return res.json();
       }).then(function (snapshot) {
         if (snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
+        snapshotInfo.checked = Object.keys(snapshot.entries).filter(function (key) {
+          return Date.now() - snapshot.entries[key].checkedAt < 21600000;
+        }).length;
         return snapshot;
       });
   }
   return snapshotPromise.then(function (snapshot) {
     var entry = snapshot.entries[route];
     if (!entry || !Number.isFinite(entry.checkedAt) || Date.now() - entry.checkedAt >= 21600000) {
-      throw new Error('预警数据尚未更新或已过期 / Warning data unavailable or outdated');
+      var error = new Error(entry ? 'outdated' : 'pending');
+      error.code = entry ? 'outdated' : 'pending';
+      throw error;
     }
     var data = JSON.parse(JSON.stringify(entry.data));
     data.fetchedAt = entry.checkedAt;
@@ -626,6 +632,7 @@ function fetchAll(region) {
             source: '华风爱科天气API',
             alerts: [],
             weather: null,
+            errorCode: err && err.code || 'unavailable',
             error: err && err.message ? err.message : '预警获取失败'
           });
         });
@@ -858,6 +865,7 @@ function getCacheInfo() {
 }
 
 module.exports = {
+  getSnapshotInfo: function () { return snapshotInfo; },
   fetchAll: fetchAll,
   fetchAlertsOnly: fetchAlertsOnly,
   fetchCitiesStatus: fetchCitiesStatus,

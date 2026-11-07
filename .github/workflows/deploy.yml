@@ -36,12 +36,10 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Reserve quota before collection
-        if: github.event_name != 'push'
         env:
           WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
         run: node backend/collect.mjs reserve
       - name: Collect reserved cities
-        if: github.event_name != 'push'
         env:
           WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
         run: node backend/collect.mjs collect

@@ -10,23 +10,26 @@ const context = vm.createContext({ window: { __modules: modules } });
 for (const file of ['cities', 'districts']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
 export const cities = modules.districts.allCityGeo().map(c => ({ ...c, key: modules.cities.getLocationKey(c.name) })).filter(c => c.key);
 
-export function reserve(state, now, limit = 450, batch = 4) {
+export function reserve(state, now, limit = 450, batch = 4, bootstrap = false) {
   if (!Array.isArray(state.calls) || !state.entries || !Number.isInteger(state.cursor)) throw Error('Invalid quota ledger');
   state.calls = state.calls.filter(t => now - t < 86400000);
   state.pending = [];
   // Manual runs and delayed schedules cannot accelerate collection.
   if (now - (state.lastAttempt || 0) < 15 * 60000) return state;
-  const count = Math.max(0, Math.min(batch, limit - state.calls.length));
+  const initial = bootstrap && !state.initialCoverageReserved;
+  const requested = initial ? cities.length - state.cursor : batch;
+  const count = Math.max(0, Math.min(requested, limit - state.calls.length));
   for (let i = 0; i < count; i++) {
     state.pending.push(cities[state.cursor % cities.length]);
     state.cursor = (state.cursor + 1) % cities.length;
     state.calls.push(now);
   }
   if (count) state.lastAttempt = now;
+  if (initial && count === requested) state.initialCoverageReserved = true;
   return state;
 }
 
-export async function collect(state, key, fetcher = fetch, now = Date.now) {
+export async function collect(state, key, fetcher = fetch, now = Date.now, pause = () => new Promise(resolve => setTimeout(resolve, 300))) {
   for (const city of state.pending || []) {
     const route = '/alerts/v1/' + city.key + '.json';
     try {
@@ -37,6 +40,7 @@ export async function collect(state, key, fetcher = fetch, now = Date.now) {
       const safe = JSON.parse(JSON.stringify(data).split(key).join('[redacted]'));
       state.entries[route] = { data: safe, checkedAt: now() };
     } catch { console.error('City update failed; last good result retained.'); }
+    await pause();
   }
   state.pending = [];
   return state;
@@ -56,7 +60,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (phase === 'reserve') {
     if (!process.env.WEATHERCN_API_KEY) throw Error('Set the WEATHERCN_API_KEY Actions secret');
     state = parent ? JSON.parse(git('show', parent + ':backend/data/state.json')) : { calls: [], entries: {}, cursor: 0, lastAttempt: 0 };
-    reserve(state, Date.now());
+    reserve(state, Date.now(), 450, 4, true);
   } else if (phase === 'collect') {
     if (!parent || !process.env.WEATHERCN_API_KEY) throw Error('Missing reservation or key');
     state = JSON.parse(git('show', parent + ':backend/data/state.json'));

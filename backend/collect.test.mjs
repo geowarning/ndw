@@ -3,6 +3,22 @@ import assert from 'node:assert/strict';
 import { reserve, collect, cities } from './collect.mjs';
 
 const empty = () => ({ calls: [], entries: {}, cursor: 0, lastAttempt: 0 });
+test('initial coverage fills remaining cities once and respects existing quota', () => {
+  const t = Date.now(), state = empty();
+  state.cursor = 4;
+  state.calls = Array(4).fill(t - 900000);
+  reserve(state, t, 450, 4, true);
+  assert.equal(state.pending.length, cities.length - 4);
+  assert.equal(state.calls.length, cities.length);
+  assert.equal(state.initialCoverageReserved, true);
+  reserve(state, t + 900000, 450, 4, true);
+  assert.equal(state.pending.length, 4);
+  const limited = empty(); limited.calls = Array(449).fill(t);
+  reserve(limited, t, 450, 4, true);
+  assert.equal(limited.pending.length, 1);
+  assert.equal(limited.calls.length, 450);
+  assert.notEqual(limited.initialCoverageReserved, true);
+});
 test('rolling budget, manual reruns, interrupted reservations, rotation', () => {
   const t = Date.now(), state = empty();
   reserve(state, t);

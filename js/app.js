@@ -62,6 +62,20 @@
 
   /* ---------- 网页版特有文案（5 语言） ---------- */
   var WEB = {
+    pendingData: {
+      zh: '该城市的数据尚未发布，请稍后刷新。', en: 'This city has not been checked yet. Please check again shortly.',
+      es: 'Esta ciudad aún no se ha consultado. Vuelva más tarde.', fr: 'Cette ville n’a pas encore été vérifiée. Réessayez bientôt.', it: 'Questa città non è ancora stata controllata. Riprova tra poco.'
+    },
+    outdatedData: {
+      zh: '该城市的数据已过期，正在等待下一次更新。', en: 'This city’s data is outdated. Awaiting the next update.',
+      es: 'Datos desactualizados. Esperando la próxima actualización.', fr: 'Données obsolètes. En attente de la prochaine mise à jour.', it: 'Dati obsoleti. In attesa del prossimo aggiornamento.'
+    },
+    snapshotHint: {
+      zh: '预警定期更新，未查询或过期不代表没有预警。', en: 'Warnings update periodically. Unknown or outdated data does not mean no warnings.',
+      es: 'Las alertas se actualizan periódicamente. Sin datos no significa sin alertas.', fr: 'Les alertes sont périodiques. L’absence de données ne signifie pas l’absence d’alertes.', it: 'Le allerte sono aggiornate periodicamente. Dati assenti non significano assenza di allerte.'
+    },
+    retryFetch: { zh: '刷新数据', en: 'Refresh data', es: 'Actualizar datos', fr: 'Actualiser', it: 'Aggiorna dati' },
+    coverage: { zh: '已查询城市', en: 'Cities checked', es: 'Ciudades consultadas', fr: 'Villes vérifiées', it: 'Città controllate' },
     overviewTitle: {
       zh: '自然灾害预警总览', en: 'Disaster warning overview', es: 'Resumen de alertas',
       fr: 'Vue d’ensemble des alertes', it: 'Panoramica delle allerte'
@@ -427,7 +441,7 @@
             saveNationalStatus();
             refreshMaps();
           }
-          setTimeout(next, 300);   /* 控制请求频率，避免触发限流 */
+          setTimeout(next, 0);   /* 只读取共享快照，不触发上游请求 */
         });
     }
     next();
@@ -435,6 +449,9 @@
 
   /* 地图旁扫描按钮的加载状态 */
   function setScanButtonState(loading) {
+    var coverage = document.getElementById('mapCoverage');
+    var info = api.getSnapshotInfo();
+    if (coverage) { coverage.textContent = web('coverage') + ': ' + info.checked + ' / ' + info.total; }
     var btn = document.querySelector('[data-action="refresh-map"]');
     if (!btn) { return; }
     if (loading) {
@@ -514,6 +531,7 @@
       homeState.loading = false;
       homeState.hasData = !!res.ok;
       homeState.error = res.ok ? '' : (res.error || web('dataUnavailable'));
+      homeState.errorCode = res.errorCode || '';
       homeState.fromCache = !!res.fromCache;
       if (res.ok && (!res.fromCache || res.fetchedAt)) {
         homeState.lastUpdate = formatNow(res.fetchedAt);
@@ -653,6 +671,7 @@
                           : SVG.refresh + esc(t.mapScan)) +
         '</button></div>' +
       '<p class="map-hint">' + esc(web('mapHint')) + '</p>' +
+      '<p class="map-hint" id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + api.getSnapshotInfo().checked + ' / ' + api.getSnapshotInfo().total + '</p>' +
       '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
@@ -671,10 +690,11 @@
       '</span></div>';
 
     if (s.error) {
-      html += '<div class="state-box error"><span class="state-icon">!</span>' +
-        '<div>' + esc(t.fetchFailed) + '</div><div style="margin-top:6px;font-size:.85rem">' + esc(s.error) + '</div>' +
-        '<button class="btn btn-green" data-action="refresh">' + esc(t.retry) + '</button>' +
-        '<div class="source-line" style="justify-content:center">' + esc(web('configHint')) + '</div></div>';
+      var expectedGap = s.errorCode === 'pending' || s.errorCode === 'outdated';
+      html += '<div class="state-box' + (expectedGap ? '' : ' error') + '"><span class="state-icon">' + (expectedGap ? '…' : '!') + '</span>' +
+        '<div>' + esc(expectedGap ? web(s.errorCode === 'pending' ? 'pendingData' : 'outdatedData') : t.fetchFailed) + '</div>' +
+        '<button class="btn btn-green" data-action="refresh">' + esc(web('retryFetch')) + '</button>' +
+        '<div class="source-line" style="justify-content:center">' + esc(web('snapshotHint')) + '</div></div>';
     } else if (s.loading) {
       html += '<div class="state-box"><div class="spinner"></div>' + esc(t.loading) + '</div>';
     } else if (s.shownAlerts.length === 0) {

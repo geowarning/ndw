@@ -13,16 +13,20 @@ Browsers never call the weather provider.
 4. Permit the workflow token to write the `ndw-data` branch. If branch rules
    prevent this, the workflow fails before making provider calls.
 
-The workflow checks four cities at minutes 7, 22, 37 and 52 each hour (UTC).
+The first eligible run reserves and checks all remaining map cities (at most
+77 requests), paced at least 300ms apart. This one-time warm-up uses the same
+450-call cap and persisted quota ledger; interrupted reservations still count.
+Subsequent runs check four cities at minutes 7, 22, 37 and 52 each hour (UTC).
 That is approximately 384 calls/day and about five hours for all 77 supported
 map cities. GitHub scheduling and deployment delays can extend this period.
-Initial coverage fills gradually; missing cities appear unknown.
+Initial coverage normally fills in the first collection run; missing cities appear unknown.
 Manual runs cannot bypass the 15-minute collection gap or the 450-attempt
 rolling 24-hour cap. Other applications using the key consume additional quota.
 
 The collector commits quota reservations BEFORE requests. Failed and interrupted
 requests count against the cap. The `ndw-data` branch preserves quota history,
-rotation position and last good results. Do not delete/reset this branch while
+rotation position and last good results. Push deployments also run the collector,
+subject to the same 15-minute gate and quota. Do not delete/reset this branch while
 using the same key. Collection and publication runs are serialized. Pushes to
 the data branch do not trigger another collection workflow.
 
