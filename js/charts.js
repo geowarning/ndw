@@ -7,7 +7,8 @@
 
   function setup(canvas) {
     var parent = canvas.parentElement;
-    var w = parent.clientWidth || 320;
+    var style = getComputedStyle(parent);
+    var w = Math.max(1, parent.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) || 320;
     var h = parseInt(canvas.getAttribute('data-h') || '200', 10);
     canvas.width = Math.round(w * dpr);
     canvas.height = Math.round(h * dpr);

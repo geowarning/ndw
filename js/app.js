@@ -221,7 +221,7 @@
     var l = lang();
     var items = navItems(l);
     var links = items.map(function (it) {
-      return '<a class="nav-link ' + (it.path === activePath ? 'active' : '') + '" href="' + it.hash + '">' +
+      return '<a class="nav-link ' + (it.path === activePath ? 'active' : '') + '" href="' + it.hash + '"' + (it.path === activePath ? ' aria-current="page"' : '') + '>' +
         it.icon + '<span>' + esc(it.label) + '</span></a>';
     }).join('');
     var brand = '<a class="brand" href="#/home">' + SVG.brand +
@@ -230,18 +230,24 @@
     navEl.innerHTML =
       '<nav class="navbar"><div class="nav-inner">' + brand +
       '<div class="nav-links">' + links + '</div>' +
-      '<button class="nav-toggle" data-action="toggle-drawer" aria-label="' + esc(i18n.t('menu', l)) + '">' + SVG.menu + '</button>' +
+      '<button class="nav-toggle" data-action="toggle-drawer" aria-controls="navDrawer" aria-expanded="false" aria-label="' + esc(i18n.t('menu', l)) + '">' + SVG.menu + '</button>' +
       '</div></nav>' +
       '<div class="nav-drawer" id="navDrawer">' + links + '</div>';
   }
 
   function toggleDrawer() {
     var d = document.getElementById('navDrawer');
-    if (d) { d.classList.toggle('open'); }
+    if (d) {
+      var expanded = d.classList.toggle('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', String(expanded));
+    }
   }
   function closeDrawer() {
     var d = document.getElementById('navDrawer');
-    if (d) { d.classList.remove('open'); }
+    if (d) {
+      d.classList.remove('open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    }
   }
 
   /* ================================================================
@@ -404,7 +410,7 @@
   }
 
   /* 后台串行扫描全国城市预警（只取预警，不取天气），边扫边更新地图 */
-  function sweepNationalStatus(force) {
+  function sweepNationalStatus(force, notify) {
     if (nationalSweeping) { return; }
     var all = districts.allCityGeo();
     var snap = wx.getStorageSync(NATIONAL_STATUS_KEY);
@@ -421,7 +427,7 @@
         saveNationalStatus();
         refreshMaps();
         setScanButtonState(false);
-        wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' });
+        if (notify) { wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' }); }
         return;
       }
       var c = all[i++];
@@ -670,8 +676,9 @@
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
                           : SVG.refresh + esc(t.mapScan)) +
         '</button></div>' +
-      '<p class="map-hint">' + esc(web('mapHint')) + '</p>' +
+      '<div class="map-meta"><p class="map-hint">' + esc(web('mapHint')) + '</p>' +
       '<p class="map-hint" id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + api.getSnapshotInfo().checked + ' / ' + api.getSnapshotInfo().total + '</p>' +
+      '</div>' +
       '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '<div class="map-legend">' +
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
@@ -712,13 +719,13 @@
         '</a>';
       }).join('') + '</div>';
     }
-    html += '</section>' + nationalPanel + '</div></div>';
+    html += '</section>';
 
     /* ---- 预警动态时间线 ---- */
     var tlAlerts = (dataReady ? s.shownAlerts : []).slice().sort(function (a, b) {
       return String(b.time) < String(a.time) ? 1 : String(b.time) > String(a.time) ? -1 : 0;
     });
-    html += '<section class="section section-alt"><div class="container">' +
+    html += '<section class="overview-panel activity-panel">' +
       '<div class="section-head"><h2><span class="h2-ic">' + SVG.iClock + '</span>' + esc(t.timeline) + '</h2></div>';
     if (tlAlerts.length) {
       html += '<ul class="timeline">' + tlAlerts.map(function (a) {
@@ -732,7 +739,7 @@
     } else {
       html += '<div class="state-box">' + esc(dataReady ? t.noTimeline : dataState) + '</div>';
     }
-    html += '</div></section>';
+    html += '</section>' + nationalPanel + '</div></div>';
 
     /* ---- 类型分布 + TOP 风险 ---- */
     var typeCount = {}, typeOrder = [];
@@ -761,18 +768,17 @@
     var topRisks = Object.keys(riskMap).map(function (k) { return riskMap[k]; })
       .sort(function (a, b) { return b.prob - a.prob; }).slice(0, 5);
 
-    html += '<section class="section"><div class="container two-col-grid">' +
-      '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.typeDist) + '</div>' +
-        (dataReady ? '<canvas id="typeDonut" data-h="240"></canvas>' : '<div class="state-box">' + esc(dataState) + '</div>') + '</div>' +
-      '<div class="panel-card"><div class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(t.topRisks) + '</div>' +
+    html += '<div class="container"><div class="home-analytics">' +
+      '<section class="panel-card"><h2 class="panel-card-title"><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.typeDist) + '</h2>' +
+        (dataReady ? '<canvas id="typeDonut" data-h="180"></canvas>' : '<div class="state-box">' + esc(dataState) + '</div>') + '</section>' +
+      '<section class="panel-card"><h2 class="panel-card-title"><span class="h2-ic">' + SVG.iWarn + '</span>' + esc(t.topRisks) + '</h2>' +
         (topRisks.length ? topRisks.map(function (r) {
           var nm = i18n.riskItem(r.key, l);
           return '<div class="mini-risk"><span class="mini-risk-name">' + esc(nm.name) + '</span>' +
             '<span class="mini-risk-bar"><i style="width:' + r.prob + '%;background:' + r.color + '"></i></span>' +
             '<b>' + r.prob + '%</b></div>';
         }).join('') : '<div class="state-box">' + esc(dataReady ? t.noAlerts : dataState) + '</div>') +
-      '</div>' +
-    '</div></section>';
+      '</section>';
 
     /* ---- 趋势（全国城市汇总） ---- */
     var trendAll = wx.getStorageSync('daily_trend') || {};
@@ -792,15 +798,15 @@
       if (hasData) { recorded++; }
     }
 
-    html += '<section class="section section-alt"><div class="container">' +
+    html += '<section class="panel-card trend-panel">' +
       '<div class="section-head"><h2><span class="h2-ic">' + SVG.iChart + '</span>' + esc(t.trend) + '</h2>' +
         '<span class="head-hint">' + esc(t.trendNationwide) + ' · 14 ' + esc(t.dayShort) + '</span></div>';
     if (recorded < 1) {
       html += '<div class="state-box">' + esc(t.trendBuilding) + '</div>';
     } else {
-      html += '<canvas id="trendLine" data-h="220"></canvas>';
+      html += '<canvas id="trendLine" data-h="180"></canvas>';
     }
-    html += '</div></section>';
+    html += '</section></div></div>';
 
     html += '</div>';
     viewEl.innerHTML = html;
@@ -1936,7 +1942,7 @@
         loadHomeData();
         break;
       case 'refresh-map':
-        sweepNationalStatus(true);
+        sweepNationalStatus(true, true);
         break;
       case 'select-province': selectProvince(d.name); break;
       case 'select-city': selectCity(d.name); break;
