@@ -1376,6 +1376,7 @@
     var l = lang();
     var t = T(l);
     var categories = data.getGuides().map(function (c) {
+      if (l === 'en') { c = Object.assign({}, c, __require('guide-en')[c.id]); }
       return Object.assign({}, c, {
         name: i18n.disasterName(c.name, l),
         signals: (c.signals || []).map(function (s) {
