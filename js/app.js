@@ -1376,7 +1376,7 @@
     var l = lang();
     var t = T(l);
     var categories = data.getGuides().map(function (c) {
-      if (l === 'en') { c = Object.assign({}, c, __require('guide-en')[c.id]); }
+      c = __require('guide-locales').getGuide(c, l);
       return Object.assign({}, c, {
         name: i18n.disasterName(c.name, l),
         signals: (c.signals || []).map(function (s) {
@@ -1452,7 +1452,7 @@
   function levelCls(w) {
     w = String(w);
     if (/红|Red|Rouge|Rojo|Rosso/i.test(w)) { return 'red'; }
-    if (/橙|Orange|Naranja/i.test(w)) { return 'orange'; }
+    if (/橙|Orange|Naranja|Arancio/i.test(w)) { return 'orange'; }
     if (/黄|Yellow|Jaune|Amarillo|Giallo/i.test(w)) { return 'yellow'; }
     return 'blue';
   }

@@ -1154,6 +1154,10 @@ function tpl(key, vars, lang) {
 
 function disasterName(zhName, lang) {
   var l = lang || getLang();
+  if (l !== 'zh' && zhName === '洪水内涝') { zhName = '洪水'; }
+  if (zhName === '地震' && l !== 'zh') {
+    return { en: 'Earthquake', es: 'Terremoto', fr: 'Séisme', it: 'Terremoto' }[l] || zhName;
+  }
   var map = DISASTERS[l] || DISASTERS.zh;
   return map[zhName] || zhName;
 }
@@ -1996,19 +2000,32 @@ function orgName(zhName, lang) {
   return zhName;
 }
 
-/** 预警标题本地化：形如“高温黄色预警/暴雨红色预警”→ 类型+级别翻译组合；其他保留原文 */
+/** Localize Chinese provider headlines using known hazard and severity fields. */
 function alertTitle(title, type, level, lang) {
   var l = lang || getLang();
   if (l === 'zh' || !title) {
     return title;
   }
-  var m = String(title).match(/^(.+?)(红色|橙色|黄色|蓝色)?预警$/);
-  if (m) {
-    var t = disasterName(m[1] || type, l);
-    var lv = m[2] ? levelName(level, l) : '';
-    return (t + (lv ? ' ' + lv : '')).trim();
-  }
-  return title;
+  if (!/[\u3400-\u9fff]/u.test(title)) { return title; }
+  var map = DISASTERS[l] || DISASTERS.en;
+  var candidates = Object.keys(map).concat(['地震', '洪水内涝']).sort(function (a, b) { return b.length - a.length; });
+  var inferred = candidates.find(function (name) { return name !== '气象' && String(title).indexOf(name) >= 0; });
+  var knownType = type && disasterName(type, l) !== type;
+  var hazard = knownType && type !== '气象' ? type : (inferred || '气象');
+  var colors = String(title).match(/红色|橙色|黄色|蓝色/g);
+  var color = colors && colors[colors.length - 1];
+  var headlineLevel = color && { '红色': 'red', '橙色': 'orange', '黄色': 'yellow', '蓝色': 'blue' }[color];
+  var severity = headlineLevel || level;
+  var translated = disasterName(hazard, l) + (severity ? ' ' + levelName(severity, l) : '');
+  // Do not turn cancellation or update notices into an unqualified active alert.
+  var status = /解除|取消|撤销|终止/.test(title) ? 'cancelled' : /降级/.test(title) ? 'downgraded' : /升级/.test(title) ? 'upgraded' : /更新/.test(title) ? 'updated' : '';
+  var statuses = {
+    en: { cancelled: 'cancelled', downgraded: 'downgraded', upgraded: 'upgraded', updated: 'updated' },
+    es: { cancelled: 'cancelada', downgraded: 'nivel reducido', upgraded: 'nivel elevado', updated: 'actualizada' },
+    fr: { cancelled: 'levée', downgraded: 'niveau abaissé', upgraded: 'niveau relevé', updated: 'mise à jour' },
+    it: { cancelled: 'revocata', downgraded: 'livello ridotto', upgraded: 'livello aumentato', updated: 'aggiornata' }
+  };
+  return translated.trim() + (status ? ' (' + (statuses[l] || statuses.en)[status] + ')' : '');
 }
 
 /** 影响区域本地化：翻译城市前缀（“广州市”→“Guangzhou”），其余区县名保留 */
