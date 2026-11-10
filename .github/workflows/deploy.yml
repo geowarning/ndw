@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  issues:
+    types: [opened]
   schedule:
     - cron: '7,22,37,52 * * * *'
 
@@ -11,6 +13,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  issues: write
 
 concurrency:
   group: pages
@@ -18,6 +21,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'issues' || github.event.issue.title == '[Data update] Refresh warning data'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -75,3 +79,10 @@ jobs:
         run: node backend/check-published.mjs "$DEPLOYMENT_URL"
         env:
           DEPLOYMENT_URL: ${{ steps.deployment.outputs.page_url }}
+      - name: Complete manual data request
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          UPDATE_ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue close "$UPDATE_ISSUE_NUMBER" --reason completed

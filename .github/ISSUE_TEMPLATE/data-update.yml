@@ -1,0 +1,22 @@
+name: Request warning data update
+description: Request a quota-limited national warning-data collection.
+title: "[Data update] Refresh warning data"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submitting this request starts the shared warning-data workflow.
+        Keep the prefilled title so the updater recognizes this request.
+        It rotates through cities within the existing 15-minute cooldown and
+        rolling 450-attempt daily limit. It cannot guarantee a new check for
+        every city in a single run. GitHub queue and deployment delays apply.
+        After the workflow completes, return to geowarning.cn and choose
+        **Refresh published data**. This request closes after successful deployment.
+        Workflow progress: https://github.com/geowarning/ndw/actions/workflows/deploy.yml
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Submit an update request
+      options:
+        - label: I understand that the shared cooldown and remaining quota may limit collection.
+          required: true

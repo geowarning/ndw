@@ -2,6 +2,7 @@
 (function () {
   var copy = {
     zh: {
+      manualUpdate: '更新数据', manualUpdateHint: '将在 GitHub 打开全国预警更新申请，需登录并提交表单。采集遵守 15 分钟冷却时间与每日 450 次尝试上限，不保证单次更新全部城市。队列及发布需要时间；完成后点击“刷新已发布数据”。', updateProgress: '查看更新进度',
       refreshPublished: '刷新已发布数据', noNewChecks: '没有更新的城市查询结果，继续显示已保存的数据。', updatedCities: '已更新 {n} 个城市的查询结果。', lastNoAlerts: '上次查询无预警', lastAlerts: '上次查询有预警', lastRedAlert: '上次查询有红色预警',
       historical: '虚线环：历史查询', scanCount: '上次查询时的预警数：{n}', historyNotice: '仅为历史记录，当前状态未知。请勿将旧预警视为仍在生效，也勿将过去的零预警视为当前安全。',
       available: '在更新周期内', outdated: '数据已过期', unavailable: '数据不可用', lastChecked: '上次查询', neverChecked: '尚未查询',
@@ -13,6 +14,7 @@
       notificationLimit: '提醒仅在页面保持打开时检查；后台标签页可能延迟，关闭页面即停止。不能替代官方应急通知。'
     },
     en: {
+      manualUpdate: 'Update data', manualUpdateHint: 'Opens a national update request on GitHub. Sign in and submit the form to start. Collection respects a 15-minute cooldown and 450-attempt daily cap; one run may not check every city. Allow time for the queue and deployment, then choose Refresh published data.', updateProgress: 'View update progress',
       refreshPublished: 'Refresh published data', noNewChecks: 'No newer city checks available. Showing saved results.', updatedCities: 'Updated checks for {n} cities.', lastNoAlerts: 'No alerts at last check', lastAlerts: 'Alerts at last check', lastRedAlert: 'Red alert at last check',
       historical: 'Dashed ring: past scan', scanCount: 'Warnings at last scan: {n}', historyNotice: 'Historical record only; current status is unknown. Old warnings may have expired, and a past zero does not mean it is safe now.',
       available: 'Within update window', outdated: 'Outdated data', unavailable: 'Data unavailable', lastChecked: 'Last checked', neverChecked: 'Not checked yet',
@@ -24,6 +26,7 @@
       notificationLimit: 'Checks only while this page stays open. Background tabs may be delayed; closing the page stops checks. This does not replace official emergency alerts.'
     },
     es: {
+      manualUpdate: 'Actualizar datos', manualUpdateHint: 'Abre una solicitud nacional en GitHub. Inicia sesión y envía el formulario para empezar. Se respeta una espera de 15 minutos y un máximo diario de 450 intentos; una ejecución puede no consultar todas las ciudades. Espera la cola y publicación, y pulsa Actualizar datos publicados.', updateProgress: 'Ver progreso',
       refreshPublished: 'Actualizar datos publicados', noNewChecks: 'No hay consultas más recientes. Se muestran los datos guardados.', updatedCities: 'Consultas actualizadas para {n} ciudades.', lastNoAlerts: 'Sin alertas en última consulta', lastAlerts: 'Alertas en última consulta', lastRedAlert: 'Alerta roja en última consulta',
       historical: 'Anillo discontinuo: consulta anterior', scanCount: 'Alertas en la última consulta: {n}', historyNotice: 'Solo registro histórico; se desconoce el estado actual. Las alertas antiguas pueden haber caducado y un cero anterior no indica seguridad actual.',
       available: 'Dentro del plazo de actualización', outdated: 'Datos desactualizados', unavailable: 'Datos no disponibles', lastChecked: 'Última consulta', neverChecked: 'Aún sin consultar',
@@ -35,6 +38,7 @@
       notificationLimit: 'Solo se comprueba mientras la página permanece abierta. Las pestañas en segundo plano pueden retrasarse; al cerrar se detienen las comprobaciones. No sustituye las alertas oficiales de emergencia.'
     },
     fr: {
+      manualUpdate: 'Mettre à jour les données', manualUpdateHint: 'Ouvre une demande nationale sur GitHub. Connectez-vous et envoyez le formulaire pour démarrer. La collecte respecte un délai de 15 minutes et 450 tentatives par jour ; une exécution peut ne pas couvrir toutes les villes. Attendez la file et la publication, puis actualisez les données publiées.', updateProgress: 'Voir la progression',
       refreshPublished: 'Actualiser les données publiées', noNewChecks: 'Aucun contrôle plus récent. Affichage des données enregistrées.', updatedCities: 'Contrôles actualisés pour {n} villes.', lastNoAlerts: 'Aucune alerte au dernier contrôle', lastAlerts: 'Alertes au dernier contrôle', lastRedAlert: 'Alerte rouge au dernier contrôle',
       historical: 'Anneau pointillé : contrôle passé', scanCount: 'Alertes lors de la dernière vérification : {n}', historyNotice: 'Historique uniquement ; état actuel inconnu. Les anciennes alertes peuvent avoir expiré et un ancien zéro ne garantit pas la sécurité actuelle.',
       available: 'Dans le délai de mise à jour', outdated: 'Données obsolètes', unavailable: 'Données indisponibles', lastChecked: 'Dernière vérification', neverChecked: 'Pas encore vérifiée',
@@ -46,6 +50,7 @@
       notificationLimit: 'Vérification uniquement lorsque cette page reste ouverte. Les onglets en arrière-plan peuvent être retardés ; fermer la page arrête les vérifications. Cela ne remplace pas les alertes officielles d’urgence.'
     },
     it: {
+      manualUpdate: 'Aggiorna dati', manualUpdateHint: 'Apre una richiesta nazionale su GitHub. Accedi e invia il modulo per iniziare. La raccolta rispetta una pausa di 15 minuti e 450 tentativi al giorno; una singola esecuzione potrebbe non controllare tutte le città. Attendi la coda e la pubblicazione, poi aggiorna i dati pubblicati.', updateProgress: 'Vedi avanzamento',
       refreshPublished: 'Aggiorna dati pubblicati', noNewChecks: 'Nessun controllo più recente. Sono mostrati i dati salvati.', updatedCities: 'Controlli aggiornati per {n} città.', lastNoAlerts: 'Nessuna allerta all’ultimo controllo', lastAlerts: 'Allerte all’ultimo controllo', lastRedAlert: 'Allerta rossa all’ultimo controllo',
       historical: 'Anello tratteggiato: controllo passato', scanCount: 'Allerte all’ultimo controllo: {n}', historyNotice: 'Solo dati storici; stato attuale sconosciuto. Le vecchie allerte potrebbero essere scadute e un precedente zero non indica sicurezza attuale.',
       available: 'Entro il periodo di aggiornamento', outdated: 'Dati obsoleti', unavailable: 'Dati non disponibili', lastChecked: 'Ultimo controllo', neverChecked: 'Non ancora controllata',

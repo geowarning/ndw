@@ -445,6 +445,10 @@ body { background: var(--bg); }
 .history-notice { color: #e5dbff; max-width: 65ch; }
 .map-scan-btn { scroll-margin-top: calc(var(--nav-h) + 20px); }
 .toast { pointer-events: none; max-width: calc(100vw - 36px); white-space: normal; }
+.manual-update { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px 20px; padding: 16px; margin: 20px 0; border: 1px solid var(--border); background: var(--holo-soft); }
+.manual-update-btn { flex: 0 0 auto; white-space: normal; max-width: 100%; }
+.manual-update p { flex: 1 1 260px; min-width: 0; font-size: .78rem; line-height: 1.7; color: var(--text-mid); overflow-wrap: anywhere; }
+.manual-update p a { color: var(--holo); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 760px) {
   .home-dashboard .hero { padding-top: 26px; }
   .overview-panel, .home-analytics .panel-card { padding: 18px; }

@@ -12,6 +12,11 @@
   var districts = __require('districts');
   var reliability = __require('reliability');
   function safetyText(key) { return reliability.text(key, lang()); }
+  function manualUpdateControl() {
+    return '<div class="manual-update"><a class="btn btn-green manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-describedby="manualUpdateHint">' +
+      esc(safetyText('manualUpdate')) + ' ↗</a><p id="manualUpdateHint">' + esc(safetyText('manualUpdateHint')) +
+      ' <a href="https://github.com/geowarning/ndw/actions/workflows/deploy.yml" target="_blank" rel="noopener noreferrer">' + esc(safetyText('updateProgress')) + ' ↗</a></p></div>';
+  }
   var explanations = __require('explanations');
   var openExplanations = new Set();
 
@@ -756,7 +761,7 @@
           statBox('lv-blue', dataReady ? s.levelStats.blue : null, t.blueAlert) +
         '</div>' +
         '<p class="home-freshness" role="status">' + (!dataReady ? esc(dataState) + (s.lastUpdate ? ' · ' : '') : '') +
-          (s.lastUpdate ? esc(web('lastSuccess') + s.lastUpdate) : '') + '</p>' +
+          (s.lastUpdate ? esc(web('lastSuccess') + s.lastUpdate) : '') + '</p>' + manualUpdateControl() +
       '</div></section>';
 
     /* ---- 全国全息态势图 ---- */
@@ -937,6 +942,7 @@
         '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
         '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
       '</div>' +
+      manualUpdateControl() +
       '<div class="expanded-map-meta"><span id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + info.checked + ' / ' + info.total + '</span>' +
         '<div class="map-legend">' +
           '<span><i class="status-dot status-none"></i>' + esc(safetyText('lastNoAlerts')) + '</span>' +

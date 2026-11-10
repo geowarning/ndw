@@ -27,6 +27,15 @@ Initial coverage normally fills in the first collection run; missing cities appe
 Manual runs cannot bypass the 15-minute collection gap or the 450-attempt
 rolling 24-hour cap. Other applications using the key consume additional quota.
 
+The site's **Update data** button opens the `data-update.yml` GitHub issue form.
+Visitors must sign in and submit the form; opening the form alone does not start
+collection. Issues with the exact title `[Data update] Refresh warning data`
+trigger the same trusted-main deployment workflow and quota ledger. Unrelated
+issues do not run the job. Request text is never executed. The workflow closes
+the request only after deployment and the published-data check succeed.
+Users then choose **Refresh published data** on the site to download the result.
+This GitHub approach requires no browser API key or personal access token.
+
 The collector commits quota reservations BEFORE requests. Failed and interrupted
 requests count against the cap. The `ndw-data` branch preserves quota history,
 rotation position and last good results. Push deployments also run the collector,
