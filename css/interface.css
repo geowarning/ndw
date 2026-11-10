@@ -401,8 +401,6 @@ body { background: var(--bg); }
 .manual-update { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 20px; padding: 4px 0; margin: 16px 0; border: 0; background: transparent; }
 .manual-update-btn { flex: 0 0 auto; white-space: normal; max-width: 100%; padding: 8px 0; border: 0; background: transparent; color: var(--holo); text-decoration: underline; text-underline-offset: 5px; }
 .manual-update-btn:hover { color: var(--holo-bright); background: transparent; text-decoration-thickness: 2px; }
-.manual-update p { flex: 1 1 260px; min-width: 0; font-size: .78rem; line-height: 1.7; color: var(--text-mid); overflow-wrap: anywhere; }
-.manual-update p a { color: var(--holo); text-decoration: underline; text-underline-offset: 3px; }
 /* Decorative globe sits above the hero surface and beneath its controls. */
 .bg-globe { display: none; }
 .home-dashboard .hero > .bg-globe {

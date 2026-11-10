@@ -13,9 +13,8 @@
   var reliability = __require('reliability');
   function safetyText(key) { return reliability.text(key, lang()); }
   function manualUpdateControl() {
-    return '<div class="manual-update"><a class="btn manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-describedby="manualUpdateHint">' +
-      esc(safetyText('manualUpdate')) + ' ↗</a><p id="manualUpdateHint">' + esc(safetyText('manualUpdateHint')) +
-      ' <a href="https://github.com/geowarning/ndw/actions/workflows/deploy.yml" target="_blank" rel="noopener noreferrer">' + esc(safetyText('updateProgress')) + ' ↗</a></p></div>';
+    return '<div class="manual-update"><a class="btn manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-label="' + esc(safetyText('manualUpdate') + ' (GitHub)') + '">' +
+      esc(safetyText('manualUpdate')) + ' ↗</a></div>';
   }
   var explanations = __require('explanations');
   var openExplanations = new Set();

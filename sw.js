@@ -1,5 +1,5 @@
 /* Cache safety knowledge and application assets, never live warning snapshots. */
-const CACHE = 'ndw-shell-fc7c7adcfa90dd9b';
+const CACHE = 'ndw-shell-9527e82d413480e2';
 const ASSETS = [
   './', './index.html', './favicon.svg', './css/styles.css', './css/interface.css',
   './js/shim.js', './js/config.js', './js/data.js', './js/guide-en.js', './js/guide-locales.js',
