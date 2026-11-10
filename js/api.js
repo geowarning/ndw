@@ -66,7 +66,13 @@ function readSharedSnapshot(route) {
         return res.json();
       }).then(function (snapshot) {
         if (snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
-        snapshotEntries = snapshot.entries;
+        // Partial publications must not erase a city's last successful scan.
+        Object.keys(snapshot.entries).forEach(function (route) {
+          const entry = snapshot.entries[route], previous = snapshotEntries[route];
+          if (entry && (Array.isArray(entry.data) || Array.isArray(entry.data && entry.data.alerts)) &&
+              window.__modules.reliability.freshness(entry.checkedAt) !== 'unavailable' &&
+              (!previous || entry.checkedAt >= previous.checkedAt)) snapshotEntries[route] = entry;
+        });
         snapshotInfo.checked = Object.keys(snapshot.entries).filter(function (key) {
           return window.__modules.reliability.freshness(snapshot.entries[key].checkedAt) === 'available';
         }).length;
@@ -408,6 +414,26 @@ function cityFreshness(region) {
   const entry = key && snapshotEntries['/alerts/v1/' + key + '.json'];
   const cached = wx.getStorageSync(ALERT_CACHE_PREFIX + r.cacheKey);
   return { checkedAt: entry ? entry.checkedAt : (cached && cached.time || null) };
+}
+
+// Historical summaries are separate from the current-warning API. Never renew
+// their timestamp or use them as evidence that there are no current warnings.
+function lastKnownCityStatus(region) {
+  const r = normalizeRegion(region);
+  const key = cities.getLocationKey(r.city) || (r.city === config.defaultCity.name && config.defaultCity.locationKey);
+  const entry = key && snapshotEntries['/alerts/v1/' + key + '.json'];
+  const cached = wx.getStorageSync(ALERT_CACHE_PREFIX + r.cacheKey);
+  const candidates = [];
+  if (entry) {
+    const list = Array.isArray(entry.data) ? entry.data : entry.data && entry.data.alerts;
+    if (Array.isArray(list) && list.every(item => item && typeof item === 'object')) {
+      candidates.push({ checkedAt: entry.checkedAt, alerts: list.map(item => normalizeAlert(item, { city: r.city, lang: 'zh' })).filter(Boolean) });
+    }
+  }
+  if (cached && Array.isArray(cached.value)) candidates.push({ checkedAt: cached.time, alerts: cached.value });
+  const latest = candidates.filter(item => window.__modules.reliability.freshness(item.checkedAt) !== 'unavailable')
+    .sort((a, b) => b.checkedAt - a.checkedAt)[0];
+  return latest ? { checkedAt: latest.checkedAt, count: latest.alerts.length, high: latest.alerts.some(alert => alert.level === 'red') } : null;
 }
 
 /* ---------- 区域处理 ---------- */
@@ -890,6 +916,7 @@ function getCacheInfo() {
 }
 
 module.exports = {
+  getLastKnownCityStatus: lastKnownCityStatus,
   getCityFreshness: cityFreshness,
   refreshSnapshot: function () {
     snapshotPromise = null;

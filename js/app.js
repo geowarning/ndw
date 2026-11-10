@@ -149,7 +149,7 @@
       es: 'Las alertas se actualizan periódicamente. Sin datos no significa sin alertas.', fr: 'Les alertes sont périodiques. L’absence de données ne signifie pas l’absence d’alertes.', it: 'Le allerte sono aggiornate periodicamente. Dati assenti non significano assenza di allerte.'
     },
     retryFetch: { zh: '刷新数据', en: 'Refresh data', es: 'Actualizar datos', fr: 'Actualiser', it: 'Aggiorna dati' },
-    coverage: { zh: '已查询城市', en: 'Cities checked', es: 'Ciudades consultadas', fr: 'Villes vérifiées', it: 'Città controllate' },
+    coverage: { zh: '数据在更新周期内的城市', en: 'Cities with current data', es: 'Ciudades con datos actuales', fr: 'Villes aux données à jour', it: 'Città con dati attuali' },
     overviewTitle: {
       zh: '自然灾害预警总览', en: 'Disaster warning overview', es: 'Resumen de alertas',
       fr: 'Vue d’ensemble des alertes', it: 'Panoramica delle allerte'
@@ -165,8 +165,8 @@
       it: 'Seleziona una città per vedere le allerte.'
     },
     unknown: {
-      zh: '未知 / 已过期', en: 'Unknown / outdated', es: 'Desconocido / desactualizado',
-      fr: 'Inconnu / obsolète', it: 'Sconosciuto / obsoleto'
+      zh: '无历史数据', en: 'No past data', es: 'Sin datos anteriores',
+      fr: 'Sans historique', it: 'Nessun dato precedente'
     },
     dataUnavailable: {
       zh: '数据暂不可用', en: 'Data unavailable', es: 'Datos no disponibles',
@@ -484,6 +484,14 @@
     } catch (e) { /* 存储失败不影响主流程 */ }
   }
 
+  function retainCityStatus(region) {
+    var saved = api.getLastKnownCityStatus(region);
+    var previous = sessionStatus[region.adcode];
+    if (previous && Number.isInteger(previous.count) && previous.count >= 0 &&
+        reliability.freshness(previous.checkedAt) !== 'unavailable' && (!saved || previous.checkedAt > saved.checkedAt)) saved = previous;
+    sessionStatus[region.adcode] = Object.assign({}, saved || { count: null, checkedAt: null }, { unavailable: true });
+  }
+
   /* 后台串行扫描全国城市预警（只取预警，不取天气），边扫边更新地图 */
   function sweepNationalStatus(force, notify) {
     if (nationalSweeping) { return; }
@@ -519,7 +527,7 @@
             };
             recordTrend(c.adcode, list.length);
           } else {
-            sessionStatus[c.adcode] = { count: null, high: false, unavailable: true, checkedAt: api.getCityFreshness({ city: c.name, adcode: c.adcode }).checkedAt || (sessionStatus[c.adcode] || {}).checkedAt || null };
+            retainCityStatus({ city: c.name, adcode: c.adcode });
           }
           if (i % 6 === 0 || i === all.length) {
             saveNationalStatus();
@@ -628,7 +636,7 @@
           checkedAt: res.fetchedAt || api.getCityFreshness(region).checkedAt
         };
       } else {
-        sessionStatus[region.adcode] = { count: null, unavailable: true, checkedAt: api.getCityFreshness(region).checkedAt };
+        retainCityStatus(region);
       }
       if (res.ok && region.adcode) { recordTrend(region.adcode, raw.length); }
       refreshMaps();
@@ -765,6 +773,7 @@
         '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
         '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
         '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+        '<span><i class="status-dot status-history"></i>' + esc(safetyText('historical')) + '</span>' +
         '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
       '</div>' +
     '</section>';
@@ -929,6 +938,7 @@
           '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
           '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
           '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+          '<span><i class="status-dot status-history"></i>' + esc(safetyText('historical')) + '</span>' +
           '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
         '</div>' +
       '</div>' +
@@ -964,9 +974,12 @@
     var state = sessionStatus[adcode] || {};
     var freshness = reliability.freshness(state.checkedAt);
     if (freshness === 'available' && (state.unavailable || navigator.onLine === false)) freshness = 'unavailable';
-    var signature = [adcode, state.checkedAt, freshness, lang()].join('|');
+    var historical = freshness !== 'available' && Number.isInteger(state.count) && state.count >= 0;
+    var signature = [adcode, state.checkedAt, state.count, freshness, lang()].join('|');
     if (box.dataset.signature !== signature) box.innerHTML = '<div><b>' + esc(i18n.placeName(city.name, lang())) + '</b><span class="freshness-tag freshness-' + freshness + '">' + esc(safetyText(freshness)) + '</span>' +
-      '<p>' + esc(reliability.checkedAt(state.checkedAt, lang())) + '</p></div>' +
+      '<p>' + esc(reliability.checkedAt(state.checkedAt, lang())) + '</p>' +
+      (Number.isInteger(state.count) ? '<p>' + esc(safetyText('scanCount').replace('{n}', state.count)) + '</p>' : '') +
+      (historical ? '<p class="history-notice">' + esc(safetyText('historyNotice')) + '</p>' : '') + '</div>' +
       '<button class="btn btn-outline" data-action="view-map-city" data-adcode="' + esc(adcode) + '">' + esc(safetyText('viewWarnings')) + '</button>';
     box.dataset.signature = signature;
     document.querySelectorAll('#expandedMap .ch-city').forEach(function (node) { node.classList.toggle('is-selected', node.getAttribute('data-city') === adcode); });
@@ -1067,7 +1080,7 @@
     homeState.districtList = [];
     renderPicker();
     api.fetchAll(currentRegion()).then(function (res) {
-      if (!res.ok) { delete sessionStatus[homeState.adcode]; }
+      if (!res.ok) { retainCityStatus(currentRegion()); }
       homeState.districtList = districtStatuses(homeState.adcode, res.ok ? (res.alerts || []) : null);
       homeState.districtLoading = false;
       renderPicker();
@@ -1095,7 +1108,7 @@
         if (st.adcode && st.status !== 'unknown') {
           sessionStatus[st.adcode] = { high: st.status === 'high', count: st.count, checkedAt: api.getCityFreshness({ city: c.name, adcode: st.adcode }).checkedAt };
         } else if (st.adcode) {
-          delete sessionStatus[st.adcode];
+          retainCityStatus({ city: c.name, adcode: st.adcode });
         }
         return {
           name: c.name, adcode: c.adcode, label: i18n.placeName(c.name, l),
@@ -1131,7 +1144,7 @@
           checkedAt: res.fetchedAt
         };
       } else if (item.adcode) {
-        delete sessionStatus[item.adcode];
+        retainCityStatus({ city: name, adcode: item.adcode });
       }
       homeState.districtLoading = false;
       renderPicker();

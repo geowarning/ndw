@@ -131,17 +131,22 @@
       cities.forEach(function (c) {
         var node = svg.querySelector('.ch-city[data-city="' + c.adcode + '"]');
         if (!node) { return; }
-        node.classList.remove('st-none', 'st-safe', 'st-normal', 'st-high');
+        node.classList.remove('st-none', 'st-safe', 'st-normal', 'st-high', 'st-history');
         var s = map[c.adcode];
         var reliability = window.__modules.reliability;
         var state = reliability.freshness(s && s.checkedAt);
         if (state === 'available' && (s.unavailable || navigator.onLine === false)) state = 'unavailable';
-        var description = reliability.text(state, window.__modules.i18n.getLang()) + '. ' + reliability.checkedAt(s && s.checkedAt, window.__modules.i18n.getLang());
+        var language = window.__modules.i18n.getLang();
+        var hasHistory = s && Number.isInteger(s.count) && s.count >= 0 && reliability.freshness(s.checkedAt) !== 'unavailable';
+        var description = reliability.text(state, language) + '. ' + reliability.checkedAt(s && s.checkedAt, language);
+        if (hasHistory) description += '. ' + reliability.text('scanCount', language).replace('{n}', s.count);
+        if (hasHistory && state !== 'available') description += '. ' + reliability.text('historyNotice', language);
         var tooltip = node.querySelector('title');
         if (!tooltip) { tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'title'); node.prepend(tooltip); }
         tooltip.textContent = window.__modules.i18n.placeName(c.name, window.__modules.i18n.getLang()) + ' — ' + description;
         if (onClickCity) node.setAttribute('aria-label', tooltip.textContent);
-        if (!s || state !== 'available') { node.classList.add('st-none'); }
+        if (hasHistory && state !== 'available') { node.classList.add('st-history'); }
+        else if (!s || state !== 'available') { node.classList.add('st-none'); }
         else if (s.high) { node.classList.add('st-high'); }
         else if (s.count > 0) { node.classList.add('st-normal'); }
         else { node.classList.add('st-safe'); }

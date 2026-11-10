@@ -439,6 +439,10 @@ body { background: var(--bg); }
 .high-contrast .home-dashboard .home-lang { background: #332c3c; }
 .high-contrast .home-dashboard .hero .stat-row { --red: #ff9ba3; --orange: #ffc593; --yellow: #ffe09c; --blue: #b6d8ff; }
 .high-contrast .home-dashboard .hero .btn-outline:hover { background: #41374b; }
+.ch-city.st-history .ch-dot { fill: #cfb9f1; opacity: 1; }
+.ch-city.st-history .ch-halo { stroke: #cfb9f1; stroke-dasharray: 2 2; opacity: .9; animation: none; }
+.status-dot.status-history { background: #cfb9f1; outline: 1px dashed #cfb9f1; outline-offset: 2px; }
+.history-notice { color: #e5dbff; max-width: 65ch; }
 @media (max-width: 760px) {
   .home-dashboard .hero { padding-top: 26px; }
   .overview-panel, .home-analytics .panel-card { padding: 18px; }
