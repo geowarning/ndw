@@ -318,131 +318,84 @@ body { background: #0d1217; }
 .context-help p { margin: 4px 0 12px; max-width: 75ch; overflow-wrap: anywhere; }
 .hero-location + .context-help { grid-column: 1 / -1; }
 
-/* Field atlas palette: warm paper, botanical greens and mineral pigments.
-   Decorative section colors never replace the warning severity tokens. */
+/* NVIDIA-inspired editorial surfaces; warning colors retain their meaning. */
 :root {
-  --bg: #241f2a;
-  --bg-alt: #2b2531;
-  --card: #332c3c;
-  --card-solid: #332c3c;
-  --card-hover: #41374b;
-  --card-2: #29232f;
-  --border: #594d61;
-  --border-strong: #99849c;
-  --text: #faf1e7;
-  --text-mid: #d5c8d8;
-  --text-dim: #bfaec3;
-  --text-muted: #d5c8d8;
-  --holo: #c6b6ff;
-  --holo-bright: #e5dbff;
-  --holo-soft: rgba(198, 182, 255, .1);
-  --holo-line: rgba(198, 182, 255, .4);
-  --green: #b5e4c8;
-  --green-bright: #d2f5df;
-  --green-soft: rgba(181, 228, 200, .12);
-  --green-line: rgba(181, 228, 200, .4);
-  --chart-line: #c8aaff;
-  --chart-text: #d5c8d8;
-  --chart-grid: rgba(213, 200, 216, .2);
-  --ink: #302b32;
-  --paper: #dce3e8;
+  color-scheme: dark;
+  --bg: #101010; --bg-alt: #151515;
+  --card: #1b1b1b; --card-solid: #1b1b1b; --card-hover: #252525; --card-2: #141414;
+  --border: #383838; --border-strong: #777;
+  --text: #f5f5f5; --text-mid: #c6c6c6; --text-dim: #aaa; --text-muted: #c6c6c6;
+  --holo: #a3d95e; --holo-bright: #c5ef93; --holo-soft: rgba(118,185,0,.08); --holo-line: rgba(163,217,94,.4);
+  --green: #76b900; --green-bright: #91d224; --green-soft: rgba(118,185,0,.1); --green-line: rgba(118,185,0,.4);
+  --red: #ff8991; --orange: #ffc08c; --yellow: #f2d277; --blue: #9cc8ff;
+  --chart-line: #a3d95e; --chart-text: #c6c6c6; --chart-grid: rgba(255,255,255,.14);
+  --ink: #111; --paper: #111;
 }
 body { background: var(--bg); }
-.bg-globe { opacity: .025; }
-.navbar, .home-dashboard .hero, .page-top {
-  --text: #302b32;
-  --text-mid: #584d57;
-  --text-dim: #655962;
-  --text-muted: #584d57;
-  --border: #b6c3ce;
-  --border-strong: #748594;
-  --card-2: #cfd9e0;
-  --holo: #62458c;
-  --holo-bright: #4d3077;
-  --holo-soft: rgba(98, 69, 140, .08);
-  --holo-line: #a28bbb;
-  color: var(--text);
-  background: var(--paper);
-}
-.navbar { border-bottom: 1px solid #b6c3ce; }
-.navbar .brand, .navbar .nav-link:hover { color: var(--ink); }
-.navbar .nav-link.active { color: #62458c; box-shadow: inset 0 -3px #62458c; }
-.nav-drawer { --text: #faf1e7; --text-dim: #d5c8d8; --holo: #e5dbff; background: #332c3c; color: var(--text); }
-.navbar .nav-drawer .nav-link:hover { color: #fff; }
-.home-dashboard .hero { position: relative; isolation: isolate; overflow: hidden; border-bottom: 3px solid #8b9cae; }
-.home-dashboard .hero-title { color: #49354e; }
-.home-dashboard .eyebrow { color: #4c6070; }
-.home-dashboard .pulse-dot { background: #4c6070; }
-.home-dashboard .home-lang { background: #cfd9e0; border-color: #b6c3ce; }
-.home-dashboard .home-lang-btn.active { background: #62458c; color: #fff7ef; }
-.home-dashboard .hero .btn-green { background: #365c47; color: #fff7ef; border-color: #365c47; }
-.home-dashboard .hero .btn-green:hover { background: #254634; }
-.home-dashboard .hero .btn-outline:hover { background: #cfd9e0; }
-.home-dashboard .hero .district-pill { color: #49354e; }
-.home-dashboard .hero .stat-row { --red: #ad293d; --orange: #985008; --yellow: #7a6200; --blue: #255a9c; }
-.home-dashboard .hero .context-help[open] { border-color: #748594; }
+.navbar { background: #080808; border-bottom: 1px solid #333; }
+.brand { font-weight: 650; letter-spacing: -.025em; }
+.navbar .brand, .navbar .nav-link:hover { color: #fff; }
+.nav-links { border-left: 0; }
+.nav-link { padding: 12px 16px; font-weight: 500; }
+.navbar .nav-link.active { color: #fff; box-shadow: inset 0 -3px #76b900; }
+.nav-drawer { background: #101010; }
+.nav-drawer .nav-link.active { color: var(--holo); }
+.btn { font-weight: 650; min-height: 44px; padding-inline: 20px; }
+.btn-green, .home-dashboard .hero .btn-green { background: #76b900; color: #111; border: 1px solid #76b900; }
+.btn-green:hover, .home-dashboard .hero .btn-green:hover { background: #91d224; border-color: #91d224; color: #080808; }
+.btn-outline { border-color: #747474; color: #f5f5f5; }
+.btn-outline:hover { background: #282828; border-color: #a3d95e; }
+.home-dashboard .hero { position: relative; isolation: isolate; overflow: hidden; padding: 56px 0 28px; background: linear-gradient(115deg,#171a16,#0c0d0c 80%); border-bottom: 1px solid #414b36; }
+.home-dashboard .hero-title { max-width: 900px; font-size: clamp(2.15rem,4.1vw,3.8rem); font-weight: 750; letter-spacing: -.045em; line-height: 1.05; color: #fff; }
+.home-dashboard .hero-sub { max-width: 640px; margin-top: 18px; color: #c6c6c6; font-size: 1rem; line-height: 1.7; }
+.home-dashboard .eyebrow { color: #b7c9a2; font-size: .7rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.home-dashboard .pulse-dot { background: #a3d95e; }
+.home-dashboard .home-lang { background: #151515; border: 1px solid #454545; }
+.home-dashboard .home-lang-btn.active { background: #76b900; color: #111; font-weight: 700; }
+.home-dashboard .hero-location { background: rgba(16,16,16,.65); border: 1px solid #454b3f; padding: 18px 20px; }
+.home-dashboard .hero-city { font-size: 1.45rem; }
+.home-dashboard .district-pill { background: #20221f; color: #e8e8e8; border-color: #656d5e; }
+.home-dashboard .hero .context-help { margin: 4px 0 8px; font-size: .75rem; }
+.home-dashboard .hero .context-help summary { min-height: 30px; padding-block: 3px; }
+.home-dashboard .hero .stat-row { background: rgba(13,14,12,.55); border-color: #454b3f; }
+.home-dashboard .stat-box { padding-block: 22px; border-color: #454b3f; }
+.home-dashboard .stat-num { font-size: 2.25rem; font-weight: 550; }
 .home-overview { padding-top: 28px; }
-.overview-panel, .home-analytics .panel-card { border-top-width: 3px; }
-.local-panel { background: #3b292e; border-top-color: #e8af91; }
-.national-panel { background: #263d35; border-color: #536f60; border-top-color: #b5d8a3; --holo: #c1e4ae; --holo-bright: #d9f2cc; --text-mid: #cadbca; --text-dim: #b7cbb9; --text-muted: #cadbca; }
-.activity-panel { background: #382d47; border-top-color: #c5a9ef; }
-.home-dashboard .h2-ic { color: #e8af91; }
-.national-panel .h2-ic { color: #c1e4ae; }
-.activity-panel .h2-ic { color: #cfb9f1; }
-.local-panel .head-hint { border-color: #92705f; color: #f1c5a8; }
-.local-panel .alert-card { border-bottom-color: #73525b; }
-.local-panel .alert-card:hover { background: #493139; }
-.national-panel .china-map-wrap, .expanded-map-viewport { background: #1d302b; border-color: #536f60; }
-.ch-national { fill: rgba(181, 216, 163, .07); stroke: #b5d8a3; }
-.ch-provinces { stroke: rgba(181, 216, 163, .25); }
-.national-panel .ch-label, .expanded-map-page .ch-label { fill: #d5e4d5; }
-.national-panel .context-help[open] { border-color: #93b594; }
-.home-analytics > .panel-card:nth-child(1) { background: #382d47; border-top-color: #c5a9ef; }
-.home-analytics > .panel-card:nth-child(2) { background: #3c3126; border-color: #716047; border-top-color: #e4c38c; --holo: #f2d7a8; --text-mid: #e0ceb8; --text-muted: #e0ceb8; }
-.home-analytics > .panel-card:nth-child(3) { background: #293b3a; border-color: #526d69; border-top-color: #a7d5c9; --chart-line: #b5e4c8; --chart-text: #c9ddd5; --chart-grid: rgba(201, 221, 213, .2); }
-.home-analytics .potential-hazard { border-bottom-color: #716047; }
-.context-help[open] { border-left-color: #a58abf; }
-.context-help summary { color: var(--holo); }
-.page-top { border-bottom: 3px solid #8b9cae; }
-.guide-side { border-top: 3px solid #c5a9ef; }
-.guide-side-item.active { color: #e7d9ff; background: #514063; }
-.guide-content { background: #2c3d35; border-color: #536f60; --holo: #c1e4ae; --text-mid: #cfddce; --text-dim: #b7cbb9; --text-muted: #cfddce; }
-.guide-cause, .guide-note { background: #23332c; border-color: #536f60; }
-.guide-content h3 { border-left-color: #e4c38c; }
-.aid-card, .wizard-card { background: #382d47; border-top: 3px solid #c5a9ef; }
-.phone-card { background: #293d36; border-color: #536f60; }
-.phone-number { color: #b5e4c8; }
-.phone-card:hover { background: #344e42; border-color: #b5e4c8; }
-.plan-card { background: #3c3126; border-color: #716047; border-top: 3px solid #e4c38c; }
-.set-card { border-top: 3px solid #9981b8; }
-.set-card:nth-child(3n + 2) { border-top-color: #b5d8a3; }
-.set-card:nth-child(3n) { border-top-color: #e8af91; }
-.product-card { background: #382d47; border-top: 3px solid #c5a9ef; }
-.product-card:nth-child(3n + 2) { background: #293d36; border-top-color: #b5d8a3; }
-.product-card:nth-child(3n) { background: #3c3126; border-top-color: #e4c38c; }
-.product-card .product-icon { color: #e8c9ff; }
-.product-card:nth-child(3n + 2) .product-icon { color: #b5e4c8; }
-.product-card:nth-child(3n) .product-icon { color: #e4c38c; }
-.priority-actions { background: #293d36; border-color: #789b7d; }
-.site-footer { background: #20322c; border-top: 3px solid #9aab86; --text-mid: #cfddce; --text-dim: #b7cbb9; }
-.site-footer h4 { color: #e4c38c; }
-/* Accessibility setting overrides every decorative surface, including paper. */
-.high-contrast body { background: #17131c; }
-.high-contrast { --text: #fff; --text-mid: #f0e8f4; --text-dim: #e0d5e7; --text-muted: #f0e8f4; --border: #ad99b9; --chart-text: #fff; --chart-grid: rgba(255, 255, 255, .4); }
-.high-contrast :is(.navbar, .hero, .page-top, .overview-panel, .panel-card, .guide-content, .guide-side, .dcard, .set-card, .phone-card, .aid-card, .wizard-card, .plan-card, .product-card, .site-footer, .nav-drawer) {
-  --text: #fff; --text-mid: #f0e8f4; --text-dim: #e0d5e7; --text-muted: #f0e8f4;
-  --holo: #e5dbff; --holo-bright: #f1eaff; --border: #ad99b9; --card-2: #332c3c;
-  color: var(--text); background: #211a29; border-color: var(--border);
-}
-.high-contrast .navbar .brand, .high-contrast .hero-title, .high-contrast .eyebrow,
-.high-contrast .navbar .nav-link, .high-contrast .hero .district-pill { color: #fff; }
-.high-contrast .home-dashboard .home-lang { background: #332c3c; }
+.overview-panel, .home-analytics .panel-card { background: #1b1b1b; border: 1px solid #383838; }
+.home-dashboard .section-head h2, .home-analytics .panel-card-title { font-size: 1.05rem; letter-spacing: -.015em; }
+.home-dashboard .h2-ic { color: #a3d95e; }
+.national-panel { background: #171b16; border-top: 2px solid #76b900; }
+.national-panel .map-scan-btn { color: #d0dfbd; border-color: #626b59; }
+.local-panel .head-hint { border-color: #656565; color: #ddd; }
+.local-panel .alert-card { background: #171717; border-bottom-color: #414141; }
+.local-panel .alert-card:hover { background: #252525; }
+.national-panel .china-map-wrap, .expanded-map-viewport { background: #111510; border-color: #3c4936; }
+.ch-national { fill: rgba(163,217,94,.035); stroke: #8b9e7b; }
+.ch-provinces { stroke: rgba(163,190,140,.22); }
+.national-panel .ch-label, .expanded-map-page .ch-label { fill: #c7d1be; }
+.context-help[open] { border-left-color: #78975c; }
+.context-help summary { color: #a3d95e; text-decoration-color: #668743; }
+.page-top { background: #161616; border-bottom: 1px solid #383838; }
+.page-top h1, .expanded-map-heading h1 { font-weight: 700; letter-spacing: -.04em; }
+.guide-side, .guide-content, .dcard, .set-card, .plan-card, .product-card, .aid-card, .wizard-card { background: #1b1b1b; border-color: #414141; }
+.guide-side-item.active { color: #c5ef93; background: #26301e; box-shadow: inset 3px 0 #76b900; }
+.guide-cause, .guide-note { background: #151515; border-color: #414141; }
+.guide-content h3 { border-left-color: #76b900; }
+.phone-card { background: #1b1b1b; border-color: #414141; }
+.phone-number { color: #a3d95e; }
+.phone-card:hover, .product-card:hover { background: #22291d; border-color: #86a268; }
+.product-card .product-icon { color: #a3d95e; }
+.priority-actions { background: #1b2415; border-color: #668743; }
+.site-footer { background: #080808; border-top: 1px solid #414141; }
+.site-footer h4 { color: #ddd; }
+.high-contrast { --text: #fff; --text-mid: #eee; --text-dim: #ddd; --text-muted: #eee; --border: #999; --chart-text: #fff; --chart-grid: rgba(255,255,255,.4); }
+.high-contrast body { background: #000; }
+.high-contrast :is(.navbar,.hero,.page-top,.overview-panel,.panel-card,.guide-content,.guide-side,.dcard,.set-card,.phone-card,.aid-card,.wizard-card,.plan-card,.product-card,.site-footer,.nav-drawer) { color: #fff; background: #080808; border-color: #999; }
 .high-contrast .home-dashboard .hero .stat-row { --red: #ff9ba3; --orange: #ffc593; --yellow: #ffe09c; --blue: #b6d8ff; }
-.high-contrast .home-dashboard .hero .btn-outline:hover { background: #41374b; }
 .ch-city.st-history .ch-dot { opacity: .8; }
-.ch-city.st-history .ch-halo { stroke: #e5dbff; stroke-dasharray: 2 2; opacity: .9; animation: none; }
-.status-dot.status-history { background: transparent; outline: 1px dashed #e5dbff; outline-offset: 2px; }
-.history-notice { color: #e5dbff; max-width: 65ch; }
+.ch-city.st-history .ch-halo { stroke: #d3dfc9; stroke-dasharray: 2 2; opacity: .9; animation: none; }
+.status-dot.status-history { background: transparent; outline: 1px dashed #d3dfc9; outline-offset: 2px; }
+.history-notice { color: #d3dfc9; max-width: 65ch; }
 .map-scan-btn { scroll-margin-top: calc(var(--nav-h) + 20px); }
 .toast { pointer-events: none; max-width: calc(100vw - 36px); white-space: normal; }
 .manual-update { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px 20px; padding: 16px; margin: 20px 0; border: 1px solid var(--border); background: var(--holo-soft); }
@@ -453,14 +406,14 @@ body { background: var(--bg); }
 .bg-globe { display: none; }
 .home-dashboard .hero > .bg-globe {
   display: block; position: absolute; inset: 0; z-index: 0;
-  opacity: .38; filter: saturate(.12); pointer-events: none;
+  opacity: .48; filter: saturate(.08); pointer-events: none;
 }
 .home-dashboard .hero > .container { position: relative; z-index: 1; }
-.home-dashboard .hero .manual-update { background: rgba(221, 229, 235, .78); }
+.home-dashboard .hero .manual-update { background: rgba(22, 27, 18, .85); }
 .high-contrast .home-dashboard .hero > .bg-globe { display: none; }
-.high-contrast .home-dashboard .hero .manual-update { background: #332c3c; }
+.high-contrast .home-dashboard .hero .manual-update { background: #111; }
 @media (max-width: 760px) {
-  .home-dashboard .hero > .bg-globe { opacity: .24; }
+  .home-dashboard .hero > .bg-globe { opacity: .3; }
 }
 @media (max-width: 760px) {
   .home-dashboard .hero { padding-top: 26px; }

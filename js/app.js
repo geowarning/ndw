@@ -693,7 +693,7 @@
   /* ================================================================
    * 首页（预警中心）
    * ================================================================ */
-  var PALETTE = ['#43e8cf', '#76b900', '#4aa8ff', '#f7c948', '#ff9433', '#ff5252',
+  var PALETTE = ['#a3d95e', '#76b900', '#8fa8b5', '#f7c948', '#ff9433', '#ff5252',
     '#b388ff', '#46c263', '#ff7eb0', '#80deea', '#dce775', '#ffab91'];
 
   function renderHome() {
@@ -1762,7 +1762,7 @@
         type: 'aqua',
         name: t.gameAquaName,
         desc: t.gameAquaDesc,
-        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#43e8cf" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"/><circle cx="12" cy="14" r="2.2"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg>'
+        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"/><circle cx="12" cy="14" r="2.2"/><path d="M3 20c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg>'
       },
       {
         type: 'pyro',

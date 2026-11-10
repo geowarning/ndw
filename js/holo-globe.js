@@ -28,11 +28,11 @@
 
     /* 颜色 */
     var COL = {
-      grid: 'rgba(77, 102, 121, 0.55)',
-      gridBack: 'rgba(77, 102, 121, 0.14)',
-      dot: 'rgba(84, 105, 120, 0.65)',
-      dotDim: 'rgba(115, 128, 143, 0.24)',
-      ring: 'rgba(99, 111, 132, 0.3)',
+      grid: 'rgba(157, 175, 163, 0.55)',
+      gridBack: 'rgba(157, 175, 163, 0.14)',
+      dot: 'rgba(170, 192, 177, 0.65)',
+      dotDim: 'rgba(134, 149, 138, 0.24)',
+      ring: 'rgba(142, 158, 147, 0.3)',
       cityBase: '#7e929d'
     };
 
@@ -183,8 +183,8 @@
       ctx.translate(cx, cy);
       ctx.rotate(scanA);
       var grad = ctx.createLinearGradient(0, 0, R, 0);
-      grad.addColorStop(0, 'rgba(115,128,143,0.05)');
-      grad.addColorStop(1, 'rgba(115,128,143,0)');
+      grad.addColorStop(0, 'rgba(134,149,138,0.05)');
+      grad.addColorStop(1, 'rgba(134,149,138,0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.moveTo(0, 0);
