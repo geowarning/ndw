@@ -908,6 +908,11 @@
     html += '</div>';
     viewEl.innerHTML = html;
     document.title = t.tabIndex;
+    var hero = viewEl.querySelector('.home-dashboard .hero');
+    if (hero && bgCanvas && globe) {
+      hero.prepend(bgCanvas);
+      globe.resize();
+    }
     explainView();
 
     /* 中国态势图 */

@@ -16,20 +16,24 @@
     /* 状态 */
     var rotY = 0;                 /* 经度旋转 */
     var tilt = 20 * DEG;           /* 地轴倾角 */
-    var autoSpin = 0.0011;
+    var autoSpin = 0.00035;
     var zoom = 1;
     var dragging = false;
     var lastX = 0, lastY = 0;
     var paused = false;
+    var dirty = true;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var resizeObserver = window.ResizeObserver ? new ResizeObserver(resize) : null;
+    var observedHero = null;
 
     /* 颜色 */
     var COL = {
-      grid: 'rgba(63, 224, 196, 0.16)',
-      gridBack: 'rgba(63, 224, 196, 0.05)',
-      dot: 'rgba(120, 255, 226, 0.75)',
-      dotDim: 'rgba(90, 200, 180, 0.28)',
-      ring: 'rgba(63, 224, 196, 0.35)',
-      cityBase: '#7dffe4'
+      grid: 'rgba(77, 102, 121, 0.55)',
+      gridBack: 'rgba(77, 102, 121, 0.14)',
+      dot: 'rgba(84, 105, 120, 0.65)',
+      dotDim: 'rgba(115, 128, 143, 0.24)',
+      ring: 'rgba(99, 111, 132, 0.3)',
+      cityBase: '#7e929d'
     };
 
     /* Fibonacci 点阵 */
@@ -48,6 +52,7 @@
     /* 城市标记（外部注入） */
     var cities = [];
     function setCities(list) {
+      dirty = true;
       cities = (list || []).map(function (c) {
         var phi = c.lat * DEG;
         var lam = c.lng * DEG;
@@ -64,14 +69,22 @@
     }
 
     function resize() {
-      W = window.innerWidth; H = window.innerHeight;
+      var hero = cv.closest('.hero');
+      if (hero && resizeObserver && hero !== observedHero) {
+        resizeObserver.disconnect();
+        resizeObserver.observe(hero);
+        observedHero = hero;
+      }
+      W = hero ? hero.clientWidth : window.innerWidth;
+      H = hero ? hero.clientHeight : window.innerHeight;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       cv.style.width = W + 'px'; cv.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       cx = W * 0.72;
-      cy = H * 0.42;
-      R = Math.min(H * 0.34, W * 0.26) * zoom;
-      if (W < 900) { cx = W * 0.5; cy = H * 0.3; R = Math.min(H * 0.24, W * 0.34) * zoom; }
+      cy = H * 0.48;
+      R = Math.min(H * 0.46, W * 0.32) * zoom;
+      if (W < 900) { cx = W * 0.85; cy = H * 0.4; R = Math.min(H * 0.4, W * 0.64) * zoom; }
+      dirty = true;
     }
 
     /* 球面点 → 屏幕（先绕 Y 旋转，再绕 X 倾斜） */
@@ -106,7 +119,7 @@
       ctx.beginPath();
       ctx.ellipse(cx, cy + R * 1.05, R * 1.05, R * 0.16, 0, 0, Math.PI * 2);
       ctx.stroke();
-      ctx.strokeStyle = 'rgba(63,224,196,0.12)';
+      ctx.strokeStyle = COL.gridBack;
       ctx.beginPath();
       ctx.ellipse(cx, cy + R * 1.05, R * 1.28, R * 0.2, 0, 0, Math.PI * 2);
       ctx.stroke();
@@ -114,7 +127,7 @@
 
       /* 外球轮廓 */
       ctx.save();
-      ctx.strokeStyle = 'rgba(90, 240, 210, 0.5)';
+      ctx.strokeStyle = COL.grid;
       ctx.lineWidth = 1;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
@@ -142,7 +155,7 @@
       ctx.globalAlpha = 1;
 
       /* 城市脉冲 */
-      var time = Date.now() / 1000;
+      var time = reducedMotion.matches || paused || document.documentElement.classList.contains('reduce-motion') ? 0 : Date.now() / 1000;
       cities.forEach(function (c) {
         var pp = project(c.x, c.y, c.z);
         if (pp.depth < 0.05) { return; }
@@ -160,12 +173,7 @@
         ctx.beginPath();
         ctx.arc(pp.sx, pp.sy, 2.6 + front * 1.6, 0, Math.PI * 2);
         ctx.fill();
-        /* 标签 */
-        if (c.level === 'red' || c.level === 'orange') {
-          ctx.font = '600 10px sans-serif';
-          ctx.fillStyle = c.color;
-          ctx.fillText(c.label, pp.sx + 7, pp.sy - 6);
-        }
+        /* The decorative background leaves labels to the interactive map. */
         ctx.restore();
       });
 
@@ -175,8 +183,8 @@
       ctx.translate(cx, cy);
       ctx.rotate(scanA);
       var grad = ctx.createLinearGradient(0, 0, R, 0);
-      grad.addColorStop(0, 'rgba(110,255,224,0.10)');
-      grad.addColorStop(1, 'rgba(110,255,224,0)');
+      grad.addColorStop(0, 'rgba(115,128,143,0.05)');
+      grad.addColorStop(1, 'rgba(115,128,143,0)');
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.moveTo(0, 0);
@@ -220,8 +228,12 @@
 
     var raf = null;
     function loop() {
-      if (!dragging && !paused) { rotY += autoSpin; }
-      drawGlobe();
+      var still = paused || reducedMotion.matches || document.documentElement.classList.contains('reduce-motion');
+      if (cv.isConnected && cv.clientWidth && !document.hidden) {
+        if (!dragging && !still) rotY += autoSpin;
+        if (dirty || !still) drawGlobe();
+        dirty = false;
+      }
       raf = requestAnimationFrame(loop);
     }
 
@@ -254,13 +266,15 @@
     }, { passive: false });
 
     window.addEventListener('resize', resize);
+    reducedMotion.addEventListener('change', function () { dirty = true; });
 
     resize();
     loop();
 
     return {
       setCities: setCities,
-      setPaused: function (b) { paused = b; }
+      resize: resize,
+      setPaused: function (b) { paused = b; dirty = true; }
     };
   }
 
