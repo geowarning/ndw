@@ -276,3 +276,43 @@ button, .btn { touch-action: manipulation; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
+
+/* Editorial finish: square geometry, disciplined rules and quieter surfaces. */
+:root { --radius: 0px; --radius-sm: 0px; --shadow-card: none; }
+*, *::before, *::after { border-radius: 0 !important; }
+body { background: #0d1217; }
+.bg-globe { opacity: .04; }
+.navbar { background: #0d1217; backdrop-filter: none; }
+.nav-links { border: 0; border-left: 1px solid var(--border); padding-left: 16px; }
+.nav-link.active { background: transparent; color: var(--holo); box-shadow: inset 0 -2px var(--holo); }
+.home-dashboard .hero { padding-top: 40px; }
+.home-dashboard .hero-title { font-weight: 500; letter-spacing: -.045em; }
+.home-dashboard .eyebrow { letter-spacing: .07em; font-weight: 500; }
+.home-dashboard .hero-sub { color: var(--text-mid); }
+.home-dashboard .hero-location { background: transparent; border-inline: 0; padding-inline: 0; }
+.home-dashboard .hero-city { font-weight: 600; }
+.home-dashboard .stat-row { background: transparent; border-inline: 0; }
+.home-dashboard .stat-box { padding-block: 20px; }
+.home-dashboard .stat-num { font-weight: 500; font-size: 2rem; }
+.overview-panel, .home-analytics .panel-card { background: #121b23; box-shadow: none; padding: 24px; }
+.home-dashboard .section-head h2, .home-analytics .panel-card-title { font-weight: 600; letter-spacing: .01em; }
+.local-panel .alert-card { background: transparent; border: 0; border-bottom: 1px solid var(--border); padding: 18px 16px; }
+.local-panel .alert-card:hover { background: var(--holo-soft); transform: none; }
+.local-panel .alert-card h3 { font-weight: 500; }
+.level-badge { letter-spacing: .025em; }
+.national-panel .china-map-wrap, .expanded-map-viewport { background: #0e181f; }
+.ch-national { stroke: #86a5ac; }
+.ch-scan, .ch-halo { animation: none; }
+.map-scan-btn, .btn { font-weight: 500; }
+.potential-hazard b { font-weight: 500; }
+.guide-content, .dcard, .set-card, .plan-card, .product-card, .sheet { box-shadow: none; }
+.page-top { background: none; }
+.page-top h1, .expanded-map-heading h1 { font-weight: 500; }
+.site-footer { background: #0d1217; }
+/* Circular geography and status marks retain their semantic shapes. */
+.status-dot, .pulse-dot { border-radius: 50% !important; }
+@media (max-width: 760px) {
+  .home-dashboard .hero { padding-top: 26px; }
+  .overview-panel, .home-analytics .panel-card { padding: 18px; }
+  .home-dashboard .stat-num { font-size: 1.6rem; }
+}
