@@ -15,10 +15,12 @@ export function reserve(state, now, limit = 450, batch = 4, bootstrap = false) {
   if (!Array.isArray(state.calls) || !state.entries || !Number.isInteger(state.cursor)) throw Error('Invalid quota ledger');
   state.calls = state.calls.filter(t => now - t < 86400000);
   state.pending = [];
-  // Manual runs and delayed schedules cannot accelerate collection.
+  // Manual reruns cannot accelerate collection. Delayed schedules may consume
+  // missed 15-minute slots, capped at one rotation and the rolling quota.
   if (now - (state.lastAttempt || 0) < 15 * 60000) return state;
   const initial = bootstrap && !state.initialCoverageReserved;
-  const requested = initial ? cities.length - state.cursor : batch;
+  const slots = state.lastAttempt ? Math.max(1, Math.floor((now - state.lastAttempt) / 900000)) : 1;
+  const requested = initial ? cities.length - state.cursor : Math.min(cities.length, batch * slots);
   const count = Math.max(0, Math.min(requested, limit - state.calls.length));
   for (let i = 0; i < count; i++) {
     state.pending.push(cities[state.cursor % cities.length]);

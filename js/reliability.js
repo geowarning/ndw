@@ -2,7 +2,8 @@
 (function () {
   var copy = {
     zh: {
-      historical: '历史查询结果', scanCount: '上次查询时的预警数：{n}', historyNotice: '仅为历史记录，当前状态未知。请勿将旧预警视为仍在生效，也勿将过去的零预警视为当前安全。',
+      refreshPublished: '刷新已发布数据', noNewChecks: '没有更新的城市查询结果，继续显示已保存的数据。', updatedCities: '已更新 {n} 个城市的查询结果。', lastNoAlerts: '上次查询无预警', lastAlerts: '上次查询有预警', lastRedAlert: '上次查询有红色预警',
+      historical: '虚线环：历史查询', scanCount: '上次查询时的预警数：{n}', historyNotice: '仅为历史记录，当前状态未知。请勿将旧预警视为仍在生效，也勿将过去的零预警视为当前安全。',
       available: '在更新周期内', outdated: '数据已过期', unavailable: '数据不可用', lastChecked: '上次查询', neverChecked: '尚未查询',
       selectCity: '选择城市以查看数据时间', viewWarnings: '查看该城市预警',
       hazards: '潜在次生灾害', hazardNote: '根据预警类型和级别提示可能的危害，不是发生概率预报。请以官方指引为准。',
@@ -12,7 +13,8 @@
       notificationLimit: '提醒仅在页面保持打开时检查；后台标签页可能延迟，关闭页面即停止。不能替代官方应急通知。'
     },
     en: {
-      historical: 'Past scan', scanCount: 'Warnings at last scan: {n}', historyNotice: 'Historical record only; current status is unknown. Old warnings may have expired, and a past zero does not mean it is safe now.',
+      refreshPublished: 'Refresh published data', noNewChecks: 'No newer city checks available. Showing saved results.', updatedCities: 'Updated checks for {n} cities.', lastNoAlerts: 'No alerts at last check', lastAlerts: 'Alerts at last check', lastRedAlert: 'Red alert at last check',
+      historical: 'Dashed ring: past scan', scanCount: 'Warnings at last scan: {n}', historyNotice: 'Historical record only; current status is unknown. Old warnings may have expired, and a past zero does not mean it is safe now.',
       available: 'Within update window', outdated: 'Outdated data', unavailable: 'Data unavailable', lastChecked: 'Last checked', neverChecked: 'Not checked yet',
       selectCity: 'Select a city to see when it was checked', viewWarnings: 'View city warnings',
       hazards: 'Potential secondary hazards', hazardNote: 'Possible hazards inferred from warning type and severity, not a probability forecast. Follow official guidance.',
@@ -22,7 +24,8 @@
       notificationLimit: 'Checks only while this page stays open. Background tabs may be delayed; closing the page stops checks. This does not replace official emergency alerts.'
     },
     es: {
-      historical: 'Consulta anterior', scanCount: 'Alertas en la última consulta: {n}', historyNotice: 'Solo registro histórico; se desconoce el estado actual. Las alertas antiguas pueden haber caducado y un cero anterior no indica seguridad actual.',
+      refreshPublished: 'Actualizar datos publicados', noNewChecks: 'No hay consultas más recientes. Se muestran los datos guardados.', updatedCities: 'Consultas actualizadas para {n} ciudades.', lastNoAlerts: 'Sin alertas en última consulta', lastAlerts: 'Alertas en última consulta', lastRedAlert: 'Alerta roja en última consulta',
+      historical: 'Anillo discontinuo: consulta anterior', scanCount: 'Alertas en la última consulta: {n}', historyNotice: 'Solo registro histórico; se desconoce el estado actual. Las alertas antiguas pueden haber caducado y un cero anterior no indica seguridad actual.',
       available: 'Dentro del plazo de actualización', outdated: 'Datos desactualizados', unavailable: 'Datos no disponibles', lastChecked: 'Última consulta', neverChecked: 'Aún sin consultar',
       selectCity: 'Seleccione una ciudad para ver cuándo se consultó', viewWarnings: 'Ver alertas de la ciudad',
       hazards: 'Posibles peligros secundarios', hazardNote: 'Peligros posibles según el tipo y nivel de alerta; no es un pronóstico de probabilidad. Siga las indicaciones oficiales.',
@@ -32,7 +35,8 @@
       notificationLimit: 'Solo se comprueba mientras la página permanece abierta. Las pestañas en segundo plano pueden retrasarse; al cerrar se detienen las comprobaciones. No sustituye las alertas oficiales de emergencia.'
     },
     fr: {
-      historical: 'Vérification passée', scanCount: 'Alertes lors de la dernière vérification : {n}', historyNotice: 'Historique uniquement ; état actuel inconnu. Les anciennes alertes peuvent avoir expiré et un ancien zéro ne garantit pas la sécurité actuelle.',
+      refreshPublished: 'Actualiser les données publiées', noNewChecks: 'Aucun contrôle plus récent. Affichage des données enregistrées.', updatedCities: 'Contrôles actualisés pour {n} villes.', lastNoAlerts: 'Aucune alerte au dernier contrôle', lastAlerts: 'Alertes au dernier contrôle', lastRedAlert: 'Alerte rouge au dernier contrôle',
+      historical: 'Anneau pointillé : contrôle passé', scanCount: 'Alertes lors de la dernière vérification : {n}', historyNotice: 'Historique uniquement ; état actuel inconnu. Les anciennes alertes peuvent avoir expiré et un ancien zéro ne garantit pas la sécurité actuelle.',
       available: 'Dans le délai de mise à jour', outdated: 'Données obsolètes', unavailable: 'Données indisponibles', lastChecked: 'Dernière vérification', neverChecked: 'Pas encore vérifiée',
       selectCity: 'Sélectionnez une ville pour voir sa dernière vérification', viewWarnings: 'Voir les alertes de la ville',
       hazards: 'Dangers secondaires possibles', hazardNote: 'Dangers possibles selon le type et le niveau d’alerte, sans prévision de probabilité. Suivez les consignes officielles.',
@@ -42,7 +46,8 @@
       notificationLimit: 'Vérification uniquement lorsque cette page reste ouverte. Les onglets en arrière-plan peuvent être retardés ; fermer la page arrête les vérifications. Cela ne remplace pas les alertes officielles d’urgence.'
     },
     it: {
-      historical: 'Controllo precedente', scanCount: 'Allerte all’ultimo controllo: {n}', historyNotice: 'Solo dati storici; stato attuale sconosciuto. Le vecchie allerte potrebbero essere scadute e un precedente zero non indica sicurezza attuale.',
+      refreshPublished: 'Aggiorna dati pubblicati', noNewChecks: 'Nessun controllo più recente. Sono mostrati i dati salvati.', updatedCities: 'Controlli aggiornati per {n} città.', lastNoAlerts: 'Nessuna allerta all’ultimo controllo', lastAlerts: 'Allerte all’ultimo controllo', lastRedAlert: 'Allerta rossa all’ultimo controllo',
+      historical: 'Anello tratteggiato: controllo passato', scanCount: 'Allerte all’ultimo controllo: {n}', historyNotice: 'Solo dati storici; stato attuale sconosciuto. Le vecchie allerte potrebbero essere scadute e un precedente zero non indica sicurezza attuale.',
       available: 'Entro il periodo di aggiornamento', outdated: 'Dati obsoleti', unavailable: 'Dati non disponibili', lastChecked: 'Ultimo controllo', neverChecked: 'Non ancora controllata',
       selectCity: 'Seleziona una città per vedere quando è stata controllata', viewWarnings: 'Vedi le allerte della città',
       hazards: 'Possibili pericoli secondari', hazardNote: 'Possibili pericoli in base al tipo e al livello di allerta, non una previsione di probabilità. Segui le indicazioni ufficiali.',

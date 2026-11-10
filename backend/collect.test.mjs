@@ -35,7 +35,29 @@ test('rolling budget, manual reruns, interrupted reservations, rotation', () => 
   reserve(persisted, t + 2700000);
   assert.equal(persisted.pending.length, 0);
   reserve(persisted, t + 86400001);
-  assert.equal(persisted.pending.length, 4);
+  assert.equal(persisted.pending.length, cities.length);
+});
+
+test('delayed schedules catch up missed slots without exceeding one rotation or rolling quota', () => {
+  const t = Date.now(), state = empty();
+  reserve(state, t);
+  reserve(state, t + 3600000);
+  assert.equal(state.pending.length, 16);
+  assert.equal(state.pending[0].adcode, cities[4].adcode);
+  assert.equal(new Set(state.pending.map(city => city.adcode)).size, 16);
+  state.calls = Array(445).fill(t);
+  reserve(state, t + 7 * 3600000);
+  assert.equal(state.pending.length, 5);
+  assert.equal(state.calls.length, 450);
+  reserve(state, t + 8 * 3600000);
+  assert.equal(state.pending.length, 0);
+  reserve(state, t + 24 * 3600000 + 1);
+  assert.equal(state.pending.length, cities.length);
+  assert.equal(new Set(state.pending.map(city => city.adcode)).size, cities.length);
+  const reserved = state.calls.length;
+  reserve(state, t + 24 * 3600000 + 1000);
+  assert.equal(state.pending.length, 0);
+  assert.equal(state.calls.length, reserved);
 });
 test('collection preserves failed cities, counts failures and redacts credentials', async () => {
   const state = empty(), t = Date.now(); reserve(state, t);

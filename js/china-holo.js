@@ -145,8 +145,8 @@
         if (!tooltip) { tooltip = document.createElementNS('http://www.w3.org/2000/svg', 'title'); node.prepend(tooltip); }
         tooltip.textContent = window.__modules.i18n.placeName(c.name, window.__modules.i18n.getLang()) + ' — ' + description;
         if (onClickCity) node.setAttribute('aria-label', tooltip.textContent);
-        if (hasHistory && state !== 'available') { node.classList.add('st-history'); }
-        else if (!s || state !== 'available') { node.classList.add('st-none'); }
+        if (hasHistory && state !== 'available') node.classList.add('st-history');
+        if (!hasHistory) { node.classList.add('st-none'); }
         else if (s.high) { node.classList.add('st-high'); }
         else if (s.count > 0) { node.classList.add('st-normal'); }
         else { node.classList.add('st-safe'); }

@@ -272,6 +272,7 @@
       var el = document.createElement('div');
       el.className = 'toast';
       el.textContent = msg;
+      toastEl.textContent = '';
       toastEl.appendChild(el);
       clearTimeout(toastTimer);
       toastTimer = setTimeout(function () { if (el.parentNode) { el.parentNode.removeChild(el); } }, 2000);
@@ -503,6 +504,8 @@
     }
     setScanButtonState(true);
     nationalSweeping = true;
+    var previousChecks = {};
+    all.forEach(function (city) { previousChecks[city.adcode] = (sessionStatus[city.adcode] || {}).checkedAt || 0; });
     var i = 0;
     function next() {
       if (i >= all.length) {
@@ -511,7 +514,8 @@
         refreshMaps();
         setScanButtonState(false);
         if (notify) {
-          wx.showToast({ title: i18n.t('scanDone', lang()), icon: 'none' });
+          var updated = all.filter(function (city) { return (sessionStatus[city.adcode] || {}).checkedAt > previousChecks[city.adcode]; }).length;
+          wx.showToast({ title: updated ? safetyText('updatedCities').replace('{n}', updated) : safetyText('noNewChecks'), icon: 'none' });
           if (homeState.city) { loadHomeData(); }
         }
         return;
@@ -553,7 +557,7 @@
     } else {
       btn.classList.remove('is-loading');
       btn.removeAttribute('disabled');
-      btn.innerHTML = SVG.refresh + esc(i18n.t('mapScan', lang()));
+      btn.innerHTML = SVG.refresh + esc(safetyText('refreshPublished'));
     }
   }
 
@@ -761,7 +765,7 @@
         '<button class="map-scan-btn' + (nationalSweeping ? ' is-loading' : '') + '" data-action="refresh-map"' +
         (nationalSweeping ? ' disabled' : '') + '>' +
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
-                          : SVG.refresh + esc(t.mapScan)) +
+                          : SVG.refresh + esc(safetyText('refreshPublished'))) +
         '</button></div>' +
       '<div class="map-meta"><p class="map-hint">' + esc(web('expandMap')) + ' ↗</p>' +
       '<p class="map-hint" id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + api.getSnapshotInfo().checked + ' / ' + api.getSnapshotInfo().total + '</p>' +
@@ -770,9 +774,9 @@
         '<div class="china-map-wrap" id="chinaMapWrap"></div>' +
       '</a>' +
       '<div class="map-legend">' +
-        '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
-        '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
-        '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+        '<span><i class="status-dot status-none"></i>' + esc(safetyText('lastNoAlerts')) + '</span>' +
+        '<span><i class="status-dot status-normal"></i>' + esc(safetyText('lastAlerts')) + '</span>' +
+        '<span><i class="status-dot status-high"></i>' + esc(safetyText('lastRedAlert')) + '</span>' +
         '<span><i class="status-dot status-history"></i>' + esc(safetyText('historical')) + '</span>' +
         '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
       '</div>' +
@@ -931,13 +935,13 @@
       '<a class="back-link" href="#/home">← ' + esc(web('backToWarnings')) + '</a>' +
       '<div class="expanded-map-heading"><div><h1 id="expandedMapHeading">' + esc(t.nationalSituation) + '</h1>' +
         '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
-        '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(t.mapScan) + '</button>' +
+        '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
       '</div>' +
       '<div class="expanded-map-meta"><span id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + info.checked + ' / ' + info.total + '</span>' +
         '<div class="map-legend">' +
-          '<span><i class="status-dot status-none"></i>' + esc(t.legendSafe) + '</span>' +
-          '<span><i class="status-dot status-normal"></i>' + esc(t.legendAlert) + '</span>' +
-          '<span><i class="status-dot status-high"></i>' + esc(t.legendHigh) + '</span>' +
+          '<span><i class="status-dot status-none"></i>' + esc(safetyText('lastNoAlerts')) + '</span>' +
+          '<span><i class="status-dot status-normal"></i>' + esc(safetyText('lastAlerts')) + '</span>' +
+          '<span><i class="status-dot status-high"></i>' + esc(safetyText('lastRedAlert')) + '</span>' +
           '<span><i class="status-dot status-history"></i>' + esc(safetyText('historical')) + '</span>' +
           '<span><i class="status-dot status-unknown"></i>' + esc(web('unknown')) + '</span>' +
         '</div>' +

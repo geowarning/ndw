@@ -16,9 +16,13 @@ Browsers never call the weather provider.
 The first eligible run reserves and checks all remaining map cities (at most
 77 requests), paced at least 300ms apart. This one-time warm-up uses the same
 450-call cap and persisted quota ledger; interrupted reservations still count.
-Subsequent runs check four cities at minutes 7, 22, 37 and 52 each hour (UTC).
+Subsequent runs are scheduled at minutes 7, 22, 37 and 52 each hour (UTC),
+with four cities per elapsed 15-minute slot. If GitHub delays a run, the next
+eligible run catches up missed slots, up to one 77-city rotation and the remaining
+rolling quota. Catch-up can spend more requests in one run, but never raises the
+450-attempt daily limit. A manual rerun within 15 minutes reserves no requests.
 That is approximately 384 calls/day and about five hours for all 77 supported
-map cities. GitHub scheduling and deployment delays can extend this period.
+map cities with regular scheduling. GitHub scheduling and deployment delays can extend this period.
 Initial coverage normally fills in the first collection run; missing cities appear unknown.
 Manual runs cannot bypass the 15-minute collection gap or the 450-attempt
 rolling 24-hour cap. Other applications using the key consume additional quota.
