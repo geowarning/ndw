@@ -13,7 +13,7 @@
   var reliability = __require('reliability');
   function safetyText(key) { return reliability.text(key, lang()); }
   function manualUpdateControl() {
-    return '<div class="manual-update"><a class="btn btn-green manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-describedby="manualUpdateHint">' +
+    return '<div class="manual-update"><a class="btn manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-describedby="manualUpdateHint">' +
       esc(safetyText('manualUpdate')) + ' ↗</a><p id="manualUpdateHint">' + esc(safetyText('manualUpdateHint')) +
       ' <a href="https://github.com/geowarning/ndw/actions/workflows/deploy.yml" target="_blank" rel="noopener noreferrer">' + esc(safetyText('updateProgress')) + ' ↗</a></p></div>';
   }
@@ -222,7 +222,7 @@
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
     check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
     checkBox: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0c0f06" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
-    products: '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>',
+    products: '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>',
     refresh: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>',
     /* ---- 统一描边小图标（16px，继承 currentColor） ---- */
     iHome: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
@@ -693,7 +693,7 @@
   /* ================================================================
    * 首页（预警中心）
    * ================================================================ */
-  var PALETTE = ['#a3d95e', '#76b900', '#8fa8b5', '#f7c948', '#ff9433', '#ff5252',
+  var PALETTE = ['#a6b99b', '#7e9472', '#8fa8b5', '#f7c948', '#ff9433', '#ff5252',
     '#b388ff', '#46c263', '#ff7eb0', '#80deea', '#dce775', '#ffab91'];
 
   function renderHome() {
@@ -1768,7 +1768,7 @@
         type: 'pyro',
         name: t.gamePyroName,
         desc: t.gamePyroDesc,
-        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#76b900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3-2 4-2 7 0 1.5 1 2.5 2 3 0-2 1.5-3 2-5 .5 2 .5 4-1 6 1.5 0 3-1 3-3 0-2-2-3-2-5 0-1.5.5-2.5 1-3z"/><path d="M8 21h8"/></svg>'
+        icon: '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3-2 4-2 7 0 1.5 1 2.5 2 3 0-2 1.5-3 2-5 .5 2 .5 4-1 6 1.5 0 3-1 3-3 0-2-2-3-2-5 0-1.5.5-2.5 1-3z"/><path d="M8 21h8"/></svg>'
       }
     ];
     var html =
