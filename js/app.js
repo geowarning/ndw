@@ -12,6 +12,63 @@
   var districts = __require('districts');
   var reliability = __require('reliability');
   function safetyText(key) { return reliability.text(key, lang()); }
+  var explanations = __require('explanations');
+  var openExplanations = new Set();
+
+  function explainView() {
+    var path = (location.hash || '#/home').split('?')[0];
+    var rules = {
+      '#/home': [
+        ['.hero-location', 'location'], ['.home-freshness', 'refresh'], ['.stat-row', 'levels'],
+        ['.local-panel .section-head', 'alerts'], ['.national-panel .section-head', 'map'],
+        ['.map-meta', 'freshness'], ['.activity-panel .section-head', 'timeline'],
+        ['.home-analytics > :nth-child(1) .panel-card-title', 'distribution'],
+        ['.home-analytics > :nth-child(2) .panel-card-title', 'hazards'], ['.trend-panel .section-head', 'trend']
+      ],
+      '#/map': [['.expanded-map-heading', 'map'], ['.expanded-map-meta', 'freshness'], ['.expanded-map-heading', 'refresh']],
+      '#/detail': [
+        ['.detail-overview', 'detail'], ['.priority-actions .dcard-title', 'actions'],
+        ['.official-notice', 'original'], ['.dcard:has(.alert-body) .dcard-title', 'impact'], ['.dcard:has(.potential-hazard) .dcard-title', 'hazards'],
+        ['.dcard:has(.rec-list) .dcard-title', 'materials'], ['.dcard:has(.quiz-block, .guide-note) .dcard-title', 'quiz'],
+        ['.dcard:has(#countdownBox) .dcard-title', 'expiry'], ['.detail-actions', 'sharing']
+      ],
+      '#/guide': [
+        ['.read-progress', 'guides'], ['.signal-list', 'signals', 'before'],
+        ['.guide-action-list', 'actions', 'before'], ['.rec-list', 'materials', 'before'],
+        ['.quiz-block, .guide-content .guide-note', 'quiz', 'before']
+      ],
+      '#/tools': [
+        ['.aid-tabs', 'firstAid', 'before'], ['.phone-grid', 'phones', 'before'],
+        ['.wizard-card', 'packing', 'before'], ['.material-list', 'materials', 'before'],
+        ['.plan-card', 'plan', 'before'], ['.tip-list', 'tips', 'before']
+      ],
+      '#/products': [['.page-head, .game-title', 'products']],
+      '#/settings': [
+        ['.set-card:has([data-action="select-lang"]) .set-card-body', 'language', 'prepend'],
+        ['.set-card:has([data-action="select-scale"]) .set-card-body', 'access', 'prepend'],
+        ['.set-card:has([data-action="notif-interval"]) .set-card-body', 'notifications', 'prepend'],
+        ['.set-card:has([data-action="select-source"]) .set-card-body', 'source', 'prepend'],
+        ['.set-card:has([data-action="clear-cache"]) .set-card-body', 'cache', 'prepend'],
+        ['.set-card:has([data-action="reset-all"]) .set-card-body', 'reset', 'prepend'],
+        ['.set-card:has([data-action="show-disclaimer"]) .set-card-body', 'about', 'prepend']
+      ]
+    };
+    (rules[path] || rules['#/home']).forEach(function (rule) {
+      var target = viewEl.querySelector(rule[0]);
+      if (!target || viewEl.querySelector('details[data-help="' + rule[1] + '"]')) return;
+      var help = document.createElement('details');
+      help.className = 'context-help';
+      help.dataset.help = rule[1];
+      help.open = openExplanations.has(rule[1]);
+      var section = target.closest('section, .set-card');
+      var heading = section && section.querySelector('h1, h2, h3, .set-card-title');
+      var label = explanations.label(lang());
+      help.innerHTML = '<summary aria-label="' + esc(label + (heading ? ': ' + heading.textContent.trim() : '')) + '">' + esc(label) + '</summary><p>' + esc(explanations.get(rule[1], lang())) + '</p>';
+      if (rule[2] === 'before') target.before(help);
+      else if (rule[2] === 'prepend') target.prepend(help);
+      else target.after(help);
+    });
+  }
   var charts = __require('charts');
   var holo = __require('holo-globe');
   __require('china-geo');
@@ -833,6 +890,7 @@
     html += '</div>';
     viewEl.innerHTML = html;
     document.title = t.tabIndex;
+    explainView();
 
     /* 中国态势图 */
     var wrap = document.getElementById('chinaMapWrap');
@@ -880,6 +938,7 @@
       '</div>' +
     '</div></section>';
     document.title = t.nationalSituation;
+    explainView();
     chinaMap = __require('china-holo').create(document.getElementById('expandedMap'), function (adcode) {
       inspectMapCity(adcode);
       document.querySelector('#cityInspection button').focus({ preventScroll: true });
@@ -1291,6 +1350,7 @@
 
     viewEl.innerHTML = html;
     document.title = l === 'zh' ? (a.type + '预警') : i18n.disasterName(a.type, l);
+    explainView();
     startCountdown(end);
   }
 
@@ -1468,6 +1528,7 @@
 
     viewEl.innerHTML = html;
     document.title = t.tabGuide;
+    explainView();
   }
 
   function levelCls(w) {
@@ -1618,6 +1679,7 @@
 
     viewEl.innerHTML = html;
     document.title = t.tabTools;
+    explainView();
   }
 
   function planField(label, field, value) {
@@ -1700,6 +1762,7 @@
     html += '</div></div></section>';
     viewEl.innerHTML = html;
     document.title = t.productsTitle;
+    explainView();
   }
 
   function renderGameView() {
@@ -1717,6 +1780,7 @@
         '</div>' +
       '</div></section>';
     document.title = name;
+    explainView();
     var cv = document.getElementById('gameCanvas');
     if (window.NDGames && cv) {
       window.NDGames.start(cv, g, T());
@@ -1747,7 +1811,7 @@
     ];
     var notifEnabled = wx.getStorageSync('notif_enabled') === '1';
     var notifInterval = wx.getStorageSync('notif_interval') || '30';
-    var reqCount = parseInt(localStorage.getItem('request_count'), 10);
+    var reqCount = parseInt(localStorage.getItem('shared_snapshot_reads'), 10);
     reqCount = isNaN(reqCount) ? 0 : reqCount;
 
     var html =
@@ -1803,7 +1867,7 @@
     html += staticCard(t.cache,
       '<div class="set-row"><span class="set-row-label">' + esc(cacheInfo) + '</span>' +
         '<button class="btn btn-outline" data-action="clear-cache">' + esc(t.clearCache) + '</button></div>' +
-      '<div class="set-row"><span class="set-row-label">' + esc(t.totalRequests) + '</span>' +
+      '<div class="set-row"><span class="set-row-label">' + esc(explanations.reads(l)) + '</span>' +
         '<span class="set-value"><b>' + reqCount + '</b></span></div>');
 
     /* 数据管理 */
@@ -1821,6 +1885,7 @@
     html += '</div></section>';
     viewEl.innerHTML = html;
     document.title = t.settingsTitle;
+    explainView();
   }
 
   function foldCard(key, expanded, title, bodyHtml) {
@@ -2145,6 +2210,12 @@
   });
 
   /* ---------- 启动 ---------- */
+  document.getElementById('app').addEventListener('toggle', function (event) {
+    var topic = event.target.dataset && event.target.dataset.help;
+    if (!topic) return;
+    if (event.target.open) openExplanations.add(topic);
+    else openExplanations.delete(topic);
+  }, true);
   function offlineGuideText() {
     return safetyText(!('serviceWorker' in navigator) ? 'offlineUnsupported' : window.NDWOfflineReady ? 'offlineReady' : 'offlinePreparing');
   }

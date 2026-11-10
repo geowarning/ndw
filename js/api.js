@@ -59,6 +59,7 @@ var snapshotEntries = {};
 function readSharedSnapshot(route) {
   if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
     snapshotLoadedAt = Date.now();
+    try { wx.setStorageSync('shared_snapshot_reads', (Number(wx.getStorageSync('shared_snapshot_reads')) || 0) + 1); } catch (e) { /* Local statistics must not block downloads. */ }
     snapshotPromise = fetch('public-data/warnings.json?updated=' + snapshotLoadedAt, { cache: 'no-store', signal: AbortSignal.timeout(10000) })
       .then(function (res) {
         if (!res.ok) { throw new Error('Shared snapshot unavailable'); }

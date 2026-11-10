@@ -1,10 +1,10 @@
 /* Cache safety knowledge and application assets, never live warning snapshots. */
-const CACHE = 'ndw-shell-11d43a33e874b735';
+const CACHE = 'ndw-shell-72a878372a57cf66';
 const ASSETS = [
   './', './index.html', './favicon.svg', './css/styles.css', './css/interface.css',
   './js/shim.js', './js/config.js', './js/data.js', './js/guide-en.js', './js/guide-locales.js',
   './js/cities.js', './js/districts.js', './js/china-geo.js', './js/pinyin-pro.js', './js/i18n.js',
-  './js/reliability.js', './js/risk.js', './js/api.js', './js/holo-globe.js', './js/china-holo.js',
+  './js/reliability.js', './js/explanations.js', './js/risk.js', './js/api.js', './js/holo-globe.js', './js/china-holo.js',
   './js/charts.js', './js/three.min.js', './js/games.js', './js/app.js', './js/offline.js'
 ];
 const allowedPaths = new Set(ASSETS.map(asset => new URL(asset, self.location.href).pathname));
