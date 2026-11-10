@@ -8,6 +8,9 @@
   function setup(canvas) {
     var parent = canvas.parentElement;
     var style = getComputedStyle(parent);
+    HOLO = style.getPropertyValue('--chart-line').trim() || '#43e8cf';
+    GRID = style.getPropertyValue('--chart-grid').trim() || 'rgba(120, 200, 190, 0.14)';
+    TEXT = style.getPropertyValue('--chart-text').trim() || '#8fa6bb';
     var w = Math.max(1, parent.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)) || 320;
     var h = parseInt(canvas.getAttribute('data-h') || '200', 10);
     canvas.width = Math.round(w * dpr);

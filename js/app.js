@@ -904,7 +904,7 @@
     var dc = document.getElementById('typeDonut');
     if (dc) { charts.donut(dc, donutData); }
     var tl = document.getElementById('trendLine');
-    if (tl) { charts.line(tl, days, vals, '#43e8cf'); }
+    if (tl) { charts.line(tl, days, vals); }
   }
 
   function onMapClickCity(adcode, name) {
