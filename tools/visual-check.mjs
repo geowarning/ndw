@@ -29,6 +29,7 @@ const routes = [
   ['map', '#/map'],
   ['settings', '#/settings'],
   ['guide', '#/guide'],
+  ['products', '#/products'],
 ];
 const widths = [1440, 390];
 const threshold = process.env.VISUAL_THRESHOLD || '0.005';
