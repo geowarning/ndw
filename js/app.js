@@ -81,32 +81,12 @@
   var SOURCE_KEY = 'data_source_override';
   var APP_VERSION = '1.1.0';
 
-  /* ---------- HTML 转义（接口文本不可信，防注入） ---------- */
-  function esc(s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-  function lang() { return i18n.getLang(); }
-  function T(l) { return i18n.pack(l || lang()).t; }
-
-  function formatNow(time) {
-    var d = new Date(time || Date.now());
-    try {
-      return new Intl.DateTimeFormat(lang() === 'zh' ? 'zh-CN' : lang(), {
-        year: 'numeric', month: '2-digit', day: '2-digit',
-        hour: '2-digit', minute: '2-digit', hour12: false
-      }).format(d);
-    } catch (e) {
-      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
-        ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
-    }
-  }
+  /* ---------- 共享工具（js/app-core.js） ---------- */
+  var esc = window.NDCore.esc;
+  var pad = window.NDCore.pad;
+  var lang = window.NDCore.lang;
+  var T = window.NDCore.T;
+  var formatNow = window.NDCore.formatNow;
 
   /* ---------- 辅助功能 ---------- */
   var access = { textScale: '1', contrast: '0', reduceMotion: '0' };
@@ -130,90 +110,9 @@
     applyAccess();
   }
 
-  /* ---------- 网页版特有文案（5 语言） ---------- */
-  var WEB = {
-    expandMap: {
-      zh: '展开地图', en: 'Open larger map', es: 'Ampliar mapa',
-      fr: 'Agrandir la carte', it: 'Apri la mappa ingrandita'
-    },
-    fitMap: {
-      zh: '适配屏幕', en: 'Fit to screen', es: 'Ajustar a pantalla',
-      fr: 'Ajuster à l’écran', it: 'Adatta allo schermo'
-    },
-    backToWarnings: {
-      zh: '返回预警总览', en: 'Back to warnings', es: 'Volver a las alertas',
-      fr: 'Retour aux alertes', it: 'Torna alle allerte'
-    },
-    expandedMapHint: {
-      zh: '滑动或滚动查看地图，选择城市即可查看当地预警。',
-      en: 'Swipe or scroll to explore. Select a city to view its warnings.',
-      es: 'Deslice o desplácese para explorar. Seleccione una ciudad para ver sus alertas.',
-      fr: 'Faites défiler la carte. Sélectionnez une ville pour voir ses alertes.',
-      it: 'Scorri per esplorare. Seleziona una città per vedere le allerte.'
-    },
-    pendingData: {
-      zh: '该城市的数据尚未发布，请稍后刷新。', en: 'This city has not been checked yet. Please check again shortly.',
-      es: 'Esta ciudad aún no se ha consultado. Vuelva más tarde.', fr: 'Cette ville n’a pas encore été vérifiée. Réessayez bientôt.', it: 'Questa città non è ancora stata controllata. Riprova tra poco.'
-    },
-    outdatedData: {
-      zh: '该城市的数据已过期，正在等待下一次更新。', en: 'This city’s data is outdated. Awaiting the next update.',
-      es: 'Datos desactualizados. Esperando la próxima actualización.', fr: 'Données obsolètes. En attente de la prochaine mise à jour.', it: 'Dati obsoleti. In attesa del prossimo aggiornamento.'
-    },
-    snapshotHint: {
-      zh: '预警定期更新，未查询或过期不代表没有预警。', en: 'Warnings update periodically. Unknown or outdated data does not mean no warnings.',
-      es: 'Las alertas se actualizan periódicamente. Sin datos no significa sin alertas.', fr: 'Les alertes sont périodiques. L’absence de données ne signifie pas l’absence d’alertes.', it: 'Le allerte sono aggiornate periodicamente. Dati assenti non significano assenza di allerte.'
-    },
-    retryFetch: { zh: '刷新数据', en: 'Refresh data', es: 'Actualizar datos', fr: 'Actualiser', it: 'Aggiorna dati' },
-    coverage: { zh: '数据在更新周期内的城市', en: 'Cities with current data', es: 'Ciudades con datos actuales', fr: 'Villes aux données à jour', it: 'Città con dati attuali' },
-    overviewTitle: {
-      zh: '自然灾害预警总览', en: 'Disaster warning overview', es: 'Resumen de alertas',
-      fr: 'Vue d’ensemble des alertes', it: 'Panoramica delle allerte'
-    },
-    overviewSubtitle: {
-      zh: '关注所在城市，了解全国预警态势。', en: 'Your local warnings, with a view across the country.',
-      es: 'Alertas locales y una visión de todo el país.', fr: 'Vos alertes locales et une vue sur tout le pays.',
-      it: 'Allerte locali e una panoramica nazionale.'
-    },
-    mapHint: {
-      zh: '点击城市，查看当地预警。', en: 'Select a city to view its warnings.',
-      es: 'Seleccione una ciudad para ver sus alertas.', fr: 'Sélectionnez une ville pour voir ses alertes.',
-      it: 'Seleziona una città per vedere le allerte.'
-    },
-    unknown: {
-      zh: '无历史数据', en: 'No past data', es: 'Sin datos anteriores',
-      fr: 'Sans historique', it: 'Nessun dato precedente'
-    },
-    dataUnavailable: {
-      zh: '数据暂不可用', en: 'Data unavailable', es: 'Datos no disponibles',
-      fr: 'Données indisponibles', it: 'Dati non disponibili'
-    },
-    lastSuccess: {
-      zh: '上次成功获取：', en: 'Last successful fetch: ', es: 'Última consulta correcta: ',
-      fr: 'Dernière récupération réussie : ', it: 'Ultimo recupero riuscito: '
-    },
-    configHint: {
-      zh: '请检查网络连接，或稍后重试；如持续失败，可能是当日接口免费配额已用尽',
-      en: 'Check your network or try again later; persistent failures may mean the daily API quota is exhausted',
-      es: 'Compruebe la conexión o inténtelo más tarde; si persiste, la cuota diaria de la API puede haberse agotado',
-      fr: 'Vérifiez votre connexion ou réessayez plus tard ; en cas d’échec persistant, le quota quotidien de l’API est peut-être épuisé',
-      it: 'Controlla la connessione o riprova più tardi; se il problema persiste, la quota giornaliera dell’API potrebbe essere esaurita'
-    },
-    srcWeathercn: {
-      zh: '中国气象局授权官方数据，实时预警与实况天气',
-      en: 'Official data authorized by the China Meteorological Administration',
-      es: 'Datos oficiales autorizados por la Administración Meteorológica de China',
-      fr: 'Données officielles autorisées par l’Administration météorologique chinoise',
-      it: 'Dati ufficiali autorizzati dall’Amministrazione meteorologica cinese'
-    },
-    linkCopied: {
-      zh: '链接已复制，可粘贴分享',
-      en: 'Link copied, ready to share',
-      es: 'Enlace copiado, listo para compartir',
-      fr: 'Lien copié, prêt à partager',
-      it: 'Link copiato, pronto da condividere'
-    }
-  };
-  function web(key) { var l = lang(); return (WEB[key] && WEB[key][l]) || WEB[key].zh; }
+  /* ---------- 网页版特有文案（5 语言，见 js/app-core.js） ---------- */
+  var WEB = window.NDCore.WEB;
+  var web = window.NDCore.web;
 
   /* 免责声明：把“小程序/mini program/mini-app”改为“应用/app” */
   function disclaimerText(l) {
@@ -233,43 +132,7 @@
   var viewEl = document.getElementById('view');
   var footerEl = document.getElementById('siteFooter');
   var pickerEl = document.getElementById('picker');
-  var modalEl = document.getElementById('ui-modal');
-  var toastEl = document.getElementById('ui-toast');
-
-  /* ---------- Modal / Toast ---------- */
-  var toastTimer = null;
-  window.__ui = {
-    showModal: function (o) {
-      var foot = o.showCancel === false
-        ? '<button class="btn btn-green" data-ui="confirm">' + esc(o.confirmText || 'OK') + '</button>'
-        : '<button class="btn btn-outline" data-ui="cancel">' + esc(o.cancelText || 'Cancel') + '</button>' +
-          '<button class="btn btn-green" data-ui="confirm">' + esc(o.confirmText || 'OK') + '</button>';
-      modalEl.innerHTML =
-        '<div class="overlay"><div class="dialog">' +
-        '<div class="dialog-head">' + esc(o.title || '') + '</div>' +
-        '<div class="dialog-body">' + esc(o.content || '') + '</div>' +
-        '<div class="dialog-foot">' + foot + '</div>' +
-        '</div></div>';
-      modalEl.onclick = function (e) {
-        var btn = e.target.closest('[data-ui]');
-        if (!btn) { return; }
-        var act = btn.dataset.ui;
-        modalEl.innerHTML = '';
-        modalEl.onclick = null;
-        if (o.success) { o.success({ confirm: act === 'confirm', cancel: act === 'cancel' }); }
-      };
-    },
-    showToast: function (o) {
-      var msg = typeof o === 'string' ? o : o.title;
-      var el = document.createElement('div');
-      el.className = 'toast';
-      el.textContent = msg;
-      toastEl.textContent = '';
-      toastEl.appendChild(el);
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () { if (el.parentNode) { el.parentNode.removeChild(el); } }, 2000);
-    }
-  };
+  /* Modal / Toast 由 js/ui.js 注册到 window.__ui */
 
   /* ================================================================
    * 顶部导航（右上角目录）
