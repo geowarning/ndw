@@ -3,6 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
   workflow_dispatch:
   issues:
     types: [opened]
@@ -33,21 +36,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # Data collection only runs for scheduled / manual / issue events, never on a
+      # plain push. That keeps UI deploys fast and prevents them from burning API quota.
       - name: Test collector
+        if: github.event_name != 'push'
         run: node --test backend/*.test.mjs
       - name: Configure data commit identity
+        if: github.event_name != 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
       - name: Reserve quota before collection
+        if: github.event_name != 'push'
         env:
           WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
         run: node backend/collect.mjs reserve
       - name: Collect reserved cities
+        if: github.event_name != 'push'
         env:
           WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
         run: node backend/collect.mjs collect
       - name: Restore shared snapshot for publication
+        if: github.event_name != 'push'
         run: |
           remote_ref=$(git ls-remote --heads origin ndw-data)
           if [ -n "$remote_ref" ]; then
@@ -55,6 +65,7 @@ jobs:
             node backend/publish-snapshot.mjs FETCH_HEAD
           fi
       - name: Keep branch-based Pages builds in sync
+        if: github.event_name != 'push'
         run: |
           node backend/prepare-site.mjs
           git add public-data/warnings.json sw.js
@@ -67,7 +78,7 @@ jobs:
       - name: Stage public assets only
         run: |
           mkdir -p "$RUNNER_TEMP/ndw-public"
-          cp index.html CNAME favicon.svg sw.js "$RUNNER_TEMP/ndw-public/"
+          cp index.html CNAME favicon.svg sw.js manifest.webmanifest robots.txt sitemap.xml "$RUNNER_TEMP/ndw-public/"
           cp -R js css public-data "$RUNNER_TEMP/ndw-public/"
           node backend/prepare-site.mjs "$RUNNER_TEMP/ndw-public"
       - uses: actions/upload-pages-artifact@v3
@@ -76,6 +87,7 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
       - name: Verify published warning data
+        if: github.event_name != 'push'
         run: node backend/check-published.mjs "$DEPLOYMENT_URL"
         env:
           DEPLOYMENT_URL: ${{ steps.deployment.outputs.page_url }}
