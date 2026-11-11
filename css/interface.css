@@ -277,9 +277,14 @@ button, .btn { touch-action: manipulation; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
 
-/* Editorial finish: square geometry, disciplined rules and quieter surfaces. */
-:root { --radius: 0px; --radius-sm: 0px; --shadow-card: none; }
-*, *::before, *::after { border-radius: 0 !important; }
+/* Editorial finish: softly rounded geometry and quieter surfaces. */
+:root { --radius: 10px; --radius-sm: 8px; --shadow-card: none; }
+*, *::before, *::after { border-radius: var(--radius) !important; }
+/* Full-bleed bands and segmented strips keep clean edges. */
+.navbar, .home-dashboard .hero, .page-top, .site-footer, .nav-drawer, #connectionNotice { border-radius: 0 !important; }
+.home-dashboard .stat-box { border-radius: 0 !important; }
+.bottom-sheet .sheet { border-radius: 12px 12px 0 0 !important; }
+.level-badge { border-radius: 6px !important; }
 body { background: #0d1217; }
 .bg-globe { opacity: .04; }
 .navbar { background: #0d1217; backdrop-filter: none; }
@@ -405,7 +410,7 @@ body { background: var(--bg); }
 .bg-globe { display: none; }
 .home-dashboard .hero > .bg-globe {
   display: block; position: absolute; inset: 0; z-index: 0;
-  opacity: .48; filter: saturate(.08); pointer-events: none;
+  opacity: .62; filter: saturate(.62); pointer-events: none;
 }
 .home-dashboard .hero > .container { position: relative; z-index: 1; }
 .home-dashboard .hero .manual-update { background: transparent; }
