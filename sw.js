@@ -1,7 +1,7 @@
 /* Cache safety knowledge and application assets, never live warning snapshots. */
 const CACHE = 'ndw-shell-1402487fcefcf85f';
 const ASSETS = [
-  './', './index.html', './favicon.svg', './manifest.webmanifest', './css/styles.css', './css/interface.css',
+  './', './index.html', './favicon.svg', './css/styles.css', './css/interface.css',
   './js/shim.js', './js/config.js', './js/data.js', './js/guide-en.js', './js/guide-locales.js',
   './js/cities.js', './js/districts.js', './js/china-geo.js', './js/pinyin-pro.js', './js/i18n.js',
   './js/reliability.js', './js/explanations.js', './js/risk.js', './js/api.js', './js/globe-land.js', './js/holo-globe.js', './js/china-holo.js',
