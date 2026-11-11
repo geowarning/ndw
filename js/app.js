@@ -13,8 +13,9 @@
   var reliability = __require('reliability');
   function safetyText(key) { return reliability.text(key, lang()); }
   function manualUpdateControl() {
-    return '<div class="manual-update"><a class="btn manual-update-btn" href="https://github.com/geowarning/ndw/issues/new?template=data-update.yml" target="_blank" rel="noopener noreferrer" aria-label="' + esc(safetyText('manualUpdate') + ' (GitHub)') + '">' +
-      esc(safetyText('manualUpdate')) + ' ↗</a></div>';
+    var path = (location.hash || '#/home').split('?')[0];
+    var action = path === '#/map' ? 'refresh-map' : 'refresh';
+    return '<div class="manual-update"><button type="button" class="btn manual-update-btn" data-action="' + action + '">' + esc(safetyText('manualUpdate')) + '</button></div>';
   }
   var explanations = __require('explanations');
   var openExplanations = new Set();
