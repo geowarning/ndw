@@ -13,6 +13,12 @@ body:
         After the workflow completes, return to geowarning.cn and choose
         **Refresh published data**. This request closes after successful deployment.
         Workflow progress: https://github.com/geowarning/ndw/actions/workflows/deploy.yml
+  - type: input
+    id: city
+    attributes:
+      label: City to prioritize (optional)
+      description: Leave empty to keep the normal rotation.
+      placeholder: e.g. 广州市
   - type: checkboxes
     id: confirm
     attributes:

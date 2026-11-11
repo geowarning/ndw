@@ -75,3 +75,14 @@ test('collection preserves failed cities, counts failures and redacts credential
   assert(!JSON.stringify(state).includes('fake-secret'));
   assert.equal(state.pending.length, 0);
 });
+test('a requested city is reserved first without duplicates', () => {
+  const t = Date.now(), state = empty();
+  const target = cities[7].name;
+  reserve(state, t, 450, 4, false, target);
+  assert.equal(state.pending[0].name, target);
+  assert.equal(state.pending.length, 4);
+  assert.equal(new Set(state.pending.map(c => c.key)).size, state.pending.length);
+  const unknown = empty();
+  reserve(unknown, t, 450, 4, false, '不存在的城市');
+  assert.equal(unknown.pending.length, 4);
+});

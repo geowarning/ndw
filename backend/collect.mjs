@@ -11,7 +11,7 @@ const context = vm.createContext({ window: { __modules: modules } });
 for (const file of ['cities', 'districts']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'), context);
 export const cities = modules.districts.allCityGeo().map(c => ({ ...c, key: modules.cities.getLocationKey(c.name) })).filter(c => c.key);
 
-export function reserve(state, now, limit = 450, batch = 4, bootstrap = false) {
+export function reserve(state, now, limit = 450, batch = 4, bootstrap = false, priority = '') {
   if (!Array.isArray(state.calls) || !state.entries || !Number.isInteger(state.cursor)) throw Error('Invalid quota ledger');
   state.calls = state.calls.filter(t => now - t < 86400000);
   state.pending = [];
@@ -21,13 +21,28 @@ export function reserve(state, now, limit = 450, batch = 4, bootstrap = false) {
   const initial = bootstrap && !state.initialCoverageReserved;
   const slots = state.lastAttempt ? Math.max(1, Math.floor((now - state.lastAttempt) / 900000)) : 1;
   const requested = initial ? cities.length - state.cursor : Math.min(cities.length, batch * slots);
-  const count = Math.max(0, Math.min(requested, limit - state.calls.length));
-  for (let i = 0; i < count; i++) {
-    state.pending.push(cities[state.cursor % cities.length]);
-    state.cursor = (state.cursor + 1) % cities.length;
+  let count = Math.max(0, Math.min(requested, limit - state.calls.length));
+  let reserved = 0;
+  // A city named in the manual update form is collected first; the normal
+  // rotation then continues within the same quota and cooldown.
+  const wanted = priority
+    ? cities.find(c => c.name === priority || c.name.includes(priority) || priority.includes(c.name))
+    : null;
+  if (wanted && count > 0) {
+    state.pending.push(wanted);
     state.calls.push(now);
+    reserved += 1;
+    count -= 1;
   }
-  if (count) state.lastAttempt = now;
+  for (let i = 0; i < count; i++) {
+    const city = cities[state.cursor % cities.length];
+    state.cursor = (state.cursor + 1) % cities.length;
+    if (state.pending.some(p => p.key === city.key)) continue;
+    state.pending.push(city);
+    state.calls.push(now);
+    reserved += 1;
+  }
+  if (reserved) state.lastAttempt = now;
   if (initial && count === requested) state.initialCoverageReserved = true;
   return state;
 }
@@ -64,7 +79,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   if (phase === 'reserve') {
     if (!process.env.WEATHERCN_API_KEY) throw Error('Set the WEATHERCN_API_KEY Actions secret');
     state = parent ? JSON.parse(git('show', parent + ':backend/data/state.json')) : { calls: [], entries: {}, cursor: 0, lastAttempt: 0 };
-    reserve(state, Date.now(), 450, 4, true);
+    reserve(state, Date.now(), 450, 4, true, process.env.PRIORITY_CITY || '');
   } else if (phase === 'collect') {
     if (!parent || !process.env.WEATHERCN_API_KEY) throw Error('Missing reservation or key');
     state = JSON.parse(git('show', parent + ':backend/data/state.json'));

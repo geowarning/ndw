@@ -136,6 +136,10 @@
       zh: '展开地图', en: 'Open larger map', es: 'Ampliar mapa',
       fr: 'Agrandir la carte', it: 'Apri la mappa ingrandita'
     },
+    fitMap: {
+      zh: '适配屏幕', en: 'Fit to screen', es: 'Ajustar a pantalla',
+      fr: 'Ajuster à l’écran', it: 'Adatta allo schermo'
+    },
     backToWarnings: {
       zh: '返回预警总览', en: 'Back to warnings', es: 'Volver a las alertas',
       fr: 'Retour aux alertes', it: 'Torna alle allerte'
@@ -221,31 +225,8 @@
       .replace('questa mini-app', 'questa app');
   }
 
-  /* ---------- 内联 SVG ---------- */
-  var SVG = {
-    brand: '<svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 2 3 7v9c0 8.2 5.6 12.4 13 14V2Z" fill="#1565c0"/><path d="M16 2v28c7.4-1.6 13-5.8 13-14V7L16 2Z" fill="#2e7d32"/><path d="M16.4 23.2C14.8 16.8 18.2 10.6 25.6 8.4c1.2 8-2.8 13.8-9.2 14.8Z" fill="#81c784"/><path d="M16.8 22.4c1.8-4 4.4-7.4 8-11.2" stroke="#2e7d32" stroke-width="0.8" fill="none"/><path d="M10.4 10.2C10.4 10.2 7.3 13.9 7.3 16.3C7.3 18.2 8.7 19.5 10.4 19.5C12.1 19.5 13.5 18.2 13.5 16.3C13.5 13.9 10.4 10.2 10.4 10.2Z" fill="#fff"/><path d="M9 16.6c-.2.8.2 1.4.8 1.6" stroke="#1565c0" stroke-width="0.7" fill="none" stroke-linecap="round"/><path d="M21.6 10.6c1.6 2 2.8 3.3 2.8 5.4a3.2 3.2 0 0 1-6.4 0c0-1.3.7-2.2 1.3-2.9.1 1.1.6 1.6 1.2 1.9-.4-1.7-.1-3 1.1-4.4Z" fill="#ff8a00"/><path d="M21.6 12.3c.8 1.2 1.3 2.1 1.3 3.4a1.7 1.7 0 0 1-3.4 0c0-.8.4-1.3.8-1.8.2.7.5 1 .9 1.2-.2-1.1 0-1.9.4-2.8Z" fill="#ffd54f"/><path d="M16 2 3 7v9c0 8.2 5.6 12.4 13 14 7.4-1.6 13-5.8 13-14V7L16 2Z" stroke="#0d1321" stroke-width="1" stroke-linejoin="round"/><line x1="16" y1="3" x2="16" y2="29" stroke="#0d1321" stroke-width="0.8"/></svg>',
-    menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
-    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
-    check: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
-    checkBox: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0c0f06" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
-    products: '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>',
-    refresh: '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>',
-    /* ---- 统一描边小图标（16px，继承 currentColor） ---- */
-    iHome: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>',
-    iGuide: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>',
-    iTools: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3 4.7-3.7z"/></svg>',
-    iProducts: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.2"/><rect x="14" y="3" width="7" height="7" rx="1.2"/><rect x="3" y="14" width="7" height="7" rx="1.2"/><rect x="14" y="14" width="7" height="7" rx="1.2"/></svg>',
-    iSettings: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5h.1a1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"/></svg>',
-    iGlobe: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
-    iBell: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
-    iChart: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>',
-    iClock: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-    iWarn: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
-    iPin: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
-    iTemp: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.8V5a2 2 0 1 0-4 0v9.3a4.5 4.5 0 1 0 4 0z"/></svg>',
-    iWind: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h8"/></svg>',
-    iLang: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M9 3v2M6 5c0 4-2 8-4 10M5 9c1.8 3 4 5 7 6"/><path d="M13 21l4-10 4 10M14.5 17h5"/></svg>'
-  };
+  /* ---------- 内联 SVG（见 js/icons.js） ---------- */
+  var SVG = window.ND_ICONS;
 
   /* ---------- DOM 句柄 ---------- */
   var navEl = document.getElementById('navbar');
@@ -732,8 +713,9 @@
         '</div>'
       : '';
 
+    var loadingClass = s.loading ? ' is-loading' : '';
     var html =
-      '<div class="home-dashboard"><section class="hero"><div class="container">' +
+      '<div class="home-dashboard' + loadingClass + '"><section class="hero"><div class="container">' +
         '<div class="hero-inner">' +
           '<div class="hero-left">' +
             '<div class="home-intro">' +
@@ -951,7 +933,10 @@
       '<a class="back-link" href="#/home">← ' + esc(web('backToWarnings')) + '</a>' +
       '<div class="expanded-map-heading"><div><h1 id="expandedMapHeading">' + esc(t.nationalSituation) + '</h1>' +
         '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
-        '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
+        '<div class="expanded-map-actions">' +
+          '<button class="map-scan-btn" data-action="toggle-map-fit" aria-pressed="false">' + esc(web('fitMap')) + '</button>' +
+          '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
+        '</div>' +
       '</div>' +
       manualUpdateControl() +
       '<div class="expanded-map-meta"><span id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + info.checked + ' / ' + info.total + '</span>' +
@@ -2123,6 +2108,15 @@
         api.refreshSnapshot();
         sweepNationalStatus(true, true);
         break;
+      case 'toggle-map-fit': {
+        var fitViewport = document.getElementById('expandedMapViewport');
+        if (fitViewport) {
+          var fitted = fitViewport.classList.toggle('map-fit');
+          el.setAttribute('aria-pressed', String(fitted));
+          el.classList.toggle('is-active', fitted);
+        }
+        break;
+      }
       case 'select-province': selectProvince(d.name); break;
       case 'select-city': selectCity(d.name); break;
       case 'select-district': selectDistrict(d.name); break;

@@ -46,10 +46,26 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+      - name: Read requested city
+        if: github.event_name == 'issues'
+        id: request
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          city=$(python3 - <<'PY'
+          import os, re
+          body = os.environ.get('ISSUE_BODY', '')
+          m = re.search(r'###\s*City to prioritize[^\n]*\n+\s*(.+)', body)
+          print((m.group(1).strip() if m else ''))
+          PY
+          )
+          if [ "$city" = "_No response_" ]; then city=""; fi
+          echo "city=$city" >> "$GITHUB_OUTPUT"
       - name: Reserve quota before collection
         if: github.event_name != 'push'
         env:
           WEATHERCN_API_KEY: ${{ secrets.WEATHERCN_API_KEY }}
+          PRIORITY_CITY: ${{ steps.request.outputs.city }}
         run: node backend/collect.mjs reserve
       - name: Collect reserved cities
         if: github.event_name != 'push'
