@@ -11,7 +11,7 @@
     opts = opts || {};
     var cv = canvas;
     var ctx = cv.getContext('2d');
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var dpr = 1;
     var W = 0, H = 0, cx = 0, cy = 0, R = 0;
 
     /* 状态 */
@@ -148,6 +148,8 @@
       }
       W = hero ? hero.clientWidth : window.innerWidth;
       H = hero ? hero.clientHeight : window.innerHeight;
+      /* Cap the backing-store resolution on small screens to keep the globe smooth. */
+      dpr = Math.min(window.devicePixelRatio || 1, W < 760 ? 1.5 : 2);
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       cv.style.width = W + 'px'; cv.style.height = H + 'px';
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -195,14 +197,15 @@
     /* 大陆点阵 */
     function drawLand() {
       if (!landPoints.length) { return; }
-      for (var i = 0; i < landPoints.length; i++) {
+      var step = W < 760 ? 2 : 1;
+      ctx.fillStyle = COL.land;
+      for (var i = 0; i < landPoints.length; i += step) {
         var p = landPoints[i];
         var pr = project(p.x, p.y, p.z);
         if (pr.depth < -0.25) { continue; }
         var t = (pr.depth + 1) / 2;
-        var sz = 1.6 + t * 1.8;
-        ctx.globalAlpha = 0.3 + t * 0.62;
-        ctx.fillStyle = COL.land;
+        var sz = 1.1 + t * 1.3;
+        ctx.globalAlpha = 0.32 + t * 0.6;
         ctx.fillRect(pr.sx - sz / 2, pr.sy - sz / 2, sz, sz);
       }
       ctx.globalAlpha = 1;

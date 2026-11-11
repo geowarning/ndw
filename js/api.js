@@ -54,8 +54,24 @@ function request(url) {
 }
 
 var snapshotPromise = null, snapshotLoadedAt = 0;
-var snapshotInfo = { checked: 0, total: 77 };
+var snapshotInfo = { checked: 0, total: 77, fromCache: false, cachedAt: 0 };
 var snapshotEntries = {};
+
+function applySnapshot(snapshot) {
+  if (!snapshot || snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
+  // Partial publications must not erase a city's last successful scan.
+  Object.keys(snapshot.entries).forEach(function (route) {
+    const entry = snapshot.entries[route], previous = snapshotEntries[route];
+    if (entry && (Array.isArray(entry.data) || Array.isArray(entry.data && entry.data.alerts)) &&
+        window.__modules.reliability.freshness(entry.checkedAt) !== 'unavailable' &&
+        (!previous || entry.checkedAt >= previous.checkedAt)) snapshotEntries[route] = entry;
+  });
+  snapshotInfo.checked = Object.keys(snapshot.entries).filter(function (key) {
+    return window.__modules.reliability.freshness(snapshot.entries[key].checkedAt) === 'available';
+  }).length;
+  return snapshot;
+}
+
 function readSharedSnapshot(route) {
   if (!snapshotPromise || Date.now() - snapshotLoadedAt >= 60000) {
     snapshotLoadedAt = Date.now();
@@ -65,18 +81,22 @@ function readSharedSnapshot(route) {
         if (!res.ok) { throw new Error('Shared snapshot unavailable'); }
         return res.json();
       }).then(function (snapshot) {
-        if (snapshot.version !== 1 || !snapshot.entries) { throw new Error('Invalid snapshot'); }
-        // Partial publications must not erase a city's last successful scan.
-        Object.keys(snapshot.entries).forEach(function (route) {
-          const entry = snapshot.entries[route], previous = snapshotEntries[route];
-          if (entry && (Array.isArray(entry.data) || Array.isArray(entry.data && entry.data.alerts)) &&
-              window.__modules.reliability.freshness(entry.checkedAt) !== 'unavailable' &&
-              (!previous || entry.checkedAt >= previous.checkedAt)) snapshotEntries[route] = entry;
-        });
-        snapshotInfo.checked = Object.keys(snapshot.entries).filter(function (key) {
-          return window.__modules.reliability.freshness(snapshot.entries[key].checkedAt) === 'available';
-        }).length;
-        return snapshot;
+        var applied = applySnapshot(snapshot);
+        snapshotInfo.fromCache = false;
+        try { wx.setStorageSync('shared_snapshot_cache', { savedAt: Date.now(), snapshot: applied }); } catch (e) { /* Best effort: caching must never block. */ }
+        return applied;
+      }).catch(function (error) {
+        // Offline or transient failure: fall back to the last successfully downloaded
+        // snapshot. Entries still pass through the same 6-hour freshness check, so
+        // stale data never masquerades as a current warning.
+        var cached = null;
+        try { cached = wx.getStorageSync('shared_snapshot_cache'); } catch (e) { /* ignore */ }
+        if (cached && cached.snapshot) {
+          snapshotInfo.fromCache = true;
+          snapshotInfo.cachedAt = cached.savedAt || 0;
+          return applySnapshot(cached.snapshot);
+        }
+        throw error;
       });
   }
   return snapshotPromise.then(function (snapshot) {

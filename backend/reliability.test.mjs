@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
 import { assertSnapshotReady } from './publish-snapshot.mjs';
 import { checkSite } from './prepare-site.mjs';
 
@@ -55,7 +56,7 @@ test('localized summaries do not expose heuristic risk percentages', () => {
 
 test('offline manifest covers every script and stylesheet in the site', () => {
   // Pre-collection tests must not prevent the collector from refreshing old data.
-  const result = checkSite(new URL('../', import.meta.url).pathname, { requireFresh: false });
+  const result = checkSite(fileURLToPath(new URL('../', import.meta.url)), { requireFresh: false });
   assert(result.assets > 20 && result.version.length === 16);
 });
 

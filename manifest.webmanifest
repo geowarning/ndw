@@ -1,0 +1,19 @@
+{
+  "name": "自然灾害预警 · National Disaster Warning",
+  "short_name": "灾害预警",
+  "description": "全国省、市、区县三级预警查询，防御指南与应急工具，支持离线阅读。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#101010",
+  "theme_color": "#101010",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

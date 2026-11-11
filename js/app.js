@@ -97,8 +97,15 @@
 
   function formatNow(time) {
     var d = new Date(time || Date.now());
-    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
-      ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    try {
+      return new Intl.DateTimeFormat(lang() === 'zh' ? 'zh-CN' : lang(), {
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).format(d);
+    } catch (e) {
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+        ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
   }
 
   /* ---------- 辅助功能 ---------- */

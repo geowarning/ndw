@@ -1135,7 +1135,17 @@ function setLang(code) {
   } catch (e) {
     // 存储失败不影响本次切换
   }
+  applyDocumentLang(code);
 }
+
+function applyDocumentLang(code) {
+  if (typeof document !== 'undefined' && document.documentElement) {
+    document.documentElement.lang = code === 'zh' ? 'zh-CN' : (code || 'zh-CN');
+  }
+}
+
+/* 让读屏与搜索引擎在首次加载时就拿到正确的文档语言。 */
+applyDocumentLang(getLang());
 
 function t(key, lang) {
   var l = lang || getLang();
