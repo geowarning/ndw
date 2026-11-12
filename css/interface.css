@@ -564,6 +564,49 @@ body { background: var(--bg); }
 .detail-summary b { font-size: .82rem; font-weight: 600; }
 @media (max-width: 620px) { .detail-summary { grid-template-columns: 1fr 1fr; } }
 
+/* Grey page background */
+:root {
+  --bg: #363b40;
+  --bg-alt: #3d4349;
+  --card: #3f464c;
+  --card-solid: #3f464c;
+  --card-hover: #4a5259;
+  --card-2: #383f45;
+  --border: rgba(255, 255, 255, .14);
+  --border-strong: rgba(255, 255, 255, .28);
+}
+html, body { background: #363b40 !important; }
+#app, .app-shell, main, .home-dashboard, .section, .expanded-map-page, .detail-page, .global-page { background-color: #363b40; }
+.navbar { background: #2f3439 !important; }
+.nav-drawer { background: #2f3439 !important; }
+.site-footer { background: #2b3035 !important; }
+
+/* Dark native dropdown options */
+.global-filters select, .alert-filters select { color-scheme: dark; background: #1c2329; color: #f5f5f5; }
+.global-filters select option, .alert-filters select option { background: #1c2329; color: #f5f5f5; }
+.global-filters select option:checked, .alert-filters select option:checked { background: #2d6a73; color: #fff; }
+.global-filters select:focus, .alert-filters select:focus { outline: 1px solid var(--holo-line); border-color: var(--holo-line); }
+
+/* Global map zoom / pan */
+.global-map-wrap { position: relative; }
+.gmap { touch-action: none; cursor: grab; }
+.gmap:active { cursor: grabbing; }
+.gzoom { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; gap: 6px; z-index: 4; }
+.gzoom button { width: 34px; height: 34px; border: 1px solid var(--border-strong); border-radius: 9px; background: rgba(10, 15, 20, .82); color: #fff; font: 600 18px/1 sans-serif; cursor: pointer; }
+.gzoom button:hover { background: rgba(126, 240, 255, .16); color: var(--holo-bright); }
+.gzoom-hint { position: absolute; left: 12px; top: 12px; z-index: 4; max-width: 230px; padding: 6px 9px; border-radius: 8px; background: rgba(4, 10, 14, .75); color: var(--text-dim); font-size: .68rem; pointer-events: none; }
+.glables text { fill: #e9f8ff; opacity: .72; paint-order: stroke; stroke: rgba(0, 0, 0, .6); stroke-width: .35; pointer-events: none; }
+.glables-city text { fill: #ffe6b0; opacity: .85; }
+
+/* Keep the decorative globe from painting a black block over the grey page. */
+.home-dashboard .hero { background: #363b40 !important; border-bottom: 1px solid var(--border) !important; }
+.home-dashboard .hero-location, .home-dashboard .home-lang, .home-dashboard .district-pill,
+.home-dashboard .stat-row, .home-dashboard .stat-box { background-color: #3f464c !important; }
+.ops-kpi, .ops-card, .gkpi, .global-side { background: #3f464c !important; }
+.overview-panel, .home-analytics .panel-card, .panel-card, .dcard, .set-card { background-color: #3f464c !important; }
+.home-dashboard .hero > .bg-globe { mix-blend-mode: screen; opacity: .55; background: transparent !important; }
+.global-filters select option, .alert-filters select option { background-color: #1c2329 !important; color: #f5f5f5 !important; }
+
 /* Top search / command palette. */
 .nav-search-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--text-mid); font: inherit; font-size: .8rem; cursor: pointer; }
 .nav-search-btn:hover { color: var(--holo-bright); border-color: var(--holo-line); }

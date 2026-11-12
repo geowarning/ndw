@@ -4,7 +4,8 @@
   var state = {
     mode: 'live', hmin: 4.5, selected: null, country: null,
     layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false },
-    loading: true, error: '', live: null, history: null, el: null, ctx: null
+    loading: true, error: '', live: null, history: null, el: null, ctx: null,
+    zoom: 1, panX: 0, panY: 0
   };
   var cache = { live: null, history: null, countries: null, cities: null, paths: null };
   var bound = false;
@@ -182,7 +183,10 @@
 
   function mapSvg(quakes) {
     var parts = [];
-    parts.push('<image href="assets/world-satellite.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none"></image>');
+    parts.push('<g id="gmapViewport" transform="translate(' + state.panX + ' ' + state.panY + ') scale(' + state.zoom + ')">');
+    parts.push('<image id="gmapBase" href="assets/world-satellite.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none"></image>');
+    parts.push('<image id="gmapHi" href="" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" style="display:none"></image>');
+    parts.push('<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="transparent"></rect>');
     if (state.layers.nightlights) {
       var x1 = proj(70, 60).x, x2 = proj(80, 10).x, y1 = proj(70, 60).y, y2 = proj(80, 10).y;
       parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
@@ -192,6 +196,12 @@
       var hit = state.layers.affected && countryHit(p.name, quakes);
       var cls = 'gcountry' + (hit ? ' hit' : '') + (state.country === p.name ? ' sel' : '');
       parts.push('<path class="' + cls + '" d="' + p.d + '" data-country="' + esc(p.name) + '"><title>' + esc(p.name) + '</title></path>');
+    });
+    parts.push('</g>');
+    parts.push('<g id="gmapCountryLabels" class="glables" style="display:none">');
+    (cache.paths || []).forEach(function (p) {
+      var c = proj(p.lon, p.lat);
+      parts.push('<text x="' + c.x.toFixed(1) + '" y="' + c.y.toFixed(1) + '" text-anchor="middle">' + esc(p.name) + '</text>');
     });
     parts.push('</g>');
     if (state.layers.affected) {
@@ -222,6 +232,12 @@
       });
       parts.push('</g>');
     }
+    parts.push('<g id="gmapCityLabels" class="glables glables-city" style="display:none">');
+    (cache.cities || []).slice(0, 45).forEach(function (c) {
+      var q = proj(c.lon, c.lat);
+      parts.push('<text x="' + q.x.toFixed(1) + '" y="' + (q.y - 2).toFixed(1) + '" text-anchor="middle">' + esc(c.name) + '</text>');
+    });
+    parts.push('</g>');
     parts.push('<g class="gquakes">');
     quakes.forEach(function (q) {
       var p = proj(q.lon, q.lat);
@@ -240,7 +256,86 @@
         parts.push('<circle cx="' + sp.x.toFixed(1) + '" cy="' + sp.y.toFixed(1) + '" r="' + kmToUnits(km).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width="1" stroke-dasharray="4 4" opacity=".8"></circle>');
       });
     }
+    parts.push('</g>');
     return '<svg class="gmap" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(web('globalTitle')) + '">' + parts.join('') + '</svg>';
+  }
+
+  function applyView() {
+    if (!state.el) { return; }
+    var vp = state.el.querySelector('#gmapViewport');
+    if (!vp) { return; }
+    vp.setAttribute('transform', 'translate(' + state.panX + ' ' + state.panY + ') scale(' + state.zoom + ')');
+    var hi = state.el.querySelector('#gmapHi');
+    if (hi) {
+      if (state.zoom >= 2) {
+        if (!hi.getAttribute('href')) { hi.setAttribute('href', 'assets/world-satellite-hi.jpg'); }
+        hi.style.display = '';
+      } else {
+        hi.style.display = 'none';
+      }
+    }
+    var cl = state.el.querySelector('#gmapCountryLabels');
+    if (cl) {
+      cl.style.display = state.zoom >= 1.7 ? '' : 'none';
+      cl.style.fontSize = (7 / state.zoom) + 'px';
+    }
+    var cil = state.el.querySelector('#gmapCityLabels');
+    if (cil) {
+      cil.style.display = state.zoom >= 3 ? '' : 'none';
+      cil.style.fontSize = (5 / state.zoom) + 'px';
+    }
+  }
+  function clampPan() {
+    var minX = W * (1 - state.zoom), minY = H * (1 - state.zoom);
+    state.panX = Math.min(0, Math.max(minX, state.panX));
+    state.panY = Math.min(0, Math.max(minY, state.panY));
+  }
+  function zoomAt(px, py, factor) {
+    var z = Math.max(1, Math.min(8, state.zoom * factor));
+    if (Math.abs(z - state.zoom) < 0.001) { return; }
+    var k = z / state.zoom;
+    state.panX = px - (px - state.panX) * k;
+    state.panY = py - (py - state.panY) * k;
+    state.zoom = z;
+    clampPan();
+    applyView();
+  }
+  var drag = null;
+  var suppressClickUntil = 0;
+  function onWheel(e) {
+    var map = e.target.closest && e.target.closest('.gmap');
+    if (!map) { return; }
+    e.preventDefault();
+    var r = map.getBoundingClientRect();
+    if (!r.width || !r.height) { return; }
+    var px = (e.clientX - r.left) / r.width * W;
+    var py = (e.clientY - r.top) / r.height * H;
+    zoomAt(px, py, Math.exp(-e.deltaY * 0.0015));
+  }
+  function onPointerDown(e) {
+    if (e.button != null && e.button !== 0) { return; }
+    if (e.target.closest('.gzoom,[data-quake]')) { return; }
+    var map = e.target.closest('.gmap');
+    if (!map) { return; }
+    var r = map.getBoundingClientRect();
+    drag = { x: e.clientX, y: e.clientY, px: state.panX, py: state.panY, w: r.width, h: r.height, moved: false };
+    try { map.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+  }
+  function onPointerMove(e) {
+    if (!drag) { return; }
+    if (!drag.w || !drag.h) { return; }
+    var dx = (e.clientX - drag.x) / drag.w * W;
+    var dy = (e.clientY - drag.y) / drag.h * H;
+    if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 4) { drag.moved = true; }
+    if (state.zoom <= 1) { return; }
+    state.panX = drag.px + dx;
+    state.panY = drag.py + dy;
+    clampPan();
+    applyView();
+  }
+  function onPointerUp() {
+    if (drag && drag.moved) { suppressClickUntil = Date.now() + 350; }
+    drag = null;
   }
 
   function detailHtml(q) {
@@ -308,17 +403,31 @@
     el.innerHTML = '<section class="global-page"><div class="container">' +
       header(data, quakes) +
       '<div class="global-layout"><div class="global-map-wrap">' + mapSvg(quakes) +
+        '<div class="gzoom">' +
+          '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +
+          '<button type="button" data-g="zoom" data-v="out" aria-label="' + esc(web('zoomOut')) + '" title="' + esc(web('zoomOut')) + '">−</button>' +
+          '<button type="button" data-g="zoom" data-v="reset" aria-label="' + esc(web('resetView')) + '" title="' + esc(web('resetView')) + '">⟲</button>' +
+        '</div>' +
+        '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
       '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
+    applyView();
   }
 
   function onClick(e) {
+    if (Date.now() < suppressClickUntil) { return; }
     var g = e.target.closest('[data-g]');
     if (g) {
       var k = g.getAttribute('data-g'), v = g.getAttribute('data-v');
+      if (k === 'zoom') {
+        if (v === 'in') { zoomAt(W / 2, H / 2, 1.6); }
+        else if (v === 'out') { zoomAt(W / 2, H / 2, 1 / 1.6); }
+        else { state.zoom = 1; state.panX = 0; state.panY = 0; applyView(); }
+        return;
+      }
       if (k === 'mode' && v && v !== state.mode) {
         state.mode = v; state.selected = null; state.country = null;
         if (v === 'history' && !state.history) {
@@ -363,6 +472,10 @@
     if (!bound) {
       viewEl.addEventListener('click', onClick);
       viewEl.addEventListener('change', onChange);
+      viewEl.addEventListener('wheel', onWheel, { passive: false });
+      viewEl.addEventListener('pointerdown', onPointerDown);
+      window.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointerup', onPointerUp);
       bound = true;
     }
     document.title = ctx.web('globalTitle');

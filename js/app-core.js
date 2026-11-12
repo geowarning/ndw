@@ -154,6 +154,10 @@
     disasterType: { zh: '类型', en: 'Type', es: 'Tipo', fr: 'Type', it: 'Tipo' },
     severity: { zh: '级别', en: 'Severity', es: 'Severidad', fr: 'Gravité', it: 'Gravità' },
     quakeRecords: { zh: '地震记录', en: 'Earthquake records', es: 'Registros sísmicos', fr: 'Séismes enregistrés', it: 'Terremoti registrati' },
+    zoomIn: { zh: '放大', en: 'Zoom in', es: 'Acercar', fr: 'Zoom avant', it: 'Zoom avanti' },
+    zoomOut: { zh: '缩小', en: 'Zoom out', es: 'Alejar', fr: 'Zoom arrière', it: 'Zoom indietro' },
+    resetView: { zh: '重置视图', en: 'Reset view', es: 'Restablecer vista', fr: 'Réinitialiser la vue', it: 'Reimposta vista' },
+    zoomHint: { zh: '滚轮 / 双指缩放，拖动平移', en: 'Scroll or pinch to zoom, drag to pan', es: 'Rueda o pellizco para zoom, arrastra para mover', fr: 'Molette ou pincement pour zoomer, glisser pour déplacer', it: 'Rotella o pizzica per zoom, trascina per spostare' },
     linkCopied: {
       zh: '链接已复制，可粘贴分享',
       en: 'Link copied, ready to share',
