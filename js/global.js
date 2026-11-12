@@ -1,4 +1,4 @@
-﻿/* 鍏ㄧ悆鐏惧鐩戞祴锛氬崼鏄熷簳鍥?+ 瀹炴椂/鍘嗗彶鍦伴渿 + 褰卞搷鍦?+ 鍥藉绛涢€?+ 鍥惧眰 */
+/* 全球灾害监测：卫星底图 + 实时/历史地震 + 影响圈 + 国家筛选 + 图层 */
 (function () {
   var W = 1000, H = 500;
   var state = {
@@ -21,7 +21,7 @@
     });
   }
   function fmt(ms, dateOnly) {
-    if (!ms) { return '鈥?; }
+    if (!ms) { return '—'; }
     try {
       var opt = dateOnly
         ? { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }
@@ -182,7 +182,7 @@
         '<div class="global-layers"><span class="gfl">' + esc(web('layers')) + '</span>' + layers + '</div>' +
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
-        (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' 鈫?' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
+        (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
   }
 
@@ -262,7 +262,7 @@
       parts.push('<g class="gmarker' + (sel ? ' sel' : '') + '" data-quake="' + esc(q.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + magColor(q.mag) + '"><g class="gmarker-inner">' +
         (sel ? '<circle class="gsmile" r="' + (r + 8).toFixed(1) + '" fill="none" stroke="' + magColor(q.mag) + '" stroke-width="1.5"></circle>' : '') +
         '<circle class="core" r="' + r.toFixed(1) + '" fill="' + magColor(q.mag) + '"></circle>' +
-        '<title>M' + q.mag.toFixed(1) + ' 路 ' + esc(q.place) + '</title></g></g>');
+        '<title>M' + q.mag.toFixed(1) + ' · ' + esc(q.place) + '</title></g></g>');
     });
     parts.push('</g>');
     if (state.layers.evacuation && state.selected) {
@@ -361,31 +361,31 @@
 
   function detailHtml(q) {
     var tsu = q.tsunami ? 'YES' : 'NO';
-    var mmi = q.mmi == null ? '鈥? : String(q.mmi);
+    var mmi = q.mmi == null ? '—' : String(q.mmi);
     var alertBadge = q.alert ? '<span class="galert ' + esc(q.alert) + '">' + esc(String(q.alert).toUpperCase()) + '</span>' : '';
     var actions = [
-      lang() === 'zh' ? '瓒翠笅銆佹帺鎶ゃ€佹姄鐗紱杩滅绐楁埛涓庡澧欍€? : 'Drop, Cover and Hold On; stay away from windows and outer walls.',
-      lang() === 'zh' ? '寮洪渿鍚庡韬娴峰哺锛岀珛鍗冲悜楂樺杞Щ銆? : 'If near the coast after strong shaking, move to high ground immediately.',
-      lang() === 'zh' ? '鍏虫敞褰撳湴搴旀€ラ儴闂ㄤ笌娴峰暩棰勮銆? : 'Follow local emergency authorities and tsunami warnings.',
-      lang() === 'zh' ? '妫€鏌ョ噧姘斻€佺數鍔涗笌寤虹瓚缁撴瀯锛岃皑闃蹭綑闇囥€? : 'Check gas, power and structural damage; expect aftershocks.'
+      lang() === 'zh' ? '趴下、掩护、抓牢；远离窗户与外墙。' : 'Drop, Cover and Hold On; stay away from windows and outer walls.',
+      lang() === 'zh' ? '强震后如身处海岸，立即向高处转移。' : 'If near the coast after strong shaking, move to high ground immediately.',
+      lang() === 'zh' ? '关注当地应急部门与海啸预警。' : 'Follow local emergency authorities and tsunami warnings.',
+      lang() === 'zh' ? '检查燃气、电力与建筑结构，谨防余震。' : 'Check gas, power and structural damage; expect aftershocks.'
     ];
     return '<div class="gdetail">' +
       '<div class="gdetail-top"><div><div class="gkicker">' + esc(web('quakeDetail')) + '</div>' +
-        '<h3>' + esc(q.place || '鈥?) + '</h3><div class="gcoords">' + esc(q.lon.toFixed(2)) + '掳, ' + esc(q.lat.toFixed(2)) + '掳</div></div>' +
+        '<h3>' + esc(q.place || '—') + '</h3><div class="gcoords">' + esc(q.lon.toFixed(2)) + '°, ' + esc(q.lat.toFixed(2)) + '°</div></div>' +
         '<div class="gmag" style="color:' + magColor(q.mag) + '">M' + esc(q.mag.toFixed(1)) + '</div></div>' +
       '<div class="gcards">' +
-        '<div><span>' + esc(web('depth')) + '</span><b>' + esc(isFinite(q.depth) ? q.depth.toFixed(1) + ' km' : '鈥?) + '</b></div>' +
+        '<div><span>' + esc(web('depth')) + '</span><b>' + esc(isFinite(q.depth) ? q.depth.toFixed(1) + ' km' : '—') + '</b></div>' +
         '<div><span>' + esc(web('intensity')) + '</span><b>' + esc(mmi) + '</b></div>' +
         '<div><span>' + esc(web('tsunami')) + '</span><b>' + esc(tsu) + '</b></div>' +
       '</div>' +
       '<div class="grows">' +
         '<div><span>' + esc(web('issued')) + '</span><b>' + esc(fmt(q.time)) + '</b></div>' +
         '<div><span>' + esc(web('sourceLabel')) + '</span><b>' + esc(q.source) + '</b></div>' +
-        '<div><span>Significance</span><b>' + esc(q.significance == null ? '鈥? : q.significance) + '</b></div>' +
-        '<div><span>Alert</span><b>' + (alertBadge || '鈥?) + '</b></div>' +
+        '<div><span>Significance</span><b>' + esc(q.significance == null ? '—' : q.significance) + '</b></div>' +
+        '<div><span>Alert</span><b>' + (alertBadge || '—') + '</b></div>' +
       '</div>' +
       '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul></div>' +
-      (q.url ? '<a class="btn btn-outline" href="' + esc(q.url) + '" target="_blank" rel="noopener noreferrer">USGS event 鈫?/a>' : '') +
+      (q.url ? '<a class="btn btn-outline" href="' + esc(q.url) + '" target="_blank" rel="noopener noreferrer">USGS event ↗</a>' : '') +
       '</div>';
   }
 
@@ -395,7 +395,7 @@
     }
     if (state.country) {
       var list = quakesInCountry(quakes).slice().sort(function (a, b) { return b.mag - a.mag; }).slice(0, 8);
-      return '<div class="gside-head"><h3>' + esc(state.country) + '</h3><span>' + esc(web('nearQuakes')) + ' 路 ' + list.length + '</span></div>' +
+      return '<div class="gside-head"><h3>' + esc(state.country) + '</h3><span>' + esc(web('nearQuakes')) + ' · ' + list.length + '</span></div>' +
         '<div class="glist">' + list.map(function (q) {
           return '<button type="button" class="gitem" data-quake="' + esc(q.id) + '"><b style="color:' + magColor(q.mag) + '">M' + q.mag.toFixed(1) + '</b><span>' + esc(q.place) + '</span><small>' + esc(fmt(q.time)) + '</small></button>';
         }).join('') + '</div>';
@@ -411,7 +411,7 @@
     var el = state.el;
     if (!el) { return; }
     if (state.loading && !state.live) {
-      el.innerHTML = '<section class="global-page"><div class="container"><div class="global-head"><div><div class="eyebrow">GLOBAL DISASTER MONITOR</div><h1>' + esc(web('globalTitle')) + '</h1><p>' + esc(web('globalSub')) + '</p></div></div><div class="state-box"><div class="spinner"></div>' + esc(web('live')) + '鈥?/div></div></section>';
+      el.innerHTML = '<section class="global-page"><div class="container"><div class="global-head"><div><div class="eyebrow">GLOBAL DISASTER MONITOR</div><h1>' + esc(web('globalTitle')) + '</h1><p>' + esc(web('globalSub')) + '</p></div></div><div class="state-box"><div class="spinner"></div>' + esc(web('live')) + '…</div></div></section>';
       return;
     }
     if (state.error && !state.live) {
@@ -426,13 +426,13 @@
       '<div class="global-layout"><div class="global-map-wrap">' + mapSvg(quakes) +
         '<div class="gzoom">' +
           '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +
-          '<button type="button" data-g="zoom" data-v="out" aria-label="' + esc(web('zoomOut')) + '" title="' + esc(web('zoomOut')) + '">鈭?/button>' +
-          '<button type="button" data-g="zoom" data-v="reset" aria-label="' + esc(web('resetView')) + '" title="' + esc(web('resetView')) + '">鉄?/button>' +
+          '<button type="button" data-g="zoom" data-v="out" aria-label="' + esc(web('zoomOut')) + '" title="' + esc(web('zoomOut')) + '">−</button>' +
+          '<button type="button" data-g="zoom" data-v="reset" aria-label="' + esc(web('resetView')) + '" title="' + esc(web('resetView')) + '">⟲</button>' +
         '</div>' +
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
-      '<p class="global-foot">' + esc(web('globalNote')) + ' 路 CnOpenData 路 NASA VNP46A2 鍘熷鐡︾墖 2400脳2400</p>' +
+      '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2 原始瓦片 2400×2400</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
     applyView();
