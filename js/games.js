@@ -1426,6 +1426,8 @@
           renderer.domElement.parentNode.removeChild(renderer.domElement);
         }
       }
+      if (state && state.cubeRT) { state.cubeRT.dispose(); }
+      if (ENV_TEX) { ENV_TEX.dispose(); ENV_TEX = null; }
       if (cv) { cv.style.display = ''; }
       container = null; renderer = null; scene = null; state = null; cv = null; frameEl = null;
       splashes.length = 0;
