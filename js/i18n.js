@@ -234,7 +234,7 @@ var UI = {
     districtCoverNote: "官方未细分到区的预警，按覆盖全市处理"
   },
   en: {
-    appName: 'Natural Disaster Alert',
+    appName: 'Natural Disaster Alert System',
     tabIndex: 'Alert Center',
     tabGuide: 'Guide',
     tabTools: 'Tools',

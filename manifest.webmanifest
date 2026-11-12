@@ -1,6 +1,6 @@
 {
-  "name": "自然灾害预警 · National Disaster Warning",
-  "short_name": "灾害预警",
+  "name": "Natural Disaster Alert System",
+  "short_name": "ND Alert",
   "description": "全国省、市、区县三级预警查询，防御指南与应急工具，支持离线阅读。",
   "lang": "zh-CN",
   "start_url": "./",
