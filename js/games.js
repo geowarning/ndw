@@ -114,6 +114,27 @@
     });
   }
 
+  function rockTexture() {
+    return canvasTexture(128, function (g, s) {
+      g.fillStyle = '#8a7f6d';
+      g.fillRect(0, 0, s, s);
+      for (var i = 0; i < 700; i++) {
+        var v = Math.random();
+        g.fillStyle = v < 0.35 ? '#6f6555' : v < 0.7 ? '#9c9180' : '#5a5145';
+        var w = 1 + Math.random() * 4;
+        g.fillRect(Math.random() * s, Math.random() * s, w, w * 0.6);
+      }
+      g.strokeStyle = 'rgba(60, 52, 44, 0.5)';
+      for (var j = 0; j < 40; j++) {
+        var x = Math.random() * s, y = Math.random() * s;
+        g.beginPath();
+        g.moveTo(x, y);
+        g.lineTo(x + (Math.random() - 0.5) * 40, y + Math.random() * 30);
+        g.stroke();
+      }
+    });
+  }
+
   function addParkTree(scene, x, z, scale) {
     var g = new THREE.Group();
     var s = scale || 1;
@@ -164,9 +185,22 @@
   }
 
   function addMountain(scene, x, z, radius, height) {
+    var geo = new THREE.ConeGeometry(radius, height, 9, 4);
+    var pos = geo.attributes.position;
+    for (var i = 0; i < pos.count; i++) {
+      var y = pos.getY(i);
+      if (y > -height / 2 + 2 && y < height / 2 - 2) {
+        pos.setX(i, pos.getX(i) + (Math.random() - 0.5) * radius * 0.12);
+        pos.setZ(i, pos.getZ(i) + (Math.random() - 0.5) * radius * 0.12);
+        pos.setY(i, y + (Math.random() - 0.5) * height * 0.04);
+      }
+    }
+    geo.computeVertexNormals();
     var m = new THREE.Mesh(
-      new THREE.ConeGeometry(radius, height, 6, 1),
-      new THREE.MeshStandardMaterial({ color: 0x557a70, roughness: 0.95, flatShading: true })
+      geo,
+      new THREE.MeshStandardMaterial({
+        map: rockTexture(), color: 0xb0a48f, roughness: 0.95, flatShading: true
+      })
     );
     m.position.set(x, height / 2 - 6, z);
     scene.add(m);
@@ -321,7 +355,7 @@
   function aquaConfig(level) {
     return {
       targets: level,
-      time: 30 + level * 9,          // L1=39s … L7=93s
+      time: 20 + level * 6,          // L1=26s … L7=62s
       // 目标落在最大射程的 ~0.90–0.99 区间：低抛解约 24–33°，高抛解约 44–50°。
       rangeMin: 30.6 + (level - 1) * 0.28,
       rangeMax: 32.6 + (level - 1) * 0.16,
@@ -346,7 +380,7 @@
     };
     scene = new THREE.Scene();
     scene.background = new THREE.Color(0x4aa3e8);
-    scene.fog = new THREE.Fog(0x7fc4ff, 140, 380);
+    scene.fog = new THREE.Fog(0x7fc4ff, 180, 600);
     camera = new THREE.PerspectiveCamera(58, 1.38, 0.1, 400);
     camera.position.set(0, 4.2, 5.2);
     camera.lookAt(0, 1.0, -30);
@@ -403,13 +437,13 @@
 
     // 落点标记
     S.marker = new THREE.Mesh(
-      new THREE.RingGeometry(0.8, 1.3, 40),
+      new THREE.RingGeometry(0.5, 0.85, 40),
       new THREE.MeshBasicMaterial({ color: 0xffe600, transparent: true, opacity: 1, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
     );
     S.marker.renderOrder = 10;
     S.marker.rotation.x = -Math.PI / 2;
     var markerOutline = new THREE.Mesh(
-      new THREE.RingGeometry(1.3, 1.5, 40),
+      new THREE.RingGeometry(0.85, 1.0, 40),
       new THREE.MeshBasicMaterial({ color: 0x111111, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
     );
     markerOutline.renderOrder = 9;
@@ -840,11 +874,9 @@
     makeLights(12, 25, 10);
 
     // 地面（程序化草地纹理）
-    var gTex = grassTexture();
-    gTex.repeat.set(6, 6);
     var ground = new THREE.Mesh(
       new THREE.BoxGeometry(span + 2, 0.4, span + 2),
-      new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95, map: gTex })
+      new THREE.MeshStandardMaterial({ color: 0x2f9a3f, roughness: 0.95 })
     );
     ground.position.y = -0.25;
     ground.receiveShadow = true;
@@ -859,7 +891,7 @@
       pts.push(new THREE.Vector3(-span / 2, 0.02, o), new THREE.Vector3(span / 2, 0.02, o));
     }
     var lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
-    var gridLines = new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0x3a6b48, transparent: true, opacity: 0.5 }));
+    var gridLines = new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: 0x0e2b1c, transparent: true, opacity: 0.85 }));
     scene.add(gridLines);
 
     // 物体
