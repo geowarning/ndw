@@ -5,9 +5,9 @@
     mode: 'live', hmin: 4.5, selected: null, country: null,
     layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false },
     loading: true, error: '', live: null, history: null, el: null, ctx: null,
-    zoom: 1, panX: 0, panY: 0
+    zoom: 1, panX: 0, panY: 0, nasaDay: '001'
   };
-  var cache = { live: null, history: null, countries: null, cities: null, paths: null };
+  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null };
   var bound = false;
 
   function web(k) { return state.ctx.web(k); }
@@ -61,13 +61,15 @@
     return '';
   }
   function ensureGeo() {
-    if (cache.paths) { return Promise.resolve(); }
     return Promise.all([
       cache.countries ? Promise.resolve(cache.countries) : fetchJson('assets/world-countries.geojson'),
-      cache.cities ? Promise.resolve(cache.cities) : fetchJson('assets/world-cities.json')
+      cache.cities ? Promise.resolve(cache.cities) : fetchJson('assets/world-cities.json'),
+      cache.tiles ? Promise.resolve(cache.tiles) : fetchJson('assets/nasa-tiles/index.json')
     ]).then(function (res) {
       cache.countries = res[0];
       cache.cities = res[1];
+      cache.tiles = res[2];
+      if (cache.paths) { return; }
       var paths = [];
       (cache.countries.features || []).forEach(function (f) {
         var d = geoPath(f.geometry);
@@ -169,6 +171,9 @@
       '</div>' +
       '<div class="global-toolbar">' +
         '<div class="global-filters"><span class="gfl">' + esc(web('countryLabel')) + '</span><select data-g="country-select" aria-label="' + esc(web('countryLabel')) + '">' + countryOpts + '</select>' +
+        (state.layers.nightlights && cache.tiles ? '<span class="gfl">NASA</span><select data-g="nasaday" aria-label="NASA VNP46A2">' + cache.tiles.days.map(function (d) {
+          return '<option value="' + d.id + '"' + (state.nasaDay === d.id ? ' selected' : '') + '>' + esc(d.date) + '</option>';
+        }).join('') + '</select>' : '') +
         (isLive ? '' : '<span class="gfl">' + esc(web('history')) + '</span>' +
           ['7', '4.5', '2.5'].map(function (v) {
             return '<button type="button" class="gchip' + (String(state.hmin) === v ? ' active' : '') + '" data-g="hmin" data-v="' + v + '">M' + v + '+</button>';
@@ -188,8 +193,19 @@
     parts.push('<image id="gmapHi" href="" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" style="display:none"></image>');
     parts.push('<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="transparent"></rect>');
     if (state.layers.nightlights) {
-      var x1 = proj(70, 60).x, x2 = proj(80, 10).x, y1 = proj(70, 60).y, y2 = proj(80, 10).y;
-      parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
+      var day = null;
+      if (cache.tiles && cache.tiles.days && cache.tiles.days.length) {
+        day = cache.tiles.days.filter(function (d) { return d.id === state.nasaDay; })[0] || cache.tiles.days[0];
+      }
+      if (day) {
+        day.tiles.forEach(function (t) {
+          var p1 = proj(t.west, t.north), p2 = proj(t.east, t.south);
+          parts.push('<image href="assets/nasa-tiles/' + t.file + '" x="' + p1.x.toFixed(2) + '" y="' + p1.y.toFixed(2) + '" width="' + (p2.x - p1.x).toFixed(2) + '" height="' + (p2.y - p1.y).toFixed(2) + '" preserveAspectRatio="none" opacity=".92"></image>');
+        });
+      } else {
+        var x1 = proj(70, 60).x, x2 = proj(80, 10).x, y1 = proj(70, 60).y, y2 = proj(80, 10).y;
+        parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
+      }
     }
     parts.push('<g class="gcountries">');
     (cache.paths || []).forEach(function (p) {
@@ -243,10 +259,10 @@
       var p = proj(q.lon, q.lat);
       var r = Math.max(2, Math.min(8, 2 + (q.mag - 1) * 1.05));
       var sel = state.selected && state.selected.id === q.id;
-      parts.push('<g class="gmarker' + (sel ? ' sel' : '') + '" data-quake="' + esc(q.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + magColor(q.mag) + '">' +
+      parts.push('<g class="gmarker' + (sel ? ' sel' : '') + '" data-quake="' + esc(q.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + magColor(q.mag) + '"><g class="gmarker-inner">' +
         (sel ? '<circle class="gsmile" r="' + (r + 8).toFixed(1) + '" fill="none" stroke="' + magColor(q.mag) + '" stroke-width="1.5"></circle>' : '') +
         '<circle class="core" r="' + r.toFixed(1) + '" fill="' + magColor(q.mag) + '"></circle>' +
-        '<title>M' + q.mag.toFixed(1) + ' · ' + esc(q.place) + '</title></g>');
+        '<title>M' + q.mag.toFixed(1) + ' · ' + esc(q.place) + '</title></g></g>');
     });
     parts.push('</g>');
     if (state.layers.evacuation && state.selected) {
@@ -265,6 +281,11 @@
     var vp = state.el.querySelector('#gmapViewport');
     if (!vp) { return; }
     vp.setAttribute('transform', 'translate(' + state.panX + ' ' + state.panY + ') scale(' + state.zoom + ')');
+    var inv = 1 / state.zoom;
+    var inner = state.el.querySelectorAll('.gmarker-inner');
+    for (var i = 0; i < inner.length; i++) {
+      inner[i].setAttribute('transform', 'scale(' + inv + ')');
+    }
     var hi = state.el.querySelector('#gmapHi');
     if (hi) {
       if (state.zoom >= 2) {
@@ -291,7 +312,7 @@
     state.panY = Math.min(0, Math.max(minY, state.panY));
   }
   function zoomAt(px, py, factor) {
-    var z = Math.max(1, Math.min(8, state.zoom * factor));
+    var z = Math.max(1, Math.min(64, state.zoom * factor));
     if (Math.abs(z - state.zoom) < 0.001) { return; }
     var k = z / state.zoom;
     state.panX = px - (px - state.panX) * k;
@@ -411,7 +432,7 @@
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
-      '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2</p>' +
+      '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2 原始瓦片 2400×2400</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
     applyView();
@@ -462,6 +483,8 @@
   function onChange(e) {
     var s = e.target.closest('[data-g="country-select"]');
     if (s) { state.country = s.value || null; state.selected = null; paint(); }
+    var d = e.target.closest('[data-g="nasaday"]');
+    if (d) { state.nasaDay = d.value; paint(); }
   }
 
   function render(viewEl, ctx) {
