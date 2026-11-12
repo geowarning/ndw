@@ -19,7 +19,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
   // Hash routes share index.html. Only explicitly listed shell assets may fall back.
   if (!allowedPaths.has(url.pathname)) return;
-  event.respondWith(fetch(event.request).then(response => {
+  event.respondWith(fetch(event.request, { cache: 'no-cache' }).then(response => {
     if (!response.ok) throw Error('Asset unavailable');
     return response;
   }).catch(() => caches.open(CACHE).then(cache => cache.match(event.request, { ignoreSearch: true })).then(response => response || Response.error())));

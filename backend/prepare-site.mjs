@@ -6,7 +6,7 @@ import { assertSnapshotReady, validateSnapshot } from './publish-snapshot.mjs';
 
 export function checkSite(root, options = {}) {
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-  const assets = [...new Set([...html.matchAll(/(?:src|href)="([^"?#]+\.(?:js|css|svg))"/g)].map(match => match[1]))].sort();
+  const assets = [...new Set([...html.matchAll(/(?:src|href)="([^"?#]+\.(?:js|css|svg))(?:\?[^"]*)?"/g)].map(match => match[1]))].sort();
   const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
   const digest = crypto.createHash('sha256');
   for (const asset of ['index.html', ...assets]) {
