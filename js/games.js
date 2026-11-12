@@ -187,13 +187,21 @@
   function addMountain(scene, x, z, radius, height) {
     var geo = new THREE.ConeGeometry(radius, height, 9, 4);
     var pos = geo.attributes.position;
+    // 同一位置的接缝顶点必须获得相同抖动，否则会裂开成洞
+    var offsets = {};
     for (var i = 0; i < pos.count; i++) {
-      var y = pos.getY(i);
-      if (y > -height / 2 + 2 && y < height / 2 - 2) {
-        pos.setX(i, pos.getX(i) + (Math.random() - 0.5) * radius * 0.12);
-        pos.setZ(i, pos.getZ(i) + (Math.random() - 0.5) * radius * 0.12);
-        pos.setY(i, y + (Math.random() - 0.5) * height * 0.04);
+      var vx = pos.getX(i), vy = pos.getY(i), vz = pos.getZ(i);
+      if (vy <= -height / 2 + 2 || vy >= height / 2 - 2) { continue; }
+      var key = Math.round(vx * 1000) + ',' + Math.round(vy * 1000) + ',' + Math.round(vz * 1000);
+      var off = offsets[key];
+      if (!off) {
+        off = offsets[key] = {
+          x: (Math.random() - 0.5) * radius * 0.12,
+          y: (Math.random() - 0.5) * height * 0.04,
+          z: (Math.random() - 0.5) * radius * 0.12
+        };
       }
+      pos.setXYZ(i, vx + off.x, vy + off.y, vz + off.z);
     }
     geo.computeVertexNormals();
     var m = new THREE.Mesh(
@@ -964,21 +972,36 @@
     scene.add(g);
   }
   function addPit(wp, c) {
-    var pit = new THREE.Mesh(
-      new THREE.PlaneGeometry(c * 0.92, c * 0.92),
-      new THREE.MeshStandardMaterial({ color: 0x05101a, roughness: 1 })
+    var g = new THREE.Group();
+    // 向下凹陷的坑壁（开口圆台）+ 坑底，形成真正的 3D 坑
+    var wall = new THREE.Mesh(
+      new THREE.CylinderGeometry(c * 0.44, c * 0.3, 0.7, 12, 1, true),
+      new THREE.MeshStandardMaterial({ color: 0x111a1c, roughness: 1, side: THREE.DoubleSide })
     );
-    pit.rotation.x = -Math.PI / 2;
-    pit.position.set(wp.x, 0.03, wp.z);
-    scene.add(pit);
-    var edge = new THREE.Mesh(
-      new THREE.RingGeometry(c * 0.42, c * 0.48, 4),
-      new THREE.MeshBasicMaterial({ color: 0x37526a, transparent: true, opacity: 0.7, side: THREE.DoubleSide })
+    wall.position.y = -0.36;
+    g.add(wall);
+    var bottom = new THREE.Mesh(
+      new THREE.CircleGeometry(c * 0.3, 12),
+      new THREE.MeshStandardMaterial({ color: 0x050b0e, roughness: 1 })
     );
-    edge.rotation.x = -Math.PI / 2;
-    edge.rotation.z = Math.PI / 4;
-    edge.position.set(wp.x, 0.04, wp.z);
-    scene.add(edge);
+    bottom.rotation.x = -Math.PI / 2;
+    bottom.position.y = -0.71;
+    g.add(bottom);
+    // 坑口碎石
+    for (var i = 0; i < 8; i++) {
+      var a = (i / 8) * Math.PI * 2 + Math.random() * 0.3;
+      var rock = new THREE.Mesh(
+        new THREE.DodecahedronGeometry(0.16 + Math.random() * 0.13, 0),
+        new THREE.MeshStandardMaterial({ color: 0x6f6a60, roughness: 0.95, flatShading: true })
+      );
+      rock.position.set(Math.cos(a) * c * 0.42, 0.08, Math.sin(a) * c * 0.42);
+      rock.rotation.set(Math.random(), Math.random(), Math.random());
+      rock.castShadow = true;
+      g.add(rock);
+    }
+    g.position.set(wp.x, 0, wp.z);
+    g.traverse(function (m) { if (m.isMesh) m.castShadow = true; });
+    scene.add(g);
   }
   function addLeafPile(wp) {
     var g = new THREE.Group();
@@ -1450,14 +1473,14 @@
       window.removeEventListener('mousemove', onPointer);
       window.removeEventListener('click', onPointer);
       hidePanel();
+      if (state && state.cubeRT) { try { state.cubeRT.dispose(); } catch (e) { /* ignore */ } }
+      if (ENV_TEX) { try { ENV_TEX.dispose(); } catch (e) { /* ignore */ } ENV_TEX = null; }
       if (renderer) {
-        renderer.dispose();
+        try { renderer.dispose(); } catch (e) { /* ignore */ }
         if (renderer.domElement && renderer.domElement.parentNode) {
           renderer.domElement.parentNode.removeChild(renderer.domElement);
         }
       }
-      if (state && state.cubeRT) { state.cubeRT.dispose(); }
-      if (ENV_TEX) { ENV_TEX.dispose(); ENV_TEX = null; }
       if (cv) { cv.style.display = ''; }
       container = null; renderer = null; scene = null; state = null; cv = null; frameEl = null;
       splashes.length = 0;

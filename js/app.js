@@ -1949,7 +1949,7 @@
         renderProducts();
         break;
       case 'back-products':
-        if (window.NDGames) { window.NDGames.stop(); }
+        if (window.NDGames) { try { window.NDGames.stop(); } catch (e) { /* never block leaving the game */ } }
         productsState.game = null;
         renderProducts();
         break;
