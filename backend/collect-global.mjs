@@ -115,7 +115,9 @@ async function fromUsgs() {
 let data = null;
 let note = '';
 const key = process.env.APIZERO_KEY;
-if (key) {
+if (!key) {
+  note = 'APIZERO_KEY 未配置';
+} else {
   try {
     data = await fromApizero(key);
   } catch (e) {
@@ -126,7 +128,7 @@ if (!data) {
   data = await fromUsgs();
   if (note) {
     console.error('apizero fallback:', note);
-    data.note = 'apizero 未开通，当前使用 USGS 实时源';
+    data.note = key ? 'apizero 调用失败，当前使用 USGS 实时源' : 'APIZERO_KEY 未配置，当前使用 USGS 实时源';
   }
 }
 await fs.mkdir(path.dirname(outFile), { recursive: true });
