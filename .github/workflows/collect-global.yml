@@ -16,14 +16,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify APIZERO_KEY is configured
-        env:
-          APIZERO_KEY: ${{ secrets.APIZERO_KEY }}
-        run: |
-          if [ -z "$APIZERO_KEY" ]; then
-            echo "::error::APIZERO_KEY secret is not configured. Add it in Settings -> Secrets and variables -> Actions."
-            exit 1
-          fi
       - name: Collect earthquake snapshot
         env:
           APIZERO_KEY: ${{ secrets.APIZERO_KEY }}
