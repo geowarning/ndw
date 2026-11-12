@@ -8,6 +8,7 @@
     zoom: 1, panX: 0, panY: 0, nasaDay: '001'
   };
   var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null };
+  var wms = { key: '', timer: null };
   var bound = false;
 
   function web(k) { return state.ctx.web(k); }
@@ -191,6 +192,7 @@
     parts.push('<g id="gmapViewport" transform="translate(' + state.panX + ' ' + state.panY + ') scale(' + state.zoom + ')">');
     parts.push('<image id="gmapBase" href="assets/world-satellite.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none"></image>');
     parts.push('<image id="gmapHi" href="" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" style="display:none"></image>');
+    parts.push('<image id="gmapWms" href="" x="0" y="0" width="0" height="0" preserveAspectRatio="none" style="display:none"></image>');
     parts.push('<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="transparent"></rect>');
     if (state.layers.nightlights) {
       var day = null;
@@ -305,6 +307,47 @@
       cil.style.display = state.zoom >= 3 ? '' : 'none';
       cil.style.fontSize = (5 / state.zoom) + 'px';
     }
+    updateWms();
+  }
+  function updateWms() {
+    if (!state.el) { return; }
+    var img = state.el.querySelector('#gmapWms');
+    if (!img) { return; }
+    if (state.zoom < 8) {
+      img.style.display = 'none';
+      wms.key = '';
+      return;
+    }
+    var x0 = -state.panX / state.zoom;
+    var y0 = -state.panY / state.zoom;
+    var x1 = x0 + W / state.zoom;
+    var y1 = y0 + H / state.zoom;
+    var lon0 = Math.max(-180, x0 / W * 360 - 180);
+    var lon1 = Math.min(180, x1 / W * 360 - 180);
+    var lat0 = Math.max(-90, 90 - y1 / H * 180);
+    var lat1 = Math.min(90, 90 - y0 / H * 180);
+    var key = state.zoom.toFixed(2) + '|' + lon0.toFixed(2) + ',' + lat0.toFixed(2) + ',' + lon1.toFixed(2) + ',' + lat1.toFixed(2);
+    if (key === wms.key) { return; }
+    wms.key = key;
+    if (wms.timer) { clearTimeout(wms.timer); }
+    wms.timer = setTimeout(function () {
+      var url = 'https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&LAYERS=BlueMarble_ShadedRelief_Bathymetry&STYLES=&FORMAT=image/jpeg&WIDTH=2048&HEIGHT=1024&SRS=EPSG:4326&BBOX=' +
+        [lon0, lat0, lon1, lat1].map(function (v) { return v.toFixed(3); }).join(',');
+      var probe = new Image();
+      probe.onload = function () {
+        if (wms.key !== key) { return; }
+        var el = state.el && state.el.querySelector('#gmapWms');
+        if (!el) { return; }
+        el.setAttribute('href', url);
+        el.setAttribute('x', x0.toFixed(2));
+        el.setAttribute('y', y0.toFixed(2));
+        el.setAttribute('width', (x1 - x0).toFixed(2));
+        el.setAttribute('height', (y1 - y0).toFixed(2));
+        el.style.display = '';
+      };
+      probe.onerror = function () { /* keep the baked basemap */ };
+      probe.src = url;
+    }, 350);
   }
   function clampPan() {
     var minX = W * (1 - state.zoom), minY = H * (1 - state.zoom);
@@ -312,7 +355,7 @@
     state.panY = Math.min(0, Math.max(minY, state.panY));
   }
   function zoomAt(px, py, factor) {
-    var z = Math.max(1, Math.min(128, state.zoom * factor));
+    var z = Math.max(1, Math.min(96, state.zoom * factor));
     if (Math.abs(z - state.zoom) < 0.001) { return; }
     var k = z / state.zoom;
     state.panX = px - (px - state.panX) * k;
@@ -435,6 +478,7 @@
       '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2 原始瓦片 2400×2400</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
+    wms.key = '';
     applyView();
   }
 
