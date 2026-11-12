@@ -22,10 +22,31 @@
             '<div class="game-title"><h2>' + esc(name) + '</h2><p>' + esc(how) + '</p></div>' +
             '<div class="game-hud" id="gameHUD"></div>' +
             '<canvas id="gameCanvas" class="game-canvas"></canvas>' +
+            '<button class="game-help-btn" id="gameHelpBtn" type="button" aria-label="' + esc(how) + '">?</button>' +
+            '<div class="game-help-panel" id="gameHelpPanel">' +
+              '<button class="game-help-close" id="gameHelpClose" type="button" aria-label="Close">×</button>' +
+              '<div class="game-help-body">' + esc(how) + '</div>' +
+            '</div>' +
           '</div>' +
         '</div></section>';
       ctx.setTitle(name);
       ctx.explainView();
+      var helpBtn = document.getElementById('gameHelpBtn');
+      var helpPanel = document.getElementById('gameHelpPanel');
+      var helpClose = document.getElementById('gameHelpClose');
+      if (helpBtn && helpPanel) {
+        helpBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          helpPanel.hidden = !helpPanel.hidden;
+        });
+        helpPanel.addEventListener('click', function (e) { e.stopPropagation(); });
+      }
+      if (helpClose && helpPanel) {
+        helpClose.addEventListener('click', function (e) {
+          e.stopPropagation();
+          helpPanel.hidden = true;
+        });
+      }
       var cv = document.getElementById('gameCanvas');
       if (window.NDGames && cv) {
         window.NDGames.start(cv, g, T());

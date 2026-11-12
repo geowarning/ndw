@@ -444,3 +444,22 @@ body { background: var(--bg); }
   .expanded-map-viewport { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-x pan-y pinch-zoom; }
   #expandedMap { min-width: 720px; }
 }
+
+/* Expanded-map "fit to screen" toggle. */
+.expanded-map-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.map-scan-btn.is-active { color: var(--holo-bright); text-decoration-thickness: 2px; }
+.expanded-map-viewport.map-fit #expandedMap { min-width: 0; width: 100%; }
+
+/* Skeleton shimmer while the home data is loading. */
+.home-dashboard.is-loading .state-box { position: relative; overflow: hidden; }
+.home-dashboard.is-loading .state-box::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%); background-size: 200% 100%; animation: ndw-shimmer 1.4s linear infinite; }
+@keyframes ndw-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .home-dashboard.is-loading .state-box::after { animation: none; } }
+
+/* In-game instructions button and panel. */
+.game-help-btn { position: absolute; top: 10px; right: 10px; z-index: 6; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-strong, #777); background: rgba(8, 10, 12, .72); color: #fff; font: 700 16px/1 sans-serif; cursor: pointer; }
+.game-help-btn:hover { background: rgba(30, 40, 48, .92); }
+.game-help-panel { position: absolute; right: 10px; bottom: 10px; z-index: 6; width: min(320px, calc(100% - 20px)); max-height: 62%; overflow: auto; padding: 14px 16px 12px; background: rgba(8, 12, 16, .94); border: 1px solid var(--border-strong, #777); border-radius: 12px; color: #f2f5f6; font-size: .82rem; line-height: 1.65; box-shadow: 0 10px 30px rgba(0, 0, 0, .4); }
+.game-help-panel[hidden] { display: none; }
+.game-help-close { position: absolute; top: 6px; right: 9px; border: 0; background: transparent; color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
+.game-help-body { padding-right: 18px; }

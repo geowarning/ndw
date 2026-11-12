@@ -159,43 +159,121 @@
     }
   }
 
+  function addMountain(scene, x, z, radius, height) {
+    var m = new THREE.Mesh(
+      new THREE.ConeGeometry(radius, height, 6, 1),
+      new THREE.MeshStandardMaterial({ color: 0x6b7d78, roughness: 0.95, flatShading: true })
+    );
+    m.position.set(x, height / 2 - 6, z);
+    scene.add(m);
+  }
+
+  function addKiosk(scene, x, z) {
+    var g = new THREE.Group();
+    var wall = new THREE.MeshStandardMaterial({ color: 0xd8cbb0, roughness: 0.85 });
+    var red = new THREE.MeshStandardMaterial({ color: 0xb5523f, roughness: 0.7 });
+    var white = new THREE.MeshStandardMaterial({ color: 0xf4efe4, roughness: 0.8 });
+    var body = new THREE.Mesh(new THREE.BoxGeometry(4, 2.4, 3), wall);
+    body.position.y = 1.2;
+    body.castShadow = true;
+    g.add(body);
+    var roof = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.25, 3.6), red);
+    roof.position.y = 2.55;
+    g.add(roof);
+    for (var i = 0; i < 4; i++) {
+      var stripe = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.06, 1.2), i % 2 ? white : red);
+      stripe.position.set(-1.5 + i * 1.0, 2.05, 1.5);
+      g.add(stripe);
+    }
+    var counter = new THREE.Mesh(
+      new THREE.BoxGeometry(4.2, 0.12, 0.6),
+      new THREE.MeshStandardMaterial({ color: 0x8a6a4a, roughness: 0.9 })
+    );
+    counter.position.set(0, 0.9, 1.6);
+    g.add(counter);
+    g.position.set(x, 0.4, z);
+    scene.add(g);
+  }
+
   function addPark(scene) {
     var grassMat = new THREE.MeshStandardMaterial({ color: 0x2f6b3a, roughness: 0.95, map: grassTexture() });
     grassMat.map.repeat.set(6, 2);
+
+    // 左、右、远三面湖岸，把水面围成一个湖
+    var left = new THREE.Mesh(new THREE.BoxGeometry(100, 0.6, 220), grassMat);
+    left.position.set(-80, 0.05, -50);
+    left.receiveShadow = true;
+    scene.add(left);
+    var right = left.clone();
+    right.position.x = 80;
+    scene.add(right);
     var far = new THREE.Mesh(new THREE.BoxGeometry(260, 0.6, 70), grassMat);
     far.position.set(0, 0.05, -118);
     far.receiveShadow = true;
     scene.add(far);
-    var left = new THREE.Mesh(new THREE.BoxGeometry(70, 0.6, 190), grassMat);
-    left.position.set(-105, 0.05, -58);
-    left.receiveShadow = true;
-    scene.add(left);
-    var right = left.clone();
-    right.position.x = 105;
-    scene.add(right);
 
+    // 沿湖步道
+    var paveMat = new THREE.MeshStandardMaterial({ color: 0xbfb5a3, roughness: 0.9 });
+    [[-31.5, -50, 3, 220], [31.5, -50, 3, 220], [0, -84.5, 63, 3]].forEach(function (p) {
+      var pave = new THREE.Mesh(new THREE.BoxGeometry(p[2], 0.12, p[3]), paveMat);
+      pave.position.set(p[0], 0.4, p[1]);
+      pave.receiveShadow = true;
+      scene.add(pave);
+    });
+
+    // 道路
     var road = new THREE.Mesh(
-      new THREE.BoxGeometry(210, 0.08, 10),
+      new THREE.BoxGeometry(210, 0.08, 8),
       new THREE.MeshStandardMaterial({ color: 0x2b2b30, roughness: 0.9 })
     );
-    road.position.set(0, 0.42, -100);
+    road.position.set(0, 0.42, -96);
     road.receiveShadow = true;
     scene.add(road);
     var dashMat = new THREE.MeshBasicMaterial({ color: 0xc8b560 });
     for (var i = -11; i <= 11; i++) {
-      var dash = new THREE.Mesh(new THREE.BoxGeometry(6, 0.03, 0.45), dashMat);
-      dash.position.set(i * 9, 0.47, -100);
+      var dash = new THREE.Mesh(new THREE.BoxGeometry(6, 0.03, 0.4), dashMat);
+      dash.position.set(i * 9, 0.47, -96);
       scene.add(dash);
     }
 
-    for (var t = 0; t < 14; t++) {
-      addParkTree(scene, -88 + t * 12, -108 - (t % 3) * 5, 0.9 + Math.random() * 0.5);
+    // 远岸与两岸的树
+    for (var t = 0; t < 16; t++) {
+      addParkTree(scene, -36 + t * 5, -110 - (t % 3) * 4, 0.9 + Math.random() * 0.5);
     }
-    addBuilding(scene, -62, -132, 10, 18, 8, 0x3a4a58);
-    addBuilding(scene, -20, -140, 14, 24, 10, 0x2f3b47);
-    addBuilding(scene, 38, -134, 12, 20, 9, 0x44525e);
-    addBuilding(scene, 82, -144, 16, 30, 12, 0x2a3540);
+    for (var s = 0; s < 16; s++) {
+      var side = s % 2 ? 1 : -1;
+      addParkTree(scene, side * (40 + Math.random() * 20), -12 - s * 8, 0.8 + Math.random() * 0.5);
+    }
 
+    addBuilding(scene, -62, -128, 10, 16, 8, 0x3a4a58);
+    addBuilding(scene, -18, -136, 14, 22, 10, 0x2f3b47);
+    addBuilding(scene, 40, -130, 12, 18, 9, 0x44525e);
+    addBuilding(scene, 84, -140, 16, 26, 12, 0x2a3540);
+
+    // 远山
+    addMountain(scene, -95, -225, 70, 90);
+    addMountain(scene, 5, -245, 95, 120);
+    addMountain(scene, 115, -230, 65, 80);
+
+    // 售货亭
+    addKiosk(scene, -40, -66);
+    addKiosk(scene, 42, -84);
+    addKiosk(scene, 8, -92);
+
+    // 岸边岩石
+    for (var r = 0; r < 16; r++) {
+      var rx = (r % 2 ? 1 : -1) * (28 + Math.random() * 3);
+      var rock = new THREE.Mesh(
+        new THREE.DodecahedronGeometry(0.7 + Math.random() * 0.8, 0),
+        new THREE.MeshStandardMaterial({ color: 0x8a857c, roughness: 0.95, flatShading: true })
+      );
+      rock.position.set(rx, 0.25, -28 - r * 6);
+      rock.rotation.set(Math.random(), Math.random(), Math.random());
+      rock.castShadow = true;
+      scene.add(rock);
+    }
+
+    // 栈桥
     var pier = new THREE.Mesh(
       new THREE.BoxGeometry(4, 0.22, 16),
       new THREE.MeshStandardMaterial({ color: 0x6b4a2c, roughness: 0.9 })
@@ -305,6 +383,8 @@
     water.position.set(0, -0.15, -55);
     water.receiveShadow = true;
     scene.add(water);
+    S.water = water;
+    S.waterMat = waterMat;
     S.waterTex = wTex;
 
     // 公园环境（草地、道路、树、建筑、栈桥）
@@ -337,6 +417,24 @@
       scene.add(dot);
       S.trajDots.push(dot);
     }
+
+    // 静态场景反射：把湖周围环境烘焙到 cubemap，作为更清晰的水面反射
+    var cubeRT = new THREE.WebGLCubeRenderTarget(256, {
+      generateMipmaps: true,
+      minFilter: THREE.LinearMipmapLinearFilter
+    });
+    var cubeCam = new THREE.CubeCamera(0.5, 600, cubeRT);
+    cubeCam.position.set(0, 1.2, -38);
+    scene.add(cubeCam);
+    S.water.visible = false;
+    cubeCam.update(renderer, scene);
+    S.water.visible = true;
+    S.waterMat.envMap = cubeRT.texture;
+    S.waterMat.envMapIntensity = 1.3;
+    S.waterMat.metalness = 0.55;
+    S.waterMat.roughness = 0.06;
+    S.waterMat.needsUpdate = true;
+    S.cubeRT = cubeRT;
     return S;
   }
 
@@ -854,15 +952,33 @@
   }
   function addLeafPile(wp) {
     var g = new THREE.Group();
-    var colors = [0xcc8833, 0xb8722a, 0xdd9933];
+    var colors = [0xffb020, 0xff8c1a, 0xffd24a];
     for (var i = 0; i < 7; i++) {
       var leaf = new THREE.Mesh(
         new THREE.IcosahedronGeometry(0.16 + Math.random() * 0.1, 0),
-        new THREE.MeshStandardMaterial({ color: colors[i % 3], roughness: 0.9, flatShading: true })
+        new THREE.MeshStandardMaterial({ color: colors[i % 3], emissive: 0x331500, roughness: 0.7, flatShading: true })
       );
       leaf.position.set((Math.random() - 0.5) * 0.7, 0.15 + Math.random() * 0.25, (Math.random() - 0.5) * 0.7);
       g.add(leaf);
     }
+    // 高亮：脉动光环 + 头顶旋转标记
+    var halo = new THREE.Mesh(
+      new THREE.RingGeometry(0.55, 0.78, 28),
+      new THREE.MeshBasicMaterial({
+        color: 0xffc24d, transparent: true, opacity: 0.75,
+        side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
+      })
+    );
+    halo.rotation.x = -Math.PI / 2;
+    halo.position.y = 0.05;
+    g.add(halo);
+    var marker = new THREE.Mesh(
+      new THREE.OctahedronGeometry(0.16),
+      new THREE.MeshBasicMaterial({ color: 0xffd166 })
+    );
+    marker.position.y = 1.3;
+    g.add(marker);
+    g.userData = { halo: halo, marker: marker };
     g.position.set(wp.x, 0, wp.z);
     g.traverse(function (m) { if (m.isMesh) m.castShadow = true; });
     scene.add(g);
@@ -1100,6 +1216,20 @@
   function stepPyro(S, dt) {
     if (S.over) { return; }
     S.timeLeft -= dt;
+    S.t = (S.t || 0) + dt;
+    S.piles.forEach(function (p2) {
+      if (!p2.mesh || p2.got) { return; }
+      var ud = p2.mesh.userData;
+      if (ud.halo) {
+        var k = 0.9 + Math.sin(S.t * 4 + p2.r) * 0.22;
+        ud.halo.scale.setScalar(k);
+        ud.halo.material.opacity = 0.5 + Math.sin(S.t * 4 + p2.r) * 0.25;
+      }
+      if (ud.marker) {
+        ud.marker.rotation.y += dt * 2;
+        ud.marker.position.y = 1.3 + Math.sin(S.t * 3 + p2.c) * 0.12;
+      }
+    });
     if (S.timeLeft <= 0) {
       S.over = true;
       showFail(S);
@@ -1126,6 +1256,8 @@
             if (pl.mesh) {
               pl.mesh.traverse(function (x) { if (x.material && x.material.color) x.material.color.set(0x43e8cf); });
               pl.mesh.scale.setScalar(0.2);
+              if (pl.mesh.userData.halo) { pl.mesh.userData.halo.visible = false; }
+              if (pl.mesh.userData.marker) { pl.mesh.userData.marker.visible = false; }
             }
           }
         });
@@ -1217,7 +1349,7 @@
     if (!running || !state || state.type !== 'aqua' || state.over) { return; }
     if (!container) { return; }
     // 点击落在结算面板/按钮上时不触发发射（避免点"下一关"误射）
-    if (e.target && e.target.closest && e.target.closest('.game-panel')) { return; }
+    if (e.target && e.target.closest && e.target.closest('.game-panel, .game-help-panel, .game-help-btn')) { return; }
     var r = container.getBoundingClientRect();
     if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) { return; }
     var nx = ((e.clientX - r.left) / r.width) * 2 - 1;
