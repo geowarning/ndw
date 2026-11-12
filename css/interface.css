@@ -463,3 +463,21 @@ body { background: var(--bg); }
 .game-help-panel[hidden] { display: none; }
 .game-help-close { position: absolute; top: 6px; right: 9px; border: 0; background: transparent; color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
 .game-help-body { padding-right: 18px; }
+
+/* Top search / command palette. */
+.nav-search-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--text-mid); font: inherit; font-size: .8rem; cursor: pointer; }
+.nav-search-btn:hover { color: var(--holo-bright); border-color: var(--holo-line); }
+.nav-search-text { white-space: nowrap; }
+.search-overlay { position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-start; justify-content: center; padding: 12vh 16px 16px; background: rgba(3, 7, 10, .66); backdrop-filter: blur(3px); }
+.search-dialog { width: min(640px, 100%); overflow: hidden; border: 1px solid var(--border-strong); border-radius: 14px; background: var(--card-solid, #141d25); box-shadow: 0 24px 64px rgba(0, 0, 0, .55); }
+.search-bar { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text-dim, #8fa3b1); }
+.search-input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; font-size: 1rem; }
+.search-input::placeholder { color: var(--text-dim, #8fa3b1); }
+.search-hint { flex: none; padding: 2px 6px; border: 1px solid var(--border); border-radius: 6px; color: var(--text-dim, #8fa3b1); font-size: .7rem; }
+.search-list { max-height: 52vh; overflow-y: auto; padding: 6px; }
+.search-item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 0; border-radius: 8px; background: transparent; color: var(--text); font: inherit; text-align: left; cursor: pointer; }
+.search-item:hover, .search-item.active { background: rgba(160, 234, 212, .1); }
+.search-item-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search-item-sub { flex: none; color: var(--text-dim, #8fa3b1); font-size: .74rem; }
+.search-empty { padding: 18px 14px; color: var(--text-dim, #8fa3b1); font-size: .86rem; }
+@media (max-width: 760px) { .nav-search-text { display: none; } .nav-search-btn { padding: 7px 9px; } .search-overlay { padding-top: 8vh; } }

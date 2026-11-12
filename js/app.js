@@ -161,6 +161,7 @@
     navEl.innerHTML =
       '<nav class="navbar"><div class="nav-inner">' + brand +
       '<div class="nav-links">' + links + '</div>' +
+      '<button class="nav-search-btn" data-action="open-search" aria-label="' + esc(web('searchTitle')) + '">' + SVG.iSearch + '<span class="nav-search-text">' + esc(web('searchTitle')) + '</span></button>' +
       '<button class="nav-toggle" data-action="toggle-drawer" aria-controls="navDrawer" aria-expanded="false" aria-label="' + esc(i18n.t('menu', l)) + '">' + SVG.menu + '</button>' +
       '</div></nav>' +
       '<div class="nav-drawer" id="navDrawer">' + links + '</div>';
@@ -213,7 +214,7 @@
    * 地区与区县逻辑
    * ================================================================ */
   var sessionStatus = {};   /* {adcode:{high:bool,count:n}} 本会话已查询城市 */
-  var globe = null, chinaMap = null;
+  var globe = null, chinaMap = null, search = null;
 
   var homeState = {
     province: '', city: '', adcode: '', district: '',
@@ -1904,6 +1905,7 @@
     var d = el.dataset;
     switch (action) {
       case 'toggle-drawer': toggleDrawer(); break;
+      case 'open-search': if (search) { search.open(); } break;
       case 'view-map-city': onMapClickCity(d.adcode); break;
       case 'open-picker': openPicker(); break;
       case 'open-district': openDistrictPicker(); break;
@@ -2085,6 +2087,43 @@
   if (bgCanvas) {
     globe = holo.create(bgCanvas);
     globe.setCities(globeCities());
+  }
+
+  if (window.NDSearch) {
+    search = window.NDSearch.create({
+      esc: esc,
+      T: T,
+      web: web,
+      lang: lang,
+      i18n: i18n,
+      data: data,
+      districts: districts,
+      SVG: SVG,
+      navigate: function (hash) {
+        if ((location.hash || '#/home') === hash) { route(); }
+        else { location.hash = hash; }
+      },
+      openGuide: function (i) {
+        guideIndex = i;
+        if ((location.hash || '').split('?')[0] === '#/guide') { renderGuide(); }
+        else { location.hash = '#/guide'; }
+      },
+      openProduct: function (type) {
+        productsState.game = type;
+        if ((location.hash || '').split('?')[0] === '#/products') { renderProducts(); }
+        else { location.hash = '#/products'; }
+      },
+      selectCity: function (city) {
+        homeState.province = city.province || '';
+        homeState.city = city.name;
+        homeState.adcode = city.adcode;
+        homeState.district = '';
+        homeState.loading = true;
+        homeState.error = '';
+        if ((location.hash || '#/home') !== '#/home') { location.hash = '#/home'; }
+        else { renderHome(); loadHomeData(); }
+      }
+    });
   }
 
   window.addEventListener('hashchange', route);

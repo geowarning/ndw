@@ -108,6 +108,9 @@
       fr: 'Données officielles autorisées par l’Administration météorologique chinoise',
       it: 'Dati ufficiali autorizzati dall’Amministrazione meteorologica cinese'
     },
+    searchTitle: { zh: '搜索', en: 'Search', es: 'Buscar', fr: 'Rechercher', it: 'Cerca' },
+    searchPlaceholder: { zh: '搜索功能、城市、关键词…', en: 'Search features, cities, keywords…', es: 'Buscar funciones, ciudades, palabras clave…', fr: 'Rechercher fonctions, villes, mots-clés…', it: 'Cerca funzioni, città, parole chiave…' },
+    searchEmpty: { zh: '没有匹配结果', en: 'No matches', es: 'Sin resultados', fr: 'Aucun résultat', it: 'Nessun risultato' },
     linkCopied: {
       zh: '链接已复制，可粘贴分享',
       en: 'Link copied, ready to share',
