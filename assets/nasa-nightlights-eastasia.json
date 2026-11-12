@@ -1,0 +1,18 @@
+{
+ "source": "NASA VNP46A2 Gap-Filled DNB BRDF-Corrected Nighttime Lights",
+ "date": "2024-01-01",
+ "tiles": [
+  "h25v03",
+  "h25v04",
+  "h25v05",
+  "h25v06",
+  "h25v07"
+ ],
+ "west": 70,
+ "east": 80,
+ "south": 10,
+ "north": 60,
+ "width": 300,
+ "height": 1500,
+ "note": "Coverage of the provided sample tiles; mosaic of 5 MODIS/VIIRS tiles."
+}

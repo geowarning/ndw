@@ -95,7 +95,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/ndw-public"
           cp index.html CNAME favicon.svg sw.js manifest.webmanifest robots.txt sitemap.xml "$RUNNER_TEMP/ndw-public/"
-          cp -R js css public-data "$RUNNER_TEMP/ndw-public/"
+          cp -R js css assets public-data "$RUNNER_TEMP/ndw-public/"
           node backend/prepare-site.mjs "$RUNNER_TEMP/ndw-public"
       - uses: actions/upload-pages-artifact@v3
         with:

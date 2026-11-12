@@ -141,6 +141,7 @@
   function navItems(l) {
     return [
       { path: '/home', hash: '#/home', label: i18n.t('tabIndex', l), icon: SVG.iHome },
+      { path: '/global', hash: '#/global', label: web('globalTab'), icon: SVG.iGlobe },
       { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l), icon: SVG.iGuide },
       { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l), icon: SVG.iTools },
       { path: '/products', hash: '#/products', label: i18n.t('navProducts', l), icon: SVG.iProducts },
@@ -548,12 +549,132 @@
   var PALETTE = ['#e3e7df', '#a4aea0', '#8fa8b5', '#f7c948', '#ff9433', '#ff5252',
     '#b388ff', '#46c263', '#ff7eb0', '#80deea', '#dce775', '#ffab91'];
 
+  var homeFilter = { level: 'all', type: 'all', time: 'all' };
+
+  function alertMs(a) {
+    var s = String((a && (a.time || a.issued)) || '');
+    var m = s.match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})[ T](\d{1,2}):(\d{2})/);
+    if (m) { return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]).getTime(); }
+    m = s.match(/(\d{1,2})[-/](\d{1,2})[ T](\d{1,2}):(\d{2})/);
+    if (m) { var n = new Date(); return new Date(n.getFullYear(), +m[1] - 1, +m[2], +m[3], +m[4]).getTime(); }
+    return NaN;
+  }
+  function applyHomeFilter(alerts) {
+    var now = Date.now();
+    return (alerts || []).filter(function (a) {
+      if (homeFilter.level !== 'all' && a.level !== homeFilter.level) { return false; }
+      if (homeFilter.type !== 'all' && a.type !== homeFilter.type) { return false; }
+      if (homeFilter.time !== 'all') {
+        var ms = alertMs(a);
+        if (isFinite(ms) && now - ms > (homeFilter.time === '24h' ? 86400000 : 604800000)) { return false; }
+      }
+      return true;
+    });
+  }
+  function alertFilterBar(s, t) {
+    var levels = [['all', web('all')], ['red', t.redAlert], ['orange', t.orangeAlert], ['yellow', t.yellowAlert], ['blue', t.blueAlert]];
+    var types = [];
+    (s.shownAlerts || []).forEach(function (a) { if (types.indexOf(a.type) < 0) { types.push(a.type); } });
+    var typeOpts = '<option value="all">' + esc(web('all')) + '</option>' + types.map(function (ty) {
+      return '<option value="' + esc(ty) + '"' + (homeFilter.type === ty ? ' selected' : '') + '>' + esc(i18n.disasterName(ty, lang())) + '</option>';
+    }).join('');
+    return '<div class="alert-filters" role="group">' +
+      levels.map(function (lv) {
+        return '<button type="button" class="gchip' + (homeFilter.level === lv[0] ? ' active' : '') + '" data-action="alert-filter" data-value="' + lv[0] + '">' + esc(lv[1]) + '</button>';
+      }).join('') +
+      '<select data-filter="type" aria-label="' + esc(web('disasterType')) + '">' + typeOpts + '</select>' +
+      '<select data-filter="time" aria-label="' + esc(web('dataTime')) + '">' +
+        '<option value="all"' + (homeFilter.time === 'all' ? ' selected' : '') + '>' + esc(web('all')) + '</option>' +
+        '<option value="24h"' + (homeFilter.time === '24h' ? ' selected' : '') + '>' + esc(web('last24h')) + '</option>' +
+        '<option value="7d"' + (homeFilter.time === '7d' ? ' selected' : '') + '>' + esc(web('last7d')) + '</option>' +
+      '</select></div>';
+  }
+  function opsKpi(label, value, sub) {
+    return '<div class="ops-kpi"><span>' + esc(label) + '</span><b>' + esc(value) + '</b><small>' + esc(sub || '') + '</small></div>';
+  }
+  function homeDashboardHtml(s, t) {
+    return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('globalStatus')) + '</h2><p>' + esc(web('overviewSubtitle')) + '</p></div>' +
+      '<div class="ops-tabs"><a class="active" href="#/home">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
+      '<div class="ops-kpis" id="opsKpis">' + opsKpi(web('chinaStatus'), '—', '') + opsKpi(web('criticalLocations'), '—', '') + opsKpi(web('activeQuakes'), '—', '') + opsKpi(web('maxMagnitude'), '—', '') + '</div>' +
+      '<div class="ops-grid">' +
+        '<div class="ops-card"><h3>' + esc(web('criticalLocations')) + '</h3><div class="ops-list" id="opsCritical"><div class="ops-empty">…</div></div></div>' +
+        '<div class="ops-card"><h3>' + esc(web('recentWarnings')) + '</h3><div class="ops-list" id="opsRecent"><div class="ops-empty">…</div></div></div>' +
+        '<div class="ops-card"><h3>' + esc(web('dataTime')) + '</h3><div class="ops-list" id="opsUpdated"></div></div>' +
+      '</div>';
+  }
+  function hydrateHomeDashboard() {
+    var kpis = document.getElementById('opsKpis');
+    if (!kpis) { return; }
+    var s = homeState;
+    var t = T();
+    var list = (s.shownAlerts || []).slice();
+    var rank = { red: 4, orange: 3, yellow: 2, blue: 1 };
+    list.sort(function (a, b) { return (rank[b.level] || 0) - (rank[a.level] || 0); });
+    var crit = list.slice(0, 4);
+    var recent = (s.shownAlerts || []).slice().sort(function (a, b) { return (alertMs(b) || 0) - (alertMs(a) || 0); }).slice(0, 5);
+    function item(a) {
+      return '<a href="#/detail?id=' + encodeURIComponent(a.id) + '"><span>' + esc(a.levelName + ' · ' + i18n.disasterName(a.type, lang())) + '</span><b>' + esc(a.area || '') + '</b></a>';
+    }
+    var critEl = document.getElementById('opsCritical');
+    if (critEl) { critEl.innerHTML = crit.length ? crit.map(item).join('') : '<div class="ops-empty">' + esc(t.noAlerts) + '</div>'; }
+    var recentEl = document.getElementById('opsRecent');
+    if (recentEl) {
+      recentEl.innerHTML = recent.length ? recent.map(function (a) {
+        return '<a href="#/detail?id=' + encodeURIComponent(a.id) + '"><span>' + esc(a.time || '') + '</span><b>' + esc(a.title || '') + '</b></a>';
+      }).join('') : '<div class="ops-empty">' + esc(t.noAlerts) + '</div>';
+    }
+    var upd = document.getElementById('opsUpdated');
+    if (upd) {
+      upd.innerHTML = '<div><span>' + esc(web('chinaStatus')) + '</span><b>' + esc(s.lastUpdate || '—') + '</b></div>' +
+        '<div><span>' + esc(web('activeQuakes')) + '</span><b id="opsGlobalTime">—</b></div>' +
+        '<div><span>' + esc(web('globalTab')) + '</span><b><a href="#/global">' + esc(web('selectHint')) + ' →</a></b></div>';
+    }
+    kpis.innerHTML = opsKpi(web('chinaStatus'), String((s.shownAlerts || []).length), '') +
+      opsKpi(web('criticalLocations'), String((s.levelStats.red || 0) + (s.levelStats.orange || 0)), 'red + orange') +
+      opsKpi(web('activeQuakes'), '—', '24h') +
+      opsKpi(web('maxMagnitude'), '—', '');
+    if (!window.NDGlobal) { return; }
+    var g = window.NDGlobal.cached();
+    if (g) { fillGlobal(g); } else { window.NDGlobal.loadLive().then(fillGlobal).catch(function () {}); }
+    function fillGlobal(data) {
+      var k = kpis.querySelectorAll('.ops-kpi b');
+      if (k[2]) { k[2].textContent = String((data.earthquakes || []).length); }
+      if (k[3]) { k[3].textContent = 'M' + Number((data.summary && data.summary.max_magnitude) || 0).toFixed(1); }
+      var timeEl = document.getElementById('opsGlobalTime');
+      if (timeEl) {
+        var ts = data.generatedAt || data.fetchedAt;
+        timeEl.textContent = ts ? formatNow(ts) : '—';
+      }
+      var box = document.getElementById('opsCritical');
+      if (box) {
+        var top = (data.earthquakes || []).slice().sort(function (a, b) { return b.magnitude - a.magnitude; })[0];
+        if (top) {
+          var old = box.querySelector('[data-global-top]');
+          if (old) { old.parentNode.removeChild(old); }
+          box.insertAdjacentHTML('afterbegin', '<a data-global-top href="#/global"><span>M' + Number(top.magnitude).toFixed(1) + ' · ' + esc(web('globalTab')) + '</span><b>' + esc(top.place) + '</b></a>');
+        }
+      }
+    }
+  }
+
+
+  function renderGlobal() {
+    if (!window.NDGlobal) {
+      viewEl.innerHTML = '<section class="section"><div class="container"><div class="state-box error">Global module unavailable</div></div></section>';
+      return;
+    }
+    window.NDGlobal.render(viewEl, {
+      esc: esc, web: web, lang: lang, i18n: i18n, SVG: SVG, explainView: explainView
+    });
+  }
+
   function renderHome() {
     var l = lang();
     var t = T(l);
     var s = homeState;
     var dataReady = s.hasData && !s.loading && !s.error;
     var dataState = s.loading ? t.loading : web('dataUnavailable');
+    var filteredAlerts = applyHomeFilter(s.shownAlerts);
     if (!s.loading && (s.rawAlerts.length || s.rawWeather)) { deriveHome(l); }
     var displayCity = i18n.placeName(s.city, l);
     var displayProvince = s.province ? i18n.placeName(s.province, l) : '';
@@ -580,7 +701,9 @@
 
     var loadingClass = s.loading ? ' is-loading' : '';
     var html =
-      '<div class="home-dashboard' + loadingClass + '"><section class="hero"><div class="container">' +
+      '<div class="home-dashboard' + loadingClass + '">' +
+      '<section class="ops-dashboard"><div class="container">' + homeDashboardHtml(s, t) + '</div></section>' +
+      '<section class="hero"><div class="container">' +
         '<div class="hero-inner">' +
           '<div class="hero-left">' +
             '<div class="home-intro">' +
@@ -644,9 +767,10 @@
     html += '<div class="container"><div class="home-overview">' +
       '<section class="overview-panel local-panel" aria-labelledby="localHeading">' +
       '<div class="section-head"><h2 id="localHeading"><span class="h2-ic">' + SVG.iBell + '</span>' + esc(t.activeAlerts) + '</h2>' +
-      '<span class="head-hint">' + esc(dataReady ? i18n.tpl('total', { n: s.shownAlerts.length }, l) : dataState) +
+      '<span class="head-hint">' + esc(dataReady ? i18n.tpl('total', { n: filteredAlerts.length }, l) : dataState) +
       (s.fromCache ? ' · ' + esc(t.cached) : '') +
       '</span></div>';
+    html += alertFilterBar(s, t);
 
     if (s.error) {
       var expectedGap = s.errorCode === 'pending' || s.errorCode === 'outdated';
@@ -656,10 +780,10 @@
         '<div class="source-line" style="justify-content:center">' + esc(web('snapshotHint')) + '</div></div>';
     } else if (s.loading) {
       html += '<div class="state-box"><div class="spinner"></div>' + esc(t.loading) + '</div>';
-    } else if (s.shownAlerts.length === 0) {
-      html += '<div class="state-box"><span class="state-icon ok-icon">✓</span>' + esc(t.noAlerts) + '</div>';
+    } else if (filteredAlerts.length === 0) {
+      html += '<div class="state-box"><span class="state-icon ok-icon">✓</span>' + esc(s.shownAlerts.length ? web('noMatch') : t.noAlerts) + '</div>';
     } else {
-      html += '<div class="alert-grid">' + s.shownAlerts.map(function (a) {
+      html += '<div class="alert-grid">' + filteredAlerts.map(function (a) {
         return '<a class="alert-card lv-' + a.level + '" href="#/detail?id=' + encodeURIComponent(a.id) + '">' +
           '<div class="alert-card-top">' +
             '<span class="level-badge">' + esc(a.levelName) + '</span>' +
@@ -674,7 +798,7 @@
     html += '</section>';
 
     /* ---- 预警动态时间线 ---- */
-    var tlAlerts = (dataReady ? s.shownAlerts : []).slice().sort(function (a, b) {
+    var tlAlerts = (dataReady ? filteredAlerts : []).slice().sort(function (a, b) {
       return String(b.time) < String(a.time) ? 1 : String(b.time) > String(a.time) ? -1 : 0;
     });
     html += '<section class="overview-panel activity-panel">' +
@@ -781,6 +905,7 @@
     if (dc) { charts.donut(dc, donutData); }
     var tl = document.getElementById('trendLine');
     if (tl) { charts.line(tl, days, vals); }
+    hydrateHomeDashboard();
   }
 
   function onMapClickCity(adcode, name) {
@@ -1164,6 +1289,14 @@
         '<h1>' + esc(a.title) + '</h1>' +
         '<div class="detail-meta"><span>' + esc(i18n.disasterName(a.type, l)) + '</span>' +
         '<span class="dot-sep">•</span><span>' + esc(a.source) + '</span></div>' +
+        '<div class="detail-summary">' +
+          '<div><span>' + esc(web('disasterType')) + '</span><b>' + esc(i18n.disasterName(a.type, l)) + '</b></div>' +
+          '<div><span>' + esc(web('severity')) + '</span><b>' + esc(a.levelName) + '</b></div>' +
+          '<div><span>' + esc(t.affectedArea) + '</span><b>' + esc(a.area) + '</b></div>' +
+          '<div><span>' + esc(t.issueTime) + '</span><b>' + esc(a.time) + '</b></div>' +
+          '<div><span>' + esc(t.validPeriod) + '</span><b>' + esc(a.duration || '—') + '</b></div>' +
+          '<div><span>' + esc(t.issueBy) + '</span><b>' + esc(a.source) + '</b></div>' +
+        '</div>' +
         '<div class="detail-overview info-rows">' + infoRow(t.affectedArea, a.area) + infoRow(t.issueTime, a.time) +
           infoRow(safetyText('checked'), alert.checkedAt ? new Date(alert.checkedAt).toLocaleString(l) : '—') + '</div>' +
       '</div></section>';
@@ -1873,6 +2006,7 @@
       productsState.game = null;
     }
     switch (path) {
+      case '/global': renderGlobal(); break;
       case '/map': renderExpandedMap(); break;
       case '/detail': renderDetail(query.id); break;
       case '/guide': renderGuide(); break;
@@ -1905,6 +2039,7 @@
     var d = el.dataset;
     switch (action) {
       case 'toggle-drawer': toggleDrawer(); break;
+      case 'alert-filter': homeFilter.level = d.value || 'all'; softRerender(); break;
       case 'open-search': if (search) { search.open(); } break;
       case 'view-map-city': onMapClickCity(d.adcode); break;
       case 'open-picker': openPicker(); break;
@@ -2125,6 +2260,13 @@
       }
     });
   }
+
+  document.getElementById('app').addEventListener('change', function (e) {
+    var el = e.target.closest('[data-filter]');
+    if (!el) { return; }
+    homeFilter[el.getAttribute('data-filter')] = el.value;
+    softRerender();
+  });
 
   window.addEventListener('hashchange', route);
   if (!location.hash) { location.hash = '#/home'; }
