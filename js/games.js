@@ -363,7 +363,7 @@
   function aquaConfig(level) {
     return {
       targets: level,
-      time: 12 + level * 3,          // L1=15s … L7=33s
+      time: 8 + level * 2,           // L1=10s … L7=22s
       // 目标落在最大射程的 ~0.90–0.99 区间：低抛解约 24–33°，高抛解约 44–50°。
       rangeMin: 30.6 + (level - 1) * 0.28,
       rangeMax: 32.6 + (level - 1) * 0.16,
