@@ -27,8 +27,8 @@
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputEncoding = THREE.sRGBEncoding;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 0.95;
+    renderer.toneMapping = THREE.LinearToneMapping;
+    renderer.toneMappingExposure = 0.72;
     cv.style.display = 'none';
     frameEl.appendChild(renderer.domElement);
     container = renderer.domElement;
@@ -41,9 +41,9 @@
   }
 
   function makeLights(x, y, z) {
-    scene.add(new THREE.AmbientLight(0xfff2e0, 0.65));
-    scene.add(new THREE.HemisphereLight(0x9ab7c8, 0x2f6b3a, 0.3));
-    var sun = new THREE.DirectionalLight(0xffe9c4, 1.2);
+    scene.add(new THREE.AmbientLight(0xfff2e0, 0.35));
+    scene.add(new THREE.HemisphereLight(0x9ab7c8, 0x2f6b3a, 0.12));
+    var sun = new THREE.DirectionalLight(0xfff0d0, 1.15);
     sun.position.set(x, y, z);
     sun.castShadow = true;
     sun.shadow.mapSize.set(1024, 1024);
@@ -75,11 +75,10 @@
   function skyTexture() {
     return canvasTexture(64, function (g, s) {
       var grad = g.createLinearGradient(0, 0, 0, s);
-      grad.addColorStop(0, '#2b4a63');
-      grad.addColorStop(0.45, '#5b8aa3');
-      grad.addColorStop(0.7, '#9ab7c8');
-      grad.addColorStop(0.86, '#e2a06a');
-      grad.addColorStop(1, '#f7d3a0');
+      grad.addColorStop(0, '#1565d8');
+      grad.addColorStop(0.45, '#3f9ae8');
+      grad.addColorStop(0.75, '#8fd0ff');
+      grad.addColorStop(1, '#d6efff');
       g.fillStyle = grad;
       g.fillRect(0, 0, s, s);
     });
@@ -105,11 +104,11 @@
 
   function grassTexture() {
     return canvasTexture(128, function (g, s) {
-      g.fillStyle = '#275030';
+      g.fillStyle = '#237a2f';
       g.fillRect(0, 0, s, s);
       for (var i = 0; i < 900; i++) {
         var v = Math.random();
-        g.fillStyle = v < 0.4 ? '#2f6338' : v < 0.8 ? '#1f4728' : '#387040';
+        g.fillStyle = v < 0.4 ? '#2f9a3f' : v < 0.8 ? '#1a6b24' : '#3fbf4f';
         g.fillRect(Math.random() * s, Math.random() * s, 1 + Math.random() * 2, 1 + Math.random() * 2);
       }
     });
@@ -125,7 +124,12 @@
     trunk.position.y = 1.5 * s;
     trunk.castShadow = true;
     g.add(trunk);
-    var colors = [0x2f7a3a, 0x3b8a44, 0x266b31];
+    var palettes = [
+      [0x2f9a3f, 0x3fb84f, 0x248a34],   // 绿
+      [0xe0a51e, 0xf0b72a, 0xc98d12],   // 黄
+      [0xe06a1a, 0xf07a22, 0xc85512]    // 橙
+    ];
+    var colors = palettes[Math.floor(Math.random() * palettes.length)];
     for (var i = 0; i < 3; i++) {
       var foliage = new THREE.Mesh(
         new THREE.IcosahedronGeometry((1.5 - i * 0.22) * s, 1),
@@ -162,7 +166,7 @@
   function addMountain(scene, x, z, radius, height) {
     var m = new THREE.Mesh(
       new THREE.ConeGeometry(radius, height, 6, 1),
-      new THREE.MeshStandardMaterial({ color: 0x6b7d78, roughness: 0.95, flatShading: true })
+      new THREE.MeshStandardMaterial({ color: 0x557a70, roughness: 0.95, flatShading: true })
     );
     m.position.set(x, height / 2 - 6, z);
     scene.add(m);
@@ -196,7 +200,7 @@
   }
 
   function addPark(scene) {
-    var grassMat = new THREE.MeshStandardMaterial({ color: 0x2f6b3a, roughness: 0.95, map: grassTexture() });
+    var grassMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95, map: grassTexture() });
     grassMat.map.repeat.set(6, 2);
 
     // 左、右、远三面湖岸，把水面围成一个湖
@@ -236,19 +240,14 @@
       scene.add(dash);
     }
 
-    // 远岸与两岸的树
+    // 远岸与两岸的树（更大，混入黄/橙秋色）
     for (var t = 0; t < 16; t++) {
-      addParkTree(scene, -36 + t * 5, -110 - (t % 3) * 4, 0.9 + Math.random() * 0.5);
+      addParkTree(scene, -36 + t * 5, -110 - (t % 3) * 4, 1.7 + Math.random() * 0.9);
     }
     for (var s = 0; s < 16; s++) {
       var side = s % 2 ? 1 : -1;
-      addParkTree(scene, side * (40 + Math.random() * 20), -12 - s * 8, 0.8 + Math.random() * 0.5);
+      addParkTree(scene, side * (40 + Math.random() * 20), -12 - s * 8, 1.6 + Math.random() * 0.9);
     }
-
-    addBuilding(scene, -62, -128, 10, 16, 8, 0x3a4a58);
-    addBuilding(scene, -18, -136, 14, 22, 10, 0x2f3b47);
-    addBuilding(scene, 40, -130, 12, 18, 9, 0x44525e);
-    addBuilding(scene, 84, -140, 16, 26, 12, 0x2a3540);
 
     // 远山
     addMountain(scene, -95, -225, 70, 90);
@@ -346,8 +345,8 @@
       mouse: { active: false, nx: 0, ny: 0 }
     };
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x9ab7c8);
-    scene.fog = new THREE.Fog(0x9ab7c8, 100, 260);
+    scene.background = new THREE.Color(0x4aa3e8);
+    scene.fog = new THREE.Fog(0x7fc4ff, 140, 380);
     camera = new THREE.PerspectiveCamera(58, 1.38, 0.1, 400);
     camera.position.set(0, 4.2, 5.2);
     camera.lookAt(0, 1.0, -30);
@@ -374,8 +373,8 @@
       pmrem.dispose();
     }
     var waterMat = new THREE.MeshStandardMaterial({
-      color: 0x1f5c78, roughness: 0.06, metalness: 0.25,
-      envMap: ENV_TEX, envMapIntensity: 1.1,
+      color: 0x0e6ea6, roughness: 0.05, metalness: 0.3,
+      envMap: ENV_TEX, envMapIntensity: 1.0,
       normalMap: wTex, normalScale: new THREE.Vector2(0.55, 0.55)
     });
     var water = new THREE.Mesh(new THREE.PlaneGeometry(260, 200, 1, 1), waterMat);
@@ -404,10 +403,17 @@
 
     // 落点标记
     S.marker = new THREE.Mesh(
-      new THREE.RingGeometry(0.6, 1.0, 24),
-      new THREE.MeshBasicMaterial({ color: 0x43e8cf, transparent: true, opacity: 0.9, side: THREE.DoubleSide })
+      new THREE.RingGeometry(0.8, 1.3, 40),
+      new THREE.MeshBasicMaterial({ color: 0xffe600, transparent: true, opacity: 1, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
     );
+    S.marker.renderOrder = 10;
     S.marker.rotation.x = -Math.PI / 2;
+    var markerOutline = new THREE.Mesh(
+      new THREE.RingGeometry(1.3, 1.5, 40),
+      new THREE.MeshBasicMaterial({ color: 0x111111, transparent: true, opacity: 0.55, side: THREE.DoubleSide, depthWrite: false, depthTest: false })
+    );
+    markerOutline.renderOrder = 9;
+    S.marker.add(markerOutline);
     scene.add(S.marker);
     for (var d = 0; d < 12; d++) {
       var dot = new THREE.Mesh(
@@ -664,7 +670,7 @@
     S.targets.forEach(function (tg) {
       if (!tg.userData.saved && sim.land.distanceTo(tg.position) < 2.2) { locked = true; }
     });
-    S.marker.material.color.set(locked ? 0x76ff50 : 0x43e8cf);
+    S.marker.material.color.set(locked ? 0x2dff6a : 0xffe600);
     S.marker.scale.setScalar(locked ? 1.4 : 1.0);
     S.locked = locked;
     // 弹道预测虚线不显示（按要求隐藏）
@@ -838,20 +844,12 @@
     gTex.repeat.set(6, 6);
     var ground = new THREE.Mesh(
       new THREE.BoxGeometry(span + 2, 0.4, span + 2),
-      new THREE.MeshStandardMaterial({ color: 0x24502c, roughness: 0.95, map: gTex })
+      new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95, map: gTex })
     );
     ground.position.y = -0.25;
     ground.receiveShadow = true;
     scene.add(ground);
-    // 草簇点缀
-    for (var gi = 0; gi < 60; gi++) {
-      var tuft = new THREE.Mesh(
-        new THREE.ConeGeometry(0.07 + Math.random() * 0.06, 0.22 + Math.random() * 0.2, 5),
-        new THREE.MeshStandardMaterial({ color: 0x3d7a48, roughness: 0.95, flatShading: true })
-      );
-      tuft.position.set((Math.random() - 0.5) * (span + 1), 0.03, (Math.random() - 0.5) * (span + 1));
-      scene.add(tuft);
-    }
+    // （已按反馈移除地面上的小碎石/草簇，保持场地干净）
 
     // 网格线
     var pts = [];
@@ -952,11 +950,11 @@
   }
   function addLeafPile(wp) {
     var g = new THREE.Group();
-    var colors = [0xffb020, 0xff8c1a, 0xffd24a];
+    var colors = [0xff7a00, 0xe65100, 0xffa000];
     for (var i = 0; i < 7; i++) {
       var leaf = new THREE.Mesh(
         new THREE.IcosahedronGeometry(0.16 + Math.random() * 0.1, 0),
-        new THREE.MeshStandardMaterial({ color: colors[i % 3], emissive: 0x331500, roughness: 0.7, flatShading: true })
+        new THREE.MeshStandardMaterial({ color: colors[i % 3], emissive: 0x2a0d00, roughness: 0.65, flatShading: true })
       );
       leaf.position.set((Math.random() - 0.5) * 0.7, 0.15 + Math.random() * 0.25, (Math.random() - 0.5) * 0.7);
       g.add(leaf);
@@ -965,8 +963,8 @@
     var halo = new THREE.Mesh(
       new THREE.RingGeometry(0.55, 0.78, 28),
       new THREE.MeshBasicMaterial({
-        color: 0xffc24d, transparent: true, opacity: 0.75,
-        side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false
+        color: 0xff7a00, transparent: true, opacity: 0.8,
+        side: THREE.DoubleSide, blending: THREE.NormalBlending, depthWrite: false
       })
     );
     halo.rotation.x = -Math.PI / 2;
