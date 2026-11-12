@@ -1118,6 +1118,14 @@
       }
       start = { r: n - 1, c: 0 };
       grid[start.r][start.c] = 0;
+      // 至少保留一个障碍物，避免生成空场关卡
+      var obstacleCount = 0;
+      for (var oi = 0; oi < n; oi++) {
+        for (var oj = 0; oj < n; oj++) {
+          if (grid[oi][oj] !== 0) { obstacleCount++; }
+        }
+      }
+      if (obstacleCount === 0) { continue; }
       // 目标格
       var chosen = {};
       chosen[start.r + ',' + start.c] = true;
