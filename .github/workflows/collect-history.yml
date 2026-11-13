@@ -1,6 +1,10 @@
 name: Collect history data
 
 on:
+  push:
+    paths:
+      - 'backend/collect-history.mjs'
+      - '.github/workflows/collect-history.yml'
   schedule:
     - cron: '10 2 * * *'
   workflow_dispatch:

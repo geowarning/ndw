@@ -785,6 +785,7 @@ body:not(.main-page) .bg-globe { opacity: 0; visibility: hidden; }
 .database-page { padding: 44px 0 60px; }
 .db-head h1 { margin: 8px 0 10px; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.04em; font-weight: 500; }
 .db-head p { max-width: 760px; color: var(--text-mid); font-size: .96rem; line-height: 1.65; }
+.db-head .db-note { margin-top: 6px; color: var(--holo); font-size: .8rem; }
 .db-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 24px 0 16px; border-bottom: 1px solid var(--border); }
 .db-tab { padding: 9px 14px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--text-mid); font: inherit; font-size: .84rem; cursor: pointer; }
 .db-tab:hover { color: var(--text); }

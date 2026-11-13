@@ -26,6 +26,9 @@ function writeJson(file, value) {
   fs.writeFileSync(tmp, JSON.stringify(value, null, 2) + '\n', 'utf8');
   fs.renameSync(tmp, file);
 }
+function readJson(file, fallback) {
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (err) { return fallback; }
+}
 async function fetchJson(url) {
   const res = await fetch(url, {
     headers: { 'User-Agent': 'GeoWarning/1.0 (+https://geowarning.cn)', Accept: 'application/json' },
@@ -68,21 +71,39 @@ function monthEnd(d) { return new Date(nextMonth(d).getTime() - DAY); }
 async function collectEarthquakeArchive() {
   const start = monthStart(new Date(Date.UTC(NOW.getUTCFullYear(), NOW.getUTCMonth() - 23, 1)));
   const end = new Date(NOW);
-  const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson' +
-    '&starttime=' + isoDate(start) + '&endtime=' + isoDate(end) +
-    '&minmagnitude=4.5&orderby=time';
-  const data = await fetchJson(url);
-  const rows = [];
-  (data.features || []).forEach((f) => {
-    const p = f.properties || {};
-    const c = (f.geometry && f.geometry.coordinates) || [];
-    if (!isFinite(p.time) || !isFinite(c[0]) || !isFinite(c[1]) || !isFinite(p.mag)) { return; }
-    rows.push([p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake']);
+  const existing = readJson(ARCHIVE_FILE, { rows: [] });
+  const map = new Map();
+  (existing.rows || []).forEach((r) => {
+    if (Number(r[0]) >= start.getTime()) {
+      map.set(r[0] + ':' + Number(r[1]).toFixed(3) + ':' + Number(r[2]).toFixed(3), r);
+    }
   });
-  rows.sort((a, b) => b[0] - a[0]);
+  for (let d = start; d <= end; d = nextMonth(d)) {
+    const from = isoDate(d);
+    const to = isoDate(monthEnd(d) > end ? end : monthEnd(d));
+    const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson' +
+      '&starttime=' + from + '&endtime=' + to +
+      '&minmagnitude=2.5&orderby=time';
+    try {
+      const data = await fetchJson(url);
+      (data.features || []).forEach((f) => {
+        const p = f.properties || {};
+        const c = (f.geometry && f.geometry.coordinates) || [];
+        if (!isFinite(p.time) || !isFinite(c[0]) || !isFinite(c[1]) || !isFinite(p.mag)) { return; }
+        map.set(p.time + ':' + Number(c[0]).toFixed(3) + ':' + Number(c[1]).toFixed(3),
+          [p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake']);
+      });
+      console.log('USGS ' + from.slice(0, 7) + ': ' + (data.features || []).length);
+    } catch (err) {
+      console.warn('USGS ' + from.slice(0, 7) + ' failed: ' + (err.message || err));
+    }
+    await new Promise((r) => setTimeout(r, 120));
+  }
+  const rows = Array.from(map.values()).sort((a, b) => b[0] - a[0]);
   writeJson(ARCHIVE_FILE, {
     source: 'USGS',
     timezone: 'UTC',
+    generatedAt: NOW.toISOString(),
     count: rows.length,
     range: [start.getTime(), end.getTime()],
     rows
@@ -92,8 +113,12 @@ async function collectEarthquakeArchive() {
 
 async function collectGdacsHistory() {
   const start = monthStart(new Date(Date.UTC(NOW.getUTCFullYear(), NOW.getUTCMonth() - 23, 1)));
-  const seen = new Set();
-  const features = [];
+  const existing = readJson(GDACS_FILE, { features: [] });
+  const map = new Map();
+  (existing.features || []).forEach((f) => {
+    const p = f.properties || {};
+    map.set([p.eventtype, p.eventid, p.episodeid].join(':'), f);
+  });
   for (let d = start; d <= NOW; d = nextMonth(d)) {
     const from = isoDate(d);
     const to = isoDate(monthEnd(d) > NOW ? NOW : monthEnd(d));
@@ -106,9 +131,8 @@ async function collectGdacsHistory() {
       (data.features || []).forEach((f) => {
         const p = f.properties || {};
         const key = [p.eventtype, p.eventid, p.episodeid].join(':');
-        if (!key || key === '::' || seen.has(key)) { return; }
-        seen.add(key);
-        features.push(f);
+        if (!key || key === '::') { return; }
+        map.set(key, f);
       });
       console.log('GDACS ' + from.slice(0, 7) + ': ' + (data.features || []).length);
     } catch (err) {
@@ -116,7 +140,7 @@ async function collectGdacsHistory() {
     }
     await new Promise((r) => setTimeout(r, 150));
   }
-  features.sort((a, b) => String((b.properties || {}).datemodified || '').localeCompare(String((a.properties || {}).datemodified || '')));
+  const features = Array.from(map.values()).sort((a, b) => String((b.properties || {}).datemodified || '').localeCompare(String((a.properties || {}).datemodified || '')));
   const out = {
     source: 'GDACS',
     updatedAt: NOW.toISOString(),

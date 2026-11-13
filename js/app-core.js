@@ -118,6 +118,7 @@
     databaseTitle: { zh: '灾害历史数据库', en: 'Disaster history database', es: 'Base de datos histórica', fr: 'Base de données historique', it: 'Database storica' },
     databaseSub: { zh: '按类别浏览完整历史地震目录与 GDACS 灾害记录。', en: 'Browse the full historical earthquake catalog and GDACS disaster records by category.', es: 'Explore el catálogo histórico de sismos y los registros GDACS por categoría.', fr: 'Parcourez le catalogue historique des séismes et les archives GDACS par catégorie.', it: 'Sfoglia il catalogo storico dei terremoti e gli archivi GDACS per categoria.' },
     dbSearchHint: { zh: '搜索地点、国家或事件名称', en: 'Search place, country or event', es: 'Buscar lugar, país o evento', fr: 'Rechercher un lieu, un pays ou un événement', it: 'Cerca luogo, paese o evento' },
+    databaseDailyNote: { zh: '每日采集的数据会在次日进入这里的历史档案。', en: 'Data collected each day enters this history archive the next day.', es: 'Los datos recopilados cada día entran en este archivo histórico al día siguiente.', fr: 'Les données collectées chaque jour entrent dans ces archives le lendemain.', it: 'I dati raccolti ogni giorno entrano in questo archivio storico il giorno successivo.' },
     locationLabel: { zh: '位置', en: 'Location', es: 'Ubicación', fr: 'Lieu', it: 'Località' },
     coordinates: { zh: '经纬度', en: 'Coordinates', es: 'Coordenadas', fr: 'Coordonnées', it: 'Coordinate' },
     mainEyebrow: { zh: '全球灾害与中国预警', en: 'Global hazards & China alerts', es: 'Amenazas globales y alertas de China', fr: 'Risques mondiaux et alertes Chine', it: 'Rischi globali e allerte Cina' },

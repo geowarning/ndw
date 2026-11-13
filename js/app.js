@@ -816,7 +816,7 @@
   function renderDatabase() {
     var cats = dbCategories();
     viewEl.innerHTML = '<section class="database-page"><div class="container">' +
-      '<div class="db-head"><div class="eyebrow">DATA ARCHIVE</div><h1>' + esc(web('databaseTitle')) + '</h1><p>' + esc(web('databaseSub')) + '</p></div>' +
+      '<div class="db-head"><div class="eyebrow">DATA ARCHIVE</div><h1>' + esc(web('databaseTitle')) + '</h1><p>' + esc(web('databaseSub')) + '</p><p class="db-note">' + esc(web('databaseDailyNote')) + '</p></div>' +
       '<div class="db-tabs">' + cats.map(function (c) {
         return '<button type="button" class="db-tab' + (dbState.category === c[0] ? ' active' : '') + '" data-action="db-cat" data-v="' + c[0] + '">' + esc(c[1]) + '</button>';
       }).join('') + '</div>' +
