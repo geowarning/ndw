@@ -840,6 +840,13 @@
   }
 
   function render(viewEl, ctx) {
+    if (state.el && state.el !== viewEl && state.el.__ndGlobalBound) {
+      state.el.removeEventListener('click', onClick);
+      state.el.removeEventListener('change', onChange);
+      state.el.removeEventListener('wheel', onWheel);
+      state.el.removeEventListener('pointerdown', onPointerDown);
+      state.el.__ndGlobalBound = false;
+    }
     state.el = viewEl;
     state.ctx = ctx;
     state.loading = !state.live;
