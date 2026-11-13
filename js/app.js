@@ -143,6 +143,7 @@
       { path: '/home', hash: '#/home', label: web('mainTab'), icon: SVG.iHome },
       { path: '/china', hash: '#/china', label: web('chinaTab'), icon: SVG.iPin },
       { path: '/global', hash: '#/global', label: web('globalTab'), icon: SVG.iGlobe },
+      { path: '/database', hash: '#/database', label: web('database'), icon: SVG.iChart },
       { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l), icon: SVG.iGuide },
       { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l), icon: SVG.iTools },
       { path: '/products', hash: '#/products', label: i18n.t('navProducts', l), icon: SVG.iProducts },
@@ -768,6 +769,175 @@
     var path = (location.hash || '#/home').split('?')[0];
     if (path === '#/china') { renderHome(); }
     else if (path === '#/home') { renderMainPage(); }
+  }
+
+  var dbState = { category: 'earthquake', page: 1, minMag: 0, eq: null, gdacs: null, loading: false, error: '' };
+  var DB_PAGE_SIZE = 50;
+
+  function dbTime(value) {
+    if (!value) { return 0; }
+    if (typeof value === 'number') { return value; }
+    var s = String(value);
+    var t = Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(s) ? s : s + 'Z');
+    return isFinite(t) ? t : 0;
+  }
+  function dbFormat(value) {
+    var ms = dbTime(value);
+    if (!ms) { return '—'; }
+    try {
+      return new Intl.DateTimeFormat(lang() === 'zh' ? 'zh-CN' : lang(), { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).format(new Date(ms));
+    } catch (e) { return new Date(ms).toLocaleString(); }
+  }
+  function dbDateShort(value) {
+    var ms = dbTime(value);
+    if (!ms) { return '—'; }
+    try {
+      return new Intl.DateTimeFormat(lang() === 'zh' ? 'zh-CN' : lang(), { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Asia/Shanghai' }).format(new Date(ms));
+    } catch (e) { return new Date(ms).toLocaleDateString(); }
+  }
+  function dbCategories() {
+    return [['earthquake', web('earthquakeType')], ['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')]];
+  }
+  function dbCategoryLabel(cat) {
+    if (cat === 'earthquake') { return web('earthquakeType'); }
+    if (cat === 'WF') { return web('gdacsWildfire'); }
+    if (cat === 'FL') { return web('gdacsFlood'); }
+    if (cat === 'TC') { return web('gdacsCyclone'); }
+    return web('gdacsDrought');
+  }
+  function dbPager(pages) {
+    return '<div class="db-pager">' +
+      '<button type="button" class="db-page-btn" data-action="db-page" data-v="prev"' + (dbState.page <= 1 ? ' disabled' : '') + '>‹</button>' +
+      '<span>' + dbState.page + ' / ' + pages + '</span>' +
+      '<button type="button" class="db-page-btn" data-action="db-page" data-v="next"' + (dbState.page >= pages ? ' disabled' : '') + '>›</button>' +
+    '</div>';
+  }
+
+  function renderDatabase() {
+    var cats = dbCategories();
+    viewEl.innerHTML = '<section class="database-page"><div class="container">' +
+      '<div class="db-head"><div class="eyebrow">DATA ARCHIVE</div><h1>' + esc(web('databaseTitle')) + '</h1><p>' + esc(web('databaseSub')) + '</p></div>' +
+      '<div class="db-tabs">' + cats.map(function (c) {
+        return '<button type="button" class="db-tab' + (dbState.category === c[0] ? ' active' : '') + '" data-action="db-cat" data-v="' + c[0] + '">' + esc(c[1]) + '</button>';
+      }).join('') + '</div>' +
+      '<div id="dbBody" class="db-body"></div>' +
+      '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
+        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a> · ' +
+        '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
+        '<a href="https://www.gdacs.org" target="_blank" rel="noopener noreferrer">GDACS</a>' +
+      '</p>' +
+    '</div></section>';
+    document.title = web('database');
+    loadDatabase();
+  }
+
+  function loadDatabase() {
+    if (!document.getElementById('dbBody')) { return; }
+    if (dbState.category === 'earthquake' && dbState.eq) { renderDbBody(); return; }
+    if (dbState.category !== 'earthquake' && dbState.gdacs) { renderDbBody(); return; }
+    var category = dbState.category;
+    dbState.loading = true;
+    dbState.error = '';
+    renderDbBody();
+    var url = category === 'earthquake' ? 'public-data/global-quakes-history.json' : 'public-data/gdacs-disaster-history.json';
+    fetch(url, { cache: 'no-cache' }).then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status); }
+      return r.json();
+    }).then(function (data) {
+      if (dbState.category !== category) { return; }
+      if (category === 'earthquake') { dbState.eq = data; } else { dbState.gdacs = data; }
+      dbState.loading = false;
+      renderDbBody();
+    }).catch(function (err) {
+      if (dbState.category !== category) { return; }
+      dbState.loading = false;
+      dbState.error = String(err && err.message ? err.message : err);
+      renderDbBody();
+    });
+  }
+
+  function renderDbBody() {
+    var body = document.getElementById('dbBody');
+    if (!body) { return; }
+    if (dbState.loading) { body.innerHTML = '<div class="state-box"><div class="spinner"></div>' + esc(T().loading) + '</div>'; return; }
+    if (dbState.error) { body.innerHTML = '<div class="state-box error">' + esc(dbState.error) + '</div>'; return; }
+    if (dbState.category === 'earthquake') { renderDbEarthquake(body); } else { renderDbGdacs(body); }
+  }
+
+  function renderDbEarthquake(body) {
+    var rows = ((dbState.eq && dbState.eq.rows) || []).filter(function (r) { return Number(r[4]) >= dbState.minMag; });
+    rows.sort(function (a, b) { return b[0] - a[0]; });
+    var pages = Math.max(1, Math.ceil(rows.length / DB_PAGE_SIZE));
+    dbState.page = Math.min(dbState.page, pages);
+    var start = (dbState.page - 1) * DB_PAGE_SIZE;
+    var slice = rows.slice(start, start + DB_PAGE_SIZE);
+    var max = rows.reduce(function (m, r) { return Math.max(m, Number(r[4])); }, 0);
+    var range = (dbState.eq && dbState.eq.range) || [];
+    var minOpts = [0, 2.5, 4.5, 6, 7].map(function (v) {
+      var label = v === 0 ? web('all') : 'M' + v + '+';
+      return '<option value="' + v + '"' + (dbState.minMag === v ? ' selected' : '') + '>' + esc(label) + '</option>';
+    }).join('');
+    var html = '<div class="db-stats">' +
+      '<div><span>' + esc(web('quakeRecords')) + '</span><b>' + rows.length + '</b></div>' +
+      '<div><span>' + esc(web('maxMagnitude')) + '</span><b>M' + max.toFixed(1) + '</b></div>' +
+      '<div><span>' + esc(web('historyRange')) + '</span><b>' + esc(dbDateShort(range[0]) + ' → ' + dbDateShort(range[1])) + '</b></div>' +
+      '</div>' +
+      '<div class="db-toolbar"><label class="gfl" for="dbMinMag">' + esc(web('magnitude')) + '</label>' +
+      '<select id="dbMinMag" data-db-minmag>' + minOpts + '</select>' +
+      '<span class="db-count">' + rows.length + ' ' + esc(web('records')) + '</span></div>' +
+      '<div class="db-table-wrap"><table class="db-table"><thead><tr>' +
+        '<th>' + esc(web('dataTime')) + '</th><th>' + esc(web('magnitude')) + '</th><th>' + esc(web('locationLabel')) + '</th><th>' + esc(web('depth')) + '</th><th>' + esc(web('coordinates')) + '</th>' +
+      '</tr></thead><tbody>' +
+      (slice.length ? slice.map(function (r) {
+        var mag = Number(r[4]);
+        return '<tr><td>' + esc(dbFormat(r[0])) + '</td><td><span class="db-mag ' + (mag >= 7 ? 'm7' : mag >= 6 ? 'm6' : mag >= 5 ? 'm5' : 'm4') + '">M' + mag.toFixed(1) + '</span></td>' +
+          '<td>' + esc(r[5]) + '</td><td>' + Number(r[3]).toFixed(1) + ' km</td><td>' + Number(r[1]).toFixed(2) + '°, ' + Number(r[2]).toFixed(2) + '°</td></tr>';
+      }).join('') : '<tr><td colspan="5" class="db-empty">' + esc(web('noMatch')) + '</td></tr>') +
+      '</tbody></table></div>' + dbPager(pages);
+    body.innerHTML = html;
+  }
+
+  function renderDbGdacs(body) {
+    var features = ((dbState.gdacs && dbState.gdacs.features) || []).filter(function (f) {
+      return f && f.properties && f.properties.eventtype === dbState.category;
+    });
+    features.sort(function (a, b) {
+      var ap = a.properties || {}, bp = b.properties || {};
+      return String(bp.fromdate || bp.datemodified || '').localeCompare(String(ap.fromdate || ap.datemodified || ''));
+    });
+    var pages = Math.max(1, Math.ceil(features.length / DB_PAGE_SIZE));
+    dbState.page = Math.min(dbState.page, pages);
+    var start = (dbState.page - 1) * DB_PAGE_SIZE;
+    var slice = features.slice(start, start + DB_PAGE_SIZE);
+    var range = (dbState.gdacs && dbState.gdacs.range) || [];
+    var counts = { green: 0, orange: 0, red: 0 };
+    features.forEach(function (f) {
+      var a = String((f.properties || {}).alertlevel || '').toLowerCase();
+      if (counts[a] != null) { counts[a] += 1; }
+    });
+    var html = '<div class="db-stats">' +
+      '<div><span>' + esc(web('gdacsEvents')) + '</span><b>' + features.length + '</b></div>' +
+      '<div><span>' + esc(web('gdacsAlert')) + '</span><b>G ' + counts.green + ' · O ' + counts.orange + ' · R ' + counts.red + '</b></div>' +
+      '<div><span>' + esc(web('historyRange')) + '</span><b>' + esc(String(range[0] || '—')) + ' → ' + esc(String(range[1] || '—')) + '</b></div>' +
+      '</div>' +
+      '<div class="db-toolbar"><span class="db-count">' + features.length + ' ' + esc(web('records')) + '</span></div>' +
+      '<div class="db-table-wrap"><table class="db-table"><thead><tr>' +
+        '<th>' + esc(web('dataTime')) + '</th><th>' + esc(web('hazardType')) + '</th><th>' + esc(web('locationLabel')) + '</th><th>' + esc(web('countryLabel')) + '</th><th>' + esc(web('gdacsAlert')) + '</th><th>' + esc(web('coordinates')) + '</th>' +
+      '</tr></thead><tbody>' +
+      (slice.length ? slice.map(function (f) {
+        var p = f.properties || {};
+        var c = (f.geometry && f.geometry.coordinates) || [];
+        var url = p.url && p.url.report ? p.url.report : '';
+        var name = esc(p.name || '—');
+        return '<tr><td>' + esc(dbFormat(p.fromdate || p.datemodified)) + '</td>' +
+          '<td>' + esc(dbCategoryLabel(p.eventtype)) + '</td>' +
+          '<td>' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + name + '</a>' : name) + '</td>' +
+          '<td>' + esc(p.country || '—') + '</td>' +
+          '<td><span class="db-alert ' + esc(String(p.alertlevel || '').toLowerCase()) + '">' + esc(p.alertlevel || '—') + '</span></td>' +
+          '<td>' + Number(c[0]).toFixed(2) + '°, ' + Number(c[1]).toFixed(2) + '°</td></tr>';
+      }).join('') : '<tr><td colspan="6" class="db-empty">' + esc(web('noMatch')) + '</td></tr>') +
+      '</tbody></table></div>' + dbPager(pages);
+    body.innerHTML = html;
   }
 
   function renderHome() {
@@ -2116,6 +2286,7 @@
         renderHome();
         break;
       case '/global': renderGlobal(); break;
+      case '/database': renderDatabase(); break;
       case '/map': renderExpandedMap(); break;
       case '/detail': renderDetail(query.id); break;
       case '/guide': renderGuide(); break;
@@ -2150,6 +2321,15 @@
       case 'toggle-drawer': toggleDrawer(); break;
       case 'alert-filter': homeFilter.level = d.value || 'all'; softRerender(); break;
       case 'open-search': if (search) { search.open(); } break;
+      case 'db-cat':
+        dbState.category = d.v || 'earthquake';
+        dbState.page = 1;
+        renderDatabase();
+        break;
+      case 'db-page':
+        if (d.v === 'prev') { dbState.page = Math.max(1, dbState.page - 1); } else { dbState.page += 1; }
+        renderDbBody();
+        break;
       case 'view-map-city': onMapClickCity(d.adcode); break;
       case 'open-picker': openPicker(); break;
       case 'open-district': openDistrictPicker(); break;
@@ -2375,6 +2555,13 @@
   }
 
   document.getElementById('app').addEventListener('change', function (e) {
+    var dbm = e.target.closest('[data-db-minmag]');
+    if (dbm) {
+      dbState.minMag = parseFloat(dbm.value) || 0;
+      dbState.page = 1;
+      renderDbBody();
+      return;
+    }
     var el = e.target.closest('[data-filter]');
     if (!el) { return; }
     homeFilter[el.getAttribute('data-filter')] = el.value;

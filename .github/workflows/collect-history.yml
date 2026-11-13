@@ -1,0 +1,37 @@
+name: Collect history data
+
+on:
+  schedule:
+    - cron: '10 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: history-collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Collect USGS recent and GDACS history
+        run: node backend/collect-history.mjs
+      - name: Publish history
+        run: |
+          git add public-data/global-quakes-recent.json
+          if [ -f public-data/gdacs-disaster-history.json ]; then git add public-data/gdacs-disaster-history.json; fi
+          if git diff --cached --quiet; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update history snapshots [skip ci]"
+          git pull --rebase origin main
+          git push
