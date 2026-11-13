@@ -842,7 +842,9 @@
   }
 
   function refreshData() {
-    if (!state.el || !state.el.isConnected) { return; }
+    var path = (location.hash || '#/home').split('?')[0];
+    if (path !== '#/global' && path !== '#/home') { return; }
+    if (!state.el || !state.el.isConnected || !state.el.querySelector('.global-section')) { return; }
     Promise.all([
       fetchJson('public-data/global-earthquakes.json').catch(function () { return null; }),
       fetchJson('public-data/gdacs-events.json').catch(function () { return null; })
