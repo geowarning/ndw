@@ -1,6 +1,10 @@
 name: Collect GDACS events
 
 on:
+  push:
+    paths:
+      - 'backend/collect-gdacs.mjs'
+      - '.github/workflows/collect-gdacs.yml'
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
