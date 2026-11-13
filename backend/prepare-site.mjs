@@ -22,7 +22,7 @@ export function checkSite(root, options = {}) {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const root = process.argv[2] ? path.resolve(process.argv[2]) : path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-  const health = checkSite(root);
+  const health = checkSite(root, { requireFresh: process.env.ALLOW_STALE_DATA !== '1' });
   const workerPath = path.join(root, 'sw.js');
   fs.writeFileSync(workerPath, fs.readFileSync(workerPath, 'utf8').replace(/const CACHE = 'ndw-shell-[^']+';/, "const CACHE = 'ndw-shell-" + health.version + "';"));
   console.log('Site ready:', JSON.stringify(health));
