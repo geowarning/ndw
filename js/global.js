@@ -179,6 +179,7 @@
       out.push({
         kind: 'gdacs', id: id, type: p.eventtype, name: p.name || p.description || '',
         country: p.country || '', alert: String(p.alertlevel || '').toLowerCase(),
+        active: p._active !== false,
         from: p.fromdate || '', to: p.todate || '', modified: p.datemodified || '',
         source: p.source || 'GDACS', url: (p.url && p.url.report) || '',
         description: p.htmldescription || p.description || '',
@@ -192,6 +193,7 @@
   function currentGdacs() {
     if (!state.layers.gdacs || !cache.gdacs) { return []; }
     return cache.gdacs.filter(function (g) {
+      if (g.active === false) { return false; }
       if (state.gdacsType !== 'all' && g.type !== state.gdacsType) { return false; }
       if (state.gdacsAlert !== 'all' && g.alert !== state.gdacsAlert) { return false; }
       return true;
@@ -839,6 +841,18 @@
     if (ga) { state.gdacsAlert = ga.value || 'all'; state.selected = null; paint(); }
   }
 
+  function refreshData() {
+    if (!state.el || !state.el.isConnected) { return; }
+    Promise.all([
+      fetchJson('public-data/global-earthquakes.json').catch(function () { return null; }),
+      fetchJson('public-data/gdacs-events.json').catch(function () { return null; })
+    ]).then(function (res) {
+      if (res[0]) { state.live = res[0]; cache.live = res[0]; }
+      if (res[1]) { cache.gdacsRaw = res[1]; cache.gdacs = normalizeGdacs(res[1]); }
+      paint();
+    }).catch(function () {});
+  }
+
   function render(viewEl, ctx) {
     if (state.el && state.el !== viewEl && state.el.__ndGlobalBound) {
       state.el.removeEventListener('click', onClick);
@@ -873,6 +887,13 @@
         if ((location.hash || '').split('?')[0] !== '#/global') { exitFullscreen(); }
       });
       window.addEventListener('resize', syncSideHeight);
+      window.setInterval(function () {
+        if (!state.el || !state.el.isConnected || document.hidden) { return; }
+        refreshData();
+      }, 5 * 60 * 1000);
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) { refreshData(); }
+      });
       bound = true;
     }
     if (!ctx.embedded) { document.title = ctx.web('globalTitle'); }

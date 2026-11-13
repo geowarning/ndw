@@ -67,6 +67,8 @@
       '<clipPath id="chinaClip"><path d="' + nationalD + '"/></clipPath>' +
       '</defs>'
 
+      + '<image class="ch-nasa" href="assets/china-nasa.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" clip-path="url(#chinaClip)" pointer-events="none"/>'
+      + '<rect class="ch-nasa-shade" x="0" y="0" width="' + W + '" height="' + H + '" fill="#020a10" opacity=".22" clip-path="url(#chinaClip)" pointer-events="none"/>'
       + '<path class="ch-national" d="' + nationalD + '"/>'
       + '<path class="ch-provinces" d="' + provinceD + '"/>'
 
@@ -170,7 +172,12 @@
       });
     }
 
-    return { setStatus: setStatus, setAlertLabels: setAlertLabels };
+    function setBase(base) {
+      svg.classList.toggle('is-nasa', base === 'nasa');
+      return base;
+    }
+
+    return { setStatus: setStatus, setAlertLabels: setAlertLabels, setBase: setBase };
   }
 
   window.__modules['china-holo'] = { create: ChinaHolo };

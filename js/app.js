@@ -216,7 +216,17 @@
    * 地区与区县逻辑
    * ================================================================ */
   var sessionStatus = {};   /* {adcode:{high:bool,count:n}} 本会话已查询城市 */
-  var globe = null, chinaMap = null, search = null;
+  var globe = null, chinaMap = null, search = null, chinaBase = 'holo';
+
+  function setChinaBase(mode) {
+    chinaBase = mode === 'nasa' ? 'nasa' : 'holo';
+    if (chinaMap) { chinaMap.setBase(chinaBase); }
+    var label = chinaBase === 'nasa' ? web('chinaHolo') : web('chinaSatellite');
+    document.querySelectorAll('[data-action="toggle-china-base"]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(chinaBase === 'nasa'));
+      btn.textContent = label;
+    });
+  }
 
   var homeState = {
     province: '', city: '', adcode: '', district: '',
@@ -750,6 +760,7 @@
     /* ---- 全国全息态势图 ---- */
     var nationalPanel = '<section class="overview-panel national-panel" aria-labelledby="nationalHeading">' +
       '<div class="section-head"><h2 id="nationalHeading"><span class="h2-ic">' + SVG.iGlobe + '</span>' + esc(t.nationalSituation) + '</h2>' +
+        '<button class="map-scan-btn" data-action="toggle-china-base" aria-pressed="false">' + esc(web('chinaSatellite')) + '</button>' +
         '<button class="map-scan-btn' + (nationalSweeping ? ' is-loading' : '') + '" data-action="refresh-map"' +
         (nationalSweeping ? ' disabled' : '') + '>' +
         (nationalSweeping ? '<span class="map-scan-spin"></span>' + esc(t.scanning)
@@ -905,6 +916,7 @@
     if (wrap) {
       chinaMap = __require('china-holo').create(wrap);
       chinaMap.setStatus(sessionStatus);
+      setChinaBase(chinaBase);
       hydrateNationalStatus();   /* 立即显示上次扫描结果 */
       sweepNationalStatus();     /* 后台刷新全国城市状态 */
     }
@@ -932,6 +944,7 @@
       '<div class="expanded-map-heading"><div><h1 id="expandedMapHeading">' + esc(t.nationalSituation) + '</h1>' +
         '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
         '<div class="expanded-map-actions">' +
+          '<button class="map-scan-btn" data-action="toggle-china-base" aria-pressed="false">' + esc(web('chinaSatellite')) + '</button>' +
           '<button class="map-scan-btn" data-action="toggle-map-fit" aria-pressed="false">' + esc(web('fitMap')) + '</button>' +
           '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
         '</div>' +
@@ -961,6 +974,7 @@
       if (!document.activeElement.closest('#cityInspection')) inspectMapCity(adcode);
     });
     chinaMap.setStatus(sessionStatus);
+    setChinaBase(chinaBase);
     hydrateNationalStatus();
     sweepNationalStatus();
     setScanButtonState(nationalSweeping);
@@ -2074,6 +2088,7 @@
         }
         break;
       }
+      case 'toggle-china-base': setChinaBase(chinaBase === 'nasa' ? 'holo' : 'nasa'); break;
       case 'select-province': selectProvince(d.name); break;
       case 'select-city': selectCity(d.name); break;
       case 'select-district': selectDistrict(d.name); break;

@@ -163,6 +163,8 @@
     fullscreen: { zh: '全屏', en: 'Fullscreen', es: 'Pantalla completa', fr: 'Plein écran', it: 'Schermo intero' },
     gdacsLayer: { zh: 'GDACS 灾害', en: 'GDACS hazards', es: 'Amenazas GDACS', fr: 'Risques GDACS', it: 'Rischi GDACS' },
     chinaData: { zh: '中国数据', en: 'China data', es: 'Datos de China', fr: 'Données Chine', it: 'Dati Cina' },
+    chinaSatellite: { zh: 'NASA 卫星底图', en: 'NASA satellite', es: 'Satélite NASA', fr: 'Satellite NASA', it: 'Satellite NASA' },
+    chinaHolo: { zh: '全息底图', en: 'Holographic base', es: 'Base holográfica', fr: 'Base holographique', it: 'Base olografica' },
     gdacsEvents: { zh: '灾害事件', en: 'Disaster events', es: 'Eventos de desastre', fr: 'Événements', it: 'Eventi' },
     gdacsWildfire: { zh: '野火', en: 'Wildfire', es: 'Incendio forestal', fr: 'Feu de forêt', it: 'Incendio' },
     gdacsFlood: { zh: '洪水', en: 'Flood', es: 'Inundación', fr: 'Inondation', it: 'Inondazione' },

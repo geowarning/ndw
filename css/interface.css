@@ -162,6 +162,14 @@ button, .btn { touch-action: manipulation; }
 .expanded-map-page .ch-city:hover .ch-dot, .expanded-map-page .ch-city:focus-visible .ch-dot { stroke: var(--text); stroke-width: 2; }
 .ch-city.label-hidden .ch-label { opacity: 0; }
 .ch-city:hover .ch-label, .ch-city:focus-visible .ch-label, .ch-city.is-selected .ch-label { opacity: 1 !important; paint-order: stroke; stroke: var(--card-2); stroke-width: 3px; stroke-linejoin: round; }
+
+/* NASA satellite base for the China holographic map */
+.ch-nasa, .ch-nasa-shade { display: none; }
+.china-svg.is-nasa .ch-nasa, .china-svg.is-nasa .ch-nasa-shade { display: block; }
+.china-svg.is-nasa .ch-scan, .china-svg.is-nasa .ch-gridlines { display: none; }
+.china-svg.is-nasa .ch-national { fill: rgba(3, 9, 13, .10); stroke: #7ef0ff; }
+.china-svg.is-nasa .ch-provinces { stroke: rgba(126, 240, 255, .55); }
+.china-svg.is-nasa .ch-label { fill: #eafcff; opacity: .92; paint-order: stroke; stroke: #02151c; stroke-width: 2.5px; }
 .city-inspection { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 16px 18px; margin-bottom: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--card-solid); color: var(--text-mid); font-size: .82rem; }
 .city-inspection p { margin-top: 6px; font-size: .75rem; }
 .freshness-tag { display: inline-block; margin-left: 12px; font-size: .72rem; color: var(--text-mid); }
