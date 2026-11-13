@@ -593,7 +593,7 @@
     return '<div class="ops-kpi"><span>' + esc(label) + '</span><b>' + esc(value) + '</b><small>' + esc(sub || '') + '</small></div>';
   }
   function homeDashboardHtml(s, t) {
-    return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('globalStatus')) + '</h2><p>' + esc(web('overviewSubtitle')) + '</p></div>' +
+    return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('situationOverview')) + '</h2><p>' + esc(web('overviewSubtitleBoth')) + '</p></div>' +
       '<div class="ops-tabs"><a class="active" href="#/home">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
       '<div class="ops-kpis" id="opsKpis">' + opsKpi(web('chinaStatus'), '—', '') + opsKpi(web('criticalLocations'), '—', '') + opsKpi(web('activeQuakes'), '—', '') + opsKpi(web('maxMagnitude'), '—', '') + '</div>' +
       '<div class="ops-grid">' +

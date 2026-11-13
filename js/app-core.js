@@ -146,6 +146,8 @@
     tsunamiAlerts: { zh: '海啸提示', en: 'Tsunami alerts', es: 'Alertas de tsunami', fr: 'Alertes tsunami', it: 'Allerte tsunami' },
     globalStatus: { zh: '全球态势', en: 'Global status', es: 'Estado global', fr: 'Situation mondiale', it: 'Stato globale' },
     chinaStatus: { zh: '中国预警', en: 'China alerts', es: 'Alertas China', fr: 'Alertes Chine', it: 'Avvisi Cina' },
+    situationOverview: { zh: '态势总览', en: 'Situation overview', es: 'Resumen de situación', fr: 'Vue d’ensemble', it: 'Panoramica' },
+    overviewSubtitleBoth: { zh: '中国预警与全球地震一览', en: 'China alerts and global earthquakes at a glance', es: 'Alertas de China y sismos globales de un vistazo', fr: 'Alertes en Chine et séismes mondiaux en un coup d’œil', it: 'Avvisi Cina e terremoti globali a colpo d’occhio' },
     criticalLocations: { zh: '高风险地区', en: 'Critical locations', es: 'Ubicaciones críticas', fr: 'Zones critiques', it: 'Località critiche' },
     recentWarnings: { zh: '最新预警', en: 'Recent warnings', es: 'Alertas recientes', fr: 'Alertes récentes', it: 'Avvisi recenti' },
     last24h: { zh: '最近 24 小时', en: 'Last 24h', es: 'Últimas 24 h', fr: 'Dernières 24 h', it: 'Ultime 24 h' },
