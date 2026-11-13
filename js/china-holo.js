@@ -69,8 +69,8 @@
 
       + '<image class="ch-nasa" href="assets/china-nasa.jpg" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" clip-path="url(#chinaClip)" pointer-events="none"/>'
       + '<rect class="ch-nasa-shade" x="0" y="0" width="' + W + '" height="' + H + '" fill="#020a10" opacity=".22" clip-path="url(#chinaClip)" pointer-events="none"/>'
-      + '<path class="ch-national" d="' + nationalD + '"/>'
-      + '<path class="ch-provinces" d="' + provinceD + '"/>'
+      + '<path class="ch-national" d="' + nationalD + '" vector-effect="non-scaling-stroke"/>'
+      + '<path class="ch-provinces" d="' + provinceD + '" vector-effect="non-scaling-stroke"/>'
 
       /* 扫描线（裁剪到国界内） */
       + '<g clip-path="url(#chinaClip)">' +
@@ -87,10 +87,10 @@
     var gl = container.querySelector('.ch-gridlines');
     var gld = '';
     for (var lng = 80; lng <= 130; lng += 10) {
-      gld += '<line x1="' + X(lng).toFixed(1) + '" y1="0" x2="' + X(lng).toFixed(1) + '" y2="' + H + '"/>';
+      gld += '<line x1="' + X(lng).toFixed(1) + '" y1="0" x2="' + X(lng).toFixed(1) + '" y2="' + H + '" vector-effect="non-scaling-stroke"/>';
     }
     for (var lat = 20; lat <= 50; lat += 10) {
-      gld += '<line x1="0" y1="' + Y(lat).toFixed(1) + '" x2="' + W + '" y2="' + Y(lat).toFixed(1) + '"/>';
+      gld += '<line x1="0" y1="' + Y(lat).toFixed(1) + '" x2="' + W + '" y2="' + Y(lat).toFixed(1) + '" vector-effect="non-scaling-stroke"/>';
     }
     gl.innerHTML = gld;
 

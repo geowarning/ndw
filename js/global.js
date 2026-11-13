@@ -337,13 +337,13 @@
         parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
       }
       var c1 = proj(70, 60), c2 = proj(80, 0);
-      parts.push('<rect x="' + c1.x.toFixed(1) + '" y="' + c1.y.toFixed(1) + '" width="' + (c2.x - c1.x).toFixed(1) + '" height="' + (c2.y - c1.y).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width=".8" stroke-dasharray="3 3" opacity=".55"></rect>');
+      parts.push('<rect x="' + c1.x.toFixed(1) + '" y="' + c1.y.toFixed(1) + '" width="' + (c2.x - c1.x).toFixed(1) + '" height="' + (c2.y - c1.y).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width=".8" stroke-dasharray="3 3" opacity=".55" vector-effect="non-scaling-stroke"></rect>');
     }
     parts.push('<g class="gcountries">');
     (cache.paths || []).forEach(function (p) {
       var hit = state.layers.affected && countryHit(p.name, quakes);
       var cls = 'gcountry' + (hit ? ' hit' : '') + (state.country === p.name ? ' sel' : '');
-      parts.push('<path class="' + cls + '" d="' + p.d + '" data-country="' + esc(p.name) + '"><title>' + esc(p.name) + '</title></path>');
+      parts.push('<path class="' + cls + '" d="' + p.d + '" data-country="' + esc(p.name) + '" vector-effect="non-scaling-stroke"><title>' + esc(p.name) + '</title></path>');
     });
     parts.push('</g>');
     parts.push('<g id="gmapCountryLabels" class="glables" style="display:none">');
@@ -356,7 +356,7 @@
       parts.push('<g class="gaffected">');
       quakes.forEach(function (q) {
         var p = proj(q.lon, q.lat);
-        parts.push('<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + kmToUnits(radiusKm(q.mag)).toFixed(1) + '" fill="' + magColor(q.mag) + '" opacity=".16" stroke="' + magColor(q.mag) + '" stroke-opacity=".55" stroke-width=".6" stroke-dasharray="2 3"></circle>');
+        parts.push('<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + kmToUnits(radiusKm(q.mag)).toFixed(1) + '" fill="' + magColor(q.mag) + '" opacity=".16" stroke="' + magColor(q.mag) + '" stroke-opacity=".55" stroke-width=".6" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"></circle>');
       });
       parts.push('</g>');
     }
@@ -427,7 +427,7 @@
       var s = state.selected;
       var sp = proj(s.lon, s.lat);
       [100, 200].forEach(function (km) {
-        parts.push('<circle cx="' + sp.x.toFixed(1) + '" cy="' + sp.y.toFixed(1) + '" r="' + kmToUnits(km).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width="1" stroke-dasharray="4 4" opacity=".8"></circle>');
+        parts.push('<circle cx="' + sp.x.toFixed(1) + '" cy="' + sp.y.toFixed(1) + '" r="' + kmToUnits(km).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width="1" stroke-dasharray="4 4" opacity=".8" vector-effect="non-scaling-stroke"></circle>');
       });
     }
     parts.push('</g>');
