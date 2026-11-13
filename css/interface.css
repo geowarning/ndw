@@ -815,6 +815,24 @@ body:not(.main-page) .bg-globe { opacity: 0; visibility: hidden; }
 .db-pager { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 16px 0 0; color: var(--text-dim); font-size: .82rem; }
 .db-page-btn { width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-solid); color: var(--text); font-size: 1.05rem; cursor: pointer; }
 .db-page-btn:disabled { opacity: .35; cursor: default; }
+.db-search { flex: 1 1 220px; min-width: 160px; max-width: 340px; padding: 9px 11px; border: 1px solid var(--border); border-radius: 8px; background: var(--card-solid); color: var(--text); font: inherit; }
+.db-search-btn { padding: 9px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--holo-soft); color: var(--holo-bright); font: inherit; cursor: pointer; }
+.db-table tbody tr.db-row { cursor: pointer; }
+.db-table tbody tr.db-row:focus-visible { outline: 2px solid var(--holo); outline-offset: -2px; }
+.db-modal { position: fixed; inset: 0; z-index: 120; display: grid; place-items: center; padding: 20px; background: rgba(0, 0, 0, .72); }
+.db-modal[hidden] { display: none; }
+.db-modal-card { position: relative; width: min(680px, 100%); max-height: 84vh; overflow: auto; padding: 24px; border: 1px solid var(--border-strong); border-radius: 16px; background: #0d151b; box-shadow: 0 30px 90px rgba(0, 0, 0, .6); }
+.db-modal-card h2 { margin: 6px 36px 18px 0; font-size: 1.4rem; font-weight: 500; }
+.db-modal-close { position: absolute; top: 12px; right: 14px; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text); font-size: 1.2rem; cursor: pointer; }
+.db-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin: 8px 0 16px; }
+.db-detail-grid div { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.db-detail-grid span { display: block; color: var(--text-dim); font-size: .68rem; text-transform: uppercase; letter-spacing: .05em; }
+.db-detail-grid b { display: block; margin-top: 3px; color: var(--text); font-weight: 600; font-size: .86rem; overflow-wrap: anywhere; }
+.db-detail-desc { color: var(--text-mid); font-size: .84rem; line-height: 1.6; margin: 8px 0 16px; }
+@media (max-width: 760px) {
+  .db-detail-grid { grid-template-columns: 1fr; }
+  .db-modal { padding: 10px; }
+}
 @media (max-width: 760px) {
   .db-stats { grid-template-columns: 1fr; }
   .db-table { min-width: 680px; }

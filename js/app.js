@@ -210,7 +210,7 @@
           '<p>' + esc(safetyText('hazardNote')) + '</p>' +
         '</div>' +
       '</div>' +
-      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS / VNP46A2 · CnOpenData · Open-Meteo</div>' +
+      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS / VNP46A2 · Open-Meteo</div>' +
       '<div class="footer-bottom"><span>' + esc(t.footerRights) + '</span><span>' + esc(t.version) + ' ' + APP_VERSION + '</span></div>';
   }
 
@@ -771,7 +771,7 @@
     else if (path === '#/home') { renderMainPage(); }
   }
 
-  var dbState = { category: 'earthquake', page: 1, minMag: 0, eq: null, gdacs: null, loading: false, error: '' };
+  var dbState = { category: 'earthquake', page: 1, minMag: 0, q: '', eq: null, gdacs: null, loading: false, error: '', eqRows: null, gdacsRows: null };
   var DB_PAGE_SIZE = 50;
 
   function dbTime(value) {
@@ -821,8 +821,8 @@
         return '<button type="button" class="db-tab' + (dbState.category === c[0] ? ' active' : '') + '" data-action="db-cat" data-v="' + c[0] + '">' + esc(c[1]) + '</button>';
       }).join('') + '</div>' +
       '<div id="dbBody" class="db-body"></div>' +
+      '<div id="dbModal" class="db-modal" hidden></div>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
-        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a> · ' +
         '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
         '<a href="https://www.gdacs.org" target="_blank" rel="noopener noreferrer">GDACS</a>' +
       '</p>' +
@@ -865,8 +865,12 @@
   }
 
   function renderDbEarthquake(body) {
-    var rows = ((dbState.eq && dbState.eq.rows) || []).filter(function (r) { return Number(r[4]) >= dbState.minMag; });
+    var q = dbState.q.toLowerCase();
+    var rows = ((dbState.eq && dbState.eq.rows) || []).filter(function (r) {
+      return Number(r[4]) >= dbState.minMag && (!q || String(r[5] || '').toLowerCase().indexOf(q) >= 0);
+    });
     rows.sort(function (a, b) { return b[0] - a[0]; });
+    dbState.eqRows = rows;
     var pages = Math.max(1, Math.ceil(rows.length / DB_PAGE_SIZE));
     dbState.page = Math.min(dbState.page, pages);
     var start = (dbState.page - 1) * DB_PAGE_SIZE;
@@ -882,15 +886,18 @@
       '<div><span>' + esc(web('maxMagnitude')) + '</span><b>M' + max.toFixed(1) + '</b></div>' +
       '<div><span>' + esc(web('historyRange')) + '</span><b>' + esc(dbDateShort(range[0]) + ' → ' + dbDateShort(range[1])) + '</b></div>' +
       '</div>' +
-      '<div class="db-toolbar"><label class="gfl" for="dbMinMag">' + esc(web('magnitude')) + '</label>' +
+      '<div class="db-toolbar">' +
+      '<input id="dbSearch" class="db-search" data-db-q type="search" value="' + esc(dbState.q) + '" placeholder="' + esc(web('dbSearchHint')) + '" aria-label="' + esc(web('dbSearchHint')) + '">' +
+      '<button type="button" class="db-search-btn" data-action="db-search">' + esc(web('searchTitle')) + '</button>' +
+      '<label class="gfl" for="dbMinMag">' + esc(web('magnitude')) + '</label>' +
       '<select id="dbMinMag" data-db-minmag>' + minOpts + '</select>' +
       '<span class="db-count">' + rows.length + ' ' + esc(web('records')) + '</span></div>' +
       '<div class="db-table-wrap"><table class="db-table"><thead><tr>' +
         '<th>' + esc(web('dataTime')) + '</th><th>' + esc(web('magnitude')) + '</th><th>' + esc(web('locationLabel')) + '</th><th>' + esc(web('depth')) + '</th><th>' + esc(web('coordinates')) + '</th>' +
       '</tr></thead><tbody>' +
-      (slice.length ? slice.map(function (r) {
+      (slice.length ? slice.map(function (r, i) {
         var mag = Number(r[4]);
-        return '<tr><td>' + esc(dbFormat(r[0])) + '</td><td><span class="db-mag ' + (mag >= 7 ? 'm7' : mag >= 6 ? 'm6' : mag >= 5 ? 'm5' : 'm4') + '">M' + mag.toFixed(1) + '</span></td>' +
+        return '<tr class="db-row" data-action="db-row" data-kind="earthquake" data-idx="' + (start + i) + '" tabindex="0"><td>' + esc(dbFormat(r[0])) + '</td><td><span class="db-mag ' + (mag >= 7 ? 'm7' : mag >= 6 ? 'm6' : mag >= 5 ? 'm5' : 'm4') + '">M' + mag.toFixed(1) + '</span></td>' +
           '<td>' + esc(r[5]) + '</td><td>' + Number(r[3]).toFixed(1) + ' km</td><td>' + Number(r[1]).toFixed(2) + '°, ' + Number(r[2]).toFixed(2) + '°</td></tr>';
       }).join('') : '<tr><td colspan="5" class="db-empty">' + esc(web('noMatch')) + '</td></tr>') +
       '</tbody></table></div>' + dbPager(pages);
@@ -898,13 +905,18 @@
   }
 
   function renderDbGdacs(body) {
+    var q = dbState.q.toLowerCase();
     var features = ((dbState.gdacs && dbState.gdacs.features) || []).filter(function (f) {
-      return f && f.properties && f.properties.eventtype === dbState.category;
+      if (!f || !f.properties || f.properties.eventtype !== dbState.category) { return false; }
+      if (!q) { return true; }
+      var p = f.properties;
+      return [p.name, p.country, p.eventtype].join(' ').toLowerCase().indexOf(q) >= 0;
     });
     features.sort(function (a, b) {
       var ap = a.properties || {}, bp = b.properties || {};
       return String(bp.fromdate || bp.datemodified || '').localeCompare(String(ap.fromdate || ap.datemodified || ''));
     });
+    dbState.gdacsRows = features;
     var pages = Math.max(1, Math.ceil(features.length / DB_PAGE_SIZE));
     dbState.page = Math.min(dbState.page, pages);
     var start = (dbState.page - 1) * DB_PAGE_SIZE;
@@ -920,24 +932,83 @@
       '<div><span>' + esc(web('gdacsAlert')) + '</span><b>G ' + counts.green + ' · O ' + counts.orange + ' · R ' + counts.red + '</b></div>' +
       '<div><span>' + esc(web('historyRange')) + '</span><b>' + esc(String(range[0] || '—')) + ' → ' + esc(String(range[1] || '—')) + '</b></div>' +
       '</div>' +
-      '<div class="db-toolbar"><span class="db-count">' + features.length + ' ' + esc(web('records')) + '</span></div>' +
+      '<div class="db-toolbar">' +
+      '<input id="dbSearch" class="db-search" data-db-q type="search" value="' + esc(dbState.q) + '" placeholder="' + esc(web('dbSearchHint')) + '" aria-label="' + esc(web('dbSearchHint')) + '">' +
+      '<button type="button" class="db-search-btn" data-action="db-search">' + esc(web('searchTitle')) + '</button>' +
+      '<span class="db-count">' + features.length + ' ' + esc(web('records')) + '</span></div>' +
       '<div class="db-table-wrap"><table class="db-table"><thead><tr>' +
         '<th>' + esc(web('dataTime')) + '</th><th>' + esc(web('hazardType')) + '</th><th>' + esc(web('locationLabel')) + '</th><th>' + esc(web('countryLabel')) + '</th><th>' + esc(web('gdacsAlert')) + '</th><th>' + esc(web('coordinates')) + '</th>' +
       '</tr></thead><tbody>' +
-      (slice.length ? slice.map(function (f) {
+      (slice.length ? slice.map(function (f, i) {
         var p = f.properties || {};
         var c = (f.geometry && f.geometry.coordinates) || [];
         var url = p.url && p.url.report ? p.url.report : '';
         var name = esc(p.name || '—');
-        return '<tr><td>' + esc(dbFormat(p.fromdate || p.datemodified)) + '</td>' +
+        return '<tr class="db-row" data-action="db-row" data-kind="gdacs" data-idx="' + (start + i) + '" tabindex="0"><td>' + esc(dbFormat(p.fromdate || p.datemodified)) + '</td>' +
           '<td>' + esc(dbCategoryLabel(p.eventtype)) + '</td>' +
-          '<td>' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + name + '</a>' : name) + '</td>' +
+          '<td>' + (url ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" data-action="noop">' + name + '</a>' : name) + '</td>' +
           '<td>' + esc(p.country || '—') + '</td>' +
           '<td><span class="db-alert ' + esc(String(p.alertlevel || '').toLowerCase()) + '">' + esc(p.alertlevel || '—') + '</span></td>' +
           '<td>' + Number(c[0]).toFixed(2) + '°, ' + Number(c[1]).toFixed(2) + '°</td></tr>';
       }).join('') : '<tr><td colspan="6" class="db-empty">' + esc(web('noMatch')) + '</td></tr>') +
       '</tbody></table></div>' + dbPager(pages);
     body.innerHTML = html;
+  }
+
+  function dbField(label, value) {
+    return '<div><span>' + esc(label) + '</span><b>' + esc(value == null || value === '' ? '—' : String(value)) + '</b></div>';
+  }
+  function showDbDetail(kind, idx) {
+    var modal = document.getElementById('dbModal');
+    if (!modal || !isFinite(idx)) { return; }
+    var html = '';
+    if (kind === 'earthquake') {
+      var r = (dbState.eqRows || [])[idx];
+      if (!r) { return; }
+      var mag = Number(r[4]);
+      html = '<div class="db-modal-card" role="dialog" aria-modal="true">' +
+        '<button type="button" class="db-modal-close" data-action="db-close" aria-label="Close">×</button>' +
+        '<div class="gkicker">' + esc(web('earthquakeType')) + '</div>' +
+        '<h2>M' + mag.toFixed(1) + ' · ' + esc(r[5]) + '</h2>' +
+        '<div class="db-detail-grid">' +
+          dbField(web('dataTime'), dbFormat(r[0])) +
+          dbField(web('magnitude'), 'M' + mag.toFixed(1)) +
+          dbField(web('depth'), Number(r[3]).toFixed(1) + ' km') +
+          dbField(web('coordinates'), Number(r[1]).toFixed(2) + '°, ' + Number(r[2]).toFixed(2) + '°') +
+          dbField(web('locationLabel'), r[5]) +
+          dbField(web('sourceLabel'), 'USGS') +
+        '</div>' +
+      '</div>';
+    } else {
+      var f = (dbState.gdacsRows || [])[idx];
+      if (!f) { return; }
+      var p = f.properties || {};
+      var c = (f.geometry && f.geometry.coordinates) || [];
+      var desc = p.htmldescription || p.description || '';
+      var report = p.url && p.url.report ? p.url.report : '';
+      html = '<div class="db-modal-card" role="dialog" aria-modal="true">' +
+        '<button type="button" class="db-modal-close" data-action="db-close" aria-label="Close">×</button>' +
+        '<div class="gkicker">' + esc(dbCategoryLabel(p.eventtype)) + '</div>' +
+        '<h2>' + esc(p.name || '—') + '</h2>' +
+        '<div class="db-detail-grid">' +
+          dbField(web('gdacsFrom'), dbFormat(p.fromdate)) +
+          dbField(web('gdacsTo'), dbFormat(p.todate)) +
+          dbField(web('countryLabel'), p.country) +
+          dbField(web('gdacsAlert'), p.alertlevel) +
+          dbField(web('coordinates'), Number(c[0]).toFixed(2) + '°, ' + Number(c[1]).toFixed(2) + '°') +
+          dbField(web('gdacsUpdated'), dbFormat(p.datemodified)) +
+        '</div>' +
+        (desc ? '<p class="db-detail-desc">' + esc(desc) + '</p>' : '') +
+        (report ? '<a class="btn btn-outline" href="' + esc(report) + '" target="_blank" rel="noopener noreferrer">' + esc(web('gdacsReport')) + ' ↗</a>' : '') +
+      '</div>';
+    }
+    modal.innerHTML = html;
+    modal.hidden = false;
+    modal.scrollTop = 0;
+  }
+  function closeDbDetail() {
+    var modal = document.getElementById('dbModal');
+    if (modal) { modal.hidden = true; modal.innerHTML = ''; }
   }
 
   function renderHome() {
@@ -2324,8 +2395,18 @@
       case 'db-cat':
         dbState.category = d.v || 'earthquake';
         dbState.page = 1;
+        dbState.q = '';
         renderDatabase();
         break;
+      case 'db-search': {
+        var dbSearch = document.getElementById('dbSearch');
+        dbState.q = dbSearch ? dbSearch.value.trim() : '';
+        dbState.page = 1;
+        renderDbBody();
+        break;
+      }
+      case 'db-row': showDbDetail(d.kind, parseInt(d.idx, 10)); break;
+      case 'db-close': closeDbDetail(); break;
       case 'db-page':
         if (d.v === 'prev') { dbState.page = Math.max(1, dbState.page - 1); } else { dbState.page += 1; }
         renderDbBody();
@@ -2566,6 +2647,20 @@
     if (!el) { return; }
     homeFilter[el.getAttribute('data-filter')] = el.value;
     softRerender();
+  });
+
+  document.getElementById('app').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.closest('[data-db-q]')) {
+      e.preventDefault();
+      dbState.q = e.target.value.trim();
+      dbState.page = 1;
+      renderDbBody();
+    } else if (e.key === 'Escape') {
+      closeDbDetail();
+    } else if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.db-row')) {
+      e.preventDefault();
+      showDbDetail(e.target.getAttribute('data-kind'), parseInt(e.target.getAttribute('data-idx'), 10));
+    }
   });
 
   window.addEventListener('hashchange', route);

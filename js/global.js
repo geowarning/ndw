@@ -7,7 +7,7 @@
     loading: true, error: '', live: null, history: null, el: null, ctx: null,
     zoom: 1, panX: 0, panY: 0, nasaDay: '001', fullscreen: false, gdacsType: 'all', gdacsAlert: 'all', historyRange: '30d'
   };
-  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null, gdacs: null, gdacsRaw: null };
+  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null, gdacs: null, gdacsRaw: null, gdacsHistory: null };
   var wms = { key: '', timer: null };
   var bound = false;
 
@@ -203,8 +203,19 @@
     return out;
   }
   function currentGdacs() {
-    if (!state.layers.gdacs || !cache.gdacs) { return []; }
-    if (state.mode === 'history') { return []; }
+    if (!state.layers.gdacs) { return []; }
+    if (state.mode === 'history') {
+      if (!cache.gdacsHistory) { return []; }
+      var minTime = Date.now() - historyDays() * 86400000;
+      return cache.gdacsHistory.filter(function (g) {
+        if (g.active === false || gdacsMs(g) < minTime) { return false; }
+        if (state.gdacsType === 'EQ') { return false; }
+        if (state.gdacsType !== 'all' && g.type !== state.gdacsType) { return false; }
+        if (state.gdacsAlert !== 'all' && g.alert !== state.gdacsAlert) { return false; }
+        return true;
+      });
+    }
+    if (!cache.gdacs) { return []; }
     if (state.gdacsType === 'EQ') { return []; }
     return cache.gdacs.filter(function (g) {
       if (g.active === false) { return false; }
@@ -257,9 +268,8 @@
     };
     var layerDefs = [
       ['affected', web('affected')], ['population', web('population')], ['evacuation', web('evacuation')],
-      ['infrastructure', web('infrastructure')], ['nightlights', web('nightlights')]
+      ['infrastructure', web('infrastructure')], ['nightlights', web('nightlights')], ['gdacs', web('gdacsLayer')]
     ];
-    if (state.mode !== 'history') { layerDefs.push(['gdacs', web('gdacsLayer')]); }
     var layers = layerDefs.map(function (l) {
       return '<button type="button" class="glayer' + (state.layers[l[0]] ? ' active' : '') + '" data-g="layer" data-v="' + l[0] + '">' + esc(l[1]) + '</button>';
     }).join('');
@@ -307,7 +317,7 @@
         (state.layers.nightlights && cache.tiles ? '<span class="gfl">NASA</span><select data-g="nasaday" aria-label="NASA VNP46A2">' + cache.tiles.days.map(function (d) {
           return '<option value="' + d.id + '"' + (state.nasaDay === d.id ? ' selected' : '') + '>' + esc(d.date) + '</option>';
         }).join('') + '</select>' : '') +
-        (state.layers.gdacs && state.mode !== 'history' ? '<span class="gfl">' + esc(web('hazardType')) + '</span><select data-g="gdacstype" aria-label="' + esc(web('hazardType')) + '">' + gdacsTypeOpts + '</select>' +
+        (state.layers.gdacs ? '<span class="gfl">' + esc(web('hazardType')) + '</span><select data-g="gdacstype" aria-label="' + esc(web('hazardType')) + '">' + gdacsTypeOpts + '</select>' +
           '<select data-g="gdacsalert" aria-label="' + esc(web('gdacsAlert')) + '">' + gdacsAlertOpts + '</select>' : '') +
         (isLive ? '' : '<span class="gfl">' + esc(web('historyRange')) + '</span>' +
           [['3d', web('last3d')], ['7d', web('last7d')], ['30d', web('last30d')]].map(function (x) {
@@ -321,7 +331,7 @@
         '<div class="global-layers"><span class="gfl">' + esc(web('layers')) + '</span>' + layers + '</div>' +
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
-        (state.layers.gdacs && state.mode !== 'history' && state.gdacsType !== 'EQ' ? '<span>' + esc(hazardTypeLabel(state.gdacsType)) + ' · GDACS ' + gdacs.length + '</span>' : '') +
+        (state.layers.gdacs && state.gdacsType !== 'EQ' ? '<span>' + esc(hazardTypeLabel(state.gdacsType)) + ' · GDACS ' + gdacs.length + '</span>' : '') +
         (state.layers.nightlights ? '<span>' + esc(web('nasaCoverage')) + '</span>' : '') +
         (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
@@ -739,18 +749,18 @@
     var qs = (state.country ? quakesInCountry(quakes) : quakes).slice().sort(function (a, b) { return (b.time || 0) - (a.time || 0); }).slice(0, 8);
     var gs = (state.country ? gdacsInCountry() : currentGdacs()).slice().sort(function (a, b) { return gdacsMs(b) - gdacsMs(a); });
     var showQuakes = state.gdacsType === 'all' || state.gdacsType === 'EQ';
-    var showGdacs = state.mode !== 'history' && state.layers.gdacs && state.gdacsType !== 'EQ';
+    var showGdacs = state.layers.gdacs && state.gdacsType !== 'EQ';
     var title = state.country || web('gdacsEvents');
     var sub = state.country ? hazardTypeLabel(state.gdacsType) + ' · ' + (qs.length + gs.length) :
       (state.gdacsType === 'EQ' ? web('earthquakeType') :
-        (state.gdacsType === 'all' ? (showGdacs ? 'GDACS + ' + web('activeQuakes') : web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes')) : hazardTypeLabel(state.gdacsType)));
+        (state.gdacsType === 'all' ? (showGdacs ? 'GDACS + ' + web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes') : web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes')) : hazardTypeLabel(state.gdacsType)));
     var html = '<div class="gside-head"><h3>' + esc(title) + '</h3><span>' + esc(sub) + '</span></div><div class="glist">';
     if (showGdacs) {
       html += '<div class="glist-label">' + esc(web('gdacsEvents')) + ' · ' + gs.length + '</div>' +
         (gs.length ? gs.map(gdacsItem).join('') : '<div class="ops-empty">' + esc(web('noMatch')) + '</div>');
     }
     if (showQuakes) {
-      html += '<div class="glist-label">' + esc(web('activeQuakes')) + ' · ' + qs.length + '</div>' +
+      html += '<div class="glist-label">' + esc(web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes')) + ' · ' + qs.length + '</div>' +
         (qs.length ? qs.map(quakeItem).join('') : '<div class="ops-empty">' + esc(web('noMatch')) + '</div>');
     }
     return html + '</div>';
@@ -782,7 +792,7 @@
         '</div>' +
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
-        ((state.layers.gdacs && state.mode !== 'history' && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
+        ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
@@ -790,7 +800,6 @@
         '<a href="https://apizero.cn" target="_blank" rel="noopener noreferrer">极数本源 apizero.cn</a> · ' +
         '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
         '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS / VNP46A2</a> · ' +
-        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a> · ' +
         '<a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo</a>' +
       '</p>' +
       '</div></section>';
@@ -824,8 +833,15 @@
         if (v === 'history') { state.gdacsType = 'all'; state.gdacsAlert = 'all'; }
         if (v === 'history' && !state.history) {
           state.loading = true; paint();
-          fetchJson('public-data/global-quakes-recent.json').then(function (d) {
-            cache.history = d; state.history = d; state.loading = false; paint();
+          Promise.all([
+            fetchJson('public-data/global-quakes-recent.json'),
+            fetchJson('public-data/gdacs-disaster-history.json').catch(function () { return null; })
+          ]).then(function (res) {
+            cache.history = res[0];
+            state.history = res[0];
+            if (res[1]) { cache.gdacsHistory = normalizeGdacs(res[1]); }
+            state.loading = false;
+            paint();
           }).catch(function (err) { state.loading = false; state.error = String(err); paint(); });
         } else { paint(); }
         return;

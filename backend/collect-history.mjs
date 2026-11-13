@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
 const RECENT_FILE = path.join(ROOT, 'public-data', 'global-quakes-recent.json');
+const ARCHIVE_FILE = path.join(ROOT, 'public-data', 'global-quakes-history.json');
 const GDACS_FILE = path.join(ROOT, 'public-data', 'gdacs-disaster-history.json');
 const NOW = new Date();
 const DAY = 86400000;
@@ -64,6 +65,31 @@ function monthStart(d) { return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMo
 function nextMonth(d) { return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1)); }
 function monthEnd(d) { return new Date(nextMonth(d).getTime() - DAY); }
 
+async function collectEarthquakeArchive() {
+  const start = monthStart(new Date(Date.UTC(NOW.getUTCFullYear(), NOW.getUTCMonth() - 23, 1)));
+  const end = new Date(NOW);
+  const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson' +
+    '&starttime=' + isoDate(start) + '&endtime=' + isoDate(end) +
+    '&minmagnitude=4.5&orderby=time';
+  const data = await fetchJson(url);
+  const rows = [];
+  (data.features || []).forEach((f) => {
+    const p = f.properties || {};
+    const c = (f.geometry && f.geometry.coordinates) || [];
+    if (!isFinite(p.time) || !isFinite(c[0]) || !isFinite(c[1]) || !isFinite(p.mag)) { return; }
+    rows.push([p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake']);
+  });
+  rows.sort((a, b) => b[0] - a[0]);
+  writeJson(ARCHIVE_FILE, {
+    source: 'USGS',
+    timezone: 'UTC',
+    count: rows.length,
+    range: [start.getTime(), end.getTime()],
+    rows
+  });
+  console.log('USGS 24-month archive: ' + rows.length + ' rows');
+}
+
 async function collectGdacsHistory() {
   const start = monthStart(new Date(Date.UTC(NOW.getUTCFullYear(), NOW.getUTCMonth() - 23, 1)));
   const seen = new Set();
@@ -104,6 +130,7 @@ async function collectGdacsHistory() {
 
 async function main() {
   await collectRecent();
+  await collectEarthquakeArchive();
   await collectGdacsHistory();
 }
 main().catch((err) => {

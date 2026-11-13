@@ -25,6 +25,7 @@ jobs:
       - name: Publish history
         run: |
           git add public-data/global-quakes-recent.json
+          git add public-data/global-quakes-history.json
           if [ -f public-data/gdacs-disaster-history.json ]; then git add public-data/gdacs-disaster-history.json; fi
           if git diff --cached --quiet; then
             echo "No change"
