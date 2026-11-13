@@ -168,6 +168,8 @@
     resetView: { zh: '重置视图', en: 'Reset view', es: 'Restablecer vista', fr: 'Réinitialiser la vue', it: 'Reimposta vista' },
     zoomHint: { zh: '滚轮 / 双指缩放，拖动平移', en: 'Scroll or pinch to zoom, drag to pan', es: 'Rueda o pellizco para zoom, arrastra para mover', fr: 'Molette ou pincement pour zoomer, glisser pour déplacer', it: 'Rotella o pizzica per zoom, trascina per spostare' },
     fullscreen: { zh: '全屏', en: 'Fullscreen', es: 'Pantalla completa', fr: 'Plein écran', it: 'Schermo intero' },
+    hazardType: { zh: '灾害类型', en: 'Hazard type', es: 'Tipo de amenaza', fr: 'Type de risque', it: 'Tipo di rischio' },
+    earthquakeType: { zh: '地震', en: 'Earthquakes', es: 'Sismos', fr: 'Séismes', it: 'Terremoti' },
     gdacsLayer: { zh: 'GDACS 灾害', en: 'GDACS hazards', es: 'Amenazas GDACS', fr: 'Risques GDACS', it: 'Rischi GDACS' },
     chinaData: { zh: '中国数据', en: 'China data', es: 'Datos de China', fr: 'Données Chine', it: 'Dati Cina' },
     chinaSatellite: { zh: 'NASA 卫星底图', en: 'NASA satellite', es: 'Satélite NASA', fr: 'Satellite NASA', it: 'Satellite NASA' },
