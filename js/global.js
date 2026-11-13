@@ -257,7 +257,6 @@
         '<div class="global-mode">' +
           '<button type="button" class="' + (isLive ? 'active' : '') + '" data-g="mode" data-v="live">' + esc(web('live')) + '</button>' +
           '<button type="button" class="' + (!isLive ? 'active' : '') + '" data-g="mode" data-v="history">' + esc(web('history')) + '</button>' +
-          '<button type="button" class="gchina" data-g="china">' + esc(web('chinaData')) + '</button>' +
         '</div>' +
       '</div>' +
       '<div class="global-kpis">' +
@@ -541,18 +540,8 @@
       clampPan();
     }
   }
-  function focusChina() {
-    var c = (cache.paths || []).filter(function (p) { return p.name === 'China'; })[0];
-    state.country = 'China';
-    state.selected = null;
-    if (c) { zoomToCountry(c); }
-    paint();
-    setTimeout(function () {
-      var ops = document.querySelector('.ops-dashboard');
-      if (ops) { ops.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-    }, 160);
-  }
-  function selectCountry(name) {    if (state.country === name) {
+  function selectCountry(name) {
+    if (state.country === name) {
       state.country = null;
       state.selected = null;
       state.zoom = 1;
@@ -754,7 +743,8 @@
         '<a href="https://apizero.cn" target="_blank" rel="noopener noreferrer">极数本源 apizero.cn</a> · ' +
         '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
         '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS / VNP46A2</a> · ' +
-        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a>' +
+        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a> · ' +
+        '<a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo</a>' +
       '</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
@@ -782,7 +772,6 @@
         } else { state.zoom = 1; state.panX = 0; state.panY = 0; applyView(); }
         return;
       }
-      if (k === 'china') { focusChina(); return; }
       if (k === 'mode' && v && v !== state.mode) {
         state.mode = v; state.selected = null; state.country = null;
         if (v === 'history' && !state.history) {

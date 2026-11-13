@@ -140,7 +140,8 @@
    * ================================================================ */
   function navItems(l) {
     return [
-      { path: '/home', hash: '#/home', label: i18n.t('tabIndex', l), icon: SVG.iHome },
+      { path: '/home', hash: '#/home', label: web('mainTab'), icon: SVG.iHome },
+      { path: '/china', hash: '#/china', label: web('chinaTab'), icon: SVG.iPin },
       { path: '/global', hash: '#/global', label: web('globalTab'), icon: SVG.iGlobe },
       { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l), icon: SVG.iGuide },
       { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l), icon: SVG.iTools },
@@ -208,7 +209,7 @@
           '<p>' + esc(safetyText('hazardNote')) + '</p>' +
         '</div>' +
       '</div>' +
-      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS / VNP46A2 · CnOpenData</div>' +
+      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS / VNP46A2 · CnOpenData · Open-Meteo</div>' +
       '<div class="footer-bottom"><span>' + esc(t.footerRights) + '</span><span>' + esc(t.version) + ' ' + APP_VERSION + '</span></div>';
   }
 
@@ -230,7 +231,7 @@
 
   var homeState = {
     province: '', city: '', adcode: '', district: '',
-    weather: null, rawWeather: null, rawSource: '',
+    weather: null, rawWeather: null, rawSource: '', weatherSource: '',
     rawAlerts: [],
     shownAlerts: [],
     levelStats: { red: 0, orange: 0, yellow: 0, blue: 0 },
@@ -460,6 +461,40 @@
       })
       : null;
   }
+  function fallbackWeatherText(code, l) {
+    var zh = l === 'zh';
+    if (code === 0) { return zh ? '晴' : 'Clear'; }
+    if (code <= 2) { return zh ? '晴间多云' : 'Mostly clear'; }
+    if (code === 3) { return zh ? '多云' : 'Overcast'; }
+    if (code === 45 || code === 48) { return zh ? '雾' : 'Fog'; }
+    if (code >= 51 && code <= 57) { return zh ? '毛毛雨' : 'Drizzle'; }
+    if (code >= 61 && code <= 67) { return zh ? '雨' : 'Rain'; }
+    if (code >= 71 && code <= 77) { return zh ? '雪' : 'Snow'; }
+    if (code >= 80 && code <= 82) { return zh ? '阵雨' : 'Showers'; }
+    if (code >= 85 && code <= 86) { return zh ? '阵雪' : 'Snow showers'; }
+    if (code >= 95) { return zh ? '雷暴' : 'Thunderstorm'; }
+    return zh ? '多云' : 'Cloudy';
+  }
+  function loadFallbackWeather(region, requestId) {
+    var geo = region && region.adcode ? districts.getCityGeo(region.adcode) : null;
+    if (!geo || !isFinite(geo.lat) || !isFinite(geo.lng)) { return; }
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=' + geo.lat + '&longitude=' + geo.lng +
+      '&current=temperature_2m,weather_code,wind_speed_10m&timezone=Asia%2FShanghai', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (requestId !== homeRequest || !j || !j.current || homeState.rawWeather) { return; }
+        var c = j.current;
+        var temp = isFinite(c.temperature_2m) ? Math.round(c.temperature_2m) + '°C' : '';
+        var wind = isFinite(c.wind_speed_10m) ? Math.round(c.wind_speed_10m) + ' km/h' : '';
+        homeState.rawWeather = { temp: temp, weather: fallbackWeatherText(c.weather_code, lang()), wind: wind };
+        homeState.weatherSource = 'Open-Meteo';
+        deriveHome(lang());
+        var path = (location.hash || '#/home').split('?')[0];
+        if (path === '#/home' || path === '#/china') { renderHomeRoute(); }
+      })
+      .catch(function () {});
+  }
+
   function deriveHome(l) {
     var s = homeState;
     var localized = localizeList(s.rawAlerts, l);
@@ -481,16 +516,29 @@
     var l = lang();
     homeState.rawAlerts = [];
     homeState.rawWeather = null;
+    homeState.weatherSource = '';
     homeState.hasData = false;
+    setTimeout(function () {
+      if (requestId === homeRequest && !homeState.rawWeather) { loadFallbackWeather(region, requestId); }
+    }, 1200);
     deriveHome(l);
     homeState.adcode = region.adcode;
-    api.fetchAll(region).then(function (res) {
+    var fetchTimeout = new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve({ ok: false, alerts: [], weather: null, error: web('dataUnavailable'), errorCode: 'timeout', source: '' });
+      }, 8000);
+    });
+    Promise.race([api.fetchAll(region), fetchTimeout]).then(function (res) {
       if (requestId !== homeRequest) { return; }
       var raw = res.alerts || [];
 
-      homeState.rawWeather = res.weather || null;
+      if (res.weather) {
+        homeState.rawWeather = res.weather;
+        homeState.weatherSource = res.source || '';
+      }
       homeState.rawSource = res.source || '';
       homeState.rawAlerts = raw;
+      if (!homeState.rawWeather) { loadFallbackWeather(region, requestId); }
       deriveHome(l);
 
       homeState.loading = false;
@@ -514,8 +562,9 @@
       if (res.ok && region.adcode) { recordTrend(region.adcode, raw.length); }
       refreshMaps();
 
-      if ((location.hash || '#/home').indexOf('#/home') === 0) {
-        renderHome();
+      var homePath = (location.hash || '#/home').split('?')[0];
+      if (homePath === '#/home' || homePath === '#/china') {
+        renderHomeRoute();
       }
     });
   }
@@ -605,7 +654,7 @@
   }
   function homeDashboardHtml(s, t) {
     return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('situationOverview')) + '</h2><p>' + esc(web('overviewSubtitleBoth')) + '</p></div>' +
-      '<div class="ops-tabs"><a class="active" href="#/home">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
+      '<div class="ops-tabs"><a href="#/china">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
       '<div class="ops-kpis" id="opsKpis">' + opsKpi(web('chinaStatus'), '—', '') + opsKpi(web('criticalLocations'), '—', '') + opsKpi(web('activeQuakes'), '—', '') + opsKpi(web('maxMagnitude'), '—', '') + '</div>' +
       '<div class="ops-grid">' +
         '<div class="ops-card"><h3>' + esc(web('criticalLocations')) + '</h3><div class="ops-list" id="opsCritical"><div class="ops-empty">…</div></div></div>' +
@@ -684,6 +733,38 @@
     renderGlobalInto(viewEl, false);
   }
 
+  function renderMainPage() {
+    var l = lang();
+    var t = T(l);
+    var s = homeState;
+    var html = '<div class="main-landing">' +
+      '<div class="main-landing-inner">' +
+        '<section class="main-copy">' +
+          '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || web('mainEyebrow')) + '</div>' +
+          '<h1>' + esc(web('mainTitle')) + '</h1>' +
+          '<p>' + esc(web('mainIntro')) + '</p>' +
+          '<div class="main-actions">' +
+            '<a class="btn btn-green" href="#/china">' + esc(web('mainChinaCta')) + ' →</a>' +
+            '<a class="btn btn-outline" href="#/global">' + esc(web('mainGlobalCta')) + ' →</a>' +
+          '</div>' +
+        '</section>' +
+        '<section class="main-overview" aria-label="' + esc(web('situationOverview')) + '">' + homeDashboardHtml(s, t) + '</section>' +
+      '</div>' +
+    '</div>';
+    viewEl.innerHTML = html;
+    document.title = web('mainTab');
+    document.body.classList.add('main-page');
+    if (globe) { globe.resize(); }
+    hydrateHomeDashboard();
+    explainView();
+  }
+
+  function renderHomeRoute() {
+    var path = (location.hash || '#/home').split('?')[0];
+    if (path === '#/china') { renderHome(); }
+    else if (path === '#/home') { renderMainPage(); }
+  }
+
   function renderHome() {
     var l = lang();
     var t = T(l);
@@ -711,15 +792,13 @@
             '<div class="wr-item"><span class="h2-ic wc-ic">' + SVG.iWind + '</span><b>' + esc(t.wind) + '</b>' + esc(s.weather.wind) + '</div>' +
           '</div>' +
           '<div class="wc-source">' + esc(t.cityWeatherNote) + '</div>' +
-          '<div class="wc-source">' + esc(i18n.tpl('providedBy', { source: s.dataSource }, l)) + '</div>' +
+          '<div class="wc-source">' + esc(i18n.tpl('providedBy', { source: s.weatherSource || s.dataSource }, l)) + '</div>' +
         '</div>'
       : '';
 
     var loadingClass = s.loading ? ' is-loading' : '';
     var html =
       '<div class="home-dashboard' + loadingClass + '">' +
-      '<section class="home-global"><div id="homeGlobalMount"></div></section>' +
-      '<section class="ops-dashboard"><div class="container">' + homeDashboardHtml(s, t) + '</div></section>' +
       '<section class="hero"><div class="container">' +
         '<div class="hero-inner">' +
           '<div class="hero-left">' +
@@ -902,13 +981,7 @@
 
     html += '</div>';
     viewEl.innerHTML = html;
-    renderGlobalInto(document.getElementById('homeGlobalMount'), true);
-    document.title = t.tabIndex;
-    var hero = viewEl.querySelector('.home-dashboard .hero');
-    if (hero && bgCanvas && globe) {
-      hero.prepend(bgCanvas);
-      globe.resize();
-    }
+    document.title = web('chinaTab');
     explainView();
 
     /* 中国态势图 */
@@ -940,7 +1013,7 @@
     var t = T();
     var info = api.getSnapshotInfo();
     viewEl.innerHTML = '<section class="expanded-map-page"><div class="container">' +
-      '<a class="back-link" href="#/home">← ' + esc(web('backToWarnings')) + '</a>' +
+      '<a class="back-link" href="#/china">← ' + esc(web('backToWarnings')) + '</a>' +
       '<div class="expanded-map-heading"><div><h1 id="expandedMapHeading">' + esc(t.nationalSituation) + '</h1>' +
         '<p id="expandedMapHint">' + esc(web('expandedMapHint')) + '</p></div>' +
         '<div class="expanded-map-actions">' +
@@ -1306,7 +1379,7 @@
 
     var html =
       '<section class="detail-hero lv-' + a.level + '"><div class="container">' +
-        '<a class="back-link" href="#/home">‹ ' + esc(t.tabIndex) + '</a>' +
+        '<a class="back-link" href="#/china">‹ ' + esc(web('chinaTab')) + '</a>' +
         '<div><span class="level-badge">' + esc(a.levelName) + '</span></div>' +
         '<h1>' + esc(a.title) + '</h1>' +
         '<div class="detail-meta"><span>' + esc(i18n.disasterName(a.type, l)) + '</span>' +
@@ -2020,7 +2093,8 @@
     var path = parts[0] || '/home';
     var query = parseQuery(parts[1]);
     window.scrollTo(0, 0);
-    renderNav(path === '/map' ? '/home' : path);
+    renderNav(path === '/map' ? '/china' : path);
+    document.body.classList.toggle('main-page', path === '/home');
     closeDrawer();
     clearInterval(countdownTimer);
     if (path !== '/products') {
@@ -2028,6 +2102,14 @@
       productsState.game = null;
     }
     switch (path) {
+      case '/home':
+        if (!homeState.city) { initRegion(); }
+        renderMainPage();
+        break;
+      case '/china':
+        if (!homeState.city) { initRegion(); }
+        renderHome();
+        break;
       case '/global': renderGlobal(); break;
       case '/map': renderExpandedMap(); break;
       case '/detail': renderDetail(query.id); break;
@@ -2037,7 +2119,7 @@
       case '/settings': renderSettings(); break;
       default:
         if (!homeState.city) { initRegion(); }
-        renderHome();
+        renderMainPage();
         break;
     }
     renderFooter();
@@ -2072,7 +2154,7 @@
         api.refreshSnapshot();
         homeState.loading = true;
         homeState.error = '';
-        renderHome();
+        renderHomeRoute();
         loadHomeData();
         break;
       case 'refresh-map':
@@ -2229,12 +2311,14 @@
   window.addEventListener('offline', function () {
     Object.keys(sessionStatus).forEach(function (key) { sessionStatus[key].unavailable = true; });
     refreshMaps();
-    if ((location.hash || '#/home') === '#/home') { homeState.hasData = false; homeState.loading = false; homeState.error = safetyText('offline'); renderHome(); }
+    var offlinePath = (location.hash || '#/home').split('?')[0];
+    if (offlinePath === '#/home' || offlinePath === '#/china') { homeState.hasData = false; homeState.loading = false; homeState.error = safetyText('offline'); renderHomeRoute(); }
     updateConnectionNotice();
   });
   window.addEventListener('online', function () {
     api.refreshSnapshot();
-    if ((location.hash || '#/home') === '#/home') loadHomeData();
+    var onlinePath = (location.hash || '#/home').split('?')[0];
+    if (onlinePath === '#/home' || onlinePath === '#/china') loadHomeData();
     else if (location.hash === '#/map') sweepNationalStatus(true);
     updateConnectionNotice();
   });
@@ -2278,7 +2362,8 @@
         homeState.district = '';
         homeState.loading = true;
         homeState.error = '';
-        if ((location.hash || '#/home') !== '#/home') { location.hash = '#/home'; }
+        var cityPath = (location.hash || '#/home').split('?')[0];
+        if (cityPath !== '#/china') { location.hash = '#/china'; }
         else { renderHome(); loadHomeData(); }
       }
     });
