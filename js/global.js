@@ -71,19 +71,37 @@
       cache.cities = res[1];
       cache.tiles = res[2];
       if (cache.paths) { return; }
-      var paths = [];
+        var paths = [];
       (cache.countries.features || []).forEach(function (f) {
         var d = geoPath(f.geometry);
         if (!d) { return; }
-        var ring = f.geometry.type === 'Polygon' ? f.geometry.coordinates[0] : f.geometry.coordinates[0][0];
+        var minLon = 180, maxLon = -180, minLat = 90, maxLat = -90;
         var sx = 0, sy = 0, n = 0;
-        (ring || []).forEach(function (c) { sx += c[0]; sy += c[1]; n++; });
+        function scanRing(ring) {
+          (ring || []).forEach(function (c) {
+            if (typeof c[0] !== 'number') { return; }
+            minLon = Math.min(minLon, c[0]);
+            maxLon = Math.max(maxLon, c[0]);
+            minLat = Math.min(minLat, c[1]);
+            maxLat = Math.max(maxLat, c[1]);
+            sx += c[0];
+            sy += c[1];
+            n++;
+          });
+        }
+        var geo = f.geometry;
+        if (geo.type === 'Polygon') {
+          geo.coordinates.forEach(scanRing);
+        } else if (geo.type === 'MultiPolygon') {
+          geo.coordinates.forEach(function (poly) { poly.forEach(scanRing); });
+        }
         paths.push({
           name: f.properties.name,
           iso: f.properties.iso2 || '',
           d: d,
           lon: n ? sx / n : 0,
-          lat: n ? sy / n : 0
+          lat: n ? sy / n : 0,
+          bbox: { minLon: minLon, maxLon: maxLon, minLat: minLat, maxLat: maxLat }
         });
       });
       cache.paths = paths;
@@ -375,6 +393,19 @@
     clampPan();
     applyView();
   }
+  function zoomToCountry(c) {
+    if (!c || !c.bbox) { return; }
+    var b = c.bbox;
+    var w = Math.max(0.5, (b.maxLon - b.minLon) / 360 * W);
+    var h = Math.max(0.5, (b.maxLat - b.minLat) / 180 * H);
+    var z = Math.max(1, Math.min(96, Math.min(W / w, H / h) * 0.78));
+    var cx = ((b.minLon + b.maxLon) / 2 + 180) / 360 * W;
+    var cy = (90 - (b.minLat + b.maxLat) / 2) / 180 * H;
+    state.zoom = z;
+    state.panX = W / 2 - z * cx;
+    state.panY = H / 2 - z * cy;
+    clampPan();
+  }
   var drag = null;
   var suppressClickUntil = 0;
   function onWheel(e) {
@@ -539,15 +570,38 @@
     var c = e.target.closest('[data-country]');
     if (c) {
       var name = c.getAttribute('data-country');
-      state.country = state.country === name ? null : name;
+      if (state.country === name) {
+        state.country = null;
+        state.selected = null;
+        state.zoom = 1;
+        state.panX = 0;
+        state.panY = 0;
+        paint();
+        return;
+      }
+      state.country = name;
       state.selected = null;
+      var chosen = (cache.paths || []).filter(function (p) { return p.name === name; })[0];
+      zoomToCountry(chosen);
       paint();
     }
   }
 
   function onChange(e) {
     var s = e.target.closest('[data-g="country-select"]');
-    if (s) { state.country = s.value || null; state.selected = null; paint(); }
+    if (s) {
+      state.country = s.value || null;
+      state.selected = null;
+      if (s.value) {
+        var entry = (cache.paths || []).filter(function (p) { return p.name === s.value; })[0];
+        zoomToCountry(entry);
+      } else {
+        state.zoom = 1;
+        state.panX = 0;
+        state.panY = 0;
+      }
+      paint();
+    }
     var d = e.target.closest('[data-g="nasaday"]');
     if (d) { state.nasaDay = d.value; paint(); }
   }
