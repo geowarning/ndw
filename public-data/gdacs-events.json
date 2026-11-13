@@ -1,11 +1,11 @@
 {
   "type": "FeatureCollection",
-  "generatedAt": "2026-11-13T10:57:55.451Z",
+  "generatedAt": "2026-11-13T11:02:18.389Z",
   "source": "GDACS",
   "endpoint": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=WF%3BFL%3BTC%3BDR&fromDate=2026-09-14&toDate=2026-11-13&alertlevel=Green%3BOrange%3BRed",
   "fromDate": "2026-09-14",
   "toDate": "2026-11-13",
-  "count": 103,
+  "count": 104,
   "bbox": [
     -173.4,
     -37.471,
@@ -13,6 +13,69 @@
     43.4587
   ],
   "features": [
+    {
+      "type": "Feature",
+      "bbox": [
+        97.0253,
+        4.3685,
+        97.0253,
+        4.3685
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          97.0253,
+          4.3685
+        ]
+      },
+      "properties": {
+        "eventtype": "FL",
+        "eventid": 1104253,
+        "episodeid": 6,
+        "eventname": "",
+        "glide": "",
+        "name": "Flood in Indonesia",
+        "description": "Flood in Indonesia",
+        "htmldescription": "Green Flood in Indonesia from: 24 Oct 2026 01 to: 12 Nov 2026 01.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/FL.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/FL.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=FL&eventid=1104253&episodeid=6",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1104253&episodeid=6&eventtype=FL",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=FL&eventid=1104253"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "Indonesia",
+        "fromdate": "2026-10-24T01:00:00",
+        "todate": "2026-11-12T01:00:00",
+        "datemodified": "2026-11-13T10:59:47",
+        "iso3": "IDN",
+        "source": "GLOFAS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "ID",
+            "iso3": "IDN",
+            "countryname": "Indonesia"
+          }
+        ],
+        "severitydata": {
+          "severity": 0,
+          "severitytext": "Magnitude 0 ",
+          "severityunit": ""
+        },
+        "_firstSeen": "2026-11-13T11:02:18.389Z",
+        "_lastSeen": "2026-11-13T11:02:18.389Z",
+        "_active": true
+      }
+    },
     {
       "type": "Feature",
       "bbox": [
@@ -199,7 +262,7 @@
         },
         "_firstSeen": "2026-11-13T10:57:55.451Z",
         "_lastSeen": "2026-11-13T10:57:55.451Z",
-        "_active": true
+        "_active": false
       }
     },
     {
