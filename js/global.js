@@ -417,6 +417,27 @@
     state.panY = H / 2 - z * cy;
     clampPan();
   }
+  function selectCountry(name) {
+    if (state.country === name) {
+      state.country = null;
+      state.selected = null;
+      state.zoom = 1;
+      state.panX = 0;
+      state.panY = 0;
+      paint();
+      return;
+    }
+    state.country = name;
+    state.selected = null;
+    var chosen = (cache.paths || []).filter(function (p) { return p.name === name; })[0];
+    zoomToCountry(chosen);
+    paint();
+  }
+  function selectQuake(id) {
+    var list = currentQuakes();
+    state.selected = list.filter(function (x) { return x.id === id; })[0] || null;
+    paint();
+  }
   var drag = null;
   var suppressClickUntil = 0;
   function onWheel(e) {
@@ -435,15 +456,19 @@
     var map = e.target.closest('.gmap');
     if (!map) { return; }
     var r = map.getBoundingClientRect();
-    drag = { x: e.clientX, y: e.clientY, px: state.panX, py: state.panY, w: r.width, h: r.height, moved: false };
-    try { map.setPointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+    drag = { x: e.clientX, y: e.clientY, px: state.panX, py: state.panY, w: r.width, h: r.height, moved: false, captured: false, target: e.target, pointerId: e.pointerId, map: map };
   }
   function onPointerMove(e) {
     if (!drag) { return; }
     if (!drag.w || !drag.h) { return; }
     var dx = (e.clientX - drag.x) / drag.w * W;
     var dy = (e.clientY - drag.y) / drag.h * H;
-    if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 4) { drag.moved = true; }
+    if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 8) {
+      drag.moved = true;
+      if (!drag.captured) {
+        try { drag.map.setPointerCapture(drag.pointerId); drag.captured = true; } catch (err) { /* ignore */ }
+      }
+    }
     if (state.zoom <= 1) { return; }
     state.panX = drag.px + dx;
     state.panY = drag.py + dy;
@@ -451,7 +476,18 @@
     applyView();
   }
   function onPointerUp() {
-    if (drag && drag.moved) { suppressClickUntil = Date.now() + 350; }
+    if (drag) {
+      if (!drag.moved) {
+        var t = drag.target;
+        var cEl = t && t.closest ? t.closest('[data-country]') : null;
+        var qEl = t && t.closest ? t.closest('[data-quake]') : null;
+        suppressClickUntil = Date.now() + 350;
+        if (cEl) { selectCountry(cEl.getAttribute('data-country')); }
+        else if (qEl) { selectQuake(qEl.getAttribute('data-quake')); }
+      } else {
+        suppressClickUntil = Date.now() + 350;
+      }
+    }
     drag = null;
   }
 
@@ -573,29 +609,12 @@
     }
     var q = e.target.closest('[data-quake]');
     if (q) {
-      var id = q.getAttribute('data-quake');
-      var list = currentQuakes();
-      state.selected = list.filter(function (x) { return x.id === id; })[0] || null;
-      paint();
+      selectQuake(q.getAttribute('data-quake'));
       return;
     }
     var c = e.target.closest('[data-country]');
     if (c) {
-      var name = c.getAttribute('data-country');
-      if (state.country === name) {
-        state.country = null;
-        state.selected = null;
-        state.zoom = 1;
-        state.panX = 0;
-        state.panY = 0;
-        paint();
-        return;
-      }
-      state.country = name;
-      state.selected = null;
-      var chosen = (cache.paths || []).filter(function (p) { return p.name === name; })[0];
-      zoomToCountry(chosen);
-      paint();
+      selectCountry(c.getAttribute('data-country'));
     }
   }
 
