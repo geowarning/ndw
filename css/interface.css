@@ -632,6 +632,11 @@ body.gmap-lock .global-side { display: none; }
 }
 @media (max-width: 620px) { .global-map-wrap { height: 54vh; } }
 
+/* Alert Center embeds the global monitor */
+.home-global { position: relative; z-index: 1; }
+.home-global .global-section { padding-top: 8px; }
+.gchina { border: 1px solid rgba(126, 240, 255, .45) !important; background: rgba(126, 240, 255, .12) !important; color: #7ef0ff !important; font-weight: 600; }
+
 /* GDACS hazard markers, legend and credits */
 .gdacs-marker { cursor: pointer; }
 .gdacs-badge { align-self: flex-start; padding: 3px 7px; border: 1px solid currentColor; border-radius: 6px; font-size: .9rem; font-weight: 700; }

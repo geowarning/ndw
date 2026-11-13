@@ -255,6 +255,7 @@
         '<div class="global-mode">' +
           '<button type="button" class="' + (isLive ? 'active' : '') + '" data-g="mode" data-v="live">' + esc(web('live')) + '</button>' +
           '<button type="button" class="' + (!isLive ? 'active' : '') + '" data-g="mode" data-v="history">' + esc(web('history')) + '</button>' +
+          '<button type="button" class="gchina" data-g="china">' + esc(web('chinaData')) + '</button>' +
         '</div>' +
       '</div>' +
       '<div class="global-kpis">' +
@@ -538,6 +539,17 @@
       clampPan();
     }
   }
+  function focusChina() {
+    var c = (cache.paths || []).filter(function (p) { return p.name === 'China'; })[0];
+    state.country = 'China';
+    state.selected = null;
+    if (c) { zoomToCountry(c); }
+    paint();
+    setTimeout(function () {
+      var ops = document.querySelector('.ops-dashboard');
+      if (ops) { ops.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }, 160);
+  }
   function selectCountry(name) {    if (state.country === name) {
       state.country = null;
       state.selected = null;
@@ -768,6 +780,7 @@
         } else { state.zoom = 1; state.panX = 0; state.panY = 0; applyView(); }
         return;
       }
+      if (k === 'china') { focusChina(); return; }
       if (k === 'mode' && v && v !== state.mode) {
         state.mode = v; state.selected = null; state.country = null;
         if (v === 'history' && !state.history) {
@@ -831,11 +844,14 @@
     state.ctx = ctx;
     state.loading = !state.live;
     state.error = '';
-    if (!bound) {
+    if (!viewEl.__ndGlobalBound) {
       viewEl.addEventListener('click', onClick);
       viewEl.addEventListener('change', onChange);
       viewEl.addEventListener('wheel', onWheel, { passive: false });
       viewEl.addEventListener('pointerdown', onPointerDown);
+      viewEl.__ndGlobalBound = true;
+    }
+    if (!bound) {
       window.addEventListener('pointermove', onPointerMove);
       window.addEventListener('pointerup', onPointerUp);
       window.addEventListener('keydown', function (e) {
@@ -852,7 +868,7 @@
       window.addEventListener('resize', syncSideHeight);
       bound = true;
     }
-    document.title = ctx.web('globalTitle');
+    if (!ctx.embedded) { document.title = ctx.web('globalTitle'); }
     paint();
     if (!state.live) {
       Promise.all([fetchJson('public-data/global-earthquakes.json'), ensureGeo()]).then(function (res) {

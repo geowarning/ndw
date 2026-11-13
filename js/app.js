@@ -659,14 +659,19 @@
   }
 
 
-  function renderGlobal() {
+  function renderGlobalInto(el, embedded) {
+    if (!el) { return; }
     if (!window.NDGlobal) {
-      viewEl.innerHTML = '<section class="section"><div class="container"><div class="state-box error">Global module unavailable</div></div></section>';
+      el.innerHTML = '<section class="section"><div class="container"><div class="state-box error">Global module unavailable</div></div></section>';
       return;
     }
-    window.NDGlobal.render(viewEl, {
-      esc: esc, web: web, lang: lang, i18n: i18n, SVG: SVG, explainView: explainView
+    window.NDGlobal.render(el, {
+      esc: esc, web: web, lang: lang, i18n: i18n, SVG: SVG, explainView: explainView, embedded: !!embedded
     });
+  }
+
+  function renderGlobal() {
+    renderGlobalInto(viewEl, false);
   }
 
   function renderHome() {
@@ -703,6 +708,7 @@
     var loadingClass = s.loading ? ' is-loading' : '';
     var html =
       '<div class="home-dashboard' + loadingClass + '">' +
+      '<section class="home-global"><div id="homeGlobalMount"></div></section>' +
       '<section class="ops-dashboard"><div class="container">' + homeDashboardHtml(s, t) + '</div></section>' +
       '<section class="hero"><div class="container">' +
         '<div class="hero-inner">' +
@@ -885,6 +891,7 @@
 
     html += '</div>';
     viewEl.innerHTML = html;
+    renderGlobalInto(document.getElementById('homeGlobalMount'), true);
     document.title = t.tabIndex;
     var hero = viewEl.querySelector('.home-dashboard .hero');
     if (hero && bgCanvas && globe) {

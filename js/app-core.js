@@ -162,6 +162,7 @@
     zoomHint: { zh: '滚轮 / 双指缩放，拖动平移', en: 'Scroll or pinch to zoom, drag to pan', es: 'Rueda o pellizco para zoom, arrastra para mover', fr: 'Molette ou pincement pour zoomer, glisser pour déplacer', it: 'Rotella o pizzica per zoom, trascina per spostare' },
     fullscreen: { zh: '全屏', en: 'Fullscreen', es: 'Pantalla completa', fr: 'Plein écran', it: 'Schermo intero' },
     gdacsLayer: { zh: 'GDACS 灾害', en: 'GDACS hazards', es: 'Amenazas GDACS', fr: 'Risques GDACS', it: 'Rischi GDACS' },
+    chinaData: { zh: '中国数据', en: 'China data', es: 'Datos de China', fr: 'Données Chine', it: 'Dati Cina' },
     gdacsEvents: { zh: '灾害事件', en: 'Disaster events', es: 'Eventos de desastre', fr: 'Événements', it: 'Eventi' },
     gdacsWildfire: { zh: '野火', en: 'Wildfire', es: 'Incendio forestal', fr: 'Feu de forêt', it: 'Incendio' },
     gdacsFlood: { zh: '洪水', en: 'Flood', es: 'Inundación', fr: 'Inondation', it: 'Inondazione' },
