@@ -3,11 +3,11 @@
   var W = 1000, H = 500;
   var state = {
     mode: 'live', hmin: 4.5, selected: null, country: null,
-    layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false },
+    layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false, gdacs: true },
     loading: true, error: '', live: null, history: null, el: null, ctx: null,
-    zoom: 1, panX: 0, panY: 0, nasaDay: '001', fullscreen: false
+    zoom: 1, panX: 0, panY: 0, nasaDay: '001', fullscreen: false, gdacsType: 'all', gdacsAlert: 'all'
   };
-  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null };
+  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null, gdacs: null, gdacsRaw: null };
   var wms = { key: '', timer: null };
   var bound = false;
 
@@ -65,11 +65,14 @@
     return Promise.all([
       cache.countries ? Promise.resolve(cache.countries) : fetchJson('assets/world-countries.geojson'),
       cache.cities ? Promise.resolve(cache.cities) : fetchJson('assets/world-cities.json'),
-      cache.tiles ? Promise.resolve(cache.tiles) : fetchJson('assets/nasa-tiles/index.json')
+      cache.tiles ? Promise.resolve(cache.tiles) : fetchJson('assets/nasa-tiles/index.json'),
+      cache.gdacsRaw ? Promise.resolve(cache.gdacsRaw) : fetchJson('public-data/gdacs-events.json').catch(function () { return { features: [] }; })
     ]).then(function (res) {
       cache.countries = res[0];
       cache.cities = res[1];
       cache.tiles = res[2];
+      cache.gdacsRaw = res[3];
+      if (!cache.gdacs) { cache.gdacs = normalizeGdacs(cache.gdacsRaw); }
       if (cache.paths) { return; }
         var paths = [];
       (cache.countries.features || []).forEach(function (f) {
@@ -113,6 +116,7 @@
       if (!live || !live.earthquakes) { return []; }
       return live.earthquakes.map(function (q) {
         return {
+          kind: 'quake',
           id: q.id, mag: Number(q.magnitude), place: q.place, time: q.timestamp,
           lon: Number(q.longitude), lat: Number(q.latitude), depth: Number(q.depth_km),
           tsunami: !!q.tsunami, alert: q.alert, significance: q.significance,
@@ -128,11 +132,76 @@
     rows = rows.slice(0, 1200);
     return rows.map(function (r, i) {
       return {
+        kind: 'quake',
         id: 'h' + i, mag: Number(r[4]), place: r[5], time: r[0], lon: Number(r[1]), lat: Number(r[2]),
         depth: Number(r[3]), tsunami: false, alert: null, significance: null, mmi: null, url: '',
         source: hist.source || 'CnOpenData', eventType: 'earthquake'
       };
     });
+  }
+  function gdacsParse(s) {
+    if (!s) { return 0; }
+    var t = Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(String(s)) ? String(s) : String(s) + 'Z');
+    return isFinite(t) ? t : 0;
+  }
+  function gdacsMs(g) { return gdacsParse(g && (g.from || g.modified)); }
+  function gdacsColor(type) {
+    if (type === 'WF') { return '#ff7a1a'; }
+    if (type === 'FL') { return '#4aa8ff'; }
+    if (type === 'TC') { return '#b388ff'; }
+    return '#c9a227';
+  }
+  function gdacsAlertColor(alert) {
+    if (alert === 'red') { return '#ff5252'; }
+    if (alert === 'orange') { return '#ff9a3c'; }
+    return '#43e8a0';
+  }
+  function gdacsTypeLabel(type) {
+    if (type === 'WF') { return web('gdacsWildfire'); }
+    if (type === 'FL') { return web('gdacsFlood'); }
+    if (type === 'TC') { return web('gdacsCyclone'); }
+    return web('gdacsDrought');
+  }
+  function gdacsAlertLabel(alert) {
+    if (alert === 'red') { return web('gdacsRed'); }
+    if (alert === 'orange') { return web('gdacsOrange'); }
+    return web('gdacsGreen');
+  }
+  function normalizeGdacs(data) {
+    var seen = {};
+    var out = [];
+    ((data && data.features) || []).forEach(function (f) {
+      var p = f.properties || {};
+      var c = (f.geometry && f.geometry.coordinates) || [];
+      var id = p.eventtype + '-' + p.eventid + '-' + p.episodeid;
+      if (seen[id] || !isFinite(c[0]) || !isFinite(c[1])) { return; }
+      seen[id] = 1;
+      out.push({
+        kind: 'gdacs', id: id, type: p.eventtype, name: p.name || p.description || '',
+        country: p.country || '', alert: String(p.alertlevel || '').toLowerCase(),
+        from: p.fromdate || '', to: p.todate || '', modified: p.datemodified || '',
+        source: p.source || 'GDACS', url: (p.url && p.url.report) || '',
+        description: p.htmldescription || p.description || '',
+        severity: (p.severitydata && p.severitydata.severitytext) || '',
+        lon: Number(c[0]), lat: Number(c[1])
+      });
+    });
+    out.sort(function (a, b) { return gdacsParse(b.modified) - gdacsParse(a.modified); });
+    return out;
+  }
+  function currentGdacs() {
+    if (!state.layers.gdacs || !cache.gdacs) { return []; }
+    return cache.gdacs.filter(function (g) {
+      if (state.gdacsType !== 'all' && g.type !== state.gdacsType) { return false; }
+      if (state.gdacsAlert !== 'all' && g.alert !== state.gdacsAlert) { return false; }
+      return true;
+    });
+  }
+  function gdacsInCountry() {
+    if (!state.country) { return currentGdacs(); }
+    var c = (cache.paths || []).filter(function (p) { return p.name === state.country; })[0];
+    if (!c) { return currentGdacs(); }
+    return currentGdacs().filter(function (g) { return distKm(c.lon, c.lat, g.lon, g.lat) <= 1500; });
   }
   function quakesInCountry(quakes) {
     if (!state.country) { return quakes; }
@@ -167,12 +236,18 @@
     };
     var layers = [
       ['affected', web('affected')], ['population', web('population')], ['evacuation', web('evacuation')],
-      ['infrastructure', web('infrastructure')], ['nightlights', web('nightlights')]
+      ['infrastructure', web('infrastructure')], ['nightlights', web('nightlights')], ['gdacs', web('gdacsLayer')]
     ].map(function (l) {
       return '<button type="button" class="glayer' + (state.layers[l[0]] ? ' active' : '') + '" data-g="layer" data-v="' + l[0] + '">' + esc(l[1]) + '</button>';
     }).join('');
     var countryOpts = '<option value="">' + esc(web('countryLabel')) + '</option>' + (cache.paths || []).slice().sort(function (a, b) { return a.name < b.name ? -1 : 1; }).map(function (p) {
       return '<option value="' + esc(p.name) + '"' + (state.country === p.name ? ' selected' : '') + '>' + esc(p.name) + '</option>';
+    }).join('');
+    var gdacsTypeOpts = '<option value="all">' + esc(web('gdacsAllTypes')) + '</option>' + [['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')]].map(function (x) {
+      return '<option value="' + x[0] + '"' + (state.gdacsType === x[0] ? ' selected' : '') + '>' + esc(x[1]) + '</option>';
+    }).join('');
+    var gdacsAlertOpts = '<option value="all">' + esc(web('gdacsAllAlerts')) + '</option>' + [['green', web('gdacsGreen')], ['orange', web('gdacsOrange')], ['red', web('gdacsRed')]].map(function (x) {
+      return '<option value="' + x[0] + '"' + (state.gdacsAlert === x[0] ? ' selected' : '') + '>' + esc(x[1]) + '</option>';
     }).join('');
     return '<div class="global-head">' +
         '<div class="global-head-main"><div class="eyebrow">GLOBAL DISASTER MONITOR</div>' +
@@ -193,6 +268,8 @@
         (state.layers.nightlights && cache.tiles ? '<span class="gfl">NASA</span><select data-g="nasaday" aria-label="NASA VNP46A2">' + cache.tiles.days.map(function (d) {
           return '<option value="' + d.id + '"' + (state.nasaDay === d.id ? ' selected' : '') + '>' + esc(d.date) + '</option>';
         }).join('') + '</select>' : '') +
+        (state.layers.gdacs ? '<span class="gfl">GDACS</span><select data-g="gdacstype" aria-label="GDACS">' + gdacsTypeOpts + '</select>' +
+          '<select data-g="gdacsalert" aria-label="' + esc(web('gdacsAlert')) + '">' + gdacsAlertOpts + '</select>' : '') +
         (isLive ? '' : '<span class="gfl">' + esc(web('history')) + '</span>' +
           ['7', '4.5', '2.5'].map(function (v) {
             return '<button type="button" class="gchip' + (String(state.hmin) === v ? ' active' : '') + '" data-g="hmin" data-v="' + v + '">M' + v + '+</button>';
@@ -201,6 +278,8 @@
         '<div class="global-layers"><span class="gfl">' + esc(web('layers')) + '</span>' + layers + '</div>' +
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
+        (state.layers.gdacs ? '<span>GDACS: ' + currentGdacs().length + '</span>' : '') +
+        (state.layers.nightlights ? '<span>' + esc(web('nasaCoverage')) + '</span>' : '') +
         (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
   }
@@ -226,6 +305,8 @@
         var x1 = proj(70, 60).x, x2 = proj(80, 10).x, y1 = proj(70, 60).y, y2 = proj(80, 10).y;
         parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
       }
+      var c1 = proj(70, 60), c2 = proj(80, 0);
+      parts.push('<rect x="' + c1.x.toFixed(1) + '" y="' + c1.y.toFixed(1) + '" width="' + (c2.x - c1.x).toFixed(1) + '" height="' + (c2.y - c1.y).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width=".8" stroke-dasharray="3 3" opacity=".55"></rect>');
     }
     parts.push('<g class="gcountries">');
     (cache.paths || []).forEach(function (p) {
@@ -285,6 +366,32 @@
         '<title>M' + q.mag.toFixed(1) + ' · ' + esc(q.place) + '</title></g></g>');
     });
     parts.push('</g>');
+    var gdacs = currentGdacs();
+    if (gdacs.length) {
+      parts.push('<g class="ggdacs">');
+      gdacs.forEach(function (g) {
+        var p = proj(g.lon, g.lat);
+        var color = gdacsColor(g.type);
+        var alertColor = gdacsAlertColor(g.alert);
+        var sel = state.selected && state.selected.kind === 'gdacs' && state.selected.id === g.id;
+        var shape;
+        if (g.type === 'WF') {
+          shape = '<path d="M0 -5 L5 4 L-5 4 Z" fill="' + color + '" stroke="#061018" stroke-width=".6"></path>';
+        } else if (g.type === 'FL') {
+          shape = '<path d="M0 -5 L5 0 L0 5 L-5 0 Z" fill="' + color + '" stroke="#061018" stroke-width=".6"></path>';
+        } else if (g.type === 'TC') {
+          shape = '<circle r="4" fill="' + color + '" stroke="#061018" stroke-width=".6"></circle>';
+        } else {
+          shape = '<rect x="-4" y="-4" width="8" height="8" rx="1" fill="' + color + '" stroke="#061018" stroke-width=".6"></rect>';
+        }
+        parts.push('<g class="gdacs-marker' + (sel ? ' sel' : '') + '" data-gdacs="' + esc(g.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + color + '"><g class="gmarker-inner">' +
+          (sel ? '<circle r="11" fill="none" stroke="' + color + '" stroke-width="1.4"></circle>' : '') +
+          shape +
+          '<circle r="8" fill="none" stroke="' + alertColor + '" stroke-width="1"></circle>' +
+          '<title>' + esc(gdacsTypeLabel(g.type) + ' · ' + g.name + ' · ' + gdacsAlertLabel(g.alert)) + '</title></g></g>');
+      });
+      parts.push('</g>');
+    }
     if (state.layers.evacuation && state.selected) {
       var s = state.selected;
       var sp = proj(s.lon, s.lat);
@@ -417,8 +524,21 @@
     state.panY = H / 2 - z * cy;
     clampPan();
   }
-  function selectCountry(name) {
-    if (state.country === name) {
+  function maybeCenterNasa() {
+    var x0 = -state.panX / state.zoom, x1 = x0 + W / state.zoom;
+    var y0 = -state.panY / state.zoom, y1 = y0 + H / state.zoom;
+    var lon0 = x0 / W * 360 - 180, lon1 = x1 / W * 360 - 180;
+    var lat0 = 90 - y1 / H * 180, lat1 = 90 - y0 / H * 180;
+    var cx = (lon0 + lon1) / 2, cy = (lat0 + lat1) / 2;
+    if (cx < 70 || cx > 80 || cy < 0 || cy > 60 || (lon1 - lon0) > 30 || (lat1 - lat0) > 40) {
+      state.zoom = 18;
+      var c = proj(75, 30);
+      state.panX = W / 2 - 18 * c.x;
+      state.panY = H / 2 - 18 * c.y;
+      clampPan();
+    }
+  }
+  function selectCountry(name) {    if (state.country === name) {
       state.country = null;
       state.selected = null;
       state.zoom = 1;
@@ -438,6 +558,11 @@
     state.selected = list.filter(function (x) { return x.id === id; })[0] || null;
     paint();
   }
+  function selectGdacs(id) {
+    var list = currentGdacs();
+    state.selected = list.filter(function (x) { return x.id === id; })[0] || null;
+    paint();
+  }
   var drag = null;
   var suppressClickUntil = 0;
   function onWheel(e) {
@@ -452,7 +577,7 @@
   }
   function onPointerDown(e) {
     if (e.button != null && e.button !== 0) { return; }
-    if (e.target.closest('.gzoom,[data-quake]')) { return; }
+    if (e.target.closest('.gzoom,[data-quake],[data-gdacs]')) { return; }
     var map = e.target.closest('.gmap');
     if (!map) { return; }
     var r = map.getBoundingClientRect();
@@ -481,8 +606,10 @@
         var t = drag.target;
         var cEl = t && t.closest ? t.closest('[data-country]') : null;
         var qEl = t && t.closest ? t.closest('[data-quake]') : null;
+        var dEl = t && t.closest ? t.closest('[data-gdacs]') : null;
         suppressClickUntil = Date.now() + 350;
-        if (cEl) { selectCountry(cEl.getAttribute('data-country')); }
+        if (dEl) { selectGdacs(dEl.getAttribute('data-gdacs')); }
+        else if (cEl) { selectCountry(cEl.getAttribute('data-country')); }
         else if (qEl) { selectQuake(qEl.getAttribute('data-quake')); }
       } else {
         suppressClickUntil = Date.now() + 350;
@@ -521,22 +648,62 @@
       '</div>';
   }
 
+  function gdacsDetailHtml(g) {
+    var typeLabel = gdacsTypeLabel(g.type);
+    var alertLabel = gdacsAlertLabel(g.alert);
+    var zh = lang() === 'zh';
+    var actions = {
+      WF: zh ? ['远离火场与浓烟，关闭门窗。', '听从当地疏散指令，准备随时撤离。', '关注空气质量与官方火情通报。'] : ['Stay away from the fire and smoke; keep windows closed.', 'Follow local evacuation orders and be ready to leave.', 'Monitor air quality and official fire updates.'],
+      FL: zh ? ['立即转移到高处，不要穿越积水。', '远离河道、山谷与地下空间。', '关注当地洪水与降雨预警。'] : ['Move to high ground immediately; never cross flood water.', 'Stay away from rivers, valleys and underground spaces.', 'Monitor local flood and rainfall warnings.'],
+      TC: zh ? ['留在坚固建筑内，远离窗户。', '固定室外物品，准备停电与断水。', '听从当地疏散与避难指令。'] : ['Shelter in a sturdy building, away from windows.', 'Secure outdoor items and prepare for power/water outages.', 'Follow local evacuation and shelter instructions.'],
+      DR: zh ? ['节约用水，优先保障饮用与卫生。', '关注当地限水与农业援助政策。', '防范高温与粮食短缺的次生影响。'] : ['Conserve water for drinking and sanitation.', 'Follow local water restrictions and agricultural aid programs.', 'Watch for heat and food-security impacts.']
+    }[g.type] || [];
+    return '<div class="gdetail gdacs-detail">' +
+      '<div class="gdetail-top"><div><div class="gkicker">GDACS · ' + esc(typeLabel) + '</div>' +
+        '<h3>' + esc(g.name || '—') + '</h3><div class="gcoords">' + esc(g.country || '') + ' · ' + esc(g.lon.toFixed(2)) + '°, ' + esc(g.lat.toFixed(2)) + '°</div></div>' +
+        '<div class="gdacs-badge" style="color:' + gdacsAlertColor(g.alert) + '">' + esc(alertLabel) + '</div></div>' +
+      '<div class="gcards">' +
+        '<div><span>' + esc(web('disasterType')) + '</span><b>' + esc(typeLabel) + '</b></div>' +
+        '<div><span>' + esc(web('gdacsAlert')) + '</span><b>' + esc(alertLabel) + '</b></div>' +
+        '<div><span>' + esc(web('countryLabel')) + '</span><b>' + esc(g.country || '—') + '</b></div>' +
+      '</div>' +
+      '<div class="grows">' +
+        '<div><span>' + esc(web('gdacsFrom')) + '</span><b>' + esc(fmt(gdacsMs(g))) + '</b></div>' +
+        '<div><span>' + esc(web('gdacsTo')) + '</span><b>' + esc(fmt(gdacsParse(g.to))) + '</b></div>' +
+        '<div><span>' + esc(web('gdacsUpdated')) + '</span><b>' + esc(fmt(gdacsParse(g.modified))) + '</b></div>' +
+        '<div><span>' + esc(web('sourceLabel')) + '</span><b>' + esc(g.source) + '</b></div>' +
+        (g.severity ? '<div><span>Severity</span><b>' + esc(g.severity) + '</b></div>' : '') +
+      '</div>' +
+      (g.description ? '<p class="gdacs-desc">' + esc(g.description) + '</p>' : '') +
+      (actions.length ? '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul></div>' : '') +
+      (g.url ? '<a class="btn btn-outline" href="' + esc(g.url) + '" target="_blank" rel="noopener noreferrer">' + esc(web('gdacsReport')) + ' ↗</a>' : '') +
+      '</div>';
+  }
+
+  function eventTime(e) { return e.kind === 'gdacs' ? gdacsMs(e) : (Number(e.time) || 0); }
+  function quakeItem(q) {
+    return '<button type="button" class="gitem" data-quake="' + esc(q.id) + '"><b style="color:' + magColor(q.mag) + '">M' + q.mag.toFixed(1) + '</b><span>' + esc(q.place) + '</span><small>' + esc(fmt(q.time)) + '</small></button>';
+  }
+  function gdacsItem(g) {
+    return '<button type="button" class="gitem gitem-gdacs" data-gdacs="' + esc(g.id) + '"><b style="color:' + gdacsColor(g.type) + '">' + esc(g.type) + '</b><span>' + esc(g.name) + '</span><small>' + esc(gdacsAlertLabel(g.alert)) + ' · ' + esc(fmt(gdacsMs(g))) + '</small></button>';
+  }
+
   function sideHtml(quakes) {
     if (state.selected) {
-      return detailHtml(state.selected);
+      return state.selected.kind === 'gdacs' ? gdacsDetailHtml(state.selected) : detailHtml(state.selected);
     }
-    if (state.country) {
-      var list = quakesInCountry(quakes).slice().sort(function (a, b) { return b.mag - a.mag; }).slice(0, 8);
-      return '<div class="gside-head"><h3>' + esc(state.country) + '</h3><span>' + esc(web('nearQuakes')) + ' · ' + list.length + '</span></div>' +
-        '<div class="glist">' + list.map(function (q) {
-          return '<button type="button" class="gitem" data-quake="' + esc(q.id) + '"><b style="color:' + magColor(q.mag) + '">M' + q.mag.toFixed(1) + '</b><span>' + esc(q.place) + '</span><small>' + esc(fmt(q.time)) + '</small></button>';
-        }).join('') + '</div>';
+    var qs = (state.country ? quakesInCountry(quakes) : quakes).slice().sort(function (a, b) { return (b.time || 0) - (a.time || 0); }).slice(0, 8);
+    var gs = (state.country ? gdacsInCountry() : currentGdacs()).slice().sort(function (a, b) { return gdacsMs(b) - gdacsMs(a); });
+    var title = state.country || web('gdacsEvents');
+    var sub = state.country ? web('gdacsEvents') + ' · ' + (qs.length + gs.length) : (state.layers.gdacs ? 'GDACS + ' + web('activeQuakes') : web('selectHint'));
+    var html = '<div class="gside-head"><h3>' + esc(title) + '</h3><span>' + esc(sub) + '</span></div><div class="glist">';
+    if (state.layers.gdacs) {
+      html += '<div class="glist-label">GDACS · ' + gs.length + '</div>' +
+        (gs.length ? gs.map(gdacsItem).join('') : '<div class="ops-empty">' + esc(web('noMatch')) + '</div>');
     }
-    var latest = quakes.slice().sort(function (a, b) { return b.time - a.time; }).slice(0, 10);
-    return '<div class="gside-head"><h3>' + esc(web('nearQuakes')) + '</h3><span>' + esc(web('selectHint')) + '</span></div>' +
-      '<div class="glist">' + latest.map(function (q) {
-        return '<button type="button" class="gitem" data-quake="' + esc(q.id) + '"><b style="color:' + magColor(q.mag) + '">M' + q.mag.toFixed(1) + '</b><span>' + esc(q.place) + '</span><small>' + esc(fmt(q.time)) + '</small></button>';
-      }).join('') + '</div>';
+    html += '<div class="glist-label">' + esc(web('activeQuakes')) + ' · ' + qs.length + '</div>' +
+      (qs.length ? qs.map(quakeItem).join('') : '<div class="ops-empty">' + esc(web('noMatch')) + '</div>');
+    return html + '</div>';
   }
 
   function paint() {
@@ -565,8 +732,16 @@
         '</div>' +
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' +
+        (state.layers.gdacs ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
-      '<p class="global-foot">' + esc(web('globalNote')) + ' · CnOpenData · NASA VNP46A2 原始瓦片 2400×2400</p>' +
+      '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
+      '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
+        '<a href="https://www.gdacs.org" target="_blank" rel="noopener noreferrer">GDACS</a> (EU JRC / UN OCHA) · ' +
+        '<a href="https://apizero.cn" target="_blank" rel="noopener noreferrer">极数本源 apizero.cn</a> · ' +
+        '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
+        '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS / VNP46A2</a> · ' +
+        '<a href="https://www.cnopendata.com" target="_blank" rel="noopener noreferrer">CnOpenData</a>' +
+      '</p>' +
       '</div></section>';
     state.ctx.explainView && state.ctx.explainView();
     wms.key = '';
@@ -604,7 +779,17 @@
         return;
       }
       if (k === 'hmin') { state.hmin = parseFloat(v); state.selected = null; paint(); return; }
-      if (k === 'layer') { state.layers[v] = !state.layers[v]; paint(); return; }
+      if (k === 'layer') {
+        state.layers[v] = !state.layers[v];
+        if (v === 'nightlights' && state.layers[v]) { maybeCenterNasa(); }
+        paint();
+        return;
+      }
+      return;
+    }
+    var d = e.target.closest('[data-gdacs]');
+    if (d) {
+      selectGdacs(d.getAttribute('data-gdacs'));
       return;
     }
     var q = e.target.closest('[data-quake]');
@@ -635,6 +820,10 @@
     }
     var d = e.target.closest('[data-g="nasaday"]');
     if (d) { state.nasaDay = d.value; paint(); }
+    var gt = e.target.closest('[data-g="gdacstype"]');
+    if (gt) { state.gdacsType = gt.value || 'all'; state.selected = null; paint(); }
+    var ga = e.target.closest('[data-g="gdacsalert"]');
+    if (ga) { state.gdacsAlert = ga.value || 'all'; state.selected = null; paint(); }
   }
 
   function render(viewEl, ctx) {

@@ -632,6 +632,22 @@ body.gmap-lock .global-side { display: none; }
 }
 @media (max-width: 620px) { .global-map-wrap { height: 54vh; } }
 
+/* GDACS hazard markers, legend and credits */
+.gdacs-marker { cursor: pointer; }
+.gdacs-badge { align-self: flex-start; padding: 3px 7px; border: 1px solid currentColor; border-radius: 6px; font-size: .9rem; font-weight: 700; }
+.gdacs-desc { margin: 10px 0; color: var(--text-mid); font-size: .8rem; line-height: 1.55; }
+.gitem-gdacs b { font-size: .78rem; }
+.gdacs-legend { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 8px; padding: 6px 9px; border-radius: 8px; background: rgba(4, 10, 14, .8); font-size: .65rem; color: var(--text-dim); z-index: 3; }
+.gdacs-legend span::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 4px; background: #c9a227; }
+.gdacs-legend .wf::before { background: #ff7a1a; }
+.gdacs-legend .fl::before { background: #4aa8ff; }
+.gdacs-legend .tc::before { background: #b388ff; }
+.global-credits { margin-top: 2px; }
+.global-credits a, .footer-credits a { color: var(--text-mid); text-decoration: underline; text-underline-offset: 2px; }
+.footer-credits { padding: 10px 16px 0; color: var(--text-dim); font-size: .68rem; line-height: 1.6; text-align: center; }
+.glist-label { margin: 8px 2px 2px; color: var(--text-dim); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; }
+.glist-label:first-child { margin-top: 0; }
+
 /* Top search / command palette. */
 .nav-search-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--text-mid); font: inherit; font-size: .8rem; cursor: pointer; }
 .nav-search-btn:hover { color: var(--holo-bright); border-color: var(--holo-line); }
