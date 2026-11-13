@@ -338,6 +338,17 @@
     var el = document.querySelector('.global-map-wrap.gfull');
     if (el) { el.classList.remove('gfull'); }
   }
+  function syncSideHeight() {
+    if (!state.el) { return; }
+    var side = state.el.querySelector('.global-side');
+    var wrap = state.el.querySelector('.global-map-wrap');
+    if (!side || !wrap) { return; }
+    if (window.matchMedia('(max-width: 980px)').matches) {
+      side.style.maxHeight = '';
+      return;
+    }
+    side.style.maxHeight = Math.max(320, Math.round(wrap.getBoundingClientRect().height)) + 'px';
+  }
   function updateWms() {
     if (!state.el) { return; }
     var img = state.el.querySelector('#gmapWms');
@@ -524,6 +535,7 @@
     state.ctx.explainView && state.ctx.explainView();
     wms.key = '';
     applyView();
+    syncSideHeight();
   }
 
   function onClick(e) {
@@ -629,6 +641,7 @@
       window.addEventListener('hashchange', function () {
         if ((location.hash || '').split('?')[0] !== '#/global') { exitFullscreen(); }
       });
+      window.addEventListener('resize', syncSideHeight);
       bound = true;
     }
     document.title = ctx.web('globalTitle');

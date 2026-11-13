@@ -618,6 +618,20 @@ body.gmap-lock .global-side { display: none; }
   .gzoom-hint { left: 12px; bottom: auto; top: 12px; }
 }
 
+/* Earthquake list next to the map (not over it) */
+.global-layout { position: static; display: grid !important; grid-template-columns: minmax(0, 1fr) 280px; gap: 14px; align-items: start; }
+.global-map-wrap { width: 100%; aspect-ratio: 2 / 1; min-height: 0; }
+.global-side { position: static; width: auto; height: auto; max-height: 560px; overflow: auto; margin-top: 0; background: #101820; }
+.global-side .glist { max-height: none; }
+.gzoom { left: auto; right: 12px; top: 12px; }
+.gzoom-hint { left: 12px; right: auto; top: 12px; bottom: auto; }
+@media (max-width: 980px) {
+  .global-layout { grid-template-columns: 1fr; }
+  .global-map-wrap { aspect-ratio: auto; height: 62vh; min-height: 360px; }
+  .global-side { max-height: none; margin-top: 12px; }
+}
+@media (max-width: 620px) { .global-map-wrap { height: 54vh; } }
+
 /* Top search / command palette. */
 .nav-search-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--text-mid); font: inherit; font-size: .8rem; cursor: pointer; }
 .nav-search-btn:hover { color: var(--holo-bright); border-color: var(--holo-line); }
