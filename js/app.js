@@ -649,16 +649,21 @@
         '<option value="7d"' + (homeFilter.time === '7d' ? ' selected' : '') + '>' + esc(web('last7d')) + '</option>' +
       '</select></div>';
   }
-  function opsKpi(label, value, sub) {
-    return '<div class="ops-kpi"><span>' + esc(label) + '</span><b>' + esc(value) + '</b><small>' + esc(sub || '') + '</small></div>';
+  function opsKpi(label, value, sub, href) {
+    return '<a class="ops-kpi" href="' + esc(href || '#/china') + '"><span>' + esc(label) + '</span><b>' + esc(value) + '</b><small>' + esc(sub || '') + '</small></a>';
   }
   function homeDashboardHtml(s, t) {
     return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('situationOverview')) + '</h2><p>' + esc(web('overviewSubtitleBoth')) + '</p></div>' +
       '<div class="ops-tabs"><a href="#/china">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
-      '<div class="ops-kpis" id="opsKpis">' + opsKpi(web('chinaStatus'), '—', '') + opsKpi(web('criticalLocations'), '—', '') + opsKpi(web('activeQuakes'), '—', '') + opsKpi(web('maxMagnitude'), '—', '') + '</div>' +
+      '<div class="ops-kpis" id="opsKpis">' +
+        opsKpi(web('chinaStatus'), '—', '', '#/china') +
+        opsKpi(web('criticalLocations'), '—', '', '#/china') +
+        opsKpi(web('activeQuakes'), '—', '', '#/global') +
+        opsKpi(web('maxMagnitude'), '—', '', '#/global') +
+      '</div>' +
       '<div class="ops-grid">' +
-        '<div class="ops-card"><h3>' + esc(web('criticalLocations')) + '</h3><div class="ops-list" id="opsCritical"><div class="ops-empty">…</div></div></div>' +
-        '<div class="ops-card"><h3>' + esc(web('recentWarnings')) + '</h3><div class="ops-list" id="opsRecent"><div class="ops-empty">…</div></div></div>' +
+        '<div class="ops-card"><h3>' + esc(web('criticalLocations')) + '</h3><div class="ops-list" id="opsCritical"><a class="ops-empty" href="#/china">…</a></div></div>' +
+        '<div class="ops-card"><h3>' + esc(web('recentWarnings')) + '</h3><div class="ops-list" id="opsRecent"><a class="ops-empty" href="#/china">…</a></div></div>' +
         '<div class="ops-card"><h3>' + esc(web('dataTime')) + '</h3><div class="ops-list" id="opsUpdated"></div></div>' +
       '</div>';
   }
@@ -676,23 +681,23 @@
       return '<a href="#/detail?id=' + encodeURIComponent(a.id) + '"><span>' + esc(a.levelName + ' · ' + i18n.disasterName(a.type, lang())) + '</span><b>' + esc(a.area || '') + '</b></a>';
     }
     var critEl = document.getElementById('opsCritical');
-    if (critEl) { critEl.innerHTML = crit.length ? crit.map(item).join('') : '<div class="ops-empty">' + esc(t.noAlerts) + '</div>'; }
+    if (critEl) { critEl.innerHTML = crit.length ? crit.map(item).join('') : '<a class="ops-empty" href="#/china">' + esc(t.noAlerts) + '</a>'; }
     var recentEl = document.getElementById('opsRecent');
     if (recentEl) {
       recentEl.innerHTML = recent.length ? recent.map(function (a) {
         return '<a href="#/detail?id=' + encodeURIComponent(a.id) + '"><span>' + esc(a.time || '') + '</span><b>' + esc(a.title || '') + '</b></a>';
-      }).join('') : '<div class="ops-empty">' + esc(t.noAlerts) + '</div>';
+      }).join('') : '<a class="ops-empty" href="#/china">' + esc(t.noAlerts) + '</a>';
     }
     var upd = document.getElementById('opsUpdated');
     if (upd) {
-      upd.innerHTML = '<div><span>' + esc(web('chinaStatus')) + '</span><b>' + esc(s.lastUpdate || '—') + '</b></div>' +
-        '<div><span>' + esc(web('activeQuakes')) + '</span><b id="opsGlobalTime">—</b></div>' +
-        '<div><span>' + esc(web('globalTab')) + '</span><b><a href="#/global">' + esc(web('selectHint')) + ' →</a></b></div>';
+      upd.innerHTML = '<a class="ops-row" href="#/china"><span>' + esc(web('chinaStatus')) + '</span><b>' + esc(s.lastUpdate || '—') + '</b></a>' +
+        '<a class="ops-row" href="#/global"><span>' + esc(web('activeQuakes')) + '</span><b id="opsGlobalTime">—</b></a>' +
+        '<a class="ops-row" href="#/global"><span>' + esc(web('globalTab')) + '</span><b>' + esc(web('selectHint')) + ' →</b></a>';
     }
-    kpis.innerHTML = opsKpi(web('chinaStatus'), String((s.shownAlerts || []).length), '') +
-      opsKpi(web('criticalLocations'), String((s.levelStats.red || 0) + (s.levelStats.orange || 0)), 'red + orange') +
-      opsKpi(web('activeQuakes'), '—', '24h') +
-      opsKpi(web('maxMagnitude'), '—', '');
+    kpis.innerHTML = opsKpi(web('chinaStatus'), String((s.shownAlerts || []).length), '', '#/china') +
+      opsKpi(web('criticalLocations'), String((s.levelStats.red || 0) + (s.levelStats.orange || 0)), 'red + orange', '#/china') +
+      opsKpi(web('activeQuakes'), '—', '24h', '#/global') +
+      opsKpi(web('maxMagnitude'), '—', '', '#/global');
     if (!window.NDGlobal) { return; }
     var g = window.NDGlobal.cached();
     if (g) { fillGlobal(g); } else { window.NDGlobal.loadLive().then(fillGlobal).catch(function () {}); }
