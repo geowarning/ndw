@@ -210,7 +210,7 @@
           '<p>' + esc(safetyText('hazardNote')) + '</p>' +
         '</div>' +
       '</div>' +
-      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS / VNP46A2 · Open-Meteo</div>' +
+      '<div class="footer-credits">' + esc(t.dataSource) + ': GDACS (EU JRC / UN OCHA) · 极数本源 apizero.cn · USGS · NASA GIBS · Open-Meteo</div>' +
       '<div class="footer-bottom"><span>' + esc(t.footerRights) + '</span><span>' + esc(t.version) + ' ' + APP_VERSION + '</span></div>';
   }
 

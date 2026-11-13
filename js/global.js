@@ -3,11 +3,11 @@
   var W = 1000, H = 500;
   var state = {
     mode: 'live', hmin: 4.5, selected: null, country: null,
-    layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false, gdacs: true },
+    layers: { affected: true, population: false, evacuation: false, infrastructure: false, gdacs: true },
     loading: true, error: '', live: null, history: null, el: null, ctx: null,
-    zoom: 1, panX: 0, panY: 0, nasaDay: '001', fullscreen: false, gdacsType: 'all', gdacsAlert: 'all', historyRange: '30d'
+    zoom: 1, panX: 0, panY: 0, fullscreen: false, gdacsType: 'all', gdacsAlert: 'all', historyRange: '30d'
   };
-  var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null, gdacs: null, gdacsRaw: null, gdacsHistory: null };
+  var cache = { live: null, history: null, countries: null, cities: null, paths: null, gdacs: null, gdacsRaw: null, gdacsHistory: null };
   var wms = { key: '', timer: null };
   var bound = false;
 
@@ -65,13 +65,11 @@
     return Promise.all([
       cache.countries ? Promise.resolve(cache.countries) : fetchJson('assets/world-countries.geojson'),
       cache.cities ? Promise.resolve(cache.cities) : fetchJson('assets/world-cities.json'),
-      cache.tiles ? Promise.resolve(cache.tiles) : fetchJson('assets/nasa-tiles/index.json'),
       cache.gdacsRaw ? Promise.resolve(cache.gdacsRaw) : fetchJson('public-data/gdacs-events.json').catch(function () { return { features: [] }; })
     ]).then(function (res) {
       cache.countries = res[0];
       cache.cities = res[1];
-      cache.tiles = res[2];
-      cache.gdacsRaw = res[3];
+      cache.gdacsRaw = res[2];
       if (!cache.gdacs) { cache.gdacs = normalizeGdacs(cache.gdacsRaw); }
       if (cache.paths) { return; }
         var paths = [];
@@ -268,7 +266,7 @@
     };
     var layerDefs = [
       ['affected', web('affected')], ['population', web('population')], ['evacuation', web('evacuation')],
-      ['infrastructure', web('infrastructure')], ['nightlights', web('nightlights')], ['gdacs', web('gdacsLayer')]
+      ['infrastructure', web('infrastructure')], ['gdacs', web('gdacsLayer')]
     ];
     var layers = layerDefs.map(function (l) {
       return '<button type="button" class="glayer' + (state.layers[l[0]] ? ' active' : '') + '" data-g="layer" data-v="' + l[0] + '">' + esc(l[1]) + '</button>';
@@ -314,9 +312,6 @@
       '<div class="global-kpis">' + kpiHtml + '</div>' +
       '<div class="global-toolbar">' +
         '<div class="global-filters"><span class="gfl">' + esc(web('countryLabel')) + '</span><select data-g="country-select" aria-label="' + esc(web('countryLabel')) + '">' + countryOpts + '</select>' +
-        (state.layers.nightlights && cache.tiles ? '<span class="gfl">NASA</span><select data-g="nasaday" aria-label="NASA VNP46A2">' + cache.tiles.days.map(function (d) {
-          return '<option value="' + d.id + '"' + (state.nasaDay === d.id ? ' selected' : '') + '>' + esc(d.date) + '</option>';
-        }).join('') + '</select>' : '') +
         (state.layers.gdacs ? '<span class="gfl">' + esc(web('hazardType')) + '</span><select data-g="gdacstype" aria-label="' + esc(web('hazardType')) + '">' + gdacsTypeOpts + '</select>' +
           '<select data-g="gdacsalert" aria-label="' + esc(web('gdacsAlert')) + '">' + gdacsAlertOpts + '</select>' : '') +
         (isLive ? '' : '<span class="gfl">' + esc(web('historyRange')) + '</span>' +
@@ -332,7 +327,6 @@
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
         (state.layers.gdacs && state.gdacsType !== 'EQ' ? '<span>' + esc(hazardTypeLabel(state.gdacsType)) + ' · GDACS ' + gdacs.length + '</span>' : '') +
-        (state.layers.nightlights ? '<span>' + esc(web('nasaCoverage')) + '</span>' : '') +
         (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
   }
@@ -344,23 +338,6 @@
     parts.push('<image id="gmapHi" href="" x="0" y="0" width="' + W + '" height="' + H + '" preserveAspectRatio="none" style="display:none"></image>');
     parts.push('<image id="gmapWms" href="" x="0" y="0" width="0" height="0" preserveAspectRatio="none" style="display:none"></image>');
     parts.push('<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="transparent"></rect>');
-    if (state.layers.nightlights) {
-      var day = null;
-      if (cache.tiles && cache.tiles.days && cache.tiles.days.length) {
-        day = cache.tiles.days.filter(function (d) { return d.id === state.nasaDay; })[0] || cache.tiles.days[0];
-      }
-      if (day) {
-        day.tiles.forEach(function (t) {
-          var p1 = proj(t.west, t.north), p2 = proj(t.east, t.south);
-          parts.push('<image href="assets/nasa-tiles/' + t.file + '" x="' + p1.x.toFixed(2) + '" y="' + p1.y.toFixed(2) + '" width="' + (p2.x - p1.x).toFixed(2) + '" height="' + (p2.y - p1.y).toFixed(2) + '" preserveAspectRatio="none" opacity=".92"></image>');
-        });
-      } else {
-        var x1 = proj(70, 60).x, x2 = proj(80, 10).x, y1 = proj(70, 60).y, y2 = proj(80, 10).y;
-        parts.push('<image href="assets/nasa-nightlights-eastasia.jpg" x="' + x1.toFixed(1) + '" y="' + y1.toFixed(1) + '" width="' + (x2 - x1).toFixed(1) + '" height="' + (y2 - y1).toFixed(1) + '" preserveAspectRatio="none" opacity=".9"></image>');
-      }
-      var c1 = proj(70, 60), c2 = proj(80, 0);
-      parts.push('<rect x="' + c1.x.toFixed(1) + '" y="' + c1.y.toFixed(1) + '" width="' + (c2.x - c1.x).toFixed(1) + '" height="' + (c2.y - c1.y).toFixed(1) + '" fill="none" stroke="#7ef0ff" stroke-width=".8" stroke-dasharray="3 3" opacity=".55" vector-effect="non-scaling-stroke"></rect>');
-    }
     parts.push('<g class="gcountries">');
     (cache.paths || []).forEach(function (p) {
       var hit = state.layers.affected && countryHit(p.name, quakes);
@@ -577,20 +554,6 @@
     state.panY = H / 2 - z * cy;
     clampPan();
   }
-  function maybeCenterNasa() {
-    var x0 = -state.panX / state.zoom, x1 = x0 + W / state.zoom;
-    var y0 = -state.panY / state.zoom, y1 = y0 + H / state.zoom;
-    var lon0 = x0 / W * 360 - 180, lon1 = x1 / W * 360 - 180;
-    var lat0 = 90 - y1 / H * 180, lat1 = 90 - y0 / H * 180;
-    var cx = (lon0 + lon1) / 2, cy = (lat0 + lat1) / 2;
-    if (cx < 70 || cx > 80 || cy < 0 || cy > 60 || (lon1 - lon0) > 30 || (lat1 - lat0) > 40) {
-      state.zoom = 18;
-      var c = proj(75, 30);
-      state.panX = W / 2 - 18 * c.x;
-      state.panY = H / 2 - 18 * c.y;
-      clampPan();
-    }
-  }
   function selectCountry(name) {
     if (state.country === name) {
       state.country = null;
@@ -799,7 +762,7 @@
         '<a href="https://www.gdacs.org" target="_blank" rel="noopener noreferrer">GDACS</a> (EU JRC / UN OCHA) · ' +
         '<a href="https://apizero.cn" target="_blank" rel="noopener noreferrer">极数本源 apizero.cn</a> · ' +
         '<a href="https://earthquake.usgs.gov" target="_blank" rel="noopener noreferrer">USGS</a> · ' +
-        '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS / VNP46A2</a> · ' +
+        '<a href="https://earthdata.nasa.gov/gibs" target="_blank" rel="noopener noreferrer">NASA GIBS</a> · ' +
         '<a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo</a>' +
       '</p>' +
       '</div></section>';
@@ -855,7 +818,6 @@
           state.gdacsAlert = 'all';
           state.selected = null;
         }
-        if (v === 'nightlights' && state.layers[v]) { maybeCenterNasa(); }
         paint();
         return;
       }
@@ -892,8 +854,6 @@
       }
       paint();
     }
-    var d = e.target.closest('[data-g="nasaday"]');
-    if (d) { state.nasaDay = d.value; paint(); }
     var gt = e.target.closest('[data-g="gdacstype"]');
     if (gt) { state.gdacsType = gt.value || 'all'; state.selected = null; paint(); }
     var ga = e.target.closest('[data-g="gdacsalert"]');

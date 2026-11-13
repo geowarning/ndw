@@ -135,7 +135,6 @@
     population: { zh: '人口暴露', en: 'Population exposure', es: 'Exposición poblacional', fr: 'Exposition de la population', it: 'Esposizione della popolazione' },
     evacuation: { zh: '疏散区', en: 'Evacuation zones', es: 'Zonas de evacuación', fr: 'Zones d’évacuation', it: 'Zone di evacuazione' },
     infrastructure: { zh: '基础设施', en: 'Infrastructure', es: 'Infraestructura', fr: 'Infrastructures', it: 'Infrastrutture' },
-    nightlights: { zh: 'NASA 夜光', en: 'NASA night lights', es: 'Luces nocturnas NASA', fr: 'Lumières nocturnes NASA', it: 'Luci notturne NASA' },
     depth: { zh: '深度', en: 'Depth', es: 'Profundidad', fr: 'Profondeur', it: 'Profondità' },
     intensity: { zh: '烈度', en: 'Intensity', es: 'Intensidad', fr: 'Intensité', it: 'Intensità' },
     tsunami: { zh: '海啸', en: 'Tsunami', es: 'Tsunami', fr: 'Tsunami', it: 'Tsunami' },
@@ -199,7 +198,6 @@
     gdacsFrom: { zh: '开始', en: 'From', es: 'Desde', fr: 'Du', it: 'Dal' },
     gdacsTo: { zh: '结束', en: 'To', es: 'Hasta', fr: 'Au', it: 'Al' },
     gdacsUpdated: { zh: '更新', en: 'Updated', es: 'Actualizado', fr: 'Mis à jour', it: 'Aggiornato' },
-    nasaCoverage: { zh: 'NASA 夜光覆盖 70–80°E / 0–60°N', en: 'NASA night lights cover 70–80°E / 0–60°N', es: 'Luces NASA: 70–80°E / 0–60°N', fr: 'Lumières NASA : 70–80°E / 0–60°N', it: 'Luci NASA: 70–80°E / 0–60°N' },
     credits: { zh: '数据署名', en: 'Data credits', es: 'Créditos', fr: 'Crédits', it: 'Crediti' },
     linkCopied: {
       zh: '链接已复制，可粘贴分享',
