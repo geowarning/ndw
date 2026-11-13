@@ -583,6 +583,28 @@ body { background: var(--bg); }
 
 .global-filters select option, .alert-filters select option { background-color: #1c2329 !important; color: #f5f5f5 !important; }
 
+/* Map-first global hazard page */
+.global-page { padding: 14px 0 36px; }
+.global-head { margin-bottom: 10px; }
+.global-head h1 { font-size: clamp(1.5rem, 2.6vw, 2.15rem); margin: 2px 0 4px; }
+.global-head p { font-size: .88rem; }
+.global-kpis { gap: 10px; margin: 10px 0; }
+.gkpi { padding: 11px 14px; }
+.gkpi b { font-size: 1.55rem; margin: 3px 0 0; }
+.gkpi small { font-size: .68rem; }
+.global-toolbar { margin: 4px 0 6px; }
+.global-meta { margin: 4px 0 8px; }
+.global-layout { display: block !important; }
+.global-map-wrap { width: 100%; aspect-ratio: 2 / 1; min-height: 440px; }
+.gmap { width: 100%; height: 100%; }
+.global-side { margin-top: 12px; min-height: 0; }
+.global-side .glist { max-height: 280px; }
+.global-map-wrap.gfull { position: fixed; inset: 0; z-index: 1000; width: auto; height: auto; aspect-ratio: auto; border-radius: 0; box-shadow: none; }
+body.gmap-lock { overflow: hidden; }
+body.gmap-lock .navbar { visibility: hidden; }
+@media (max-width: 980px) { .global-map-wrap { aspect-ratio: auto; height: 62vh; min-height: 360px; } }
+@media (max-width: 620px) { .global-map-wrap { height: 54vh; } .global-side .glist { max-height: 240px; } }
+
 /* Top search / command palette. */
 .nav-search-btn { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 9px; background: transparent; color: var(--text-mid); font: inherit; font-size: .8rem; cursor: pointer; }
 .nav-search-btn:hover { color: var(--holo-bright); border-color: var(--holo-line); }

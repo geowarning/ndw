@@ -5,7 +5,7 @@
     mode: 'live', hmin: 4.5, selected: null, country: null,
     layers: { affected: true, population: false, evacuation: false, infrastructure: false, nightlights: false },
     loading: true, error: '', live: null, history: null, el: null, ctx: null,
-    zoom: 1, panX: 0, panY: 0, nasaDay: '001'
+    zoom: 1, panX: 0, panY: 0, nasaDay: '001', fullscreen: false
   };
   var cache = { live: null, history: null, countries: null, cities: null, paths: null, tiles: null };
   var wms = { key: '', timer: null };
@@ -283,6 +283,11 @@
     var vp = state.el.querySelector('#gmapViewport');
     if (!vp) { return; }
     vp.setAttribute('transform', 'translate(' + state.panX + ' ' + state.panY + ') scale(' + state.zoom + ')');
+    var svgEl = state.el.querySelector('.gmap');
+    var mapWrap = state.el.querySelector('.global-map-wrap');
+    if (svgEl) {
+      svgEl.setAttribute('preserveAspectRatio', mapWrap && mapWrap.classList.contains('gfull') ? 'xMidYMid slice' : 'xMidYMid meet');
+    }
     var inv = 1 / state.zoom;
     var inner = state.el.querySelectorAll('.gmarker-inner');
     for (var i = 0; i < inner.length; i++) {
@@ -308,6 +313,12 @@
       cil.style.fontSize = (5 / state.zoom) + 'px';
     }
     updateWms();
+  }
+  function exitFullscreen() {
+    state.fullscreen = false;
+    document.body.classList.remove('gmap-lock');
+    var el = document.querySelector('.global-map-wrap.gfull');
+    if (el) { el.classList.remove('gfull'); }
   }
   function updateWms() {
     if (!state.el) { return; }
@@ -453,6 +464,7 @@
   function paint() {
     var el = state.el;
     if (!el) { return; }
+    if (state.fullscreen) { exitFullscreen(); }
     if (state.loading && !state.live) {
       el.innerHTML = '<section class="global-page"><div class="container"><div class="global-head"><div><div class="eyebrow">GLOBAL DISASTER MONITOR</div><h1>' + esc(web('globalTitle')) + '</h1><p>' + esc(web('globalSub')) + '</p></div></div><div class="state-box"><div class="spinner"></div>' + esc(web('live')) + '…</div></div></section>';
       return;
@@ -471,6 +483,7 @@
           '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +
           '<button type="button" data-g="zoom" data-v="out" aria-label="' + esc(web('zoomOut')) + '" title="' + esc(web('zoomOut')) + '">−</button>' +
           '<button type="button" data-g="zoom" data-v="reset" aria-label="' + esc(web('resetView')) + '" title="' + esc(web('resetView')) + '">⟲</button>' +
+          '<button type="button" data-g="zoom" data-v="fullscreen" aria-label="' + esc(web('fullscreen')) + '" title="' + esc(web('fullscreen')) + '">⛶</button>' +
         '</div>' +
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' +
@@ -490,7 +503,15 @@
       if (k === 'zoom') {
         if (v === 'in') { zoomAt(W / 2, H / 2, 1.6); }
         else if (v === 'out') { zoomAt(W / 2, H / 2, 1 / 1.6); }
-        else { state.zoom = 1; state.panX = 0; state.panY = 0; applyView(); }
+        else if (v === 'fullscreen') {
+          var wrap = state.el.querySelector('.global-map-wrap');
+          if (wrap) {
+            var on = wrap.classList.toggle('gfull');
+            state.fullscreen = on;
+            document.body.classList.toggle('gmap-lock', on);
+            setTimeout(applyView, 60);
+          }
+        } else { state.zoom = 1; state.panX = 0; state.panY = 0; applyView(); }
         return;
       }
       if (k === 'mode' && v && v !== state.mode) {
@@ -543,6 +564,17 @@
       viewEl.addEventListener('pointerdown', onPointerDown);
       window.addEventListener('pointermove', onPointerMove);
       window.addEventListener('pointerup', onPointerUp);
+      window.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') { return; }
+        var full = state.el && state.el.querySelector('.global-map-wrap.gfull');
+        if (full) {
+          exitFullscreen();
+          applyView();
+        }
+      });
+      window.addEventListener('hashchange', function () {
+        if ((location.hash || '').split('?')[0] !== '#/global') { exitFullscreen(); }
+      });
       bound = true;
     }
     document.title = ctx.web('globalTitle');

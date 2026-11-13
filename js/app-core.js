@@ -160,6 +160,7 @@
     zoomOut: { zh: '缩小', en: 'Zoom out', es: 'Alejar', fr: 'Zoom arrière', it: 'Zoom indietro' },
     resetView: { zh: '重置视图', en: 'Reset view', es: 'Restablecer vista', fr: 'Réinitialiser la vue', it: 'Reimposta vista' },
     zoomHint: { zh: '滚轮 / 双指缩放，拖动平移', en: 'Scroll or pinch to zoom, drag to pan', es: 'Rueda o pellizco para zoom, arrastra para mover', fr: 'Molette ou pincement pour zoomer, glisser pour déplacer', it: 'Rotella o pizzica per zoom, trascina per spostare' },
+    fullscreen: { zh: '全屏', en: 'Fullscreen', es: 'Pantalla completa', fr: 'Plein écran', it: 'Schermo intero' },
     linkCopied: {
       zh: '链接已复制，可粘贴分享',
       en: 'Link copied, ready to share',
