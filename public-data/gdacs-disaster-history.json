@@ -1,12 +1,312 @@
 {
   "source": "GDACS",
-  "updatedAt": "2026-11-13T12:42:54.138Z",
+  "updatedAt": "2026-11-13T12:46:54.282Z",
   "range": [
     "2024-12-01",
     "2026-11-13"
   ],
-  "count": 1994,
+  "count": 1997,
   "features": [
+    {
+      "type": "Feature",
+      "bbox": [
+        21.5581,
+        -25.3816,
+        21.5581,
+        -25.3816
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.5581,
+          -25.3816
+        ]
+      },
+      "properties": {
+        "eventtype": "WF",
+        "eventid": 1033592,
+        "episodeid": 15,
+        "eventname": "",
+        "glide": "",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
+        "htmldescription": "Green Forest fires in Botswana from: 05 Nov 2026 to: 13 Nov 2026.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033592&episodeid=15",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1033592&episodeid=15&eventtype=WF",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033592"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "Botswana",
+        "fromdate": "2026-11-05T00:00:00",
+        "todate": "2026-11-13T00:00:00",
+        "datemodified": "2026-11-13T12:46:55",
+        "iso3": "BWA",
+        "source": "GWIS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "BW",
+            "iso3": "BWA",
+            "countryname": "Botswana"
+          }
+        ],
+        "severitydata": {
+          "severity": 69548,
+          "severitytext": "Green impact for forestfire in 69548 ha",
+          "severityunit": "ha"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        21.6796,
+        -24.8405,
+        21.6796,
+        -24.8405
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6796,
+          -24.8405
+        ]
+      },
+      "properties": {
+        "eventtype": "WF",
+        "eventid": 1033757,
+        "episodeid": 2,
+        "eventname": "",
+        "glide": "",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
+        "htmldescription": "Green Forest fires in Botswana from: 05 Nov 2026 to: 13 Nov 2026.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033757&episodeid=2",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1033757&episodeid=2&eventtype=WF",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033757"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "Botswana",
+        "fromdate": "2026-11-05T00:00:00",
+        "todate": "2026-11-13T00:00:00",
+        "datemodified": "2026-11-13T12:46:39",
+        "iso3": "BWA",
+        "source": "GWIS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "BW",
+            "iso3": "BWA",
+            "countryname": "Botswana"
+          }
+        ],
+        "severitydata": {
+          "severity": 8299,
+          "severitytext": "Green impact for forestfire in 8299 ha",
+          "severityunit": "ha"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        134.8287,
+        -14.8933,
+        134.8287,
+        -14.8933
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          134.8287,
+          -14.8933
+        ]
+      },
+      "properties": {
+        "eventtype": "WF",
+        "eventid": 1033573,
+        "episodeid": 12,
+        "eventname": "",
+        "glide": "",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
+        "htmldescription": "Green Forest fires in Australia from: 05 Nov 2026 to: 13 Nov 2026.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033573&episodeid=12",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1033573&episodeid=12&eventtype=WF",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033573"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "Australia",
+        "fromdate": "2026-11-05T00:00:00",
+        "todate": "2026-11-13T00:00:00",
+        "datemodified": "2026-11-13T12:46:07",
+        "iso3": "AUS",
+        "source": "GWIS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "AU",
+            "iso3": "AUS",
+            "countryname": "Australia"
+          }
+        ],
+        "severitydata": {
+          "severity": 18275,
+          "severitytext": "Green impact for forestfire in 18275 ha",
+          "severityunit": "ha"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        25.5253,
+        8.1816,
+        25.5253,
+        8.1816
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.5253,
+          8.1816
+        ]
+      },
+      "properties": {
+        "eventtype": "WF",
+        "eventid": 1033781,
+        "episodeid": 1,
+        "eventname": "",
+        "glide": "",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
+        "htmldescription": "Green Forest fires in South Sudan from: 05 Nov 2026 to: 13 Nov 2026.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033781&episodeid=1",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1033781&episodeid=1&eventtype=WF",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033781"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "South Sudan",
+        "fromdate": "2026-11-05T00:00:00",
+        "todate": "2026-11-13T00:00:00",
+        "datemodified": "2026-11-13T12:44:28",
+        "iso3": "SSD",
+        "source": "GWIS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "SS",
+            "iso3": "SSD",
+            "countryname": "South Sudan"
+          }
+        ],
+        "severitydata": {
+          "severity": 5006,
+          "severitytext": "Green impact for forestfire in 5006 ha",
+          "severityunit": "ha"
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "bbox": [
+        144.5207,
+        -19.4841,
+        144.5207,
+        -19.4841
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.5207,
+          -19.4841
+        ]
+      },
+      "properties": {
+        "eventtype": "WF",
+        "eventid": 1033614,
+        "episodeid": 14,
+        "eventname": "",
+        "glide": "",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
+        "htmldescription": "Green Forest fires in Australia from: 05 Nov 2026 to: 13 Nov 2026.",
+        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
+        "url": {
+          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033614&episodeid=14",
+          "report": "https://www.gdacs.org/report.aspx?eventid=1033614&episodeid=14&eventtype=WF",
+          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033614"
+        },
+        "alertlevel": "Green",
+        "alertscore": 1,
+        "episodealertlevel": "Green",
+        "episodealertscore": 0.5,
+        "istemporary": "false",
+        "iscurrent": "true",
+        "country": "Australia",
+        "fromdate": "2026-11-05T00:00:00",
+        "todate": "2026-11-13T00:00:00",
+        "datemodified": "2026-11-13T12:44:07",
+        "iso3": "AUS",
+        "source": "GWIS",
+        "sourceid": "",
+        "polygonlabel": "Centroid",
+        "Class": "Point_Centroid",
+        "affectedcountries": [
+          {
+            "iso2": "AU",
+            "iso3": "AUS",
+            "countryname": "Australia"
+          }
+        ],
+        "severitydata": {
+          "severity": 29604,
+          "severitytext": "Green impact for forestfire in 29604 ha",
+          "severityunit": "ha"
+        }
+      }
+    },
     {
       "type": "Feature",
       "bbox": [
@@ -9526,66 +9826,6 @@
     {
       "type": "Feature",
       "bbox": [
-        21.6796,
-        -24.8405,
-        21.6796,
-        -24.8405
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          21.6796,
-          -24.8405
-        ]
-      },
-      "properties": {
-        "eventtype": "WF",
-        "eventid": 1033757,
-        "episodeid": 2,
-        "eventname": "",
-        "glide": "",
-        "name": "Forest fires in Botswana",
-        "description": "Forest fires in Botswana",
-        "htmldescription": "Green Forest fires in Botswana from: 05 Nov 2026 to: 13 Nov 2026.",
-        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
-        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
-        "url": {
-          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033757&episodeid=2",
-          "report": "https://www.gdacs.org/report.aspx?eventid=1033757&episodeid=2&eventtype=WF",
-          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033757"
-        },
-        "alertlevel": "Green",
-        "alertscore": 1,
-        "episodealertlevel": "Green",
-        "episodealertscore": 0.5,
-        "istemporary": "false",
-        "iscurrent": "true",
-        "country": "Botswana",
-        "fromdate": "2026-11-05T00:00:00",
-        "todate": "2026-11-13T00:00:00",
-        "datemodified": "2026-11-13T09:26:38",
-        "iso3": "BWA",
-        "source": "GWIS",
-        "sourceid": "",
-        "polygonlabel": "Centroid",
-        "Class": "Point_Centroid",
-        "affectedcountries": [
-          {
-            "iso2": "BW",
-            "iso3": "BWA",
-            "countryname": "Botswana"
-          }
-        ],
-        "severitydata": {
-          "severity": 8299,
-          "severitytext": "Green impact for forestfire in 8299 ha",
-          "severityunit": "ha"
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "bbox": [
         -12.9406,
         14.1681,
         -12.9406,
@@ -9759,66 +9999,6 @@
         "severitydata": {
           "severity": 11303,
           "severitytext": "Green impact for forestfire in 11303 ha",
-          "severityunit": "ha"
-        }
-      }
-    },
-    {
-      "type": "Feature",
-      "bbox": [
-        25.5253,
-        8.1816,
-        25.5253,
-        8.1816
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          25.5253,
-          8.1816
-        ]
-      },
-      "properties": {
-        "eventtype": "WF",
-        "eventid": 1033781,
-        "episodeid": 1,
-        "eventname": "",
-        "glide": "",
-        "name": "Forest fires in South Sudan",
-        "description": "Forest fires in South Sudan",
-        "htmldescription": "Green Forest fires in South Sudan from: 05 Nov 2026 to: 13 Nov 2026.",
-        "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
-        "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
-        "url": {
-          "geometry": "https://www.gdacs.org/gdacsapi/api/polygons/getgeometry?eventtype=WF&eventid=1033781&episodeid=1",
-          "report": "https://www.gdacs.org/report.aspx?eventid=1033781&episodeid=1&eventtype=WF",
-          "details": "https://www.gdacs.org/gdacsapi/api/events/geteventdata?eventtype=WF&eventid=1033781"
-        },
-        "alertlevel": "Green",
-        "alertscore": 1,
-        "episodealertlevel": "Green",
-        "episodealertscore": 0.5,
-        "istemporary": "false",
-        "iscurrent": "true",
-        "country": "South Sudan",
-        "fromdate": "2026-11-05T00:00:00",
-        "todate": "2026-11-13T00:00:00",
-        "datemodified": "2026-11-13T09:23:49",
-        "iso3": "SSD",
-        "source": "GWIS",
-        "sourceid": "",
-        "polygonlabel": "Centroid",
-        "Class": "Point_Centroid",
-        "affectedcountries": [
-          {
-            "iso2": "SS",
-            "iso3": "SSD",
-            "countryname": "South Sudan"
-          }
-        ],
-        "severitydata": {
-          "severity": 5006,
-          "severitytext": "Green impact for forestfire in 5006 ha",
           "severityunit": "ha"
         }
       }
