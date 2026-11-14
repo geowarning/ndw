@@ -1,6 +1,6 @@
 {
   "type": "FeatureCollection",
-  "generatedAt": "2026-11-14T05:41:11.953Z",
+  "generatedAt": "2026-11-14T05:41:48.266Z",
   "source": "GDACS",
   "endpoint": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH?eventlist=WF%3BFL%3BTC%3BDR&fromDate=2026-09-15&toDate=2026-11-14&alertlevel=Green%3BOrange%3BRed",
   "fromDate": "2026-09-15",
