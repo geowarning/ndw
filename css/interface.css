@@ -1027,3 +1027,8 @@ a.rescue-button { text-decoration: none; }
 .global-page .gitem:hover { background: #1a2d35; }
 
 .global-page .global-meta { padding-inline: 18px; }
+/* Explicit badge selectors prevent generic card text rules overriding icons. */
+.rescue-place > .place-symbol { width: 60px; height: 48px; color: #193f50; background: #d7e8fa; }
+.rescue-org > .resource-symbol, .rescue-detail > .resource-symbol { width: 56px; height: 56px; color: var(--resource-fg,#194455); background: var(--resource-bg,#cfe5f1); }
+.resource-symbol svg, .place-symbol svg { display: block; width: 32px; height: 32px; }
+.country-flag { display: block; width: 48px; height: 36px; object-fit: contain; border-radius: 3px; box-shadow: 0 0 0 1px #0003; }

@@ -1,0 +1,1 @@
+Flag images from [flag-icons](https://github.com/lipis/flag-icons/tree/ac7e0eb3259eb62aa6100c435607e2fe03896a97/flags/4x3), commit ac7e0eb3259eb62aa6100c435607e2fe03896a97. MIT license, included in LICENSE.

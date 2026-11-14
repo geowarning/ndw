@@ -25,8 +25,22 @@
     if(query.city)items.push('<a href="'+esc(href({iso:query.iso,state:query.state,city:query.city}))+'">'+esc(query.city)+'</a>');
     return '<nav class="rescue-breadcrumb" aria-label="'+t('位置导航','Location navigation')+'">'+items.join('<span aria-hidden="true">/</span>')+'</nav>';
   }
-  function symbol(k) { return {directory:'◎',rescue:'⌖',training:'♥',medical:'✚',food:'◒'}[k] || '◎'; }
-  function flag(iso) { return /^[A-Z]{2}$/.test(iso || '') ? iso.replace(/./g,function(c){return String.fromCodePoint(127397+c.charCodeAt(0));}) : '🌐'; }
+  function symbol(k) {
+    var paths = {
+      directory: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z"/>',
+      rescue: '<path d="m2 20 6-12 4 7 3-5 7 10H2Zm3-6 3 1 2-1M12 5V2m-2 1h4"/>',
+      training: '<path d="M12 21 3 12C-3 4 7-1 12 6c5-7 15-2 9 6l-9 9Z"/><path d="M5 12h4l2-4 3 8 2-4h3"/>',
+      medical: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 7v10M7 12h10"/>',
+      food: '<path d="M3 12h18c-1 5-4 8-9 8s-8-3-9-8Zm2 9h14M8 8V3m4 5V2m4 6V3"/>',
+      state: '<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Zm6-3v15m6-12v15"/>',
+      city: '<path d="M4 21V8h7v13m0-16h9v16M2 21h20M6 11h3m-3 4h3m5-7h3m-3 4h3m-3 4h3"/>'
+    };
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">'+(paths[k]||paths.directory)+'</svg>';
+  }
+  function flag(iso) {
+    if (iso === 'BX') return symbol('directory'); // Benelux is a region, not a country flag.
+    return /^[A-Z]{2}$/.test(iso || '') ? '<img class="country-flag" src="assets/flags/'+iso.toLowerCase()+'.svg" alt="" width="48" height="36" loading="lazy">' : symbol('directory');
+  }
   function orgId(r) { return r.iso + ':' + (r.organization || r.region); }
   function organization(r) {
     var local=r.entryType==='organization';
@@ -45,7 +59,7 @@
     var section=page.querySelector('[data-rescue-locations]');
     section.innerHTML=locations.length?'<h2>'+({country:t('选择国家或地区','Choose a country or region'),state:t('选择州或省','Choose a state or province'),city:t('选择城市或城镇','Choose a city or town')}[stage])+'</h2><div class="rescue-place-grid">'+locations.map(function(key){
       var values=stage==='country'?{iso:key}:stage==='state'?{iso:query.iso,state:key}:{iso:query.iso,state:query.state,city:key};
-      return '<a class="rescue-place" href="'+esc(href(values))+'"><span class="place-symbol" aria-hidden="true">'+(stage==='country'?flag(key):stage==='state'?'▧':'⌖')+'</span><strong>'+esc(stage==='country'?countryName(key):key)+'</strong><span>'+groups[key].length+' '+t('条资源','resources')+' →</span></a>';
+      return '<a class="rescue-place" href="'+esc(href(values))+'"><span class="place-symbol" aria-hidden="true">'+(stage==='country'?flag(key):symbol(stage==='state'?'state':'city'))+'</span><strong>'+esc(stage==='country'?countryName(key):key)+'</strong><span>'+groups[key].length+' '+t('条资源','resources')+' →</span></a>';
     }).join('')+'</div>':'';
     // Compact organization cards appear after choosing a city, while searching,
     // or for country-wide directories which have no asserted city location.
