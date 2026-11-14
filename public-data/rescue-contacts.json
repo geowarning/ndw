@@ -4,6 +4,273 @@
   "retrievedAt": "2026-11-14",
   "records": [
     {
+      "organization": "American Heart Association",
+      "city": "Dallas",
+      "state": "Texas",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Training & education",
+      "services": "CPR, AED and first-aid education; find a local training centre",
+      "coverage": "International training network",
+      "website": "https://www.heart.org/",
+      "directory": "https://cpr.heart.org/",
+      "aliases": [
+        "AHA",
+        "美国心脏协会",
+        "达拉斯"
+      ],
+      "sourceUrl": "https://www.heart.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Seattle Mountain Rescue",
+      "city": "Seattle",
+      "state": "Washington",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Volunteer search & rescue",
+      "services": "Mountain search and rescue",
+      "coverage": "King County and surrounding mountains",
+      "website": "https://seattlemountainrescue.org/",
+      "directory": "https://seattlemountainrescue.org/",
+      "aliases": [
+        "西雅图"
+      ],
+      "sourceUrl": "https://seattlemountainrescue.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Portland Mountain Rescue",
+      "city": "Portland",
+      "state": "Oregon",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Volunteer search & rescue",
+      "services": "Mountain search and rescue",
+      "coverage": "Northwest Oregon and Southwest Washington",
+      "website": "https://pmru.org/",
+      "directory": "https://pmru.org/",
+      "aliases": [
+        "波特兰"
+      ],
+      "sourceUrl": "https://pmru.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Bay Area Mountain Rescue Unit",
+      "city": "San Francisco Bay Area",
+      "state": "California",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Volunteer search & rescue",
+      "services": "Wilderness search and technical rescue",
+      "coverage": "San Francisco Bay Area; mutual aid deployments",
+      "website": "https://bamru.org/",
+      "directory": "https://bamru.org/",
+      "aliases": [
+        "BAMRU",
+        "旧金山",
+        "湾区"
+      ],
+      "sourceUrl": "https://bamru.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Team Rubicon",
+      "city": "Los Angeles",
+      "state": "California",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Nongovernment disaster response",
+      "services": "Volunteer disaster response and recovery",
+      "coverage": "United States; deployment-based response",
+      "website": "https://teamrubiconusa.org/",
+      "directory": "https://teamrubiconusa.org/",
+      "aliases": [
+        "洛杉矶"
+      ],
+      "sourceUrl": "https://teamrubiconusa.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Direct Relief",
+      "city": "Santa Barbara",
+      "state": "California",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Nongovernment medical relief",
+      "services": "Medical supplies and support for health facilities",
+      "coverage": "International; not an ambulance service",
+      "website": "https://www.directrelief.org/",
+      "directory": "https://www.directrelief.org/",
+      "aliases": [
+        "圣巴巴拉"
+      ],
+      "sourceUrl": "https://www.directrelief.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Doctors Without Borders / Médecins Sans Frontières USA",
+      "city": "New York",
+      "state": "New York",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Nongovernment medical relief",
+      "services": "Medical humanitarian assistance",
+      "coverage": "International operations; US office is not a local rescue dispatcher",
+      "website": "https://www.doctorswithoutborders.org/",
+      "directory": "https://www.doctorswithoutborders.org/",
+      "aliases": [
+        "MSF",
+        "无国界医生",
+        "纽约"
+      ],
+      "sourceUrl": "https://www.doctorswithoutborders.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "World Central Kitchen",
+      "city": "Washington",
+      "state": "District of Columbia",
+      "region": "United States",
+      "iso": "US",
+      "kind": "Nongovernment food relief",
+      "services": "Food relief during disasters",
+      "coverage": "International disaster deployments",
+      "website": "https://wck.org/",
+      "directory": "https://wck.org/",
+      "aliases": [
+        "WCK",
+        "华盛顿"
+      ],
+      "sourceUrl": "https://wck.org/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Keswick Mountain Rescue Team",
+      "city": "Keswick",
+      "state": "Cumbria",
+      "region": "United Kingdom",
+      "iso": "GB",
+      "kind": "Volunteer search & rescue",
+      "services": "Mountain and wilderness rescue",
+      "coverage": "Keswick and surrounding Lake District mountains",
+      "website": "https://keswickmrt.org.uk/",
+      "directory": "https://keswickmrt.org.uk/",
+      "aliases": [
+        "凯西克",
+        "英国"
+      ],
+      "sourceUrl": "https://keswickmrt.org.uk/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Edale Mountain Rescue Team",
+      "city": "Hope Valley",
+      "state": "Derbyshire",
+      "region": "United Kingdom",
+      "iso": "GB",
+      "kind": "Volunteer search & rescue",
+      "services": "Mountain and wilderness rescue",
+      "coverage": "Peak District and surrounding areas",
+      "website": "https://edalemrt.co.uk/",
+      "directory": "https://edalemrt.co.uk/",
+      "aliases": [
+        "Edale",
+        "Sheffield",
+        "谢菲尔德",
+        "英国"
+      ],
+      "sourceUrl": "https://edalemrt.co.uk/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "London Air Ambulance Charity",
+      "city": "London",
+      "state": "England",
+      "region": "United Kingdom",
+      "iso": "GB",
+      "kind": "Charitable emergency medical support",
+      "services": "Advanced trauma care with NHS partners",
+      "coverage": "London; dispatch via emergency services",
+      "website": "https://www.londonsairambulance.org.uk/",
+      "directory": "https://www.londonsairambulance.org.uk/",
+      "aliases": [
+        "伦敦",
+        "英国"
+      ],
+      "sourceUrl": "https://www.londonsairambulance.org.uk/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Wellington Free Ambulance",
+      "city": "Wellington",
+      "state": "Wellington",
+      "region": "New Zealand",
+      "iso": "NZ",
+      "kind": "Charitable ambulance service",
+      "services": "Emergency ambulance and community care",
+      "coverage": "Greater Wellington and Wairarapa",
+      "website": "https://www.wfa.org.nz/",
+      "directory": "https://www.wfa.org.nz/",
+      "aliases": [
+        "惠灵顿",
+        "新西兰"
+      ],
+      "sourceUrl": "https://www.wfa.org.nz/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "St John Ambulance Singapore",
+      "city": "Singapore",
+      "state": "Singapore",
+      "region": "Singapore",
+      "iso": "SG",
+      "kind": "Volunteer first aid & training",
+      "services": "First-aid training and event medical support",
+      "coverage": "Singapore; verify service availability directly",
+      "website": "https://www.stjohn.org.sg/",
+      "directory": "https://www.stjohn.org.sg/",
+      "aliases": [
+        "圣约翰",
+        "新加坡"
+      ],
+      "sourceUrl": "https://www.stjohn.org.sg/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
+      "organization": "Hong Kong St. John Ambulance",
+      "city": "Hong Kong",
+      "state": "Hong Kong",
+      "region": "China",
+      "iso": "CN",
+      "kind": "Volunteer first aid & training",
+      "services": "First-aid training and ambulance services",
+      "coverage": "Hong Kong; verify service and dispatch arrangements directly",
+      "website": "https://www.stjohn.org.hk/",
+      "directory": "https://www.stjohn.org.hk/",
+      "aliases": [
+        "香港圣约翰救护机构",
+        "香港"
+      ],
+      "sourceUrl": "https://www.stjohn.org.hk/",
+      "contactVerifiedAt": null,
+      "entryType": "organization"
+    },
+    {
       "region": "Ukraine",
       "iso": "UA",
       "iso3": "UKR",
@@ -15,7 +282,8 @@
         "Ucrania",
         "Ukraine",
         "أوكرانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "United Arab Emirates",
@@ -29,7 +297,8 @@
         "Emiratos Árabes Unidos",
         "Émirats arabes unis",
         "الإمارات العربية المتحدة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "United Kingdom",
@@ -43,7 +312,8 @@
         "Reino Unido",
         "Royaume-Uni",
         "المملكة المتحدة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "United States",
@@ -57,7 +327,8 @@
         "Estados Unidos de América",
         "États-Unis d’Amérique",
         "الولايات المتحدة الأمريكية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Uruguay",
@@ -71,7 +342,8 @@
         "Uruguay",
         "Uruguay",
         "اوروغواي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Uzbekistan",
@@ -85,7 +357,8 @@
         "Uzbekistán",
         "Ouzbékistan",
         "أوزبكستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Vanuatu",
@@ -99,7 +372,8 @@
         "Vanuatu",
         "Vanuatu",
         "فانواتو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Venezuela",
@@ -113,7 +387,8 @@
         "Venezuela",
         "Venezuela",
         "فنزويلا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Yemen",
@@ -127,7 +402,8 @@
         "Yemen",
         "Yémen",
         "اليمن"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Zambia",
@@ -141,7 +417,8 @@
         "Zambia",
         "Zambie",
         "زامبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Zimbabwe",
@@ -155,7 +432,8 @@
         "Zimbabwe",
         "Zimbabwe",
         "زمبابوي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Afghanistan",
@@ -169,7 +447,8 @@
         "Afganistán",
         "Afghanistan",
         "أفغانستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Albania",
@@ -183,7 +462,8 @@
         "Albania",
         "Albanie",
         "ألبانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Algeria",
@@ -197,7 +477,8 @@
         "Argelia",
         "Algérie",
         "الجزائر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Andorra",
@@ -211,7 +492,8 @@
         "Andorra",
         "Andorre",
         "أندورا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Angola",
@@ -225,7 +507,8 @@
         "Angola",
         "Angola",
         "أنغولا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Antigua and Barbuda",
@@ -239,7 +522,8 @@
         "Antigua y Barbuda",
         "Antigua-et-Barbuda",
         "أنتيغوا وبربودا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Argentina",
@@ -253,7 +537,8 @@
         "Argentina",
         "Argentine",
         "الأرجنتين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Armenia",
@@ -267,7 +552,8 @@
         "Armenia",
         "Arménie",
         "أرمينيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Australia",
@@ -281,7 +567,8 @@
         "Australia",
         "Australie",
         "أستراليا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Austria",
@@ -295,7 +582,8 @@
         "Austria",
         "Autriche",
         "النمسا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bahamas",
@@ -309,7 +597,8 @@
         "Bahamas",
         "Bahamas",
         "باهاماس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bahrain",
@@ -323,7 +612,8 @@
         "Bahrein",
         "Bahreïn",
         "البحرين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bangladesh",
@@ -337,7 +627,8 @@
         "Bangladesh",
         "Bangladesh",
         "بنغلاديش"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Barbados",
@@ -351,7 +642,8 @@
         "Barbados",
         "Barbade",
         "بربادوس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Belarus",
@@ -365,7 +657,8 @@
         "Balarús",
         "Bélarus",
         "بيلاروس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Belgium",
@@ -379,7 +672,8 @@
         "Bélgica",
         "Belgique",
         "بلجيكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Belize",
@@ -393,7 +687,8 @@
         "Belice",
         "Belize",
         "بليز"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bolivia",
@@ -407,7 +702,8 @@
         "Bolivia",
         "Bolivie",
         "بوليفيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Botswana",
@@ -421,7 +717,8 @@
         "Botswana",
         "Botswana",
         "بوتسوانا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Brazil",
@@ -435,7 +732,8 @@
         "Brasil",
         "Brésil",
         "البرازيل"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Brunei Darussalam",
@@ -449,7 +747,8 @@
         "Brunei Darussalam",
         "Brunéi Darussalam",
         "برونى دار السلام"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bulgaria",
@@ -463,7 +762,8 @@
         "Bulgaria",
         "Bulgarie",
         "بلغاريا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Burundi",
@@ -477,7 +777,8 @@
         "Burundi",
         "Burundi",
         "بوروندي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cambodia",
@@ -491,7 +792,8 @@
         "Camboya",
         "Cambodge",
         "كمبوديا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cameroon",
@@ -505,7 +807,8 @@
         "Camerún",
         "Cameroun",
         "الكاميرون"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Canada",
@@ -519,7 +822,8 @@
         "Canadá",
         "Canada",
         "كندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cabo Verde",
@@ -533,7 +837,8 @@
         "Cabo Verde",
         "Cap-Vert",
         "الرأس الأخضر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Central African Republic",
@@ -547,7 +852,8 @@
         "República Centroafricana",
         "République centrafricaine",
         "جمهورية إفريقيا الوسطى"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Chad",
@@ -561,7 +867,8 @@
         "Chad",
         "Tchad",
         "تشاد"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Chile",
@@ -575,7 +882,8 @@
         "Chile",
         "Chili",
         "شيلي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "China",
@@ -589,7 +897,8 @@
         "China",
         "Chine",
         "الصين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Colombia",
@@ -603,7 +912,8 @@
         "Colombia",
         "Colombie",
         "كولومبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Costa Rica",
@@ -617,7 +927,8 @@
         "Costa Rica",
         "Costa Rica",
         "كوستاريكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Croatia",
@@ -631,7 +942,8 @@
         "Croacia",
         "Croatie",
         "كرواتيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cuba",
@@ -645,7 +957,8 @@
         "Cuba",
         "Cuba",
         "كوبا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Czech Republic",
@@ -659,7 +972,8 @@
         "República Checa",
         "République tchèque",
         "الجمهورية التشيكية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Denmark",
@@ -673,7 +987,8 @@
         "Dinamarca",
         "Danemark",
         "الدانمرك"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Djibouti",
@@ -687,7 +1002,8 @@
         "Djibouti",
         "Djibouti",
         "جيبوتي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Dominica",
@@ -701,7 +1017,8 @@
         "Dominica",
         "Dominique",
         "دومينيكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Dominican Republic",
@@ -715,7 +1032,8 @@
         "República Dominicana",
         "République dominicaine",
         "جمهورية الدومينيكان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Ecuador",
@@ -729,7 +1047,8 @@
         "Ecuador",
         "Équateur",
         "الإكوادور"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Egypt",
@@ -743,7 +1062,8 @@
         "Egipto",
         "Égypte",
         "مصر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "El Salvador",
@@ -757,7 +1077,8 @@
         "El Salvador",
         "El Salvador",
         "السلفادور"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Equatorial Guinea",
@@ -771,7 +1092,8 @@
         "Guinea Ecuatorial",
         "Guinée équatoriale",
         "غينيا الاستوائية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Estonia",
@@ -785,7 +1107,8 @@
         "Estonia",
         "Estonie",
         "إستونيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Ethiopia",
@@ -799,7 +1122,8 @@
         "Etiopía",
         "Éthiopie",
         "إثيوبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Fiji",
@@ -813,7 +1137,8 @@
         "Fiji",
         "Fidji",
         "فيجي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Finland",
@@ -827,7 +1152,8 @@
         "Finlandia",
         "Finlande",
         "فنلندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "France",
@@ -841,7 +1167,8 @@
         "Francia",
         "France",
         "فرنسا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Gabon",
@@ -855,7 +1182,8 @@
         "Gabón",
         "Gabon",
         "غابون"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Gambia, Republic of The",
@@ -869,7 +1197,8 @@
         "Gambia, República de",
         "Gambie, République de",
         "جمهورية غامبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Georgia",
@@ -883,7 +1212,8 @@
         "Georgia",
         "Géorgie",
         "جورجيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Germany",
@@ -897,7 +1227,8 @@
         "Alemania",
         "Allemagne",
         "ألمانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Ghana",
@@ -911,7 +1242,8 @@
         "Ghana",
         "Ghana",
         "غانا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Greece",
@@ -925,7 +1257,8 @@
         "Grecia",
         "Grèce",
         "اليونان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Grenada",
@@ -939,7 +1272,8 @@
         "Granada",
         "Grenade",
         "غرينادا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guatemala",
@@ -953,7 +1287,8 @@
         "Guatemala",
         "Guatemala",
         "غواتيمالا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guinea",
@@ -967,7 +1302,8 @@
         "Guinea",
         "Guinée",
         "غينيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guyana",
@@ -981,7 +1317,8 @@
         "Guyana",
         "Guyana",
         "غويانا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Haiti",
@@ -995,7 +1332,8 @@
         "Haití",
         "Haïti",
         "هايتي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Honduras",
@@ -1009,7 +1347,8 @@
         "Honduras",
         "Honduras",
         "هندوراس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Hungary",
@@ -1023,7 +1362,8 @@
         "Hungría",
         "Hongrie",
         "المجر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Iceland",
@@ -1037,7 +1377,8 @@
         "Islandia",
         "Islande",
         "آيسلندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "India",
@@ -1051,7 +1392,8 @@
         "India",
         "Inde",
         "الهند"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Indonesia",
@@ -1065,7 +1407,8 @@
         "Indonesia",
         "Indonésie",
         "إندونيسيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Iraq",
@@ -1079,7 +1422,8 @@
         "Iraq",
         "Iraq",
         "العراق"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Ireland",
@@ -1093,7 +1437,8 @@
         "Irlanda",
         "Irlande",
         "آيرلندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Italy",
@@ -1107,7 +1452,8 @@
         "Italia",
         "Italie",
         "إيطاليا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Jamaica",
@@ -1121,7 +1467,8 @@
         "Jamaica",
         "Jamaïque",
         "جامايكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Japan",
@@ -1135,7 +1482,8 @@
         "Japón",
         "Japon",
         "اليابان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Jordan",
@@ -1149,7 +1497,8 @@
         "Jordania",
         "Jordanie",
         "الأردن"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kenya",
@@ -1163,7 +1512,8 @@
         "Kenya",
         "Kenya",
         "كينيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kiribati",
@@ -1177,7 +1527,8 @@
         "Kiribati",
         "Kiribati",
         "كيريباتي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kuwait",
@@ -1191,7 +1542,8 @@
         "Kuwait",
         "Koweït",
         "الكويت"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kyrgyzstan",
@@ -1205,7 +1557,8 @@
         "Kirguistán",
         "Kirghizistan",
         "قيرغيزستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Lao People's Democratic Republic",
@@ -1219,7 +1572,8 @@
         "República Democrática Popular de Lao",
         "République démocratique populaire lao",
         "جمهورية لاوس الديمقراطية الشعبية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Latvia",
@@ -1233,7 +1587,8 @@
         "Letonia",
         "Lettonie",
         "لاتفيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Lebanon",
@@ -1247,7 +1602,8 @@
         "Líbano",
         "Liban",
         "لبنان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Lesotho",
@@ -1261,7 +1617,8 @@
         "Lesotho",
         "Lesotho",
         "ليسوتو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Liberia",
@@ -1275,7 +1632,8 @@
         "Liberia",
         "Libéria",
         "ليبيريا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Liechtenstein",
@@ -1289,7 +1647,8 @@
         "Liechtenstein",
         "Liechtenstein",
         "ليخشتنشتاين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Lithuania",
@@ -1303,7 +1662,8 @@
         "Lituana",
         "Lituanie",
         "ليتوانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Luxembourg",
@@ -1317,7 +1677,8 @@
         "Luxemburgo",
         "Luxembourg",
         "لوكسمبرغ"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "North Macedonia",
@@ -1331,7 +1692,8 @@
         "Macedonia del Norte",
         "Macédoine du Nord",
         "مقدونيا الشمالية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Madagascar",
@@ -1345,7 +1707,8 @@
         "Madagascar",
         "Madagascar",
         "مدغشقر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Malawi",
@@ -1359,7 +1722,8 @@
         "Malawi",
         "Malawi",
         "ملاوي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Malaysia",
@@ -1373,7 +1737,8 @@
         "Malasia",
         "Malaisie",
         "ماليزيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mali",
@@ -1387,7 +1752,8 @@
         "Malí",
         "Mali",
         "مالي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Malta",
@@ -1401,7 +1767,8 @@
         "Malta",
         "Malte",
         "مالطة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mauritania",
@@ -1415,7 +1782,8 @@
         "Mauritania",
         "Mauritanie",
         "موريتانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mauritius",
@@ -1429,7 +1797,8 @@
         "Mauricio",
         "Maurice",
         "موريشيوس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mexico",
@@ -1443,7 +1812,8 @@
         "México",
         "Mexique",
         "المكسيك"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Monaco",
@@ -1457,7 +1827,8 @@
         "Mónaco",
         "Monaco",
         "موناكو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Morocco",
@@ -1471,7 +1842,8 @@
         "Marruecos",
         "Maroc",
         "المغرب"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mozambique",
@@ -1485,7 +1857,8 @@
         "Mozambique",
         "Mozambique",
         "موزامبيق"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Myanmar",
@@ -1499,7 +1872,8 @@
         "Myanmar",
         "Myanmar",
         "ميانمار"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Namibia",
@@ -1513,7 +1887,8 @@
         "Namibia",
         "Namibie",
         "ناميبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Nepal",
@@ -1527,7 +1902,8 @@
         "Nepal",
         "Népal",
         "نيبال"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Netherlands",
@@ -1541,7 +1917,8 @@
         "Países Bajos",
         "Pays-Bas",
         "هولندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "New Zealand",
@@ -1555,7 +1932,8 @@
         "Nueva Zelanda",
         "Nouvelle-Zélande",
         "نيوزيلندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Nicaragua",
@@ -1569,7 +1947,8 @@
         "Nicaragua",
         "Nicaragua",
         "نيكاراغوا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Niger",
@@ -1583,7 +1962,8 @@
         "Níger",
         "Niger",
         "النيجر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Nigeria",
@@ -1597,7 +1977,8 @@
         "Nigeria",
         "Nigéria",
         "نيجيريا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Norway",
@@ -1611,7 +1992,8 @@
         "Noruega",
         "Norvège",
         "النرويج"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Palau",
@@ -1625,7 +2007,8 @@
         "Palau",
         "Palaos",
         "بالاو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Pakistan",
@@ -1639,7 +2022,8 @@
         "Pakistán",
         "Pakistan",
         "باكستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Panama",
@@ -1653,7 +2037,8 @@
         "Panamá",
         "Panama",
         "بنما"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Papua New Guinea",
@@ -1667,7 +2052,8 @@
         "Papua Nueva Guinea",
         "Papouasie-Nouvelle-Guinée",
         "بابوا غينيا الجديدة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Paraguay",
@@ -1681,7 +2067,8 @@
         "Paraguay",
         "Paraguay",
         "باراغواي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Peru",
@@ -1695,7 +2082,8 @@
         "Perú",
         "Pérou",
         "بيرو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Philippines",
@@ -1709,7 +2097,8 @@
         "Filipinas",
         "Philippines",
         "الفلبين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Portugal",
@@ -1723,7 +2112,8 @@
         "Portugal",
         "Portugal",
         "البرتغال"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Qatar",
@@ -1737,7 +2127,8 @@
         "Qatar",
         "Qatar",
         "قطر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Romania",
@@ -1751,7 +2142,8 @@
         "Rumania",
         "Roumanie",
         "رومانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Russian Federation",
@@ -1765,7 +2157,8 @@
         "Federación de Rusia",
         "Fédération de Russie",
         "اتحاد روسيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Rwanda",
@@ -1779,7 +2172,8 @@
         "Rwanda",
         "Rwanda",
         "رواندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Samoa",
@@ -1793,7 +2187,8 @@
         "Samoa",
         "Samoa",
         "ساموا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Saudi Arabia",
@@ -1807,7 +2202,8 @@
         "Arabia Saudita",
         "Arabie saoudite",
         "المملكة العربية السعودية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Senegal",
@@ -1821,7 +2217,8 @@
         "Senegal",
         "Sénégal",
         "السنغال"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Seychelles",
@@ -1835,7 +2232,8 @@
         "Seychelles",
         "Seychelles",
         "سيشيل"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Sierra Leone",
@@ -1849,7 +2247,8 @@
         "Sierra Leona",
         "Sierra Leone",
         "سيراليون"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Singapore",
@@ -1863,7 +2262,8 @@
         "Singapur",
         "Singapour",
         "سنغافورة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Slovakia",
@@ -1877,7 +2277,8 @@
         "Eslovaquia",
         "Slovaquie",
         "سلوفاكيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Slovenia",
@@ -1891,7 +2292,8 @@
         "Eslovenia",
         "Slovénie",
         "سلوفينيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Solomon Islands",
@@ -1905,7 +2307,8 @@
         "Islas Salomón",
         "Îles Salomon",
         "جزر سليمان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Somalia",
@@ -1919,7 +2322,8 @@
         "Somalia",
         "Somalie",
         "الصومال"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "South Africa",
@@ -1933,7 +2337,8 @@
         "Sudáfrica",
         "Afrique du Sud",
         "جنوب إفريقيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Spain",
@@ -1947,7 +2352,8 @@
         "España",
         "Espagne",
         "إسبانيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Sri Lanka",
@@ -1961,7 +2367,8 @@
         "Sri Lanka",
         "Sri Lanka",
         "سري لانكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Sudan",
@@ -1975,7 +2382,8 @@
         "Sudán",
         "Soudan",
         "السودان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Eswatini, Kingdom of",
@@ -1989,7 +2397,8 @@
         "Eswatini, Reino de",
         "Eswatini, Royaume d'",
         "مملكة إسواتيني"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Sweden",
@@ -2003,7 +2412,8 @@
         "Suecia",
         "Suède",
         "السويد"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Switzerland",
@@ -2017,7 +2427,8 @@
         "Suiza",
         "Suisse",
         "سويسرا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tajikistan",
@@ -2031,7 +2442,8 @@
         "Tayikistán",
         "Tadjikistan",
         "طاجيكستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Thailand",
@@ -2045,7 +2457,8 @@
         "Tailandia",
         "Thaïlande",
         "تايلند"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Togo",
@@ -2059,7 +2472,8 @@
         "Togo",
         "Togo",
         "توغو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tonga",
@@ -2073,7 +2487,8 @@
         "Tonga",
         "Tonga",
         "تونغا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Trinidad and Tobago",
@@ -2087,7 +2502,8 @@
         "Trinidad y Tobago",
         "Trinité-et-Tobago",
         "ترينيداد وتوباغو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tunisia",
@@ -2101,7 +2517,8 @@
         "Túnez",
         "Tunisie",
         "تونس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Türkiye",
@@ -2115,7 +2532,8 @@
         "Türkiye",
         "Türkiye",
         "تركيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Turkmenistan",
@@ -2129,7 +2547,8 @@
         "Turkmenistán",
         "Turkménistan",
         "تركمانستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Uganda",
@@ -2143,7 +2562,8 @@
         "Uganda",
         "Ouganda",
         "أوغندا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Saint Kitts and Nevis",
@@ -2157,7 +2577,8 @@
         "San Cristóbal y Nieves​",
         "Saint-Kitts-et-Nevis",
         "سانت كيتس ونيفيس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Saint Lucia",
@@ -2171,7 +2592,8 @@
         "Santa Lucía",
         "Sainte-Lucie",
         "سانت لوتشيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Saint Vincent and the Grenadines",
@@ -2185,7 +2607,8 @@
         "San Vicente y las Granadinas",
         "Saint-Vincent-et-les-Grenadines",
         "سانت فنسنت وجزر غرينادين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Suriname",
@@ -2199,7 +2622,8 @@
         "Suriname",
         "Suriname",
         "سورينام"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Burkina Faso",
@@ -2213,7 +2637,8 @@
         "Burkina Faso",
         "Burkina Faso",
         "بوركينا فاصو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Côte d'Ivoire",
@@ -2227,7 +2652,8 @@
         "Côte d’Ivoire",
         "Côte d’Ivoire",
         "كوت ديفوار"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guinea-Bissau",
@@ -2241,7 +2667,8 @@
         "Guinea-Bissau",
         "Guinée-Bissau",
         "غينيا بيساو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Congo",
@@ -2255,7 +2682,8 @@
         "Congo",
         "Congo",
         "الكونغو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Sao Tome and Principe",
@@ -2269,7 +2697,8 @@
         "Santo Tomé y Príncipe",
         "Sao Tomé-et-Principe",
         "ساو تومي وبرنسيبي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Comoros",
@@ -2283,7 +2712,8 @@
         "Comoras",
         "Comores",
         "جزر القمر"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Democratic Republic of Congo",
@@ -2297,7 +2727,8 @@
         "República Democrática del Congo",
         "République Démocratique du Congo",
         "جمهورية الكونغو الديمقراطية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Eritrea",
@@ -2311,7 +2742,8 @@
         "Eritrea",
         "Érythrée",
         "إريتريا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tanzania, United Republic of",
@@ -2325,7 +2757,8 @@
         "Tanzania, República Unida de",
         "Tanzanie, République-Unie de",
         "جمهورية تنزانيا الاتحادية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Viet Nam",
@@ -2339,7 +2772,8 @@
         "Viet Nam",
         "Viet Nam",
         "فيتنام"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Republic of Korea",
@@ -2353,7 +2787,8 @@
         "República de Corea",
         "République de Corée",
         "جمهورية كوريا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Democratic People's Republic of Korea",
@@ -2367,7 +2802,8 @@
         "República Popular Democrática de Corea",
         "République populaire démocratique de Corée",
         "جمهورية كوريا الديمقراطية الشعبية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Mongolia",
@@ -2381,7 +2817,8 @@
         "Mongolia",
         "Mongolie",
         "منغوليا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Micronesia, Federated States of",
@@ -2395,7 +2832,8 @@
         "Micronesia, Estados Federados de",
         "Micronésie, États fédérés de",
         "ولايات مايكرونزيا المتحدة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bosnia and Herzegovina",
@@ -2409,7 +2847,8 @@
         "Bosnia y Herzegovina",
         "Bosnie-Herzégovine",
         "البوسنة والهرسك"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Poland",
@@ -2423,7 +2862,8 @@
         "Polonia",
         "Pologne",
         "بولندة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Azerbaijan",
@@ -2437,7 +2877,8 @@
         "Azerbaiyán",
         "Azerbaïdjan",
         "أذربيجان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kazakhstan",
@@ -2451,7 +2892,8 @@
         "Kazajstán",
         "Kazakhstan",
         "كزاخستان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Moldova, Republic of",
@@ -2465,7 +2907,8 @@
         "Moldavia, República de",
         "Moldavie, République de",
         "جمهورية مولدوڤا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Iran, Islamic Republic of",
@@ -2479,7 +2922,8 @@
         "Irán, República Islámica del",
         "Iran, République Islamique d’",
         "الجمهورية الإسلامية الإيرانية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Libya",
@@ -2493,7 +2937,8 @@
         "Libia",
         "Libye",
         "ليبيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Palestine",
@@ -2507,7 +2952,8 @@
         "Palestina",
         "Palestine",
         "فلسطين"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Syrian Arab Republic",
@@ -2521,7 +2967,8 @@
         "República Árabe Siria",
         "République arabe syrienne",
         "الجمهورية العربية السورية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Benin",
@@ -2535,7 +2982,8 @@
         "Benin",
         "Bénin",
         "بنن"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Timor-Leste",
@@ -2549,7 +2997,8 @@
         "Timor-Leste",
         "Timor-Leste",
         "تيمور- ليشتي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cook Islands",
@@ -2563,7 +3012,8 @@
         "Islas Cook",
         "Îles Cook",
         "جزر كوك"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Marshall Islands",
@@ -2577,7 +3027,8 @@
         "Islas Marshall",
         "Îles Marshall",
         "جزر مارشال"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tuvalu",
@@ -2591,7 +3042,8 @@
         "Tuvalu",
         "Tuvalu",
         "توفالو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Anguilla",
@@ -2605,7 +3057,8 @@
         "Anguila",
         "Anguilla",
         "أنغيلا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Israel",
@@ -2619,7 +3072,8 @@
         "Israel",
         "Israël",
         "إسرائيل"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Maldives",
@@ -2633,7 +3087,8 @@
         "Maldivas",
         "Maldives",
         "ملديف"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cyprus",
@@ -2647,7 +3102,8 @@
         "Chipre",
         "Chypre",
         "قبرص"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Antarctica",
@@ -2661,7 +3117,8 @@
         "Antártida",
         "Antarctique",
         "أنتاركتيكا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Aruba",
@@ -2675,7 +3132,8 @@
         "Aruba",
         "Aruba",
         "أروبا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bermuda",
@@ -2689,7 +3147,8 @@
         "Bermudas",
         "Les Bermudes",
         "برمودا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bhutan",
@@ -2703,7 +3162,8 @@
         "Bhután",
         "Bhoutan",
         "بوتان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Gibraltar",
@@ -2717,7 +3177,8 @@
         "Gibraltar",
         "Gibraltar",
         "جبل طارق"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "United States Minor Outlying Islands",
@@ -2731,7 +3192,8 @@
         "Islas Ultramarinas Menores de los Estados Unidos",
         "Îles mineures éloignées des États-Unis",
         "جزر الولايات المتحدة البعيدة الصغرى"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Nauru",
@@ -2745,7 +3207,8 @@
         "Nauru",
         "Nauru",
         "ناورو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Niue",
@@ -2759,7 +3222,8 @@
         "Niue",
         "Niue",
         "نيوي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Pitcairn",
@@ -2773,7 +3237,8 @@
         "Isla Pitcairn",
         "Les îles Pitcairn",
         "بيتكيرن"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Puerto Rico",
@@ -2787,7 +3252,8 @@
         "Puerto Rico",
         "Porto Rico",
         "بورتوريكو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Oman",
@@ -2801,7 +3267,8 @@
         "Omán",
         "Oman",
         "سلطنة عمان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "San Marino",
@@ -2815,7 +3282,8 @@
         "Saint Marino",
         "Saint-Marin",
         "سان مارينو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Saint Helena",
@@ -2829,7 +3297,8 @@
         "Santa Elena",
         "Sainte-Hélène",
         "سانت هيلانة"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Western Sahara",
@@ -2843,7 +3312,8 @@
         "Sahara Occidental",
         "Sahara occidental",
         "الصحراء الغربية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Montenegro",
@@ -2857,7 +3327,8 @@
         "Montenegro",
         "Monténégro",
         "الجبل الأسود"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Serbia",
@@ -2871,7 +3342,8 @@
         "Serbia",
         "Serbie",
         "صربيا"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Holy See (Vatican City State)",
@@ -2885,7 +3357,8 @@
         "Santa Sede (Estado de la Ciudad del Vaticano)",
         "Saint-Siège (État de la Cité du Vatican)",
         "الكرسي الرسولي (دولة الفاتيكان)"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Macao",
@@ -2899,7 +3372,8 @@
         "Macao",
         "Macao",
         "ماكاو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "South Sudan",
@@ -2913,7 +3387,8 @@
         "Sudán del Sur",
         "Soudan du Sud",
         "جنوب السودان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Benelux",
@@ -2927,7 +3402,8 @@
         "Benelux",
         "Benelux",
         "البنلوكس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "American Samoa",
@@ -2941,7 +3417,8 @@
         "Samoa Americana",
         "Samoa américaines",
         "ساموا الأمريكية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Bouvet Island",
@@ -2955,7 +3432,8 @@
         "Isla Bouvet",
         "Île Bouvet",
         "جزيرة بوفيه"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "British Indian Ocean Territory",
@@ -2969,7 +3447,8 @@
         "Territorio Británico del Océano Índico",
         "Territoire Britannique de l’Océan Indien",
         "إقليم المحيط الهندي البريطاني"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "British Virgin Islands",
@@ -2983,7 +3462,8 @@
         "Islas Vírgenes Británicas",
         "Îles Vierges Britanniques",
         "جزر العذراء البريطانية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cayman Islands",
@@ -2997,7 +3477,8 @@
         "Islas Caimán",
         "Îles Caïmans",
         "جزر كايمان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Christmas Island",
@@ -3011,7 +3492,8 @@
         "Isla de Navidad",
         "Île Christmas",
         "جزيرة كريسماس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Cocos (Keeling) Islands",
@@ -3025,7 +3507,8 @@
         "Islas Cocos",
         "Îles Cocos (Keeling)",
         "جزر كوكوس (جزر كيلينغ)"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Falkland Islands (Malvinas)",
@@ -3039,7 +3522,8 @@
         "Islas Malvinas (Falkland)",
         "Îles Malouines",
         "جزر فوكلاند (مالفيناس)"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Faroe Islands",
@@ -3053,7 +3537,8 @@
         "Islas Faroe",
         "Îles Féroé",
         "جزر فارو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Greenland",
@@ -3067,7 +3552,8 @@
         "Groenlandia",
         "Groenland",
         "جرينلاند"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guam",
@@ -3081,7 +3567,8 @@
         "Guam",
         "Guam",
         "غوام"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Guernsey",
@@ -3095,7 +3582,8 @@
         "Bailía de Guernsey",
         "Guernesey",
         "غيرنزي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Heard Island and McDonald Islands",
@@ -3109,7 +3597,8 @@
         "Islas Heard y McDonald",
         "Îles Heard et McDonald",
         "جزيرة هيرد وجزر ماكدونالد"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Isle of Man",
@@ -3123,7 +3612,8 @@
         "Isla de Man",
         "Île de Man",
         "جزيرة مان"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Jersey",
@@ -3137,7 +3627,8 @@
         "Bailía de Jersey",
         "Jersey",
         "جيرزي"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Kosovo",
@@ -3151,7 +3642,8 @@
         "Kosovo",
         "Kosovo",
         "كوسوفو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Montserrat",
@@ -3165,7 +3657,8 @@
         "Montserrat",
         "Montserrat",
         "مونتسرات"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Norfolk Island",
@@ -3179,7 +3672,8 @@
         "Isla Norfolk",
         "Île Norfolk",
         "جزيرة نورفولك"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Northern Mariana Islands",
@@ -3193,7 +3687,8 @@
         "Islas Marianas del Norte",
         "Îles Mariannes du Nord",
         "جزر ماريانا الشمالية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "South Georgia and the South Sandwich Island",
@@ -3207,7 +3702,8 @@
         "Islas Georgias del Sur y Sandwich del Sur",
         "Îles Géorgie du Sud et Sandwich du Sud",
         "جورجيا الجنوبية وجزر ساندويتش الجنوبية"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Tokelau",
@@ -3221,7 +3717,8 @@
         "Tokelau",
         "Tokélaou",
         "توكيلاو"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "Turks and Caicos islands",
@@ -3235,7 +3732,8 @@
         "Islas Turcas y Caicos",
         "Îles Turks-et-Caïcos",
         "جزر توركس وكايكوس"
-      ]
+      ],
+      "entryType": "national-directory"
     },
     {
       "region": "United States Virgin Islands",
@@ -3249,7 +3747,9 @@
         "Islas Vírgenes de los Estados Unidos",
         "Îles Vierges américaines",
         "جزر العذراء الأمريكية"
-      ]
+      ],
+      "entryType": "national-directory"
     }
-  ]
+  ],
+  "coverageNote": "Curated organizations and national directories. City is a base/location label; service coverage is stated separately. Current local contact availability has not been reverified for curated organizations; use their official sites. Not a complete list of local rescue teams."
 }

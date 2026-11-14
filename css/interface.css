@@ -880,3 +880,14 @@ body:not(.main-page) .bg-globe { opacity: 0; visibility: hidden; }
 .material-purchase > a { padding: 12px; font-size: .85rem; }
 @media (prefers-reduced-motion: reduce) { .impact-pulse, .gdacs-marker .gmarker-inner { animation: none; } }
 .ch-national, .ch-provinces, .ch-scan, .ch-gridlines { pointer-events: none; }
+.rescue-page { padding: 34px 0 64px; }
+.rescue-page h1 { font-size: clamp(1.8rem, 3vw, 2.8rem); margin: 20px 0 14px; }
+.rescue-page > .container > p { max-width: 900px; color: var(--text-mid); line-height: 1.7; }
+.rescue-search-bar { display: flex; flex-wrap: wrap; gap: 16px; margin: 24px 0; }
+.rescue-search-bar label { display: grid; gap: 10px; flex: 1 1 220px; }
+.rescue-search-bar input, .rescue-search-bar select { box-sizing: border-box; width: 100%; padding: 13px; background: var(--panel); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; font: inherit; }
+.rescue-page .rescue-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; align-items: start; }
+.rescue-page .rescue-card { margin: 0; padding: 22px; background: var(--panel); }
+.rescue-card h2 { font-size: 1.18rem; line-height: 1.45; }
+.rescue-kind { color: var(--holo); font-size: .8rem; }
+a.rescue-button { text-decoration: none; }

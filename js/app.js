@@ -2421,6 +2421,7 @@
         if (!homeState.city) { initRegion(); }
         renderHome();
         break;
+      case '/rescue': window.NDRescue.render(viewEl, query); break;
       case '/global': renderGlobal(); break;
       case '/database': renderDatabase(); break;
       case '/map': renderExpandedMap(); break;
