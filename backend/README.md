@@ -90,3 +90,22 @@ Serve the site with `python3 -m http.server 8000`.
 The committed snapshot mirrors the last published data; tests use fake provider
 responses and consume no quota. The collector CLI is intended for Actions and pushes its
 data commits; do not run it locally unless that is intended.
+
+## GDACS live versus history
+
+The GDACS SEARCH endpoint returns records in a date range, including disasters
+that have ended. `iscurrent` alone does not establish that a disaster is ongoing.
+Live requires an explicitly current report with valid UTC start/end dates whose
+interval contains the present time. Ended, future, undated, disappeared and
+superseded episodes are excluded from Live. This is a conservative display rule
+based on GDACS reports, not independent confirmation of conditions on the ground.
+
+Every successful GDACS collection (including a valid empty result) first saves
+complete GeoJSON records to `public-data/gdacs-disaster-history.json`, which both
+History and Database read, then writes only active events to `gdacs-events.json`.
+A failed request leaves both files intact. Older episodes and original locations
+remain in history. `--reconcile` uses this same path; the older `gdacs-history.json`
+summary is retained for compatibility but is no longer updated.
+The browser also checks dates when rendering, so expired cached records cannot
+remain live just because the next collection has not run. Historical ranges use
+the event's reported start/end interval, including long-running disasters.

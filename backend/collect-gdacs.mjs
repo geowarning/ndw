@@ -7,22 +7,22 @@
  *   node backend/collect-gdacs.mjs --reconcile
  *
  * Storage is the static JSON snapshots in public-data/ (the GitHub Pages
- * "database"). Existing events are never removed; they are marked inactive
- * when GDACS stops returning them so the site can still show history.
+ * "database"). Live contains only current reports within their reported time interval.
+ * Complete records are retained in gdacs-disaster-history.json on every run.
  */
 import fs from 'node:fs';
+import status from '../js/gdacs-status.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
 const EVENTS_FILE = path.join(ROOT, 'public-data', 'gdacs-events.json');
-const HISTORY_FILE = path.join(ROOT, 'public-data', 'gdacs-history.json');
+const HISTORY_FILE = path.join(ROOT, 'public-data', 'gdacs-disaster-history.json');
 
 const API = process.env.GDACS_API_URL || 'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH';
 const TYPES = process.env.GDACS_TYPES || 'WF;FL;TC;DR';
 const DAYS = Math.max(1, Number(process.env.GDACS_DAYS || 60));
-const RECONCILE = process.argv.includes('--reconcile');
 const NOW = new Date();
 const NOW_ISO = NOW.toISOString();
 const FROM = new Date(NOW.getTime() - DAYS * 86400000).toISOString().slice(0, 10);
@@ -92,114 +92,51 @@ function bboxOf(features) {
   return minLon <= maxLon ? [minLon, minLat, maxLon, maxLat] : undefined;
 }
 
-function updateHistory(features) {
-  const hist = readJson(HISTORY_FILE, { version: 1, events: {} });
-  const events = Object.assign({}, hist.events || {});
-  features.forEach((f) => {
-    const p = f.properties || {};
-    const key = keyOf(p);
-    if (!key || key === '::') { return; }
-    const prev = events[key] || {};
-    events[key] = {
-      firstSeen: prev.firstSeen || p._firstSeen || NOW_ISO,
-      lastSeen: NOW_ISO,
-      modified: p.datemodified || '',
-      type: p.eventtype || '',
-      eventid: p.eventid,
-      episodeid: p.episodeid,
-      country: p.country || '',
-      name: p.name || '',
-      alert: p.alertlevel || ''
-    };
-  });
-  writeJson(HISTORY_FILE, {
-    version: 1,
-    updatedAt: NOW_ISO,
-    source: 'GDACS',
-    events
-  });
-  console.log('History reconciled: ' + Object.keys(events).length + ' events');
+// Keep complete GeoJSON records, including ended and superseded episodes.
+export function mergeEvents(existing, fresh, archive, now = Date.now()) {
+  const map = new Map();
+  for (const f of [...(archive.features || []), ...(existing.features || []), ...fresh.features]) {
+    const p = f && f.properties;
+    if (p && p.eventtype != null && p.eventid != null) map.set(keyOf(p), f);
+  }
+  const present = new Set(fresh.features.map(f => keyOf(f.properties || {})));
+  const features = [...map.values()].map(f => ({ ...f, properties: {
+    ...f.properties,
+    _active: present.has(keyOf(f.properties)) && status.active({ ...f.properties, _active: true }, now)
+  }}));
+  // A newer episode replaces an older location/report for the same event.
+  const latest = new Map();
+  for (const f of features) {
+    const p = f.properties, key = p.eventtype + ':' + p.eventid;
+    const prev = latest.get(key);
+    if (!prev || Number(p.episodeid) > Number(prev.properties.episodeid)) latest.set(key, f);
+  }
+  for (const f of features) {
+    if (latest.get(f.properties.eventtype + ':' + f.properties.eventid) !== f) f.properties._active = false;
+  }
+  return { live: features.filter(f => f.properties._active), history: features };
 }
 
 async function main() {
   const { data: fresh, url } = await fetchFresh();
-  if (!fresh.features.length) {
-    console.warn('GDACS returned no events; keeping the existing snapshot.');
-    return;
-  }
-
-  const existing = readJson(EVENTS_FILE, { type: 'FeatureCollection', features: [] });
-  const map = new Map();
-  (existing.features || []).forEach((f) => {
-    if (f && f.properties) { map.set(keyOf(f.properties), f); }
-  });
-
-  const freshKeys = new Set();
-  let added = 0, updated = 0, unchanged = 0;
-  fresh.features.forEach((f) => {
-    const p = f.properties || {};
-    if (p.eventtype == null || p.eventid == null) { return; }
-    const key = keyOf(p);
-    freshKeys.add(key);
-    const prev = map.get(key);
-    const prevP = (prev && prev.properties) || {};
-    const changed = !prev ||
-      String(prevP.datemodified || '') !== String(p.datemodified || '') ||
-      String(prevP.alertlevel || '') !== String(p.alertlevel || '') ||
-      String(prevP.iscurrent || '') !== String(p.iscurrent || '') ||
-      String(prevP.todate || '') !== String(p.todate || '');
-    if (!prev) { added++; }
-    else if (changed) { updated++; }
-    else { unchanged++; }
-    f.properties = Object.assign({}, prevP, p, {
-      _firstSeen: prevP._firstSeen || NOW_ISO,
-      _lastSeen: (!prev || changed) ? NOW_ISO : (prevP._lastSeen || NOW_ISO),
-      _active: true
-    });
-    map.set(key, f);
-  });
-
-  let deactivated = 0;
-  map.forEach((f, key) => {
-    if (freshKeys.has(key)) { return; }
-    if (f.properties && f.properties._active !== false) {
-      f.properties = Object.assign({}, f.properties, { _active: false });
-      deactivated++;
-    }
-  });
-
-  const features = Array.from(map.values()).sort((a, b) => {
-    const da = (a.properties && a.properties.datemodified) || '';
-    const db = (b.properties && b.properties.datemodified) || '';
-    return String(db).localeCompare(String(da));
-  });
-
-  const changed = added + updated + deactivated > 0;
+  const existing = readJson(EVENTS_FILE, { features: [] });
+  const archive = readJson(HISTORY_FILE, { features: [] });
+  const merged = mergeEvents(existing, fresh, archive, NOW.getTime());
   const output = {
-    type: 'FeatureCollection',
-    generatedAt: changed ? NOW_ISO : (existing.generatedAt || NOW_ISO),
-    source: 'GDACS',
-    endpoint: url,
-    fromDate: FROM,
-    toDate: TO,
-    count: features.length,
-    bbox: bboxOf(features),
-    features
+    type: 'FeatureCollection', generatedAt: NOW_ISO, source: 'GDACS',
+    endpoint: url, fromDate: FROM, toDate: TO,
+    count: merged.live.length, bbox: bboxOf(merged.live), features: merged.live
   };
-
-  if (changed) {
-    writeJson(EVENTS_FILE, output);
-    console.log('GDACS snapshot updated: +' + added + ' new, ' + updated + ' changed, ' + deactivated + ' inactive, ' + features.length + ' total');
-  } else {
-    console.log('GDACS snapshot unchanged (' + features.length + ' events)');
-  }
-
-  if (RECONCILE) {
-    updateHistory(features);
-  }
+  // Persist history first so removal from Live can never discard a record.
+  writeJson(HISTORY_FILE, {
+    ...archive, type: 'FeatureCollection', source: 'GDACS', updatedAt: NOW_ISO,
+    count: merged.history.length, features: merged.history
+  });
+  writeJson(EVENTS_FILE, output);
+  console.log('GDACS: ' + merged.live.length + ' live, ' + merged.history.length + ' archived records');
 }
 
-main().catch((err) => {
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch((err) => {
   console.error('GDACS collection failed:', err && err.message ? err.message : err);
   process.exitCode = 1;
 });

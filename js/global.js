@@ -189,7 +189,7 @@
       out.push({
         kind: 'gdacs', id: id, type: p.eventtype, name: p.name || p.description || '',
         country: p.country || '', alert: String(p.alertlevel || '').toLowerCase(),
-        active: p._active !== false,
+        active: p._active !== false, status: p,
         from: p.fromdate || '', to: p.todate || '', modified: p.datemodified || '',
         source: p.source || 'GDACS', url: (p.url && p.url.report) || '',
         description: p.htmldescription || p.description || '',
@@ -203,10 +203,12 @@
   function currentGdacs() {
     if (!state.layers.gdacs) { return []; }
     if (state.mode === 'history') {
-      if (!cache.gdacsHistory) { return []; }
+      var historical = normalizeGdacs({ features: ((cache.gdacsRaw && cache.gdacsRaw.features) || []) });
+      var combined = {};
+      (cache.gdacsHistory || []).concat(historical).forEach(function (g) { combined[g.id] = g; });
       var minTime = Date.now() - historyDays() * 86400000;
-      return cache.gdacsHistory.filter(function (g) {
-        if (g.active === false || gdacsMs(g) < minTime) { return false; }
+      return Object.keys(combined).map(function (id) { return combined[id]; }).filter(function (g) {
+        if (Math.max(gdacsMs(g), gdacsParse(g.to)) < minTime) { return false; }
         if (state.gdacsType === 'EQ') { return false; }
         if (state.gdacsType !== 'all' && g.type !== state.gdacsType) { return false; }
         if (state.gdacsAlert !== 'all' && g.alert !== state.gdacsAlert) { return false; }
@@ -216,7 +218,7 @@
     if (!cache.gdacs) { return []; }
     if (state.gdacsType === 'EQ') { return []; }
     return cache.gdacs.filter(function (g) {
-      if (g.active === false) { return false; }
+      if (!GdacsStatus.active(g.status, Date.now())) { return false; }
       if (state.gdacsType !== 'all' && g.type !== state.gdacsType) { return false; }
       if (state.gdacsAlert !== 'all' && g.alert !== state.gdacsAlert) { return false; }
       return true;
@@ -730,6 +732,8 @@
   }
 
   function paint() {
+    if (state.mode === 'live' && state.selected && state.selected.kind === 'gdacs' &&
+        !GdacsStatus.active(state.selected.status, Date.now())) { state.selected = null; }
     var el = state.el;
     if (!el) { return; }
     if (state.fullscreen) { exitFullscreen(); }

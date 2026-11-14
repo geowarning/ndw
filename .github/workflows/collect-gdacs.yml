@@ -28,7 +28,7 @@ jobs:
         run: node backend/collect-gdacs.mjs
       - name: Publish snapshot
         run: |
-          git add public-data/gdacs-events.json
+          git add public-data/gdacs-events.json public-data/gdacs-disaster-history.json
           if [ -f public-data/gdacs-history.json ]; then git add public-data/gdacs-history.json; fi
           if git diff --cached --quiet; then
             echo "No change"
