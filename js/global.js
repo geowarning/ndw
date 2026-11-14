@@ -419,7 +419,7 @@
         } else {
           shape = '<rect x="-4" y="-4" width="8" height="8" rx="1" fill="' + color + '" stroke="#061018" stroke-width=".6"></rect>';
         }
-        parts.push('<g class="gdacs-marker' + (sel ? ' sel' : '') + '" data-gdacs="' + esc(g.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + color + '"><g class="gmarker-inner">' +
+        parts.push('<g class="gdacs-marker' + (!GdacsStatus.fresh(g.status, Date.now()) ? ' gdacs-overdue' : '') + (sel ? ' sel' : '') + '" data-gdacs="' + esc(g.id) + '" transform="translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')" style="color:' + color + '"><g class="gmarker-inner">' +
           (sel ? '<circle r="11" fill="none" stroke="' + color + '" stroke-width="1.4"></circle>' : '') +
           shape +
           '<circle r="8" fill="none" stroke="' + alertColor + '" stroke-width="1"></circle>' +
@@ -694,7 +694,7 @@
       TC: zh ? ['留在坚固建筑内，远离窗户。', '固定室外物品，准备停电与断水。', '听从当地疏散与避难指令。'] : ['Shelter in a sturdy building, away from windows.', 'Secure outdoor items and prepare for power/water outages.', 'Follow local evacuation and shelter instructions.'],
       DR: zh ? ['节约用水，优先保障饮用与卫生。', '关注当地限水与农业援助政策。', '防范高温与粮食短缺的次生影响。'] : ['Conserve water for drinking and sanitation.', 'Follow local water restrictions and agricultural aid programs.', 'Watch for heat and food-security impacts.']
     }[g.type] || [];
-    return '<div class="gdetail gdacs-detail">' + window.NDRescue.button(g.country, g.name, lang()) +
+    return '<div class="gdetail gdacs-detail">' + (!GdacsStatus.fresh(g.status, Date.now()) ? '<p class="history-notice">' + (zh ? '上次报告 · 等待 GDACS 更新' : 'Last reported · awaiting GDACS refresh') + '</p>' : '') + window.NDRescue.button(g.country, g.name, lang()) +
       '<div class="gdetail-top"><div><div class="gkicker">GDACS · ' + esc(typeLabel) + '</div>' +
         '<h3>' + esc(g.name || '—') + '</h3><div class="gcoords">' + esc(g.country || '') + ' · ' + esc(g.lon.toFixed(2)) + '°, ' + esc(g.lat.toFixed(2)) + '°</div></div>' +
         '<div class="gdacs-badge" style="color:' + gdacsAlertColor(g.alert) + '">' + esc(alertLabel) + '</div></div>' +
@@ -775,7 +775,7 @@
     var quakes = filteredQuakes(currentQuakes());
     el.innerHTML = '<section class="global-page"><div class="container">' +
       header(data, quakes) +
-      (Date.now() - gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)) >= 1800000 ? '<p class="history-notice" role="status">' + (lang() === 'zh' ? 'GDACS 更新已延迟，当前状态无法确认。历史记录仍可查阅。' : 'GDACS updates are overdue; current status is unconfirmed. Previous reports remain in History.') + '</p>' : '') +
+      (Date.now() - gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)) >= 1800000 ? '<p class="history-notice" role="status">' + (lang() === 'zh' ? 'GDACS 更新已延迟。虚线标记为上次报告的位置，当前状态尚未确认；这不代表灾害已结束。' : 'GDACS updates are overdue. Dashed markers show last-reported locations; current status is unconfirmed. A delayed update does not mean the disasters have ended.') + '</p>' : '') +
       '<div class="global-layout"><div class="global-map-wrap">' + mapSvg(quakes) +
         '<div class="gzoom">' +
           '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +

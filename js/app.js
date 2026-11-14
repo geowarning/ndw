@@ -320,7 +320,9 @@
   function refreshMaps() {
     if (globe) {
       var activeHazards = globeHazards.filter(function (g) { return g.status ? GdacsStatus.active(g.status, Date.now()) : Date.now() - g.time < 86400000 && g.time <= Date.now(); });
-      globe.setCities(globeCities().concat(activeHazards));
+      globe.setCities(globeCities().concat(activeHazards.map(function(g) {
+        return g.status && !GdacsStatus.fresh(g.status, Date.now()) ? Object.assign({}, g, { color: '#a4b6bc', label: g.label + (lang() === 'zh' ? ' · 上次报告' : ' · Last reported') }) : g;
+      })));
       globe.setDisasters(activeHazards);
     }
     if (chinaMap) { chinaMap.setStatus(sessionStatus); }

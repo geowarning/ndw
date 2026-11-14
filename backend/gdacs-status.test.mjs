@@ -14,10 +14,14 @@ function feature(id, changes = {}) {
 test('live uses recent current-feed membership rather than reporting-period end dates', () => {
   assert.equal(status.active(feature(1).properties, now), true);
   for (const change of [{ iscurrent: 'false' }, { iscurrent: false }, { iscurrent: undefined },
-    { _currentFeed: false }, { _verifiedAt: 'invalid' }, { _verifiedAt: '2026-11-14T11:00:00Z' }, { _active: false }]) {
+    { _currentFeed: false }, { _verifiedAt: 'invalid' }, { _active: false }]) {
     assert.equal(status.active(feature(1, change).properties, now), false, JSON.stringify(change));
   }
   assert.equal(status.active(feature(1, { todate: '2026-11-13' }).properties, now), true);
+  const overdue = feature(1, { _verifiedAt: '2026-11-14T11:00:00Z' }).properties;
+  assert.equal(status.active(overdue, now), true);
+  assert.equal(status.fresh(overdue, now), false);
+  assert.equal(status.fresh(feature(1).properties, now), true);
   assert.equal(status.time('2026-11-14'), Date.parse('2026-11-14T00:00:00Z'));
 });
 test('collection archives ended, disappeared and superseded episodes with full geometry', () => {
@@ -34,17 +38,17 @@ test('collection archives ended, disappeared and superseded episodes with full g
   assert.equal(empty.history.every(f => !f.properties._active), true);
   assert.deepEqual(mergeEvents({ features: [] }, { features: [] }, { features: empty.history }, now).history, empty.history);
 });
-test('browser hides expired cached events while history keeps inactive records', () => {
+test('browser preserves last-listed events during collection delays and history keeps inactive records', () => {
   const context = { window: {}, GdacsStatus: status, Date, console };
   vm.createContext(context);
   const source = fs.readFileSync(new URL('../js/global.js', import.meta.url), 'utf8');
   vm.runInContext(source.replace('  var W =', '  window.testGdacs = { set: function (s, c) { state = s; cache = c; }, current: currentGdacs };\n  var W ='), context);
   const recent = new Date(Date.now() - 3600000).toISOString();
-  const expired = feature(1, { fromdate: recent, todate: recent, _active: true });
+  const expired = feature(1, { fromdate: recent, todate: recent, _active: true, _verifiedAt: recent });
   const state = { layers: { gdacs: true }, mode: 'live', gdacsType: 'all', gdacsAlert: 'all', historyRange: '3d' };
   const item = { id: 'FL-1-1', type: 'FL', from: recent, to: recent, status: expired.properties, active: false };
   context.window.testGdacs.set(state, { gdacs: [item], gdacsHistory: [item] });
-  assert.equal(context.window.testGdacs.current().length, 0);
+  assert.equal(context.window.testGdacs.current().length, 1);
   state.mode = 'history';
   assert.equal(context.window.testGdacs.current().length, 1);
 });

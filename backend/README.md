@@ -150,3 +150,12 @@ GitHub schedules remain best-effort and may be delayed. Each collection workflow
 also publishes Pages directly because GITHUB_TOKEN pushes do not trigger another
 workflow. The browser refreshes published data every minute, and shows overdue
 updates explicitly. A strict real-time interval would need an external scheduler.
+
+
+## Delayed GDACS updates (display policy)
+
+Collection age is not incident closure. The map retains the last successfully
+listed GDACS events when updates are overdue (30 minutes), with dashed markers,
+last-check time and an explicit unconfirmed-status notice. A successful current
+feed refresh still removes events no longer listed from the map and preserves
+them in history. This supersedes the previous 30-minute visibility expiry.

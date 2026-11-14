@@ -917,3 +917,5 @@ a.rescue-button { text-decoration: none; }
 .unit-help { cursor: help; text-decoration: underline dotted; text-underline-offset: 4px; }
 .unit-help:focus-visible { outline: 2px solid #a8e6d3; outline-offset: 3px; }
 .unit-help-tooltip { position: fixed; z-index: 10000; width: max-content; max-width: min(310px,calc(100vw - 32px)); box-sizing: border-box; padding: 12px 15px; border: 1px solid #92b7ae; border-radius: 9px; background: #14252d; color: #f4f8fb; font-size: .88rem; line-height: 1.6; box-shadow: 0 8px 30px #0008; pointer-events: none; }
+.gdacs-overdue .gmarker-inner > circle { stroke-dasharray: 2 2; }
+.gdacs-overdue .gmarker-inner { opacity: .7; animation: none; }
