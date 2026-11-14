@@ -23,11 +23,9 @@ export function buildSearchIndex(root) {
     const data=JSON.parse(fs.readFileSync(path.join(dir,filename),'utf8'));
     if(filename==='rescue-contacts.json') for(const r of data.records||[]) {
       const base={iso:r.iso};
-      const href=r.entryType==='organization'?route('#/rescue',{...base,state:r.state,city:r.city,org:r.iso+':'+(r.organization||r.region)}):route('#/rescue',base);
+      const href=r.entryType==='organization'?route('#/rescue',{...base,org:r.iso+':'+(r.organization||r.region)}):route('#/rescue',base);
       add(r.organization||r.region,'Rescue contacts',href,[r, directory.names(r.iso)].flat());
       add(r.region,'Countries & regions',route('#/rescue',base),[r.aliases,directory.names(r.iso),r.iso,r.iso3]);
-      if(r.state)add(r.state,'States & provinces',route('#/rescue',{...base,state:r.state}),[r.region,r.state]);
-      if(r.city)add(r.city,'Cities & towns',route('#/rescue',{...base,state:r.state,city:r.city}),[r.region,r.state,r.city]);
     }
     else if(Array.isArray(data.features)) for(const f of data.features) {
       const p=f.properties||{};if(!p.eventtype||p.eventid==null)continue;

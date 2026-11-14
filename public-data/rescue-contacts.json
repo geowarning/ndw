@@ -12,7 +12,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Cockermouth service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Cockermouth MRT",
         "MREW",
@@ -25,7 +25,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Coniston Mountain Rescue Team",
@@ -36,7 +54,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Coniston service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Coniston MRT",
         "MREW",
@@ -49,7 +67,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Kendal Mountain Rescue Team",
@@ -60,7 +96,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Kendal service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Kendal MRT",
         "MREW",
@@ -73,7 +109,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Kirkby Stephen Mountain Rescue Team",
@@ -84,7 +138,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Kirkby Stephen service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Kirkby Stephen MRT",
         "MREW",
@@ -97,7 +151,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Patterdale Mountain Rescue Team",
@@ -108,7 +180,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Patterdale service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Patterdale MRT",
         "MREW",
@@ -121,7 +193,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Penrith Mountain Rescue Team",
@@ -132,7 +222,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Penrith service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Penrith MRT",
         "MREW",
@@ -145,7 +235,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Bolton Mountain Rescue Team",
@@ -156,7 +264,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Bolton service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Bolton MRT",
         "MREW",
@@ -169,7 +277,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Buxton Mountain Rescue Team",
@@ -180,7 +306,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Buxton service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Buxton MRT",
         "MREW",
@@ -193,7 +319,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Derby Mountain Rescue Team",
@@ -204,7 +348,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Derby service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Derby MRT",
         "MREW",
@@ -217,7 +361,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Glossop Mountain Rescue Team",
@@ -228,7 +390,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Glossop service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Glossop MRT",
         "MREW",
@@ -241,7 +403,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Oldham Mountain Rescue Team",
@@ -252,7 +432,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Oldham service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Oldham MRT",
         "MREW",
@@ -265,7 +445,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Aberdyfi Mountain Rescue Team",
@@ -276,7 +474,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Aberdyfi service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Aberdyfi MRT",
         "MREW",
@@ -289,7 +487,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Llanberis Mountain Rescue Team",
@@ -300,7 +516,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Llanberis service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Llanberis MRT",
         "MREW",
@@ -313,7 +529,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Brecon Mountain Rescue Team",
@@ -324,7 +558,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Brecon service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Brecon MRT",
         "MREW",
@@ -337,7 +571,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Dartmoor (Ashburton) Mountain Rescue Team",
@@ -348,7 +600,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Ashburton service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Dartmoor (Ashburton) MRT",
         "MREW",
@@ -361,7 +613,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Dartmoor (Plymouth) Mountain Rescue Team",
@@ -372,7 +642,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Plymouth service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Dartmoor (Plymouth) MRT",
         "MREW",
@@ -385,7 +655,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Dartmoor (Tavistock) Mountain Rescue Team",
@@ -396,7 +684,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer mountain search and rescue / 志愿山地搜救",
-      "coverage": "Tavistock service area; confirm exact coverage and activation with the official directory.",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "aliases": [
         "Dartmoor (Tavistock) MRT",
         "MREW",
@@ -409,7 +697,25 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.mountain.rescue.org.uk/teams/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Xiamen Shuguang Rescue Team · 厦门市曙光救援队",
@@ -420,7 +726,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Flood evacuation, boat rescue, drainage and drone reconnaissance / 水域转移、排涝、无人机侦察",
-      "coverage": "Based in Xiamen; published deployments in Fujian and Guangxi. Current tasking requires confirmation.",
+      "coverage": "Based in Xiamen; a reported deployment reached Hengzhou, Guangxi in July 2026 under coordinated approvals. This demonstrates cross-province deployment, not guaranteed nationwide availability. A Fujian government report also documents its March–April 2025 earthquake response in Mandalay, Myanmar.",
       "aliases": [
         "Shuguang",
         "Dawn Rescue",
@@ -436,7 +742,36 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "documented-deployment",
+        "description": {
+          "en": "Based in Xiamen; a reported deployment reached Hengzhou, Guangxi in July 2026 under coordinated approvals. This demonstrates cross-province deployment, not guaranteed nationwide availability. A Fujian government report also documents its March–April 2025 earthquake response in Mandalay, Myanmar.",
+          "zh": "所在地为厦门；2026年7月报道记载，该队经协调审批赴广西横州救援，证明可跨省出勤，但不代表全国随时可调度。福建省政府报道另记载其2025年3至4月赴缅甸曼德勒参与震后救援。"
+        },
+        "locations": [
+          "Guangxi",
+          "广西",
+          "Hengzhou",
+          "横州",
+          "Myanmar",
+          "Mandalay",
+          "缅甸",
+          "曼德勒"
+        ],
+        "sources": [
+          {
+            "url": "http://fjnews.fjsen.com/2026-07/07/content_32214729.htm",
+            "excerpt": "厦门市曙光救援队召集曙光救援同盟团队9车、15艘艇，共45人",
+            "checkedAt": "2026-11-14"
+          },
+          {
+            "url": "https://www.fujian.gov.cn/xwdt/mszx/202504/t20250404_6797181.htm",
+            "excerpt": "厦门市曙光救援队22名队员携带129台套、1.2吨的专业设备和3条搜救犬从厦门启程，辗转抵达曼德勒",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Changsha Shuguang Rescue Team · 长沙曙光救援队",
@@ -447,7 +782,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Public-event first aid, safety patrols and missing-person assistance / 现场急救、巡防、寻人协助",
-      "coverage": "Changsha locations described in the cited reporting; current availability unconfirmed.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "Shuguang",
         "Dawn Rescue",
@@ -462,7 +797,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛红十字搜救队",
@@ -473,7 +817,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -486,7 +830,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛红十字金山海上救援中心",
@@ -497,7 +850,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -510,7 +863,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛西海岸新区“山海情”救援联盟",
@@ -521,7 +883,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -533,7 +895,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "即墨区蓝天救援队",
@@ -544,7 +915,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -559,7 +930,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛市阳光救援队",
@@ -570,7 +950,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -583,7 +963,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛市斑马救援队",
@@ -594,7 +983,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -607,7 +996,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛启航应急救援中心",
@@ -618,7 +1016,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -630,7 +1028,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛西海岸新区藏马救援队",
@@ -641,7 +1048,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -653,7 +1060,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "胶州市蓝天救援队",
@@ -664,7 +1080,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -679,7 +1095,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛市蛟龙救援队",
@@ -690,7 +1115,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -702,7 +1127,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛西海岸斑马应急救援队",
@@ -713,7 +1147,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -726,7 +1160,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "西海岸新区通达救援服务队",
@@ -737,7 +1180,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -749,7 +1192,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛红十字九九九应急救援中心",
@@ -760,7 +1212,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -773,7 +1225,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛正能量好司机爱心服务中心",
@@ -784,7 +1245,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -796,7 +1257,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "城阳区阳光救援队",
@@ -807,7 +1277,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -820,7 +1290,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "城阳区金盾应急救援队",
@@ -831,7 +1310,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -843,7 +1322,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "黄岛区蓝海救援队",
@@ -854,7 +1342,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -866,7 +1354,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "平度市利剑蓝天救援队",
@@ -877,7 +1374,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -892,7 +1389,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "平度市红十字蓝天救援中心",
@@ -903,7 +1409,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -919,7 +1425,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "莱西市利剑蓝天",
@@ -930,7 +1445,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -945,7 +1460,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛市市北区世宝特龙之魂救援中心",
@@ -956,7 +1480,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -968,7 +1492,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "青岛西海岸新区世宝特救援中心",
@@ -979,7 +1512,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Social emergency rescue; individual capabilities need confirmation / 社会应急救援，具体能力待确认",
-      "coverage": "Qingdao and the district named by the organization. Listed in a 2024 government recognition notice; present operation and contacts require confirmation.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "青岛",
         "山东",
@@ -991,7 +1524,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Yangdong Blue Sky Rescue Team · 阳东区蓝天救援队",
@@ -1002,7 +1544,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Emergency standby, first aid and flood-season safety support / 应急备勤、急救与汛期保障",
-      "coverage": "Yangdong district, Yangjiang; verify current tasking.",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "aliases": [
         "Blue Sky Rescue",
         "BSR",
@@ -1017,7 +1559,16 @@
       "contactVerifiedAt": null,
       "contactStatus": "not-verified",
       "directory": "",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Auckland Land Search and Rescue Incorporated",
@@ -1028,7 +1579,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Auckland group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1040,7 +1591,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://www.aucklandsar.org.nz"
+      "website": "https://www.aucklandsar.org.nz",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Gisborne Land Search and Rescue Incorporated",
@@ -1051,7 +1619,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Gisborne group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1063,7 +1631,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Hamilton Land Search and Rescue Incorporated",
@@ -1074,7 +1659,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Hamilton group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1086,7 +1671,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "http://hsar.org.nz/"
+      "website": "http://hsar.org.nz/",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Kūaotunu Land Search and Rescue Incorporated",
@@ -1097,7 +1699,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Kūaotunu group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1109,7 +1711,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Palmerston North Search and Rescue Incorporated",
@@ -1120,7 +1739,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Palmerston North group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1132,7 +1751,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Search and Rescue Rotorua Incorporated",
@@ -1143,7 +1779,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Rotorua group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1155,7 +1791,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Thames Land Search and Rescue Incorporated",
@@ -1166,7 +1819,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Thames group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1178,7 +1831,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Taihape Search and Rescue Incorporated",
@@ -1189,7 +1859,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Taihape group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1201,7 +1871,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Tairua Pauanui Whangamata LandSAR Incorporated",
@@ -1212,7 +1899,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Whangamata group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1224,7 +1911,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Taupō Search and Rescue Incorporated",
@@ -1235,7 +1939,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Taupō group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1247,7 +1951,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Tauranga Search and Rescue",
@@ -1258,7 +1979,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Tauranga group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1270,7 +1991,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://taurangalandsar.org.nz/"
+      "website": "https://taurangalandsar.org.nz/",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Te Aroha-Paeroa Search and Rescue Incorporated",
@@ -1281,7 +2019,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Te Aroha group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1293,7 +2031,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Tūrangi Land Search and Rescue Incorporated",
@@ -1304,7 +2059,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Tūrangi group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1316,7 +2071,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Waihi Land Search and Rescue Incorporated",
@@ -1327,7 +2099,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Waihi group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1339,7 +2111,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Wairoa Search and Rescue Incorporated",
@@ -1350,7 +2139,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Wairoa group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1362,7 +2151,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Waitomo Search and Rescue Incorporated",
@@ -1373,7 +2179,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Waitomo group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1385,7 +2191,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Wellington Land Search and Rescue Incorporated",
@@ -1396,7 +2219,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Wellington group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1408,7 +2231,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://landsarwellington.org/"
+      "website": "https://landsarwellington.org/",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Whakatāne Land Search and Rescue Incorporated",
@@ -1419,7 +2259,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Whakatāne group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1431,7 +2271,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Whanganui Search and Rescue Incorporated",
@@ -1442,7 +2299,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Whanganui group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1454,7 +2311,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Christchurch Search & Rescue Incorporated",
@@ -1465,7 +2339,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Christchurch group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1477,7 +2351,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://sites.google.com/view/christchurch-landsar/enquiry"
+      "website": "https://sites.google.com/view/christchurch-landsar/enquiry",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Clutha District Search and Rescue Incorporated",
@@ -1488,7 +2379,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Balclutha group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1500,7 +2391,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Dunedin Land Search and Rescue Incorporated",
@@ -1511,7 +2419,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Dunedin group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1523,7 +2431,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Eastern Southland Land Search and Rescue Incorporated",
@@ -1534,7 +2459,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Gore group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1546,7 +2471,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Fiordland Search and Rescue Incorporated",
@@ -1557,7 +2499,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Te Anau group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1569,7 +2511,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Greymouth Land Search and Rescue Incorporated",
@@ -1580,7 +2539,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Greymouth group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1592,7 +2551,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Haast Land Search and Rescue Society Incorporated",
@@ -1603,7 +2579,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Haast group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1615,7 +2591,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Hanmer Springs Search and Rescue Incorporated",
@@ -1626,7 +2619,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Hanmer group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1638,7 +2631,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Hokitika Land Search and Rescue Incorporated",
@@ -1649,7 +2659,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Hokitika group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1661,7 +2671,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Kaikōura Search and Rescue Incorporated",
@@ -1672,7 +2699,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Kaikōura group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1684,7 +2711,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Methven Search and Rescue Incorporated",
@@ -1695,7 +2739,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Methven group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1707,7 +2751,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Motueka Search and Rescue Incorporated",
@@ -1718,7 +2779,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Motueka group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1730,7 +2791,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Murchison Search and Rescue Incorporated",
@@ -1741,7 +2819,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Murchison group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1753,7 +2831,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Oxford LandSAR Incorporated",
@@ -1764,7 +2859,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Oxford group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1776,7 +2871,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Rakaia Search and Rescue Organisation Incorporated",
@@ -1787,7 +2899,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Rakaia group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1799,7 +2911,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Search and Rescue Karamea Incorporated",
@@ -1810,7 +2939,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Karamea group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1822,7 +2951,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Search and Rescue Nelson Incorporated",
@@ -1833,7 +2979,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Nelson group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1845,7 +2991,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Reefton Land Search and Rescue Incorporated",
@@ -1856,7 +3019,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Reefton group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1868,7 +3031,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Southland Land Search and Rescue Incorporated",
@@ -1879,7 +3059,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Invercargill group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1891,7 +3071,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Wakatipu Search and Rescue Incorporated",
@@ -1902,7 +3099,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Queenstown group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1914,7 +3111,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://www.wakatipusar.co.nz/"
+      "website": "https://www.wakatipusar.co.nz/",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Wānaka Search and Rescue Society Incorporated",
@@ -1925,7 +3139,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Wānaka group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1937,7 +3151,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": "https://wanakasar.org.nz/"
+      "website": "https://wanakasar.org.nz/",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Westport Land Search and Rescue Incorporated",
@@ -1948,7 +3179,7 @@
       "entryType": "organization",
       "kind": "Volunteer search & rescue",
       "services": "Volunteer land search and rescue / 志愿陆地搜救",
-      "coverage": "Westport group. Emergency activation is through New Zealand Police: call 111 and ask for Police. Use the official group enquiry form for non-emergency contact.",
+      "coverage": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
       "aliases": [
         "LandSAR",
         "New Zealand",
@@ -1960,7 +3191,24 @@
       "contactVerifiedAt": "2026-11-14",
       "contactStatus": "official-directory",
       "directory": "https://www.landsar.org.nz/contact-us/",
-      "website": ""
+      "website": "",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "Member of New Zealand’s Land Search and Rescue network, coordinated through NZ Police and the Rescue Coordination Centre. The network operates across New Zealand; this group’s individual deployment boundary is not published in the directory.",
+          "zh": "属于新西兰陆地搜救网络，由警方及救援协调中心协调。网络在新西兰开展搜救；目录未公布该队的独立出勤边界。"
+        },
+        "locations": [
+          "New Zealand"
+        ],
+        "sources": [
+          {
+            "url": "https://www.landsar.org.nz/",
+            "excerpt": "Coordinated through New Zealand Police and the Rescue Coordination Centre",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "American Heart Association",
@@ -1970,7 +3218,7 @@
       "iso": "US",
       "kind": "Training & education",
       "services": "CPR, AED and first-aid education; find a local training centre",
-      "coverage": "International training network",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://www.heart.org/",
       "directory": "https://cpr.heart.org/",
       "aliases": [
@@ -1980,7 +3228,16 @@
       ],
       "sourceUrl": "https://www.heart.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Seattle Mountain Rescue",
@@ -1990,7 +3247,7 @@
       "iso": "US",
       "kind": "Volunteer search & rescue",
       "services": "Mountain search and rescue",
-      "coverage": "King County and surrounding mountains",
+      "coverage": "All-season mountain and hazardous-terrain search, rescue and recovery throughout Washington State, operating under the King County Sheriff’s Office.",
       "website": "https://seattlemountainrescue.org/",
       "directory": "https://seattlemountainrescue.org/",
       "aliases": [
@@ -1998,7 +3255,24 @@
       ],
       "sourceUrl": "https://seattlemountainrescue.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "All-season mountain and hazardous-terrain search, rescue and recovery throughout Washington State, operating under the King County Sheriff’s Office.",
+          "zh": "在华盛顿州全州执行全年山地及危险地形搜救与寻回任务，由金县警长办公室管理。"
+        },
+        "locations": [
+          "Washington"
+        ],
+        "sources": [
+          {
+            "url": "https://seattlemountainrescue.org/about/",
+            "excerpt": "throughout the State of Washington",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Portland Mountain Rescue",
@@ -2008,7 +3282,7 @@
       "iso": "US",
       "kind": "Volunteer search & rescue",
       "services": "Mountain search and rescue",
-      "coverage": "Northwest Oregon and Southwest Washington",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://pmru.org/",
       "directory": "https://pmru.org/",
       "aliases": [
@@ -2016,7 +3290,16 @@
       ],
       "sourceUrl": "https://pmru.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Bay Area Mountain Rescue Unit",
@@ -2026,7 +3309,7 @@
       "iso": "US",
       "kind": "Volunteer search & rescue",
       "services": "Wilderness search and technical rescue",
-      "coverage": "San Francisco Bay Area; mutual aid deployments",
+      "coverage": "Published scope: throughout California, operating with the San Mateo County Sheriff’s Office. Activation is coordinated through the Sheriff’s Office.",
       "website": "https://bamru.org/",
       "directory": "https://bamru.org/",
       "aliases": [
@@ -2036,7 +3319,24 @@
       ],
       "sourceUrl": "https://bamru.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "Published scope: throughout California, operating with the San Mateo County Sheriff’s Office. Activation is coordinated through the Sheriff’s Office.",
+          "zh": "公开服务范围为加利福尼亚全州，隶属圣马特奥县警长办公室协作体系，由其协调出勤。"
+        },
+        "locations": [
+          "California"
+        ],
+        "sources": [
+          {
+            "url": "https://bamru.org/",
+            "excerpt": "operate throughout California",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Team Rubicon",
@@ -2046,7 +3346,7 @@
       "iso": "US",
       "kind": "Nongovernment disaster response",
       "services": "Volunteer disaster response and recovery",
-      "coverage": "United States; deployment-based response",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://teamrubiconusa.org/",
       "directory": "https://teamrubiconusa.org/",
       "aliases": [
@@ -2054,7 +3354,16 @@
       ],
       "sourceUrl": "https://teamrubiconusa.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Direct Relief",
@@ -2064,7 +3373,7 @@
       "iso": "US",
       "kind": "Nongovernment medical relief",
       "services": "Medical supplies and support for health facilities",
-      "coverage": "International; not an ambulance service",
+      "coverage": "Medical humanitarian support in the United States and internationally, supplying healthcare providers. This is not an ambulance dispatch service.",
       "website": "https://www.directrelief.org/",
       "directory": "https://www.directrelief.org/",
       "aliases": [
@@ -2072,7 +3381,25 @@
       ],
       "sourceUrl": "https://www.directrelief.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "Medical humanitarian support in the United States and internationally, supplying healthcare providers. This is not an ambulance dispatch service.",
+          "zh": "在美国及国际范围向医疗机构提供人道医疗物资援助，并非救护车调度服务。"
+        },
+        "locations": [
+          "United States",
+          "International"
+        ],
+        "sources": [
+          {
+            "url": "https://www.directrelief.org/",
+            "excerpt": "works in the US and internationally",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Doctors Without Borders / Médecins Sans Frontières USA",
@@ -2082,7 +3409,7 @@
       "iso": "US",
       "kind": "Nongovernment medical relief",
       "services": "Medical humanitarian assistance",
-      "coverage": "International operations; US office is not a local rescue dispatcher",
+      "coverage": "MSF’s international medical humanitarian operations cover countries listed on its current operations page. The US office is not a local rescue dispatcher.",
       "website": "https://www.doctorswithoutborders.org/",
       "directory": "https://www.doctorswithoutborders.org/",
       "aliases": [
@@ -2092,7 +3419,24 @@
       ],
       "sourceUrl": "https://www.doctorswithoutborders.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "MSF’s international medical humanitarian operations cover countries listed on its current operations page. The US office is not a local rescue dispatcher.",
+          "zh": "无国界医生在其行动页面列明的国家开展国际医疗人道援助；美国办公室并非当地救援调度中心。"
+        },
+        "locations": [
+          "International"
+        ],
+        "sources": [
+          {
+            "url": "https://www.msf.org/where-we-work",
+            "excerpt": "medical humanitarian assistance to victims of conflict, natural disasters, epidemics or healthcare exclusion",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "World Central Kitchen",
@@ -2102,7 +3446,7 @@
       "iso": "US",
       "kind": "Nongovernment food relief",
       "services": "Food relief during disasters",
-      "coverage": "International disaster deployments",
+      "coverage": "Crisis food relief deployments around the world; response locations depend on the specific emergency operation.",
       "website": "https://wck.org/",
       "directory": "https://wck.org/",
       "aliases": [
@@ -2111,7 +3455,24 @@
       ],
       "sourceUrl": "https://wck.org/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "Crisis food relief deployments around the world; response locations depend on the specific emergency operation.",
+          "zh": "在世界各地开展危机食物援助，具体地点取决于当次应急行动。"
+        },
+        "locations": [
+          "International"
+        ],
+        "sources": [
+          {
+            "url": "https://wck.org/",
+            "excerpt": "teams respond to crises around the world",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Keswick Mountain Rescue Team",
@@ -2121,7 +3482,7 @@
       "iso": "GB",
       "kind": "Volunteer search & rescue",
       "services": "Mountain and wilderness rescue",
-      "coverage": "Keswick and surrounding Lake District mountains",
+      "coverage": "Primary area includes Skiddaw, Helvellyn and Great End. For extensive searches the team may operate anywhere in the Lake District or further afield.",
       "website": "https://keswickmrt.org.uk/",
       "directory": "https://keswickmrt.org.uk/",
       "aliases": [
@@ -2130,7 +3491,27 @@
       ],
       "sourceUrl": "https://keswickmrt.org.uk/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "Primary area includes Skiddaw, Helvellyn and Great End. For extensive searches the team may operate anywhere in the Lake District or further afield.",
+          "zh": "主要区域包括Skiddaw、Helvellyn与Great End；大型搜索可在整个湖区甚至更远地区开展。"
+        },
+        "locations": [
+          "Lake District",
+          "Skiddaw",
+          "Helvellyn",
+          "Great End"
+        ],
+        "sources": [
+          {
+            "url": "https://keswickmrt.org.uk/",
+            "excerpt": "anywhere in the Lake District or even further afield",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "Edale Mountain Rescue Team",
@@ -2140,7 +3521,7 @@
       "iso": "GB",
       "kind": "Volunteer search & rescue",
       "services": "Mountain and wilderness rescue",
-      "coverage": "Peak District and surrounding areas",
+      "coverage": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
       "website": "https://edalemrt.co.uk/",
       "directory": "https://edalemrt.co.uk/",
       "aliases": [
@@ -2151,7 +3532,25 @@
       ],
       "sourceUrl": "https://edalemrt.co.uk/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "network-policy",
+        "description": {
+          "en": "England and Wales mountain rescue network: teams are called through police via 999 and work with other emergency services. The network policy does not establish this team’s exact territorial boundary.",
+          "zh": "英格兰及威尔士山地救援网络：通过999报警由警方调度，并与其他应急机构协作。网络政策并未确定本队的具体辖区边界。"
+        },
+        "locations": [
+          "England",
+          "Wales"
+        ],
+        "sources": [
+          {
+            "url": "https://www.mountain.rescue.org.uk/how-it-works/",
+            "excerpt": "Mountain rescue teams are called out through the police, via the 999 system",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "London Air Ambulance Charity",
@@ -2161,7 +3560,7 @@
       "iso": "GB",
       "kind": "Charitable emergency medical support",
       "services": "Advanced trauma care with NHS partners",
-      "coverage": "London; dispatch via emergency services",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://www.londonsairambulance.org.uk/",
       "directory": "https://www.londonsairambulance.org.uk/",
       "aliases": [
@@ -2170,7 +3569,16 @@
       ],
       "sourceUrl": "https://www.londonsairambulance.org.uk/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Wellington Free Ambulance",
@@ -2180,7 +3588,7 @@
       "iso": "NZ",
       "kind": "Charitable ambulance service",
       "services": "Emergency ambulance and community care",
-      "coverage": "Greater Wellington and Wairarapa",
+      "coverage": "Emergency ambulance coverage from Cook Strait to just north of Waikanae around Peka Peka on the Kāpiti Coast. Other services and patient transfers have separate arrangements.",
       "website": "https://www.wfa.org.nz/",
       "directory": "https://www.wfa.org.nz/",
       "aliases": [
@@ -2189,7 +3597,27 @@
       ],
       "sourceUrl": "https://www.wfa.org.nz/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "published-scope",
+        "description": {
+          "en": "Emergency ambulance coverage from Cook Strait to just north of Waikanae around Peka Peka on the Kāpiti Coast. Other services and patient transfers have separate arrangements.",
+          "zh": "急救救护车范围从库克海峡至卡皮蒂海岸Waikanae以北的Peka Peka附近；其他服务及病人转运另行安排。"
+        },
+        "locations": [
+          "Cook Strait",
+          "Waikanae",
+          "Peka Peka",
+          "Kāpiti Coast"
+        ],
+        "sources": [
+          {
+            "url": "https://www.wfa.org.nz/about-us/",
+            "excerpt": "from Cook Strait in the south to just north of Waikanae around Peka Peka",
+            "checkedAt": "2026-11-14"
+          }
+        ]
+      }
     },
     {
       "organization": "St John Ambulance Singapore",
@@ -2199,7 +3627,7 @@
       "iso": "SG",
       "kind": "Volunteer first aid & training",
       "services": "First-aid training and event medical support",
-      "coverage": "Singapore; verify service availability directly",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://www.stjohn.org.sg/",
       "directory": "https://www.stjohn.org.sg/",
       "aliases": [
@@ -2208,7 +3636,16 @@
       ],
       "sourceUrl": "https://www.stjohn.org.sg/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "organization": "Hong Kong St. John Ambulance",
@@ -2218,7 +3655,7 @@
       "iso": "CN",
       "kind": "Volunteer first aid & training",
       "services": "First-aid training and ambulance services",
-      "coverage": "Hong Kong; verify service and dispatch arrangements directly",
+      "coverage": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
       "website": "https://www.stjohn.org.hk/",
       "directory": "https://www.stjohn.org.hk/",
       "aliases": [
@@ -2227,7 +3664,16 @@
       ],
       "sourceUrl": "https://www.stjohn.org.hk/",
       "contactVerifiedAt": null,
-      "entryType": "organization"
+      "entryType": "organization",
+      "serviceScope": {
+        "status": "not-verified",
+        "description": {
+          "en": "Service boundary not verified. The listed base does not restrict where this organization may deploy; confirm assignments and availability directly.",
+          "zh": "服务范围尚未核实。所列所在地不代表出勤边界；具体任务与可用性需向机构确认。"
+        },
+        "locations": [],
+        "sources": []
+      }
     },
     {
       "region": "Ukraine",

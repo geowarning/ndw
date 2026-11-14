@@ -37,3 +37,35 @@ organizations, not a claim that every team is currently available for dispatch.
 populated only for an available official enquiry directory. Entries marked
 `contactStatus: not-verified` must not show a guessed contact action or fall back
 to an unrelated IFRC page. No personal volunteer phone numbers were collected.
+
+## Service scope review — 2026-11-14
+
+The directory now uses country → organization navigation. City/state fields describe
+bases and remain searchable; they never filter out teams from a country's listing.
+Old province/city URLs open the country view. Organization links retain stable IDs.
+
+All 97 organization records now separate service scope from base location:
+
+- 7 have organization-specific published scope: Seattle Mountain Rescue
+  (Washington State), BAMRU (California), Keswick (primary mountains, Lake District
+  and wider searches), Direct Relief (US/international medical support), WCK
+  (international crisis food relief), MSF (international country programmes), and
+  Wellington Free Ambulance (its published ambulance service corridor).
+- 59 show a verified **network policy**, not an independently verified individual
+  territory: LandSAR's New Zealand Police/RCC coordination and MREW's police/999
+  activation. Network reach does not establish every member team's service boundary.
+- Xiamen Shuguang has documented deployments in Guangxi and Mandalay, Myanmar.
+  The Fujian government report of 2025-04-04 specifically names the team and its
+  personnel/equipment sent to Myanmar. These are historical examples, not a promise
+  of ongoing international or nationwide availability.
+- 30 retain **service scope unverified**. Available identity reports, local exercises,
+  training services, office addresses, and collective awards do not establish a
+  team's complete territory. Some official pages rejected automated access. Do not
+  reuse previous city-based coverage assumptions or attribute collective Qingdao
+  deployment reports to each named team.
+
+Evidence URLs, excerpts, and checking dates are stored in `serviceScope.sources`
+and displayed in the organization detail. Descriptions are available in Chinese
+and English. Scope/deployment places are included in directory and site search.
+No unverified dispatch number was added. Contact verification remains independent
+of identity and scope verification.

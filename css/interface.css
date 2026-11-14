@@ -1034,3 +1034,8 @@ a.rescue-button { text-decoration: none; }
 .country-flag { display: block; width: 48px; height: 36px; object-fit: contain; border-radius: 3px; box-shadow: 0 0 0 1px #0003; }
 .contact-status { color: #ffdcab !important; font-size: .78rem; }
 .contact-pending { border: 1px solid #ac8752; border-radius: 10px; padding: 16px; background: #30281c; color: #ffe4bd; line-height: 1.7; }
+
+/* Country directory: distinguish service evidence from the team's base. */
+.rescue-org > .rescue-scope-label { justify-self: start; padding: 5px 9px; border: 1px solid #617b80; border-radius: 7px; color: #e1f1ee; background: #20343b; }
+.rescue-detail dd { overflow-wrap: anywhere; }
+.rescue-detail dd small { display: inline-block; color: #c0d1d6; }

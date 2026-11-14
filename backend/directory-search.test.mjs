@@ -23,3 +23,7 @@ test('matching ignores case and diacritics, preserves order and works in non-Lat
  assert.equal(search.matches({region:'España'},'ESPAÑA'),true);
  assert.equal(search.matches({region:'Sweden'},'Sdw'),false);
 });
+test('a deployment location finds the team even when it is outside its base city',()=>{
+ const team=rows.find(r=>r.organization?.includes('Xiamen Shuguang'));
+ for(const query of ['Guangxi','广西','Myanmar','缅甸','Xiamen'])assert.equal(search.matches(team,query),true,query);
+});

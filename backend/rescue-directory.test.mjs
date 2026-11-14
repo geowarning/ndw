@@ -21,3 +21,19 @@ test('expanded rescue entries preserve organization identity, location and sourc
  assert.equal(researched.filter(r=>r.iso==='NZ').length,41);
  assert.equal(researched.filter(r=>r.iso==='GB').length,17);
 });
+test('service scope is separate from a team base and evidence supports coverage claims',()=>{
+ const organizations=rows.filter(r=>r.entryType==='organization');
+ for(const r of organizations){
+  const scope=r.serviceScope;
+  assert.ok(scope?.description.en&&scope.description.zh,r.organization);
+  assert.ok(['not-verified','network-policy','published-scope','documented-deployment'].includes(scope.status));
+  if(scope.status!=='not-verified'){
+   assert.ok(scope.sources.length,r.organization);
+   for(const s of scope.sources){assert.match(s.url,/^https?:\/\//);assert.ok(s.excerpt&&s.checkedAt);}
+  }
+ }
+ const shuguang=organizations.find(r=>r.organization.includes('Xiamen Shuguang'));
+ assert.ok(shuguang.serviceScope.locations.includes('Guangxi'));
+ assert.ok(shuguang.serviceScope.locations.includes('Myanmar'));
+ assert.equal(shuguang.city,'Xiamen');
+});
