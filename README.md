@@ -62,7 +62,6 @@
   - 预警：`/alerts/v1/{locationKey}.json`
   - 实况天气：`/currentconditions/v1/{locationKey}.json`
   - 城市解析：`/locations/v1/cities/translate`（已预填常用城市 Key，查询这些城市不消耗定位请求）
-- 备选数据源：高德开放平台天气接口（需在 `js/config.js` 填入自己的 Key；预警字段不保证）
 - 行政区划边界与区县坐标：阿里云 DataV 地理数据开放平台（`geo.datav.aliyun.com`，仅构建时获取并已固化为本地数据，运行时不再请求）。
 - 网页版在浏览器中**直接请求官方接口**（接口已开放跨域访问 CORS），不经过任何中间服务器，因此不受小程序「request 合法域名」限制。
 - 接口请求统一使用中文原文，非中文界面的全部文案由本地多语言模块翻译；中文界面显示官方原文。
@@ -92,7 +91,7 @@ natural-disaster-warning-web/
     ├── china-geo.js    国界/省界 GeoJSON（简化抽点）
     ├── i18n.js         5 语言词条、地名/天气/风险/防御/测验/急救翻译
     ├── risk.js         次生灾害概率推算
-    ├── api.js          华风/高德数据获取、区县提取、缓存、城市状态、内存注册表
+    ├── api.js          华风数据获取、区县提取、缓存、城市状态、内存注册表
     ├── holo-globe.js   3D 点阵全息地球
     ├── china-holo.js   中国全息态势图（SVG，城市可点击）
     ├── charts.js       环形图 / 柱状图 / 折线图（canvas）

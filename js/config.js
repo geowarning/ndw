@@ -8,7 +8,6 @@
  * dataSource 可选值：
  *   'mock'      - 演示数据（默认，无需任何配置，适合体验界面）
  *   'weathercn' - 华风爱科天气 API（中国气象局授权官方数据，推荐）
- *   'amap'      - 高德开放平台天气 API（免费备选，预警字段不保证）
  *
  * 切换真实数据源：填好对应平台的 Key 后，把 dataSource 改为对应值即可。
  * 重要：真实接口失败时页面会显示错误提示，不会用演示数据冒充真实数据。
@@ -27,22 +26,13 @@ module.exports = {
     host: 'https://openapi.weathercn.com'
   },
 
-  // 高德开放平台（免费备选）
-  // 注册：https://lbs.amap.com
-  // 步骤：控制台 → 创建应用 → 添加 Key，服务平台选【Web服务】
-  // 说明：天气查询有免费配额；预警信息不保证返回，建议预警仍以华风为准
-  amap: {
-    key: '',
-    host: 'https://restapi.amap.com'
-  },
-
   // 默认城市（首次打开或未选择省份时使用；用户在首页选择省份后会覆盖此处）
   defaultCity: {
     name: '广州市',
     // 华风 Location Key：留空时会优先使用 utils/cities.js 中预填的常用城市 Key，
     // 未预填的城市再按城市名自动解析（已预填 77 城，基本覆盖首页全部可选城市）
     locationKey: '',
-    // 高德城市编码（adcode）
+    // 行政区划编码（adcode）
     adcode: '440100'
   },
 

@@ -267,8 +267,8 @@
       return '<div class="gkpi"><span>' + esc(label) + '</span><b>' + esc(value) + '</b><small>' + esc(sub || '') + '</small></div>';
     };
     var layerDefs = [
-      ['affected', web('affected')], ['population', web('population')], ['evacuation', web('evacuation')],
-      ['infrastructure', web('infrastructure')], ['gdacs', web('gdacsLayer')]
+      ['gdacs', web('gdacsLayer')], ['affected', web('affected')], ['population', web('population')],
+      ['evacuation', web('evacuation')], ['infrastructure', web('infrastructure')]
     ];
     var layers = layerDefs.map(function (l) {
       return '<button type="button" class="glayer' + (state.layers[l[0]] ? ' active' : '') + '" data-g="layer" data-v="' + l[0] + '">' + esc(l[1]) + '</button>';
@@ -357,7 +357,7 @@
       parts.push('<g class="gaffected">');
       quakes.forEach(function (q) {
         var p = proj(q.lon, q.lat);
-        parts.push('<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + kmToUnits(radiusKm(q.mag)).toFixed(1) + '" fill="' + magColor(q.mag) + '" opacity=".16" stroke="' + magColor(q.mag) + '" stroke-opacity=".55" stroke-width=".6" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"></circle>');
+        parts.push('<circle class="impact-pulse" cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="' + kmToUnits(radiusKm(q.mag)).toFixed(1) + '" fill="' + magColor(q.mag) + '" opacity=".16" stroke="' + magColor(q.mag) + '" stroke-opacity=".55" stroke-width=".6" stroke-dasharray="2 3" vector-effect="non-scaling-stroke"></circle>');
       });
       parts.push('</g>');
     }
@@ -533,7 +533,25 @@
     state.panX = Math.min(0, Math.max(minX, state.panX));
     state.panY = Math.min(0, Math.max(minY, state.panY));
   }
+  var zoomAnimation = null;
+  function animateView(z, x, y) {
+    if (zoomAnimation) cancelAnimationFrame(zoomAnimation);
+    var from = { z: state.zoom, x: state.panX, y: state.panY }, started = null;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function frame(time) {
+      if (started === null) started = time;
+      var t = reduced ? 1 : Math.min(1, (time - started) / 700);
+      var ease = t * t * (3 - 2 * t);
+      state.zoom = from.z + (z - from.z) * ease;
+      state.panX = from.x + (x - from.x) * ease;
+      state.panY = from.y + (y - from.y) * ease;
+      clampPan(); applyView();
+      zoomAnimation = t < 1 ? requestAnimationFrame(frame) : null;
+    }
+    zoomAnimation = requestAnimationFrame(frame);
+  }
   function zoomAt(px, py, factor) {
+    if (zoomAnimation) { cancelAnimationFrame(zoomAnimation); zoomAnimation = null; }
     var z = Math.max(1, Math.min(96, state.zoom * factor));
     if (Math.abs(z - state.zoom) < 0.001) { return; }
     var k = z / state.zoom;
@@ -551,18 +569,13 @@
     var z = Math.max(1, Math.min(96, Math.min(W / w, H / h) * 0.78));
     var cx = ((b.minLon + b.maxLon) / 2 + 180) / 360 * W;
     var cy = (90 - (b.minLat + b.maxLat) / 2) / 180 * H;
-    state.zoom = z;
-    state.panX = W / 2 - z * cx;
-    state.panY = H / 2 - z * cy;
-    clampPan();
+    animateView(z, W / 2 - z * cx, H / 2 - z * cy);
   }
   function selectCountry(name) {
     if (state.country === name) {
       state.country = null;
       state.selected = null;
-      state.zoom = 1;
-      state.panX = 0;
-      state.panY = 0;
+      animateView(1, 0, 0);
       paint();
       return;
     }
@@ -595,6 +608,7 @@
     zoomAt(px, py, Math.exp(-e.deltaY * 0.0015));
   }
   function onPointerDown(e) {
+    if (zoomAnimation) { cancelAnimationFrame(zoomAnimation); zoomAnimation = null; }
     if (e.button != null && e.button !== 0) { return; }
     if (e.target.closest('.gzoom,[data-quake],[data-gdacs]')) { return; }
     var map = e.target.closest('.gmap');
@@ -647,7 +661,7 @@
       lang() === 'zh' ? '关注当地应急部门与海啸预警。' : 'Follow local emergency authorities and tsunami warnings.',
       lang() === 'zh' ? '检查燃气、电力与建筑结构，谨防余震。' : 'Check gas, power and structural damage; expect aftershocks.'
     ];
-    return '<div class="gdetail">' +
+    return '<div class="gdetail">' + window.NDRescue.button(state.country || q.place, q.place, lang()) +
       '<div class="gdetail-top"><div><div class="gkicker">' + esc(web('quakeDetail')) + '</div>' +
         '<h3>' + esc(q.place || '—') + '</h3><div class="gcoords">' + esc(q.lon.toFixed(2)) + '°, ' + esc(q.lat.toFixed(2)) + '°</div></div>' +
         '<div class="gmag" style="color:' + magColor(q.mag) + '">M' + esc(q.mag.toFixed(1)) + '</div></div>' +
@@ -677,7 +691,7 @@
       TC: zh ? ['留在坚固建筑内，远离窗户。', '固定室外物品，准备停电与断水。', '听从当地疏散与避难指令。'] : ['Shelter in a sturdy building, away from windows.', 'Secure outdoor items and prepare for power/water outages.', 'Follow local evacuation and shelter instructions.'],
       DR: zh ? ['节约用水，优先保障饮用与卫生。', '关注当地限水与农业援助政策。', '防范高温与粮食短缺的次生影响。'] : ['Conserve water for drinking and sanitation.', 'Follow local water restrictions and agricultural aid programs.', 'Watch for heat and food-security impacts.']
     }[g.type] || [];
-    return '<div class="gdetail gdacs-detail">' +
+    return '<div class="gdetail gdacs-detail">' + window.NDRescue.button(g.country, g.name, lang()) +
       '<div class="gdetail-top"><div><div class="gkicker">GDACS · ' + esc(typeLabel) + '</div>' +
         '<h3>' + esc(g.name || '—') + '</h3><div class="gcoords">' + esc(g.country || '') + ' · ' + esc(g.lon.toFixed(2)) + '°, ' + esc(g.lat.toFixed(2)) + '°</div></div>' +
         '<div class="gdacs-badge" style="color:' + gdacsAlertColor(g.alert) + '">' + esc(alertLabel) + '</div></div>' +
@@ -719,7 +733,7 @@
     var sub = state.country ? hazardTypeLabel(state.gdacsType) + ' · ' + (qs.length + gs.length) :
       (state.gdacsType === 'EQ' ? web('earthquakeType') :
         (state.gdacsType === 'all' ? (showGdacs ? 'GDACS + ' + web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes') : web(state.mode === 'history' ? 'quakeRecords' : 'activeQuakes')) : hazardTypeLabel(state.gdacsType)));
-    var html = '<div class="gside-head"><h3>' + esc(title) + '</h3><span>' + esc(sub) + '</span></div><div class="glist">';
+    var html = window.NDRescue.button(state.country || '', '', lang()) + '<div class="gside-head"><h3>' + esc(title) + '</h3><span>' + esc(sub) + '</span></div><div class="glist">';
     if (showGdacs) {
       html += '<div class="glist-label">' + esc(web('gdacsEvents')) + ' · ' + gs.length + '</div>' +
         (gs.length ? gs.map(gdacsItem).join('') : '<div class="ops-empty">' + esc(web('noMatch')) + '</div>');
@@ -731,6 +745,14 @@
     return html + '</div>';
   }
 
+  function rescueSection() {
+    var region = state.country || (state.selected && (state.selected.country || state.selected.place)) || '';
+    return '<section class="rescue-section"><h2>' + (lang() === 'zh' ? '地区救援联系' : 'Regional rescue contacts') + '</h2><p>' +
+      (lang() === 'zh' ? '按国家或地区查询红十字与红新月机构及官方联系方式。' : 'Search national Red Cross / Red Crescent organizations and official contact directories by region.') + '</p>' +
+      '<form data-rescue-form><label>' + (lang() === 'zh' ? '国家或地区' : 'Country or region') +
+      '<input type="search" name="region" value="' + esc(region) + '" placeholder="China, Peru, California…"></label>' +
+      '<button class="btn btn-outline" type="submit">' + (lang() === 'zh' ? '搜索救援联系' : 'Search rescue contacts') + '</button></form></section>';
+  }
   function paint() {
     if (state.mode === 'live' && state.selected && state.selected.kind === 'gdacs' &&
         !GdacsStatus.active(state.selected.status, Date.now())) { state.selected = null; }
@@ -761,6 +783,10 @@
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
         ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
+      '<details class="hazard-units"><summary>' + (lang() === 'zh' ? '灾害单位与地图符号' : 'Disaster units & map symbols') + '</summary><p>' +
+      (lang() === 'zh' ? 'M：地震震级（对数尺度），不是当地烈度。MMI：修订麦加利烈度，表示当地震动强度。km：千米；km²：平方千米；ha：公顷（1 ha = 0.01 km²）；km/h：千米/小时。动画圆圈仅为示意影响范围，并非官方灾害边界或疏散区域。' : 'M: earthquake magnitude, a logarithmic measure of event size, not local shaking. MMI: Modified Mercalli Intensity, local shaking intensity. km: kilometres; km²: square kilometres; ha: hectares (1 ha = 0.01 km²); km/h: kilometres per hour. Animated circles are illustrative impact areas, not official hazard boundaries or evacuation zones.') +
+      '</p></details>' +
+      rescueSection() +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
         '<a href="https://www.gdacs.org" target="_blank" rel="noopener noreferrer">GDACS</a> (EU JRC / UN OCHA) · ' +

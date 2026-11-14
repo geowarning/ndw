@@ -1,11 +1,11 @@
 /* Cache safety knowledge and application assets, never live warning snapshots. */
-const CACHE = 'ndw-shell-7950d7a735ea4589';
+const CACHE = 'ndw-shell-126629932f84bf94';
 const ASSETS = [
   './', './index.html', './favicon.svg', './manifest.webmanifest', './css/styles.css', './css/interface.css',
   './js/shim.js', './js/config.js', './js/data.js', './js/guide-en.js', './js/guide-locales.js',
   './js/cities.js', './js/districts.js', './js/china-geo.js', './js/pinyin-pro.js', './js/i18n.js',
   './js/reliability.js', './js/explanations.js', './js/risk.js', './js/api.js', './js/globe-land.js', './js/holo-globe.js', './js/china-holo.js',
-  './js/charts.js', './js/three.min.js', './js/games.js', './js/app-core.js', './js/ui.js', './js/icons.js', './js/views/products.js', './js/search.js', './js/gdacs-status.js', './js/global.js', './js/app.js', './js/offline.js', './assets/world-satellite.jpg', './assets/china-nasa.jpg', './assets/world-countries.geojson', './assets/world-cities.json'
+  './js/charts.js', './js/three.min.js', './js/games.js', './js/app-core.js', './js/ui.js', './js/icons.js', './js/views/products.js', './js/search.js', './js/gdacs-status.js', './js/global.js', './js/rescue.js', './js/app.js', './js/offline.js', './assets/world-satellite.jpg', './assets/china-nasa.jpg', './assets/world-countries.geojson', './assets/world-cities.json'
 ];
 const allowedPaths = new Set(ASSETS.map(asset => new URL(asset, self.location.href).pathname));
 self.addEventListener('install', event => {

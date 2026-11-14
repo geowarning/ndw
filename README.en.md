@@ -58,7 +58,6 @@ The visuals use a "Holographic Command Center" theme: a full-screen **3D dot-mat
   - Warnings: `/alerts/v1/{locationKey}.json`
   - Live weather: `/currentconditions/v1/{locationKey}.json`
   - City resolution: `/locations/v1/cities/translate` (keys for common cities are pre-filled; querying these cities does not consume location requests)
-- Alternative data source: Amap (高德) Open Platform weather API (fill in your own Key in `js/config.js`; warning fields are not guaranteed)
 - Administrative boundaries and district coordinates: Alibaba Cloud DataV geographic data open platform (`geo.datav.aliyun.com`; fetched only at build time and solidified into local data, with no requests at runtime).
 - The web version **requests the official APIs directly from the browser** (the APIs allow cross-origin access via CORS), bypassing any intermediary server, so it is not subject to the mini-program's "legal request domain" restriction.
 - API requests uniformly use the original Chinese text; all copy in non-Chinese interfaces is translated by the local i18n module, and the Chinese interface shows the original official text.
@@ -88,7 +87,7 @@ natural-disaster-warning-web/
     ├── china-geo.js    National/provincial border GeoJSON (simplified point sampling)
     ├── i18n.js         5-language strings; place-name/weather/risk/defense/quiz/first-aid translations
     ├── risk.js         Secondary-disaster probability calculation
-    ├── api.js          WeatherCN/Amap data fetching, district extraction, caching, city status, in-memory registry
+    ├── api.js          WeatherCN data fetching, district extraction, caching, city status, in-memory registry
     ├── holo-globe.js   3D dot-matrix holographic globe
     ├── china-holo.js   China holographic situation map (SVG, cities clickable)
     ├── charts.js       Donut / bar / line charts (canvas)

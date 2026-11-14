@@ -104,7 +104,6 @@ var UI = {
     current: '当前',
     srcMock: '内置演示数据，无需配置，适合体验界面',
     srcWeathercn: '中国气象局授权官方数据，需在 config.js 配置 API Key',
-    srcAmap: '高德开放平台天气数据，免费配额，预警不保证',
     sourceSwitched: '数据源已切换，重新加载后生效',
     tabSettings: '设置',
     summaryAffect: '影响区域',
@@ -309,7 +308,6 @@ var UI = {
     current: 'Current',
     srcMock: 'Built-in demo data, no setup needed',
     srcWeathercn: 'CMA-authorized official data; set API Key in config.js',
-    srcAmap: 'AMap weather data, free quota, alerts not guaranteed',
     sourceSwitched: 'Data source switched, applies after reload',
     tabSettings: 'Settings',
     summaryAffect: 'Affected area',
@@ -514,7 +512,6 @@ var UI = {
     current: 'Actual',
     srcMock: 'Datos de demostración integrados, sin configuración',
     srcWeathercn: 'Datos oficiales autorizados por la CMA; configure la clave API en config.js',
-    srcAmap: 'Datos meteorológicos de AMap, cuota gratuita, alertas no garantizadas',
     sourceSwitched: 'Fuente de datos cambiada, se aplica tras recargar',
     tabSettings: 'Ajustes',
     summaryAffect: 'Zona afectada',
@@ -719,7 +716,6 @@ var UI = {
     current: 'Actuel',
     srcMock: 'Données de démonstration intégrées, aucune configuration',
     srcWeathercn: 'Données officielles autorisées par la CMA ; clé API dans config.js',
-    srcAmap: 'Données météo AMap, quota gratuit, alertes non garanties',
     sourceSwitched: 'Source de données changée, appliquée après rechargement',
     tabSettings: 'Paramètres',
     summaryAffect: 'Zone touchée',
@@ -924,7 +920,6 @@ var UI = {
     current: 'Attuale',
     srcMock: 'Dati demo integrati, nessuna configurazione',
     srcWeathercn: 'Dati ufficiali autorizzati dalla CMA; chiave API in config.js',
-    srcAmap: 'Dati meteo AMap, quota gratuita, allerte non garantite',
     sourceSwitched: 'Sorgente dati cambiata, si applica dopo il ricaricamento',
     tabSettings: 'Impostazioni',
     summaryAffect: 'Area interessata',
@@ -1407,10 +1402,7 @@ var SOURCE_NAMES = {
     fr: 'API WeatherCN (autorisée par l’AMC)',
     it: 'API WeatherCN (autorizzata dall’AMC)'
   },
-  '高德天气API': {
-    en: 'AMap Weather API', es: 'API meteorológica AMap',
-    fr: 'API météo AMap', it: 'API meteo AMap'
-  }
+
 };
 
 /** 数据源名称翻译 */

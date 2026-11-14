@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { mergeQuakeRows } from './alert-history.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -132,5 +133,10 @@ if (!data) {
   }
 }
 await fs.mkdir(path.dirname(outFile), { recursive: true });
+const archiveFile = path.join(root, 'public-data/global-quakes-history.json');
+let archive;
+try { archive = JSON.parse(await fs.readFile(archiveFile, 'utf8')); } catch (err) { if (err.code !== 'ENOENT') throw err; archive = { rows: [] }; }
+const rows = mergeQuakeRows(archive.rows || [], data.earthquakes.map(q => [q.timestamp, q.longitude, q.latitude, q.depth_km, q.magnitude, q.place, q.event_type || 'earthquake', q.id]));
+await fs.writeFile(archiveFile, JSON.stringify({ ...archive, source: 'USGS / apizero', count: rows.length, range: [rows.at(-1)?.[0] || 0, rows[0]?.[0] || 0], rows }) + '\n');
 await fs.writeFile(outFile, JSON.stringify(data, null, 1) + '\n');
 console.log('wrote', outFile, '| source', data.source, '| events', data.earthquakes.length, note ? '| ' + note : '');

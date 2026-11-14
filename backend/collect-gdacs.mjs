@@ -32,7 +32,8 @@ function readJson(file, fallback) {
   try {
     return JSON.parse(fs.readFileSync(file, 'utf8'));
   } catch (err) {
-    return fallback;
+    if (err.code === 'ENOENT') return fallback;
+    throw err; // Never replace an unreadable archive with an empty one.
   }
 }
 

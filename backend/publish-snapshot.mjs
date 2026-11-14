@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { archiveWarnings } from './alert-history.mjs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -39,5 +40,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const health = assertSnapshotReady(snapshot);
   fs.mkdirSync(path.join(root, 'public-data'), { recursive: true });
   fs.writeFileSync(path.join(root, 'public-data/warnings.json'), JSON.stringify(snapshot));
+  const ledger = JSON.parse(execFileSync('git', ['show', ref + ':backend/data/state.json'], { cwd: root, encoding: 'utf8' }));
+  const archived = archiveWarnings(ledger.alertHistory, snapshot.entries);
+  fs.writeFileSync(path.join(root, 'public-data/china-warning-history.json'), JSON.stringify({ source: 'WeatherCN', records: Object.values(archived) }));
   console.log('Prepared public snapshot:', health.fresh, 'fresh cities out of', health.cities);
 }

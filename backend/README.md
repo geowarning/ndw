@@ -109,3 +109,28 @@ summary is retained for compatibility but is no longer updated.
 The browser also checks dates when rendering, so expired cached records cannot
 remain live just because the next collection has not run. Historical ranges use
 the event's reported start/end interval, including long-running disasters.
+
+## Alert retention and rescue directory
+
+China collection now archives every observed alert revision in the quota ledger
+and publishes `china-warning-history.json`, exposed by the China tab in Database.
+A successful empty refresh does not delete previous alerts. Existing published
+alerts seed the archive; unobserved past alerts cannot be reconstructed reliably.
+Earthquake refreshes append to the persistent archive, and daily historical
+backfills no longer delete events older than 24 months. GDACS records remain
+retained by event/episode. All main-branch snapshot writers share the Pages
+concurrency group to avoid competing archive publications.
+
+This is an archive of collected records, not a complete history of every disaster:
+China coverage is limited to configured cities and collection intervals, USGS
+historical backfills query magnitude 2.5+, and GDACS collection covers WF/FL/TC/DR.
+Source outages and provider retention can leave gaps.
+
+`public-data/rescue-contacts.json` is derived from the official IFRC GO public
+country fixtures, with source commit URL and retrieval date embedded. It links
+national Red Cross / Red Crescent societies and official local-branch directories;
+it is not a complete dispatch-ready list of every rescue team. No phone numbers
+were inferred from that dataset. China emergency numbers are separately labeled.
+Refresh the directory against IFRC's current official sources when available;
+retrieval of the public fixture is not verification that each linked contact is
+still operational. No API credentials or personal contact records are included.

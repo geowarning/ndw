@@ -203,7 +203,6 @@
         '</ul></div>' +
         '<div class="footer-col"><h4>' + esc(t.dataSource) + '</h4>' +
           '<p>' + esc(i18n.dataSourceName('华风爱科天气API', l)) + '</p>' +
-          '<p>' + esc(i18n.dataSourceName('高德天气API', l)) + '</p>' +
         '</div>' +
         '<div class="footer-col"><h4>' + esc(t.disclaimer) + '</h4>' +
           '<ul><li><a data-action="show-disclaimer">' + esc(t.disclaimerTitle) + '</a></li></ul>' +
@@ -313,20 +312,16 @@
   }
 
   /* ---------- 全息地图/地球状态 ---------- */
+  var globeHazards = [], globeChinaHazards = [];
   function globeCities() {
-    return districts.allCityGeo().map(function (c) {
-      var st = sessionStatus[c.adcode];
-      var color = '#2f8a80', level = '';
-      if (st && !st.unavailable && reliability.freshness(st.checkedAt) === 'available') {
-        if (st.high) { color = '#ff5252'; level = 'red'; }
-        else if (st.count) { color = '#f7c948'; level = 'normal'; }
-        else { color = '#46c263'; level = 'safe'; }
-      }
-      return { lng: c.lng, lat: c.lat, color: color, level: level, label: c.name, adcode: c.adcode };
-    });
+    return globeChinaHazards.filter(function (c) { return c.end > Date.now() && reliability.freshness(c.checkedAt) === 'available'; });
   }
   function refreshMaps() {
-    if (globe) { globe.setCities(globeCities()); }
+    if (globe) {
+      var activeHazards = globeHazards.filter(function (g) { return g.status ? GdacsStatus.active(g.status, Date.now()) : Date.now() - g.time < 86400000 && g.time <= Date.now(); });
+      globe.setCities(globeCities().concat(activeHazards));
+      globe.setDisasters(activeHazards);
+    }
     if (chinaMap) { chinaMap.setStatus(sessionStatus); }
     if (selectedMapCity && document.getElementById('cityInspection')) { inspectMapCity(selectedMapCity); }
   }
@@ -655,7 +650,7 @@
   }
   function homeDashboardHtml(s, t) {
     return '<div class="ops-head"><div><div class="eyebrow">OPERATIONAL OVERVIEW</div><h2>' + esc(web('situationOverview')) + '</h2><p>' + esc(web('overviewSubtitleBoth')) + '</p></div>' +
-      '<div class="ops-tabs"><a href="#/china">' + esc(web('chinaStatus')) + '</a><a href="#/global">' + esc(web('globalTab')) + '</a></div></div>' +
+      '</div>' +
       '<div class="ops-kpis" id="opsKpis">' +
         opsKpi(web('chinaStatus'), '—', '', '#/china') +
         opsKpi(web('criticalLocations'), '—', '', '#/china') +
@@ -739,6 +734,44 @@
     renderGlobalInto(viewEl, false);
   }
 
+  function loadGlobeHazards() {
+    return Promise.all(['public-data/gdacs-events.json', 'public-data/global-earthquakes.json', 'public-data/warnings.json'].map(function (url) {
+      return fetch(url, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw Error(r.status); return r.json(); }).catch(function () { return null; });
+    })).then(function (results) {
+      globeHazards = [];
+      ((results[0] && results[0].features) || []).forEach(function (f) {
+        var p = f.properties || {}, c = (f.geometry && f.geometry.coordinates) || [];
+        if (!GdacsStatus.active(p, Date.now()) || !isFinite(c[0]) || !isFinite(c[1])) return;
+        globeHazards.push({ lng: +c[0], lat: +c[1], status: p, label: p.name,
+          type: { WF: 'fire', FL: 'flood', TC: 'typhoon', DR: 'drought' }[p.eventtype],
+          color: p.alertlevel === 'Red' ? '#ff5252' : p.alertlevel === 'Orange' ? '#ff9a3c' : '#43e8a0', level: 'normal' });
+      });
+      ((results[1] && results[1].earthquakes) || []).forEach(function (q) {
+        if (!isFinite(q.longitude) || !isFinite(q.latitude)) return;
+        globeHazards.push({ lng: +q.longitude, lat: +q.latitude, time: +q.timestamp, type: 'quake', color: '#ff9a3c', label: 'M' + q.magnitude + ' · ' + q.place, level: 'normal' });
+      });
+      globeChinaHazards = [];
+      var entries = (results[2] && results[2].entries) || {};
+      districts.allCityGeo().forEach(function (city) {
+        var key = cities.getLocationKey(city.name);
+        var entry = entries['/alerts/v1/' + key + '.json'];
+        if (!entry || reliability.freshness(entry.checkedAt) !== 'available') return;
+        (entry.data.alerts || entry.data).forEach(function (alert) {
+          var areas = alert.Area || [];
+          var valid = areas.filter(function (area) {
+            var start = Date.parse(area.StartTime), end = Date.parse(area.EndTime);
+            return isFinite(start) && isFinite(end) && start <= Date.now() && end > Date.now();
+          });
+          if (!valid.length) return;
+          globeChinaHazards.push({ lng: city.lng, lat: city.lat, adcode: city.adcode, checkedAt: entry.checkedAt,
+            end: Math.max.apply(null, valid.map(function (area) { return Date.parse(area.EndTime); })),
+            color: (alert.Color && alert.Color.Hex) || '#ffb020', level: 'normal',
+            label: i18n.placeName(city.name, lang()) + ' · ' + ((alert.Description && (lang() === 'zh' ? alert.Description.Localized : alert.Description.English)) || alert.Type || 'Warning') });
+        });
+      });
+      refreshMaps();
+    });
+  }
   function renderMainPage() {
     var l = lang();
     var t = T(l);
@@ -747,6 +780,13 @@
       '<div class="main-landing-inner">' +
         '<section class="main-copy">' +
           '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || web('mainEyebrow')) + '</div>' +
+            '<div class="home-lang">' +
+              i18n.LANGUAGES.map(function (lg) {
+                var shortName = lg.code === 'zh' ? '中文' : lg.code.toUpperCase();
+                return '<button class="home-lang-btn' + (lg.code === l ? ' active' : '') +
+                  '" data-action="select-lang" data-code="' + lg.code + '" aria-pressed="' + (lg.code === l) + '">' + esc(shortName) + '</button>';
+              }).join('') +
+            '</div>' +
           '<h1>' + esc(web('mainTitle')) + '</h1>' +
           '<p>' + esc(web('mainIntro')) + '</p>' +
           '<div class="main-actions">' +
@@ -762,6 +802,7 @@
     document.body.classList.add('main-page');
     if (globe) { globe.resize(); }
     hydrateHomeDashboard();
+    loadGlobeHazards();
     explainView();
   }
 
@@ -771,7 +812,7 @@
     else if (path === '#/home') { renderMainPage(); }
   }
 
-  var dbState = { category: 'earthquake', page: 1, minMag: 0, q: '', eq: null, gdacs: null, loading: false, error: '', eqRows: null, gdacsRows: null };
+  var dbState = { category: 'earthquake', page: 1, minMag: 0, q: '', eq: null, gdacs: null, china: null, loading: false, error: '', eqRows: null, gdacsRows: null };
   var DB_PAGE_SIZE = 50;
 
   function dbTime(value) {
@@ -796,9 +837,10 @@
     } catch (e) { return new Date(ms).toLocaleDateString(); }
   }
   function dbCategories() {
-    return [['earthquake', web('earthquakeType')], ['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')]];
+    return [['china', web('chinaStatus')], ['earthquake', web('earthquakeType')], ['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')]];
   }
   function dbCategoryLabel(cat) {
+    if (cat === 'china') return web('chinaStatus');
     if (cat === 'earthquake') { return web('earthquakeType'); }
     if (cat === 'WF') { return web('gdacsWildfire'); }
     if (cat === 'FL') { return web('gdacsFlood'); }
@@ -834,18 +876,19 @@
   function loadDatabase() {
     if (!document.getElementById('dbBody')) { return; }
     if (dbState.category === 'earthquake' && dbState.eq) { renderDbBody(); return; }
-    if (dbState.category !== 'earthquake' && dbState.gdacs) { renderDbBody(); return; }
+    if (dbState.category === 'china' && dbState.china) { renderDbBody(); return; }
+    if (dbState.category !== 'earthquake' && dbState.category !== 'china' && dbState.gdacs) { renderDbBody(); return; }
     var category = dbState.category;
     dbState.loading = true;
     dbState.error = '';
     renderDbBody();
-    var url = category === 'earthquake' ? 'public-data/global-quakes-history.json' : 'public-data/gdacs-disaster-history.json';
+    var url = category === 'china' ? 'public-data/china-warning-history.json' : category === 'earthquake' ? 'public-data/global-quakes-history.json' : 'public-data/gdacs-disaster-history.json';
     fetch(url, { cache: 'no-cache' }).then(function (r) {
       if (!r.ok) { throw new Error('HTTP ' + r.status); }
       return r.json();
     }).then(function (data) {
       if (dbState.category !== category) { return; }
-      if (category === 'earthquake') { dbState.eq = data; } else { dbState.gdacs = data; }
+      if (category === 'china') { dbState.china = data; } else if (category === 'earthquake') { dbState.eq = data; } else { dbState.gdacs = data; }
       dbState.loading = false;
       renderDbBody();
     }).catch(function (err) {
@@ -861,7 +904,7 @@
     if (!body) { return; }
     if (dbState.loading) { body.innerHTML = '<div class="state-box"><div class="spinner"></div>' + esc(T().loading) + '</div>'; return; }
     if (dbState.error) { body.innerHTML = '<div class="state-box error">' + esc(dbState.error) + '</div>'; return; }
-    if (dbState.category === 'earthquake') { renderDbEarthquake(body); } else { renderDbGdacs(body); }
+    if (dbState.category === 'china') { renderDbChina(body); } else if (dbState.category === 'earthquake') { renderDbEarthquake(body); } else { renderDbGdacs(body); }
   }
 
   function renderDbEarthquake(body) {
@@ -904,6 +947,22 @@
     body.innerHTML = html;
   }
 
+  function renderDbChina(body) {
+    var records = ((dbState.china && dbState.china.records) || []).filter(function (r) {
+      return JSON.stringify(r.alert).toLowerCase().includes(dbState.q.toLowerCase());
+    }).sort(function (a, b) { return b.lastSeen - a.lastSeen; });
+    dbState.chinaRows = records;
+    var pages = Math.max(1, Math.ceil(records.length / DB_PAGE_SIZE));
+    dbState.page = Math.min(dbState.page, pages);
+    var start = (dbState.page - 1) * DB_PAGE_SIZE;
+    body.innerHTML = '<p>' + (lang() === 'zh' ? '保留实际采集到的预警及更新版本；不能保证包含采集开始前或两次查询之间的全部预警。' : 'Retains observed alerts and revisions. Alerts before collection began or between queries may be missing.') + '</p>' +
+      '<div class="db-toolbar"><input id="dbSearch" type="search" value="' + esc(dbState.q) + '" placeholder="' + esc(web('dbSearchHint')) + '"><button class="btn btn-outline" data-action="db-search">' + (lang() === 'zh' ? '搜索' : 'Search') + '</button></div>' +
+      '<div class="db-table-wrap"><table class="db-table"><thead><tr><th>' + esc(web('dataTime')) + '</th><th>' + esc(web('chinaStatus')) + '</th></tr></thead><tbody>' +
+      records.slice(start, start + DB_PAGE_SIZE).map(function (r, i) {
+        var a = r.alert;
+        return '<tr class="db-row" data-action="db-row" data-kind="china" data-idx="' + (start + i) + '" tabindex="0"><td>' + esc(dbFormat(r.lastSeen)) + '</td><td>' + esc((a.Description && (lang() === 'zh' ? a.Description.Localized : a.Description.English)) || a.HeadlineText || a.title || a.Type || 'Warning') + '</td></tr>';
+      }).join('') + '</tbody></table></div>' + dbPager(pages);
+  }
   function renderDbGdacs(body) {
     var q = dbState.q.toLowerCase();
     var features = ((dbState.gdacs && dbState.gdacs.features) || []).filter(function (f) {
@@ -962,6 +1021,19 @@
     var modal = document.getElementById('dbModal');
     if (!modal || !isFinite(idx)) { return; }
     var html = '';
+    if (kind === 'china') {
+      var record = (dbState.chinaRows || [])[idx];
+      if (!record) return;
+      var warning = record.alert;
+      modal.innerHTML = '<div class="db-modal-card" role="dialog" aria-modal="true"><button class="db-modal-close" data-action="db-close" aria-label="Close">×</button><h2>' +
+        esc((warning.Description && warning.Description.Localized) || warning.HeadlineText || warning.title || 'Warning') + '</h2>' +
+        '<p>' + esc(dbFormat(record.firstSeen)) + ' → ' + esc(dbFormat(record.lastSeen)) + '</p>' +
+        (warning.Area || []).map(function (area) { return '<h3>' + esc(area.Name) + '</h3><p>' + esc(area.StartTime || '') + ' → ' + esc(area.EndTime || '') + '</p><p>' + esc(area.Text || area.Summary || '') + '</p>'; }).join('') +
+        '<p>' + esc(warning.Source || '') + '</p></div>';
+      modal.hidden = false;
+      modal.querySelector('button').focus();
+      return;
+    }
     if (kind === 'earthquake') {
       var r = (dbState.eqRows || [])[idx];
       if (!r) { return; }
@@ -1052,14 +1124,7 @@
             '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || t.loading) + '</div>' +
             '<h1 class="hero-title">' + esc(web('overviewTitle')) + '</h1>' +
             '<p class="hero-sub">' + esc(web('overviewSubtitle')) + '</p></div>' +
-            '<div class="home-lang">' +
-              i18n.LANGUAGES.map(function (lg) {
-                var shortName = lg.code === 'zh' ? '中文' : lg.code.toUpperCase();
-                return '<button class="home-lang-btn' + (lg.code === l ? ' active' : '') +
-                  '" data-action="select-lang" data-code="' + lg.code + '" aria-pressed="' + (lg.code === l) + '">' + esc(shortName) + '</button>';
-              }).join('') +
-            '</div>' +
-            '<div class="hero-location">' +
+            '<div class="hero-location">' + window.NDRescue.button('China', homeState.city, lang()) +
               '<div class="hero-city">' + esc(displayCity) +
                 '<small>' + esc(displayProvince) + '</small></div>' +
               '<button class="district-pill" data-action="open-district"><span class="status-dot status-' +
@@ -1251,7 +1316,7 @@
     var geo = districts.getCityGeo(adcode);
     if (!geo) { return; }
     applyRegion({ province: geo.province, city: geo.name, adcode: adcode, district: '' });
-    if ((location.hash || '') !== '#/home') { location.hash = '#/home'; }
+    if ((location.hash || '') !== '#/china') { location.hash = '#/china'; } else { renderHome(); }
     pickerEl.innerHTML = '';
   }
 
@@ -1268,7 +1333,7 @@
           '<button class="map-scan-btn" data-action="refresh-map"' + (nationalSweeping ? ' disabled' : '') + '>' + SVG.refresh + esc(safetyText('refreshPublished')) + '</button>' +
         '</div>' +
       '</div>' +
-      manualUpdateControl() +
+      manualUpdateControl() + window.NDRescue.button('China', '', lang()) +
       '<div class="expanded-map-meta"><span id="mapCoverage" role="status">' + esc(web('coverage')) + ': ' + info.checked + ' / ' + info.total + '</span>' +
         '<div class="map-legend">' +
           '<span><i class="status-dot status-none"></i>' + esc(safetyText('lastNoAlerts')) + '</span>' +
@@ -1317,7 +1382,7 @@
       '<p>' + esc(reliability.checkedAt(state.checkedAt, lang())) + '</p>' +
       (Number.isInteger(state.count) ? '<p>' + esc(safetyText('scanCount').replace('{n}', state.count)) + '</p>' : '') +
       (historical ? '<p class="history-notice">' + esc(safetyText('historyNotice')) + '</p>' : '') + '</div>' +
-      '<button class="btn btn-outline" data-action="view-map-city" data-adcode="' + esc(adcode) + '">' + esc(safetyText('viewWarnings')) + '</button>';
+      '<button class="btn btn-outline" data-action="view-map-city" data-adcode="' + esc(adcode) + '">' + esc(safetyText('viewWarnings')) + '</button>' + window.NDRescue.button('China', city.name, lang());
     box.dataset.signature = signature;
     document.querySelectorAll('#expandedMap .ch-city').forEach(function (node) { node.classList.toggle('is-selected', node.getAttribute('data-city') === adcode); });
   }
@@ -1624,7 +1689,7 @@
       : '';
 
     var html =
-      '<section class="detail-hero lv-' + a.level + '"><div class="container">' +
+      '<section class="detail-hero lv-' + a.level + '"><div class="container">' + window.NDRescue.button('China', a.area, lang()) +
         '<a class="back-link" href="#/china">‹ ' + esc(web('chinaTab')) + '</a>' +
         '<div><span class="level-badge">' + esc(a.levelName) + '</span></div>' +
         '<h1>' + esc(a.title) + '</h1>' +
@@ -2004,8 +2069,9 @@
         '<div class="progress-label">' + esc(i18n.tpl('total', { n: materialsList.length }, l)) + '</div>' +
         '<div class="material-list">' +
           materialsList.map(function (m) {
-            return '<button class="material-item ' + (m.checked ? 'checked' : '') + '" data-action="toggle-material" data-index="' + m.index + '">' +
-              '<span class="material-check">' + SVG.checkBox + '</span><span>' + esc(m.name) + '</span></button>';
+            return '<div class="material-purchase"><button class="material-item ' + (m.checked ? 'checked' : '') + '" data-action="toggle-material" data-index="' + m.index + '">' +
+              '<span class="material-check">' + SVG.checkBox + '</span><span>' + esc(m.name) + '</span></button>' +
+              '<a target="_blank" rel="noopener noreferrer" href="' + (l === 'zh' ? 'https://search.jd.com/Search?keyword=' : 'https://www.amazon.com/s?k=') + encodeURIComponent(m.name) + '">' + (l === 'zh' ? '查找购买' : 'Find to buy') + ' ↗</a></div>';
           }).join('') +
         '</div>' +
       '</div></div></section>';
@@ -2105,8 +2171,7 @@
     var l = lang();
     var t = T(l);
     var sources = [
-      { value: 'weathercn', label: i18n.dataSourceName('华风爱科天气API', l), hint: web('srcWeathercn') },
-      { value: 'amap', label: i18n.dataSourceName('高德天气API', l), hint: i18n.t('srcAmap', l) }
+      { value: 'weathercn', label: i18n.dataSourceName('华风爱科天气API', l), hint: web('srcWeathercn') }
     ];
     var currentSource = api.getEffectiveDataSource();
     var cacheInfo = i18n.tpl('cacheInfo', { n: api.getCacheInfo().count }, l);
@@ -2594,7 +2659,8 @@
   var bgCanvas = document.getElementById('bgGlobe');
   if (bgCanvas) {
     globe = holo.create(bgCanvas);
-    globe.setCities(globeCities());
+    refreshMaps();
+    window.setInterval(function () { if (document.body.classList.contains('main-page')) loadGlobeHazards(); }, 60000);
   }
 
   if (window.NDSearch) {

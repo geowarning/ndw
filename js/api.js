@@ -14,7 +14,7 @@
  * 1. 真实接口失败时不会回退演示数据（避免误导用户），而是返回 error 供页面展示错误态；
  * 2. 查询目标城市：页面传入 region（用户选择的省份对应城市）→ 兜底 config.defaultCity；
  * 3. 预警数据按城市分别缓存（config.cacheMinutes 分钟），减少接口配额消耗；
- * 4. 坐标顺序注意：华风 q 为「纬度,经度」，高德 location 为「经度,纬度」。
+ * 4. 华风 q 坐标顺序为「纬度,经度」。
  * ================================================================
  */
 const config = __require('config');
@@ -38,7 +38,7 @@ function effectiveDataSource() {
     const ov = wx.getStorageSync(DATA_SOURCE_STORAGE_KEY);
     // 演示数据仅可通过 utils/config.js 手动切换，设置页不提供该选项；
     // 忽略历史残留的 mock 覆盖，避免界面被锁在演示模式
-    if (ov === 'weathercn' || ov === 'amap') {
+    if (ov === 'weathercn') {
       ds = ov;
     }
   } catch (e) {
@@ -568,66 +568,6 @@ function weathercnFetchWeather(apiKey, host, locationKey) {
   });
 }
 
-/* ---------- 高德开放平台（免费备选） ---------- */
-
-function amapResolveAdcode(key, host, region) {
-  if (region.adcode) {
-    return Promise.resolve(region.adcode);
-  }
-  // 兜底：按城市名查询行政区划编码
-  const url =
-    host + '/v3/config/district?keywords=' + encodeURIComponent(region.city) +
-    '&subdistrict=0&extensions=base&key=' + key;
-  return request(url).then(function (data) {
-    if (
-      data && data.status === '1' &&
-      data.districts && data.districts[0] && data.districts[0].adcode
-    ) {
-      return data.districts[0].adcode;
-    }
-    throw new Error('城市「' + region.city + '」adcode 解析失败');
-  });
-}
-
-function amapFetchWeather(key, host, adcode, cityName) {
-  const url =
-    host + '/v3/weather/weatherInfo?key=' + key +
-    '&city=' + adcode + '&extensions=all';
-  return request(url).then(function (data) {
-    if (!data || data.status !== '1') {
-      throw new Error((data && data.info) || '高德天气接口返回失败');
-    }
-    const lives = data.lives && data.lives[0];
-    const weather = lives
-      ? {
-          weather: lives.weather || '',
-          temp: lives.temperature ? lives.temperature + '℃' : '',
-          wind: (lives.winddirection || '') + (lives.windpower || '') + '级',
-          aqi: ''
-        }
-      : null;
-    // 预警：高德当前文档未保证返回 alerts，尽力解析
-    const alerts = Array.isArray(data.alerts)
-      ? data.alerts.map(function (a) {
-          return {
-            id: 'amap_' + (a.id || (a.type + '_' + (a.pubtime || Date.now()))),
-            type: a.type || '气象',
-            level: normalizeLevelKey(a.level),
-            title: a.title || (a.type + '预警'),
-            area: stringifyArea(a.area, cityName) || '待补充',
-            time: formatTime(a.pubtime),
-            source: '高德天气',
-            status: '生效中',
-            duration: formatTime(a.pubtime) + (a.endtime ? ' 至 ' + formatTime(a.endtime) : ''),
-            content: a.text || '',
-            defense: splitDefense(a.text || '')
-          };
-        })
-      : [];
-    return { weather: weather, alerts: alerts };
-  });
-}
-
 /* ---------- 统一入口 ---------- */
 
 /**
@@ -703,64 +643,6 @@ function fetchAll(region) {
             alerts: [],
             weather: null,
             errorCode: err && err.code || 'unavailable',
-            error: err && err.message ? err.message : '预警获取失败'
-          });
-        });
-      return;
-    }
-
-    if (source === 'amap') {
-      const cfg = config.amap;
-      if (!cfg.key) {
-        resolve({
-          ok: false,
-          mock: false,
-          source: '高德天气API',
-          alerts: [],
-          weather: null,
-          error: '未配置高德 Key，请在 js/config.js 中填写'
-        });
-        return;
-      }
-      const cachedAlerts = readCache(alertCacheKey);
-      if (cachedAlerts) {
-        rememberAlerts(cachedAlerts);
-        resolve({
-          ok: true,
-          mock: false,
-          source: '高德天气API',
-          alerts: cachedAlerts,
-          weather: readCache(weatherCacheKey, config.cacheWeatherMinutes),
-          fromCache: true,
-          fetchedAt: cacheTime(alertCacheKey)
-        });
-        return;
-      }
-      amapResolveAdcode(cfg.key, cfg.host, r)
-        .then(function (adcode) {
-          return amapFetchWeather(cfg.key, cfg.host, adcode, r.city);
-        })
-        .then(function (result) {
-          writeAlertCache(alertCacheKey, result.alerts);
-          if (result.weather) {
-            writeCache(weatherCacheKey, result.weather);
-          }
-          resolve({
-            ok: true,
-            mock: false,
-            source: '高德天气API',
-            alerts: result.alerts,
-            weather: result.weather,
-            fetchedAt: cacheTime(alertCacheKey) || Date.now()
-          });
-        })
-        .catch(function (err) {
-          resolve({
-            ok: false,
-            mock: false,
-            source: '高德天气API',
-            alerts: [],
-            weather: null,
             error: err && err.message ? err.message : '预警获取失败'
           });
         });

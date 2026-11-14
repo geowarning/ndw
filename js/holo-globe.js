@@ -127,17 +127,13 @@
     })();
 
     /* 小型自然灾害动画点（地震/台风/暴雨/山火/洪水） */
-    var disasterData = [
-      { lng: 141.5, lat: 38.3, type: 'quake' },
-      { lng: 124.0, lat: 13.0, type: 'typhoon' },
-      { lng: -90.0, lat: 35.0, type: 'storm' },
-      { lng: 140.0, lat: -25.0, type: 'fire' },
-      { lng: -71.0, lat: -30.0, type: 'quake' },
-      { lng: 106.0, lat: -7.0, type: 'flood' }
-    ];
-    var disasterVec = disasterData.map(function (d) {
-      return { type: d.type, p: ll(d.lng, d.lat) };
-    });
+    var disasterVec = [];
+    function setDisasters(list) {
+      disasterVec = (list || []).filter(function (d) { return isFinite(d.lng) && isFinite(d.lat); }).map(function (d) {
+        return { type: d.type, p: ll(d.lng, d.lat) };
+      });
+      dirty = true;
+    }
 
     function resize() {
       var hero = cv.closest('.hero');
@@ -425,6 +421,7 @@
       drawDisasters(time);
 
       /* 城市脉冲 */
+      var labels = 0;
       cities.forEach(function (c) {
         var pp = project(c.x, c.y, c.z);
         if (pp.depth < 0.05) { return; }
@@ -442,7 +439,12 @@
         ctx.beginPath();
         ctx.arc(pp.sx, pp.sy, 2.6 + front * 1.6, 0, Math.PI * 2);
         ctx.fill();
-        /* The decorative background leaves labels to the interactive map. */
+        if (c.label && pp.depth > .35 && labels < 10) {
+          ctx.font = '11px system-ui, sans-serif';
+          ctx.fillStyle = '#e5f3ec';
+          ctx.fillText(c.label.length > 36 ? c.label.slice(0, 35) + '…' : c.label, pp.sx + 9, pp.sy - 8);
+          labels++;
+        }
         ctx.restore();
       });
 
@@ -542,6 +544,7 @@
 
     return {
       setCities: setCities,
+      setDisasters: setDisasters,
       resize: resize,
       setPaused: function (b) { paused = b; dirty = true; }
     };

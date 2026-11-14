@@ -1,0 +1,3255 @@
+{
+  "source": "IFRC GO public country directory",
+  "sourceUrl": "https://github.com/IFRCGo/go-api/blob/df5c57512bed7d55aa4042790e0b070f50b579f9/api/fixtures/Countries.json",
+  "retrievedAt": "2026-11-14",
+  "records": [
+    {
+      "region": "Ukraine",
+      "iso": "UA",
+      "iso3": "UKR",
+      "organization": "Ukrainian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/ukrainian-red-cross-society",
+      "website": "http://www.redcross.org.ua/",
+      "aliases": [
+        "Ukraine",
+        "Ucrania",
+        "Ukraine",
+        "أوكرانيا"
+      ]
+    },
+    {
+      "region": "United Arab Emirates",
+      "iso": "AE",
+      "iso3": "ARE",
+      "organization": "Red Crescent Society of the United Arab Emirates",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-united-arab-emirates",
+      "website": "http://www.rcuae.ae/",
+      "aliases": [
+        "United Arab Emirates",
+        "Emiratos Árabes Unidos",
+        "Émirats arabes unis",
+        "الإمارات العربية المتحدة"
+      ]
+    },
+    {
+      "region": "United Kingdom",
+      "iso": "GB",
+      "iso3": "GBR",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/british-red-cross",
+      "website": "http://www.redcross.org.uk/",
+      "aliases": [
+        "United Kingdom",
+        "Reino Unido",
+        "Royaume-Uni",
+        "المملكة المتحدة"
+      ]
+    },
+    {
+      "region": "United States",
+      "iso": "US",
+      "iso3": "USA",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/american-red-cross",
+      "website": "http://www.redcross.org",
+      "aliases": [
+        "United States",
+        "Estados Unidos de América",
+        "États-Unis d’Amérique",
+        "الولايات المتحدة الأمريكية"
+      ]
+    },
+    {
+      "region": "Uruguay",
+      "iso": "UY",
+      "iso3": "URY",
+      "organization": "Uruguayan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/uruguayan-red-cross",
+      "website": "https://cruzroja.org.uy/",
+      "aliases": [
+        "Uruguay",
+        "Uruguay",
+        "Uruguay",
+        "اوروغواي"
+      ]
+    },
+    {
+      "region": "Uzbekistan",
+      "iso": "UZ",
+      "iso3": "UZB",
+      "organization": "Red Crescent Society of Uzbekistan",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-uzbekistan",
+      "website": "http://www.redcrescent.uz/",
+      "aliases": [
+        "Uzbekistan",
+        "Uzbekistán",
+        "Ouzbékistan",
+        "أوزبكستان"
+      ]
+    },
+    {
+      "region": "Vanuatu",
+      "iso": "VU",
+      "iso3": "VUT",
+      "organization": "Vanuatu Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/vanuatu-red-cross-society",
+      "website": "http://www.vanuaturedcross.org/",
+      "aliases": [
+        "Vanuatu",
+        "Vanuatu",
+        "Vanuatu",
+        "فانواتو"
+      ]
+    },
+    {
+      "region": "Venezuela",
+      "iso": "VE",
+      "iso3": "VEN",
+      "organization": "Venezuelan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/venezuelan-red-cross",
+      "website": "http://www.cruzrojavenezolana.org/",
+      "aliases": [
+        "Venezuela",
+        "Venezuela",
+        "Venezuela",
+        "فنزويلا"
+      ]
+    },
+    {
+      "region": "Yemen",
+      "iso": "YE",
+      "iso3": "YEM",
+      "organization": "Yemen Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/yemen-red-crescent-society",
+      "website": "",
+      "aliases": [
+        "Yemen",
+        "Yemen",
+        "Yémen",
+        "اليمن"
+      ]
+    },
+    {
+      "region": "Zambia",
+      "iso": "ZM",
+      "iso3": "ZMB",
+      "organization": "Zambia Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/zambia-red-cross-society",
+      "website": "http://www.zamcross.org.zm/",
+      "aliases": [
+        "Zambia",
+        "Zambia",
+        "Zambie",
+        "زامبيا"
+      ]
+    },
+    {
+      "region": "Zimbabwe",
+      "iso": "ZW",
+      "iso3": "ZWE",
+      "organization": "Zimbabwe Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/cruz-roja-de-zimbabue",
+      "website": "http://www.redcrosszim.org.zw/",
+      "aliases": [
+        "Zimbabwe",
+        "Zimbabwe",
+        "Zimbabwe",
+        "زمبابوي"
+      ]
+    },
+    {
+      "region": "Afghanistan",
+      "iso": "AF",
+      "iso3": "AFG",
+      "organization": "Afghan Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/afghan-red-crescent",
+      "website": "http://www.arcs.org.af/",
+      "aliases": [
+        "Afghanistan",
+        "Afganistán",
+        "Afghanistan",
+        "أفغانستان"
+      ]
+    },
+    {
+      "region": "Albania",
+      "iso": "AL",
+      "iso3": "ALB",
+      "organization": "Albanian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/albanian-red-cross",
+      "website": "http://www.kksh.org.al/",
+      "aliases": [
+        "Albania",
+        "Albania",
+        "Albanie",
+        "ألبانيا"
+      ]
+    },
+    {
+      "region": "Algeria",
+      "iso": "DZ",
+      "iso3": "DZA",
+      "organization": "Algerian Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/algerian-red-crescent",
+      "website": "http://www.cra-algerie.org/",
+      "aliases": [
+        "Algeria",
+        "Argelia",
+        "Algérie",
+        "الجزائر"
+      ]
+    },
+    {
+      "region": "Andorra",
+      "iso": "AD",
+      "iso3": "AND",
+      "organization": "Andorran Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/andorran-red-cross",
+      "website": "http://www.creuroja.ad/",
+      "aliases": [
+        "Andorra",
+        "Andorra",
+        "Andorre",
+        "أندورا"
+      ]
+    },
+    {
+      "region": "Angola",
+      "iso": "AO",
+      "iso3": "AGO",
+      "organization": "Angola Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/angola-red-cross",
+      "website": "http://www.cruzvermelha.og.ao",
+      "aliases": [
+        "Angola",
+        "Angola",
+        "Angola",
+        "أنغولا"
+      ]
+    },
+    {
+      "region": "Antigua and Barbuda",
+      "iso": "AG",
+      "iso3": "ATG",
+      "organization": "Antigua and Barbuda Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/antigua-and-barbuda-red-cross",
+      "website": "",
+      "aliases": [
+        "Antigua and Barbuda",
+        "Antigua y Barbuda",
+        "Antigua-et-Barbuda",
+        "أنتيغوا وبربودا"
+      ]
+    },
+    {
+      "region": "Argentina",
+      "iso": "AR",
+      "iso3": "ARG",
+      "organization": "Argentine Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/argentine-red-cross",
+      "website": "http://www.cruzroja.org.ar/",
+      "aliases": [
+        "Argentina",
+        "Argentina",
+        "Argentine",
+        "الأرجنتين"
+      ]
+    },
+    {
+      "region": "Armenia",
+      "iso": "AM",
+      "iso3": "ARM",
+      "organization": "Armenian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/armenian-red-cross-society",
+      "website": "http://www.redcross.am/",
+      "aliases": [
+        "Armenia",
+        "Armenia",
+        "Arménie",
+        "أرمينيا"
+      ]
+    },
+    {
+      "region": "Australia",
+      "iso": "AU",
+      "iso3": "AUS",
+      "organization": "Australian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/australian-red-cross",
+      "website": "http://www.redcross.org.au/",
+      "aliases": [
+        "Australia",
+        "Australia",
+        "Australie",
+        "أستراليا"
+      ]
+    },
+    {
+      "region": "Austria",
+      "iso": "AT",
+      "iso3": "AUT",
+      "organization": "Austrian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/austrian-red-cross",
+      "website": "http://www.roteskreuz.at/",
+      "aliases": [
+        "Austria",
+        "Austria",
+        "Autriche",
+        "النمسا"
+      ]
+    },
+    {
+      "region": "Bahamas",
+      "iso": "BS",
+      "iso3": "BHS",
+      "organization": "The Bahamas Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/bahamas-red-cross-society",
+      "website": "http://www.bahamasredcross.org",
+      "aliases": [
+        "Bahamas",
+        "Bahamas",
+        "Bahamas",
+        "باهاماس"
+      ]
+    },
+    {
+      "region": "Bahrain",
+      "iso": "BH",
+      "iso3": "BHR",
+      "organization": "Bahrain Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/bahrain-red-crescent-society",
+      "website": "http://www.rcsbahrain.org/",
+      "aliases": [
+        "Bahrain",
+        "Bahrein",
+        "Bahreïn",
+        "البحرين"
+      ]
+    },
+    {
+      "region": "Bangladesh",
+      "iso": "BD",
+      "iso3": "BGD",
+      "organization": "Bangladesh Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/bangladesh-red-crescent-society",
+      "website": "http://www.bdrcs.org/",
+      "aliases": [
+        "Bangladesh",
+        "Bangladesh",
+        "Bangladesh",
+        "بنغلاديش"
+      ]
+    },
+    {
+      "region": "Barbados",
+      "iso": "BB",
+      "iso3": "BRB",
+      "organization": "The Barbados Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/barbados-red-cross-society",
+      "website": "https://www.barbadosredcross.com/",
+      "aliases": [
+        "Barbados",
+        "Barbados",
+        "Barbade",
+        "بربادوس"
+      ]
+    },
+    {
+      "region": "Belarus",
+      "iso": "BY",
+      "iso3": "BLR",
+      "organization": "Belarus Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/belarus-red-cross",
+      "website": "http://www.redcross.by/",
+      "aliases": [
+        "Belarus",
+        "Balarús",
+        "Bélarus",
+        "بيلاروس"
+      ]
+    },
+    {
+      "region": "Belgium",
+      "iso": "BE",
+      "iso3": "BEL",
+      "organization": "Belgian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/belgian-red-cross",
+      "website": "http://www.redcross.be/",
+      "aliases": [
+        "Belgium",
+        "Bélgica",
+        "Belgique",
+        "بلجيكا"
+      ]
+    },
+    {
+      "region": "Belize",
+      "iso": "BZ",
+      "iso3": "BLZ",
+      "organization": "Belize Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/belize-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Belize",
+        "Belice",
+        "Belize",
+        "بليز"
+      ]
+    },
+    {
+      "region": "Bolivia",
+      "iso": "BO",
+      "iso3": "BOL",
+      "organization": "Bolivian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/bolivian-red-cross",
+      "website": "http://www.cruzrojaboliviana.org/",
+      "aliases": [
+        "Bolivia",
+        "Bolivia",
+        "Bolivie",
+        "بوليفيا"
+      ]
+    },
+    {
+      "region": "Botswana",
+      "iso": "BW",
+      "iso3": "BWA",
+      "organization": "Botswana Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/botswana-red-cross-society",
+      "website": "http://www.botswanaredcross.org.bw/",
+      "aliases": [
+        "Botswana",
+        "Botswana",
+        "Botswana",
+        "بوتسوانا"
+      ]
+    },
+    {
+      "region": "Brazil",
+      "iso": "BR",
+      "iso3": "BRA",
+      "organization": "Brazilian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/brazilian-red-cross",
+      "website": "http://www.cruzvermelha.org.br/",
+      "aliases": [
+        "Brazil",
+        "Brasil",
+        "Brésil",
+        "البرازيل"
+      ]
+    },
+    {
+      "region": "Brunei Darussalam",
+      "iso": "BN",
+      "iso3": "BRN",
+      "organization": "Brunei Darussalam Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/brunei-darussalam-red-crescent-society",
+      "website": "",
+      "aliases": [
+        "Brunei Darussalam",
+        "Brunei Darussalam",
+        "Brunéi Darussalam",
+        "برونى دار السلام"
+      ]
+    },
+    {
+      "region": "Bulgaria",
+      "iso": "BG",
+      "iso3": "BGR",
+      "organization": "Bulgarian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/bulgarian-red-cross",
+      "website": "http://www.redcross.bg/",
+      "aliases": [
+        "Bulgaria",
+        "Bulgaria",
+        "Bulgarie",
+        "بلغاريا"
+      ]
+    },
+    {
+      "region": "Burundi",
+      "iso": "BI",
+      "iso3": "BDI",
+      "organization": "Burundi Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/burundi-red-cross",
+      "website": "http://croixrouge.bi/",
+      "aliases": [
+        "Burundi",
+        "Burundi",
+        "Burundi",
+        "بوروندي"
+      ]
+    },
+    {
+      "region": "Cambodia",
+      "iso": "KH",
+      "iso3": "KHM",
+      "organization": "Cambodian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/cambodian-red-cross-society",
+      "website": "http://www.redcross.org.kh/",
+      "aliases": [
+        "Cambodia",
+        "Camboya",
+        "Cambodge",
+        "كمبوديا"
+      ]
+    },
+    {
+      "region": "Cameroon",
+      "iso": "CM",
+      "iso3": "CMR",
+      "organization": "Cameroon Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/cameroon-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Cameroon",
+        "Camerún",
+        "Cameroun",
+        "الكاميرون"
+      ]
+    },
+    {
+      "region": "Canada",
+      "iso": "CA",
+      "iso3": "CAN",
+      "organization": "The Canadian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/canadian-red-cross-society",
+      "website": "http://www.redcross.ca/",
+      "aliases": [
+        "Canada",
+        "Canadá",
+        "Canada",
+        "كندا"
+      ]
+    },
+    {
+      "region": "Cabo Verde",
+      "iso": "CV",
+      "iso3": "CPV",
+      "organization": "Red Cross of Cape Verde",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-cape-verde",
+      "website": "",
+      "aliases": [
+        "Cabo Verde",
+        "Cabo Verde",
+        "Cap-Vert",
+        "الرأس الأخضر"
+      ]
+    },
+    {
+      "region": "Central African Republic",
+      "iso": "CF",
+      "iso3": "CAF",
+      "organization": "Central African Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/central-african-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Central African Republic",
+        "República Centroafricana",
+        "République centrafricaine",
+        "جمهورية إفريقيا الوسطى"
+      ]
+    },
+    {
+      "region": "Chad",
+      "iso": "TD",
+      "iso3": "TCD",
+      "organization": "Red Cross of Chad",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-chad",
+      "website": "",
+      "aliases": [
+        "Chad",
+        "Chad",
+        "Tchad",
+        "تشاد"
+      ]
+    },
+    {
+      "region": "Chile",
+      "iso": "CL",
+      "iso3": "CHL",
+      "organization": "Chilean Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/chilean-red-cross",
+      "website": "http://www.cruzroja.cl/",
+      "aliases": [
+        "Chile",
+        "Chile",
+        "Chili",
+        "شيلي"
+      ]
+    },
+    {
+      "region": "China",
+      "iso": "CN",
+      "iso3": "CHN",
+      "organization": "Red Cross Society of China",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-china",
+      "website": "http://www.redcross.org.cn/",
+      "aliases": [
+        "China",
+        "China",
+        "Chine",
+        "الصين"
+      ]
+    },
+    {
+      "region": "Colombia",
+      "iso": "CO",
+      "iso3": "COL",
+      "organization": "Colombian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/colombian-red-cross",
+      "website": "http://www.cruzrojacolombiana.org/",
+      "aliases": [
+        "Colombia",
+        "Colombia",
+        "Colombie",
+        "كولومبيا"
+      ]
+    },
+    {
+      "region": "Costa Rica",
+      "iso": "CR",
+      "iso3": "CRI",
+      "organization": "Costa Rican Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/costa-rican-red-cross",
+      "website": "http://www.cruzroja.or.cr/",
+      "aliases": [
+        "Costa Rica",
+        "Costa Rica",
+        "Costa Rica",
+        "كوستاريكا"
+      ]
+    },
+    {
+      "region": "Croatia",
+      "iso": "HR",
+      "iso3": "HRV",
+      "organization": "Croatian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/croatian-red-cross",
+      "website": "http://www.hck.hr/",
+      "aliases": [
+        "Croatia",
+        "Croacia",
+        "Croatie",
+        "كرواتيا"
+      ]
+    },
+    {
+      "region": "Cuba",
+      "iso": "CU",
+      "iso3": "CUB",
+      "organization": "Cuban Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/cuban-red-cross",
+      "website": "http://www.sld.cu/sitios/cruzroja/",
+      "aliases": [
+        "Cuba",
+        "Cuba",
+        "Cuba",
+        "كوبا"
+      ]
+    },
+    {
+      "region": "Czech Republic",
+      "iso": "CZ",
+      "iso3": "CZE",
+      "organization": "Czech Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/czech-red-cross",
+      "website": "http://www.cck-cr.cz/",
+      "aliases": [
+        "Czech Republic",
+        "República Checa",
+        "République tchèque",
+        "الجمهورية التشيكية"
+      ]
+    },
+    {
+      "region": "Denmark",
+      "iso": "DK",
+      "iso3": "DNK",
+      "organization": "Danish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/danish-red-cross",
+      "website": "http://www.drk.dk/",
+      "aliases": [
+        "Denmark",
+        "Dinamarca",
+        "Danemark",
+        "الدانمرك"
+      ]
+    },
+    {
+      "region": "Djibouti",
+      "iso": "DJ",
+      "iso3": "DJI",
+      "organization": "Djibouti Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-djibouti",
+      "website": "http://www.cr-djib.org/",
+      "aliases": [
+        "Djibouti",
+        "Djibouti",
+        "Djibouti",
+        "جيبوتي"
+      ]
+    },
+    {
+      "region": "Dominica",
+      "iso": "DM",
+      "iso3": "DMA",
+      "organization": "Dominica Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/dominica-red-cross-society",
+      "website": "https://www.dominicaredcross.com",
+      "aliases": [
+        "Dominica",
+        "Dominica",
+        "Dominique",
+        "دومينيكا"
+      ]
+    },
+    {
+      "region": "Dominican Republic",
+      "iso": "DO",
+      "iso3": "DOM",
+      "organization": "Dominican Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/dominican-red-cross",
+      "website": "http://www.cruzroja.org.do/",
+      "aliases": [
+        "Dominican Republic",
+        "República Dominicana",
+        "République dominicaine",
+        "جمهورية الدومينيكان"
+      ]
+    },
+    {
+      "region": "Ecuador",
+      "iso": "EC",
+      "iso3": "ECU",
+      "organization": "Ecuadorian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/ecuadorian-red-cross",
+      "website": "http://www.cruzroja.org.ec/",
+      "aliases": [
+        "Ecuador",
+        "Ecuador",
+        "Équateur",
+        "الإكوادور"
+      ]
+    },
+    {
+      "region": "Egypt",
+      "iso": "EG",
+      "iso3": "EGY",
+      "organization": "Egyptian Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/egyptian-red-crescent-society",
+      "website": "http://www.egyptianrc.org/",
+      "aliases": [
+        "Egypt",
+        "Egipto",
+        "Égypte",
+        "مصر"
+      ]
+    },
+    {
+      "region": "El Salvador",
+      "iso": "SV",
+      "iso3": "SLV",
+      "organization": "Salvadorean Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/salvadorean-red-cross-society",
+      "website": "http://www.cruzrojasal.org.sv/",
+      "aliases": [
+        "El Salvador",
+        "El Salvador",
+        "El Salvador",
+        "السلفادور"
+      ]
+    },
+    {
+      "region": "Equatorial Guinea",
+      "iso": "GQ",
+      "iso3": "GNQ",
+      "organization": "Red Cross of Equatorial Guinea",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-equatorial-guinea",
+      "website": "",
+      "aliases": [
+        "Equatorial Guinea",
+        "Guinea Ecuatorial",
+        "Guinée équatoriale",
+        "غينيا الاستوائية"
+      ]
+    },
+    {
+      "region": "Estonia",
+      "iso": "EE",
+      "iso3": "EST",
+      "organization": "Estonian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/estonian-red-cross",
+      "website": "http://www.redcross.ee/",
+      "aliases": [
+        "Estonia",
+        "Estonia",
+        "Estonie",
+        "إستونيا"
+      ]
+    },
+    {
+      "region": "Ethiopia",
+      "iso": "ET",
+      "iso3": "ETH",
+      "organization": "Ethiopia Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/ethiopian-red-cross-society",
+      "website": "http://www.redcrosseth.org/",
+      "aliases": [
+        "Ethiopia",
+        "Etiopía",
+        "Éthiopie",
+        "إثيوبيا"
+      ]
+    },
+    {
+      "region": "Fiji",
+      "iso": "FJ",
+      "iso3": "FJI",
+      "organization": "The Fiji Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/fiji-red-cross-society",
+      "website": "http://www.redcross.com.fj/",
+      "aliases": [
+        "Fiji",
+        "Fiji",
+        "Fidji",
+        "فيجي"
+      ]
+    },
+    {
+      "region": "Finland",
+      "iso": "FI",
+      "iso3": "FIN",
+      "organization": "Finnish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/finnish-red-cross",
+      "website": "http://www.redcross.fi/",
+      "aliases": [
+        "Finland",
+        "Finlandia",
+        "Finlande",
+        "فنلندا"
+      ]
+    },
+    {
+      "region": "France",
+      "iso": "FR",
+      "iso3": "FRA",
+      "organization": "French Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/french-red-cross",
+      "website": "http://www.croix-rouge.fr/",
+      "aliases": [
+        "France",
+        "Francia",
+        "France",
+        "فرنسا"
+      ]
+    },
+    {
+      "region": "Gabon",
+      "iso": "GA",
+      "iso3": "GAB",
+      "organization": "Gabonese Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/gabonese-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Gabon",
+        "Gabón",
+        "Gabon",
+        "غابون"
+      ]
+    },
+    {
+      "region": "Gambia, Republic of The",
+      "iso": "GM",
+      "iso3": "GMB",
+      "organization": "The Gambia Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/gambia-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Gambia, Republic of The",
+        "Gambia, República de",
+        "Gambie, République de",
+        "جمهورية غامبيا"
+      ]
+    },
+    {
+      "region": "Georgia",
+      "iso": "GE",
+      "iso3": "GEO",
+      "organization": "Georgia Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-georgia",
+      "website": "http://www.redcross.ge/",
+      "aliases": [
+        "Georgia",
+        "Georgia",
+        "Géorgie",
+        "جورجيا"
+      ]
+    },
+    {
+      "region": "Germany",
+      "iso": "DE",
+      "iso3": "DEU",
+      "organization": "German Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/german-red-cross",
+      "website": "http://www.drk.de/",
+      "aliases": [
+        "Germany",
+        "Alemania",
+        "Allemagne",
+        "ألمانيا"
+      ]
+    },
+    {
+      "region": "Ghana",
+      "iso": "GH",
+      "iso3": "GHA",
+      "organization": "Ghana Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/ghana-red-cross-society",
+      "website": "https://redcrossghana.org/",
+      "aliases": [
+        "Ghana",
+        "Ghana",
+        "Ghana",
+        "غانا"
+      ]
+    },
+    {
+      "region": "Greece",
+      "iso": "GR",
+      "iso3": "GRC",
+      "organization": "Hellenic Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/hellenic-red-cross",
+      "website": "http://www.redcross.gr/",
+      "aliases": [
+        "Greece",
+        "Grecia",
+        "Grèce",
+        "اليونان"
+      ]
+    },
+    {
+      "region": "Grenada",
+      "iso": "GD",
+      "iso3": "GRD",
+      "organization": "Grenada Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/grenada-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Grenada",
+        "Granada",
+        "Grenade",
+        "غرينادا"
+      ]
+    },
+    {
+      "region": "Guatemala",
+      "iso": "GT",
+      "iso3": "GTM",
+      "organization": "Guatemalan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/guatemalan-red-cross",
+      "website": "https://www.cruzroja.gt/",
+      "aliases": [
+        "Guatemala",
+        "Guatemala",
+        "Guatemala",
+        "غواتيمالا"
+      ]
+    },
+    {
+      "region": "Guinea",
+      "iso": "GN",
+      "iso3": "GIN",
+      "organization": "Red Cross Society of Guinea",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-guinea",
+      "website": "",
+      "aliases": [
+        "Guinea",
+        "Guinea",
+        "Guinée",
+        "غينيا"
+      ]
+    },
+    {
+      "region": "Guyana",
+      "iso": "GY",
+      "iso3": "GUY",
+      "organization": "The Guyana Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/guyana-red-cross-society",
+      "website": "http://guyanaredcross.org.gy/",
+      "aliases": [
+        "Guyana",
+        "Guyana",
+        "Guyana",
+        "غويانا"
+      ]
+    },
+    {
+      "region": "Haiti",
+      "iso": "HT",
+      "iso3": "HTI",
+      "organization": "Haitian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/haiti-red-cross-society",
+      "website": "http://www.croixrouge.ht/",
+      "aliases": [
+        "Haiti",
+        "Haití",
+        "Haïti",
+        "هايتي"
+      ]
+    },
+    {
+      "region": "Honduras",
+      "iso": "HN",
+      "iso3": "HND",
+      "organization": "Honduran Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/honduran-red-cross",
+      "website": "http://www.cruzroja.org.hn/",
+      "aliases": [
+        "Honduras",
+        "Honduras",
+        "Honduras",
+        "هندوراس"
+      ]
+    },
+    {
+      "region": "Hungary",
+      "iso": "HU",
+      "iso3": "HUN",
+      "organization": "Hungarian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/hungarian-red-cross",
+      "website": "http://www.voroskereszt.hu/",
+      "aliases": [
+        "Hungary",
+        "Hungría",
+        "Hongrie",
+        "المجر"
+      ]
+    },
+    {
+      "region": "Iceland",
+      "iso": "IS",
+      "iso3": "ISL",
+      "organization": "Icelandic Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/icelandic-red-cross",
+      "website": "http://www.redcross.is/",
+      "aliases": [
+        "Iceland",
+        "Islandia",
+        "Islande",
+        "آيسلندا"
+      ]
+    },
+    {
+      "region": "India",
+      "iso": "IN",
+      "iso3": "IND",
+      "organization": "Indian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/indian-red-cross-society",
+      "website": "http://www.indianredcross.org/",
+      "aliases": [
+        "India",
+        "India",
+        "Inde",
+        "الهند"
+      ]
+    },
+    {
+      "region": "Indonesia",
+      "iso": "ID",
+      "iso3": "IDN",
+      "organization": "Indonesian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/indonesian-red-cross-society",
+      "website": "http://www.pmi.or.id",
+      "aliases": [
+        "Indonesia",
+        "Indonesia",
+        "Indonésie",
+        "إندونيسيا"
+      ]
+    },
+    {
+      "region": "Iraq",
+      "iso": "IQ",
+      "iso3": "IRQ",
+      "organization": "Iraqi Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/iraqi-red-crescent-society",
+      "website": "https://en.ircs.org.iq/",
+      "aliases": [
+        "Iraq",
+        "Iraq",
+        "Iraq",
+        "العراق"
+      ]
+    },
+    {
+      "region": "Ireland",
+      "iso": "IE",
+      "iso3": "IRL",
+      "organization": "Irish Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/irish-red-cross-society",
+      "website": "http://www.redcross.ie/",
+      "aliases": [
+        "Ireland",
+        "Irlanda",
+        "Irlande",
+        "آيرلندا"
+      ]
+    },
+    {
+      "region": "Italy",
+      "iso": "IT",
+      "iso3": "ITA",
+      "organization": "Italian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/italian-red-cross",
+      "website": "http://www.cri.it/",
+      "aliases": [
+        "Italy",
+        "Italia",
+        "Italie",
+        "إيطاليا"
+      ]
+    },
+    {
+      "region": "Jamaica",
+      "iso": "JM",
+      "iso3": "JAM",
+      "organization": "Jamaican Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/jamaica-red-cross",
+      "website": "https://www.jamaicaredcross.org/",
+      "aliases": [
+        "Jamaica",
+        "Jamaica",
+        "Jamaïque",
+        "جامايكا"
+      ]
+    },
+    {
+      "region": "Japan",
+      "iso": "JP",
+      "iso3": "JPN",
+      "organization": "Japanese Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/japanese-red-cross-society",
+      "website": "http://www.jrc.or.jp/",
+      "aliases": [
+        "Japan",
+        "Japón",
+        "Japon",
+        "اليابان"
+      ]
+    },
+    {
+      "region": "Jordan",
+      "iso": "JO",
+      "iso3": "JOR",
+      "organization": "Jordan National Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/jordan-national-red-crescent-society",
+      "website": "http://jnrcs.org/en",
+      "aliases": [
+        "Jordan",
+        "Jordania",
+        "Jordanie",
+        "الأردن"
+      ]
+    },
+    {
+      "region": "Kenya",
+      "iso": "KE",
+      "iso3": "KEN",
+      "organization": "Kenya Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/kenya-red-cross-society",
+      "website": "https://www.redcross.or.ke/",
+      "aliases": [
+        "Kenya",
+        "Kenya",
+        "Kenya",
+        "كينيا"
+      ]
+    },
+    {
+      "region": "Kiribati",
+      "iso": "KI",
+      "iso3": "KIR",
+      "organization": "Kiribati Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/kiribati-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Kiribati",
+        "Kiribati",
+        "Kiribati",
+        "كيريباتي"
+      ]
+    },
+    {
+      "region": "Kuwait",
+      "iso": "KW",
+      "iso3": "KWT",
+      "organization": "Kuwait Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/kuwait-red-crescent-society",
+      "website": "http://www.krcs.org.kw/",
+      "aliases": [
+        "Kuwait",
+        "Kuwait",
+        "Koweït",
+        "الكويت"
+      ]
+    },
+    {
+      "region": "Kyrgyzstan",
+      "iso": "KG",
+      "iso3": "KGZ",
+      "organization": "Red Crescent Society of Kyrgyzstan",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-kyrgyzstan",
+      "website": "http://www.krc.kg/",
+      "aliases": [
+        "Kyrgyzstan",
+        "Kirguistán",
+        "Kirghizistan",
+        "قيرغيزستان"
+      ]
+    },
+    {
+      "region": "Lao People's Democratic Republic",
+      "iso": "LA",
+      "iso3": "LAO",
+      "organization": "Lao Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/lao-red-cross",
+      "website": "http://www.laoredcross.org.la/",
+      "aliases": [
+        "Lao People's Democratic Republic",
+        "República Democrática Popular de Lao",
+        "République démocratique populaire lao",
+        "جمهورية لاوس الديمقراطية الشعبية"
+      ]
+    },
+    {
+      "region": "Latvia",
+      "iso": "LV",
+      "iso3": "LVA",
+      "organization": "Latvian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/latvian-red-cross",
+      "website": "http://www.redcross.lv/lv/",
+      "aliases": [
+        "Latvia",
+        "Letonia",
+        "Lettonie",
+        "لاتفيا"
+      ]
+    },
+    {
+      "region": "Lebanon",
+      "iso": "LB",
+      "iso3": "LBN",
+      "organization": "Lebanese Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/lebanese-red-cross",
+      "website": "http://www.redcross.org.lb/",
+      "aliases": [
+        "Lebanon",
+        "Líbano",
+        "Liban",
+        "لبنان"
+      ]
+    },
+    {
+      "region": "Lesotho",
+      "iso": "LS",
+      "iso3": "LSO",
+      "organization": "Lesotho Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/lesotho-red-cross-society",
+      "website": "http://www.redcross.org.ls/",
+      "aliases": [
+        "Lesotho",
+        "Lesotho",
+        "Lesotho",
+        "ليسوتو"
+      ]
+    },
+    {
+      "region": "Liberia",
+      "iso": "LR",
+      "iso3": "LBR",
+      "organization": "Liberian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/liberian-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Liberia",
+        "Liberia",
+        "Libéria",
+        "ليبيريا"
+      ]
+    },
+    {
+      "region": "Liechtenstein",
+      "iso": "LI",
+      "iso3": "LIE",
+      "organization": "Liechtenstein Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/liechtenstein-red-cross",
+      "website": "http://www.roteskreuz.li/",
+      "aliases": [
+        "Liechtenstein",
+        "Liechtenstein",
+        "Liechtenstein",
+        "ليخشتنشتاين"
+      ]
+    },
+    {
+      "region": "Lithuania",
+      "iso": "LT",
+      "iso3": "LTU",
+      "organization": "Lithuanian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/lithuanian-red-cross-society",
+      "website": "http://www.redcross.lt/",
+      "aliases": [
+        "Lithuania",
+        "Lituana",
+        "Lituanie",
+        "ليتوانيا"
+      ]
+    },
+    {
+      "region": "Luxembourg",
+      "iso": "LU",
+      "iso3": "LUX",
+      "organization": "Luxembourg Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/luxembourg-red-cross",
+      "website": "http://www.croix-rouge.lu/",
+      "aliases": [
+        "Luxembourg",
+        "Luxemburgo",
+        "Luxembourg",
+        "لوكسمبرغ"
+      ]
+    },
+    {
+      "region": "North Macedonia",
+      "iso": "MK",
+      "iso3": "MKD",
+      "organization": "Red Cross of The Republic of North Macedonia",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-republic-north-macedonia",
+      "website": "https://ckrm.org.mk/en/home/",
+      "aliases": [
+        "North Macedonia",
+        "Macedonia del Norte",
+        "Macédoine du Nord",
+        "مقدونيا الشمالية"
+      ]
+    },
+    {
+      "region": "Madagascar",
+      "iso": "MG",
+      "iso3": "MDG",
+      "organization": "Malagasy Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/malagasy-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Madagascar",
+        "Madagascar",
+        "Madagascar",
+        "مدغشقر"
+      ]
+    },
+    {
+      "region": "Malawi",
+      "iso": "MW",
+      "iso3": "MWI",
+      "organization": "Malawi Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/malawi-red-cross-society",
+      "website": "https://www.redcross.mw/",
+      "aliases": [
+        "Malawi",
+        "Malawi",
+        "Malawi",
+        "ملاوي"
+      ]
+    },
+    {
+      "region": "Malaysia",
+      "iso": "MY",
+      "iso3": "MYS",
+      "organization": "Malaysian Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/malaysian-red-crescent-society",
+      "website": "http://www.redcrescent.org.my/",
+      "aliases": [
+        "Malaysia",
+        "Malasia",
+        "Malaisie",
+        "ماليزيا"
+      ]
+    },
+    {
+      "region": "Mali",
+      "iso": "ML",
+      "iso3": "MLI",
+      "organization": "Mali Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/mali-red-cross",
+      "website": "",
+      "aliases": [
+        "Mali",
+        "Malí",
+        "Mali",
+        "مالي"
+      ]
+    },
+    {
+      "region": "Malta",
+      "iso": "MT",
+      "iso3": "MLT",
+      "organization": "Malta Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/malta-red-cross-society",
+      "website": "http://www.redcross.org.mt/",
+      "aliases": [
+        "Malta",
+        "Malta",
+        "Malte",
+        "مالطة"
+      ]
+    },
+    {
+      "region": "Mauritania",
+      "iso": "MR",
+      "iso3": "MRT",
+      "organization": "Mauritanian Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/mauritanian-red-crescent",
+      "website": "",
+      "aliases": [
+        "Mauritania",
+        "Mauritania",
+        "Mauritanie",
+        "موريتانيا"
+      ]
+    },
+    {
+      "region": "Mauritius",
+      "iso": "MU",
+      "iso3": "MUS",
+      "organization": "Mauritius Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/mauritius-red-cross-society",
+      "website": "http://www.redcrossmauritius.org/",
+      "aliases": [
+        "Mauritius",
+        "Mauricio",
+        "Maurice",
+        "موريشيوس"
+      ]
+    },
+    {
+      "region": "Mexico",
+      "iso": "MX",
+      "iso3": "MEX",
+      "organization": "Mexican Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/mexican-red-cross",
+      "website": "http://www.cruzrojamexicana.org.mx/",
+      "aliases": [
+        "Mexico",
+        "México",
+        "Mexique",
+        "المكسيك"
+      ]
+    },
+    {
+      "region": "Monaco",
+      "iso": "MC",
+      "iso3": "MCO",
+      "organization": "Red Cross of Monaco",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-monaco",
+      "website": "http://www.croix-rouge.mc/",
+      "aliases": [
+        "Monaco",
+        "Mónaco",
+        "Monaco",
+        "موناكو"
+      ]
+    },
+    {
+      "region": "Morocco",
+      "iso": "MA",
+      "iso3": "MAR",
+      "organization": "Moroccan Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/moroccan-red-crescent",
+      "website": "",
+      "aliases": [
+        "Morocco",
+        "Marruecos",
+        "Maroc",
+        "المغرب"
+      ]
+    },
+    {
+      "region": "Mozambique",
+      "iso": "MZ",
+      "iso3": "MOZ",
+      "organization": "Mozambique Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/mozambique-red-cross-society",
+      "website": "https://www.redcross.org.mz/",
+      "aliases": [
+        "Mozambique",
+        "Mozambique",
+        "Mozambique",
+        "موزامبيق"
+      ]
+    },
+    {
+      "region": "Myanmar",
+      "iso": "MM",
+      "iso3": "MMR",
+      "organization": "Myanmar Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/myanmar-red-cross-society",
+      "website": "https://www.redcross.org.mm/",
+      "aliases": [
+        "Myanmar",
+        "Myanmar",
+        "Myanmar",
+        "ميانمار"
+      ]
+    },
+    {
+      "region": "Namibia",
+      "iso": "NA",
+      "iso3": "NAM",
+      "organization": "Namibia Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/namibia-red-cross",
+      "website": "http://www.redcross.org.na/",
+      "aliases": [
+        "Namibia",
+        "Namibia",
+        "Namibie",
+        "ناميبيا"
+      ]
+    },
+    {
+      "region": "Nepal",
+      "iso": "NP",
+      "iso3": "NPL",
+      "organization": "Nepal Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/nepal-red-cross-society",
+      "website": "http://www.nrcs.org/",
+      "aliases": [
+        "Nepal",
+        "Nepal",
+        "Népal",
+        "نيبال"
+      ]
+    },
+    {
+      "region": "Netherlands",
+      "iso": "NL",
+      "iso3": "NLD",
+      "organization": "The Netherlands Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/netherlands-red-cross",
+      "website": "http://www.rodekruis.nl/",
+      "aliases": [
+        "Netherlands",
+        "Países Bajos",
+        "Pays-Bas",
+        "هولندا"
+      ]
+    },
+    {
+      "region": "New Zealand",
+      "iso": "NZ",
+      "iso3": "NZL",
+      "organization": "New Zealand Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/new-zealand-red-cross",
+      "website": "http://www.redcross.org.nz/",
+      "aliases": [
+        "New Zealand",
+        "Nueva Zelanda",
+        "Nouvelle-Zélande",
+        "نيوزيلندا"
+      ]
+    },
+    {
+      "region": "Nicaragua",
+      "iso": "NI",
+      "iso3": "NIC",
+      "organization": "Nicaraguan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/nicaraguan-red-cross",
+      "website": "https://cruzrojanicaraguense.org/",
+      "aliases": [
+        "Nicaragua",
+        "Nicaragua",
+        "Nicaragua",
+        "نيكاراغوا"
+      ]
+    },
+    {
+      "region": "Niger",
+      "iso": "NE",
+      "iso3": "NER",
+      "organization": "Red Cross Society of Niger",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-niger",
+      "website": "",
+      "aliases": [
+        "Niger",
+        "Níger",
+        "Niger",
+        "النيجر"
+      ]
+    },
+    {
+      "region": "Nigeria",
+      "iso": "NG",
+      "iso3": "NGA",
+      "organization": "Nigerian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/nigerian-red-cross-society",
+      "website": "https://www.redcrossnigeria.org/",
+      "aliases": [
+        "Nigeria",
+        "Nigeria",
+        "Nigéria",
+        "نيجيريا"
+      ]
+    },
+    {
+      "region": "Norway",
+      "iso": "NO",
+      "iso3": "NOR",
+      "organization": "Norwegian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/norwegian-red-cross",
+      "website": "http://www.redcross.no/",
+      "aliases": [
+        "Norway",
+        "Noruega",
+        "Norvège",
+        "النرويج"
+      ]
+    },
+    {
+      "region": "Palau",
+      "iso": "PW",
+      "iso3": "PLW",
+      "organization": "Palau Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/palau-red-cross-society",
+      "website": "http://palauredcross.org/",
+      "aliases": [
+        "Palau",
+        "Palau",
+        "Palaos",
+        "بالاو"
+      ]
+    },
+    {
+      "region": "Pakistan",
+      "iso": "PK",
+      "iso3": "PAK",
+      "organization": "Pakistan Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/pakistan-red-crescent",
+      "website": "http://www.prcs.org.pk/",
+      "aliases": [
+        "Pakistan",
+        "Pakistán",
+        "Pakistan",
+        "باكستان"
+      ]
+    },
+    {
+      "region": "Panama",
+      "iso": "PA",
+      "iso3": "PAN",
+      "organization": "Red Cross Society of Panama",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-panama",
+      "website": "https://www.cruzroja.org.pa/",
+      "aliases": [
+        "Panama",
+        "Panamá",
+        "Panama",
+        "بنما"
+      ]
+    },
+    {
+      "region": "Papua New Guinea",
+      "iso": "PG",
+      "iso3": "PNG",
+      "organization": "Papua New Guinea Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/papua-new-guinea-red-cross-society",
+      "website": "http://www.redcross.org.pg/",
+      "aliases": [
+        "Papua New Guinea",
+        "Papua Nueva Guinea",
+        "Papouasie-Nouvelle-Guinée",
+        "بابوا غينيا الجديدة"
+      ]
+    },
+    {
+      "region": "Paraguay",
+      "iso": "PY",
+      "iso3": "PRY",
+      "organization": "Paraguayan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/paraguayan-red-cross",
+      "website": "http://www.cruzroja.org.py/",
+      "aliases": [
+        "Paraguay",
+        "Paraguay",
+        "Paraguay",
+        "باراغواي"
+      ]
+    },
+    {
+      "region": "Peru",
+      "iso": "PE",
+      "iso3": "PER",
+      "organization": "Peruvian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/peruvian-red-cross",
+      "website": "http://www.cruzroja.org.pe/",
+      "aliases": [
+        "Peru",
+        "Perú",
+        "Pérou",
+        "بيرو"
+      ]
+    },
+    {
+      "region": "Philippines",
+      "iso": "PH",
+      "iso3": "PHL",
+      "organization": "Philippine Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/philippine-red-cross",
+      "website": "http://www.redcross.org.ph/",
+      "aliases": [
+        "Philippines",
+        "Filipinas",
+        "Philippines",
+        "الفلبين"
+      ]
+    },
+    {
+      "region": "Portugal",
+      "iso": "PT",
+      "iso3": "PRT",
+      "organization": "Portuguese Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/portuguese-red-cross",
+      "website": "http://www.cruzvermelha.org.pt",
+      "aliases": [
+        "Portugal",
+        "Portugal",
+        "Portugal",
+        "البرتغال"
+      ]
+    },
+    {
+      "region": "Qatar",
+      "iso": "QA",
+      "iso3": "QAT",
+      "organization": "Qatar Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/qatar-red-crescent-society",
+      "website": "http://www.qrcs.org.qa/",
+      "aliases": [
+        "Qatar",
+        "Qatar",
+        "Qatar",
+        "قطر"
+      ]
+    },
+    {
+      "region": "Romania",
+      "iso": "RO",
+      "iso3": "ROU",
+      "organization": "Romanian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/romanian-red-cross",
+      "website": "http://www.crucearosie.ro/",
+      "aliases": [
+        "Romania",
+        "Rumania",
+        "Roumanie",
+        "رومانيا"
+      ]
+    },
+    {
+      "region": "Russian Federation",
+      "iso": "RU",
+      "iso3": "RUS",
+      "organization": "The Russian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/russian-red-cross-society",
+      "website": "http://www.redcross.ru/",
+      "aliases": [
+        "Russian Federation",
+        "Federación de Rusia",
+        "Fédération de Russie",
+        "اتحاد روسيا"
+      ]
+    },
+    {
+      "region": "Rwanda",
+      "iso": "RW",
+      "iso3": "RWA",
+      "organization": "Rwandan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/rwandan-red-cross",
+      "website": "http://www.rwandaredcross.org/",
+      "aliases": [
+        "Rwanda",
+        "Rwanda",
+        "Rwanda",
+        "رواندا"
+      ]
+    },
+    {
+      "region": "Samoa",
+      "iso": "WS",
+      "iso3": "WSM",
+      "organization": "Samoa Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/samoa-red-cross-society",
+      "website": "http://www.redcross.org.ws/",
+      "aliases": [
+        "Samoa",
+        "Samoa",
+        "Samoa",
+        "ساموا"
+      ]
+    },
+    {
+      "region": "Saudi Arabia",
+      "iso": "SA",
+      "iso3": "SAU",
+      "organization": "Saudi Red Crescent Authority",
+      "directory": "https://www.ifrc.org/national-societies-directory/saudi-red-crescent-authority",
+      "website": "http://www.srcs.org.sa/",
+      "aliases": [
+        "Saudi Arabia",
+        "Arabia Saudita",
+        "Arabie saoudite",
+        "المملكة العربية السعودية"
+      ]
+    },
+    {
+      "region": "Senegal",
+      "iso": "SN",
+      "iso3": "SEN",
+      "organization": "Senegalese Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/senegalese-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Senegal",
+        "Senegal",
+        "Sénégal",
+        "السنغال"
+      ]
+    },
+    {
+      "region": "Seychelles",
+      "iso": "SC",
+      "iso3": "SYC",
+      "organization": "Seychelles Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/seychelles-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Seychelles",
+        "Seychelles",
+        "Seychelles",
+        "سيشيل"
+      ]
+    },
+    {
+      "region": "Sierra Leone",
+      "iso": "SL",
+      "iso3": "SLE",
+      "organization": "Sierra Leone Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/sierra-leone-red-cross-society",
+      "website": "http://sierraleoneredcross.org/",
+      "aliases": [
+        "Sierra Leone",
+        "Sierra Leona",
+        "Sierra Leone",
+        "سيراليون"
+      ]
+    },
+    {
+      "region": "Singapore",
+      "iso": "SG",
+      "iso3": "SGP",
+      "organization": "Singapore Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/singapore-red-cross-society",
+      "website": "http://www.redcross.org.sg/",
+      "aliases": [
+        "Singapore",
+        "Singapur",
+        "Singapour",
+        "سنغافورة"
+      ]
+    },
+    {
+      "region": "Slovakia",
+      "iso": "SK",
+      "iso3": "SVK",
+      "organization": "Slovak Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/slovak-red-cross",
+      "website": "http://www.redcross.sk/",
+      "aliases": [
+        "Slovakia",
+        "Eslovaquia",
+        "Slovaquie",
+        "سلوفاكيا"
+      ]
+    },
+    {
+      "region": "Slovenia",
+      "iso": "SI",
+      "iso3": "SVN",
+      "organization": "Slovenian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/slovenian-red-cross",
+      "website": "http://www.rks.si/",
+      "aliases": [
+        "Slovenia",
+        "Eslovenia",
+        "Slovénie",
+        "سلوفينيا"
+      ]
+    },
+    {
+      "region": "Solomon Islands",
+      "iso": "SB",
+      "iso3": "SLB",
+      "organization": "The Solomon Islands Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/solomon-islands-red-cross",
+      "website": "",
+      "aliases": [
+        "Solomon Islands",
+        "Islas Salomón",
+        "Îles Salomon",
+        "جزر سليمان"
+      ]
+    },
+    {
+      "region": "Somalia",
+      "iso": "SO",
+      "iso3": "SOM",
+      "organization": "Somali Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/somali-red-crescent-society",
+      "website": "",
+      "aliases": [
+        "Somalia",
+        "Somalia",
+        "Somalie",
+        "الصومال"
+      ]
+    },
+    {
+      "region": "South Africa",
+      "iso": "ZA",
+      "iso3": "ZAF",
+      "organization": "The South African Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/south-african-red-cross-society",
+      "website": "http://www.redcross.org.za/",
+      "aliases": [
+        "South Africa",
+        "Sudáfrica",
+        "Afrique du Sud",
+        "جنوب إفريقيا"
+      ]
+    },
+    {
+      "region": "Spain",
+      "iso": "ES",
+      "iso3": "ESP",
+      "organization": "Spanish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/spanish-red-cross",
+      "website": "http://www.cruzroja.es/",
+      "aliases": [
+        "Spain",
+        "España",
+        "Espagne",
+        "إسبانيا"
+      ]
+    },
+    {
+      "region": "Sri Lanka",
+      "iso": "LK",
+      "iso3": "LKA",
+      "organization": "The Sri Lanka Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/sri-lanka-red-cross-society",
+      "website": "http://www.redcross.lk/",
+      "aliases": [
+        "Sri Lanka",
+        "Sri Lanka",
+        "Sri Lanka",
+        "سري لانكا"
+      ]
+    },
+    {
+      "region": "Sudan",
+      "iso": "SD",
+      "iso3": "SDN",
+      "organization": "The Sudanese Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/sudanese-red-crescent",
+      "website": "http://www.srcs.sd/",
+      "aliases": [
+        "Sudan",
+        "Sudán",
+        "Soudan",
+        "السودان"
+      ]
+    },
+    {
+      "region": "Eswatini, Kingdom of",
+      "iso": "SZ",
+      "iso3": "SWZ",
+      "organization": "Baphalali Eswatini Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/baphalali-eswatini-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Eswatini, Kingdom of",
+        "Eswatini, Reino de",
+        "Eswatini, Royaume d'",
+        "مملكة إسواتيني"
+      ]
+    },
+    {
+      "region": "Sweden",
+      "iso": "SE",
+      "iso3": "SWE",
+      "organization": "Swedish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/swedish-red-cross",
+      "website": "http://www.redcross.se/",
+      "aliases": [
+        "Sweden",
+        "Suecia",
+        "Suède",
+        "السويد"
+      ]
+    },
+    {
+      "region": "Switzerland",
+      "iso": "CH",
+      "iso3": "CHE",
+      "organization": "Swiss Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/swiss-red-cross",
+      "website": "http://www.redcross.ch/",
+      "aliases": [
+        "Switzerland",
+        "Suiza",
+        "Suisse",
+        "سويسرا"
+      ]
+    },
+    {
+      "region": "Tajikistan",
+      "iso": "TJ",
+      "iso3": "TJK",
+      "organization": "Red Crescent Society of Tajikistan",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-tajikistan",
+      "website": "http://www.redcrescent.tj/",
+      "aliases": [
+        "Tajikistan",
+        "Tayikistán",
+        "Tadjikistan",
+        "طاجيكستان"
+      ]
+    },
+    {
+      "region": "Thailand",
+      "iso": "TH",
+      "iso3": "THA",
+      "organization": "The Thai Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/thai-red-cross-society",
+      "website": "http://www.redcross.or.th/",
+      "aliases": [
+        "Thailand",
+        "Tailandia",
+        "Thaïlande",
+        "تايلند"
+      ]
+    },
+    {
+      "region": "Togo",
+      "iso": "TG",
+      "iso3": "TGO",
+      "organization": "Togolese Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/togolese-red-cross",
+      "website": "",
+      "aliases": [
+        "Togo",
+        "Togo",
+        "Togo",
+        "توغو"
+      ]
+    },
+    {
+      "region": "Tonga",
+      "iso": "TO",
+      "iso3": "TON",
+      "organization": "Tonga Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/tonga-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Tonga",
+        "Tonga",
+        "Tonga",
+        "تونغا"
+      ]
+    },
+    {
+      "region": "Trinidad and Tobago",
+      "iso": "TT",
+      "iso3": "TTO",
+      "organization": "The Trinidad and Tobago Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/trinidad-and-tobago-red-cross-society",
+      "website": "https://ttrcs.org/",
+      "aliases": [
+        "Trinidad and Tobago",
+        "Trinidad y Tobago",
+        "Trinité-et-Tobago",
+        "ترينيداد وتوباغو"
+      ]
+    },
+    {
+      "region": "Tunisia",
+      "iso": "TN",
+      "iso3": "TUN",
+      "organization": "Tunisian Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/tunisian-red-crescent",
+      "website": "http://www.tunisianredcrescent.org/",
+      "aliases": [
+        "Tunisia",
+        "Túnez",
+        "Tunisie",
+        "تونس"
+      ]
+    },
+    {
+      "region": "Türkiye",
+      "iso": "TR",
+      "iso3": "TUR",
+      "organization": "Turkish Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/turkish-red-crescent-society",
+      "website": "http://www.kizilay.org.tr/",
+      "aliases": [
+        "Türkiye",
+        "Türkiye",
+        "Türkiye",
+        "تركيا"
+      ]
+    },
+    {
+      "region": "Turkmenistan",
+      "iso": "TM",
+      "iso3": "TKM",
+      "organization": "Red Crescent Society of Turkmenistan",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-turkmenistan",
+      "website": "http://www.tgymj.gov.tm/",
+      "aliases": [
+        "Turkmenistan",
+        "Turkmenistán",
+        "Turkménistan",
+        "تركمانستان"
+      ]
+    },
+    {
+      "region": "Uganda",
+      "iso": "UG",
+      "iso3": "UGA",
+      "organization": "The Uganda Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/uganda-red-cross-society",
+      "website": "http://www.redcrossug.org/",
+      "aliases": [
+        "Uganda",
+        "Uganda",
+        "Ouganda",
+        "أوغندا"
+      ]
+    },
+    {
+      "region": "Saint Kitts and Nevis",
+      "iso": "KN",
+      "iso3": "KNA",
+      "organization": "Saint Kitts and Nevis Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/saint-kitts-and-nevis-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Saint Kitts and Nevis",
+        "San Cristóbal y Nieves​",
+        "Saint-Kitts-et-Nevis",
+        "سانت كيتس ونيفيس"
+      ]
+    },
+    {
+      "region": "Saint Lucia",
+      "iso": "LC",
+      "iso3": "LCA",
+      "organization": "Saint Lucia Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/saint-lucia-red-cross",
+      "website": "https://www.saintluciaredcross.org/",
+      "aliases": [
+        "Saint Lucia",
+        "Santa Lucía",
+        "Sainte-Lucie",
+        "سانت لوتشيا"
+      ]
+    },
+    {
+      "region": "Saint Vincent and the Grenadines",
+      "iso": "VC",
+      "iso3": "VCT",
+      "organization": "Saint Vincent and the Grenadines Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/saint-vincent-and-grenadines-red-cross",
+      "website": "",
+      "aliases": [
+        "Saint Vincent and the Grenadines",
+        "San Vicente y las Granadinas",
+        "Saint-Vincent-et-les-Grenadines",
+        "سانت فنسنت وجزر غرينادين"
+      ]
+    },
+    {
+      "region": "Suriname",
+      "iso": "SR",
+      "iso3": "SUR",
+      "organization": "Suriname Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/suriname-red-cross",
+      "website": "",
+      "aliases": [
+        "Suriname",
+        "Suriname",
+        "Suriname",
+        "سورينام"
+      ]
+    },
+    {
+      "region": "Burkina Faso",
+      "iso": "BF",
+      "iso3": "BFA",
+      "organization": "Burkinabe Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/burkinabe-red-cross-society",
+      "website": "http://www.croixrougebf.org/",
+      "aliases": [
+        "Burkina Faso",
+        "Burkina Faso",
+        "Burkina Faso",
+        "بوركينا فاصو"
+      ]
+    },
+    {
+      "region": "Côte d'Ivoire",
+      "iso": "CI",
+      "iso3": "CIV",
+      "organization": "Red Cross Society of Côte d'Ivoire",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-cote-divoire",
+      "website": "http://www.croixrouge.ci/",
+      "aliases": [
+        "Côte d'Ivoire",
+        "Côte d’Ivoire",
+        "Côte d’Ivoire",
+        "كوت ديفوار"
+      ]
+    },
+    {
+      "region": "Guinea-Bissau",
+      "iso": "GW",
+      "iso3": "GNB",
+      "organization": "Red Cross Society of Guinea-Bissau",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-guinea-bissau",
+      "website": "",
+      "aliases": [
+        "Guinea-Bissau",
+        "Guinea-Bissau",
+        "Guinée-Bissau",
+        "غينيا بيساو"
+      ]
+    },
+    {
+      "region": "Congo",
+      "iso": "CG",
+      "iso3": "COG",
+      "organization": "Congolese Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/congolese-red-cross",
+      "website": "",
+      "aliases": [
+        "Congo",
+        "Congo",
+        "Congo",
+        "الكونغو"
+      ]
+    },
+    {
+      "region": "Sao Tome and Principe",
+      "iso": "ST",
+      "iso3": "STP",
+      "organization": "Sao Tome and Principe Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/sao-tome-and-principe-red-cross",
+      "website": "",
+      "aliases": [
+        "Sao Tome and Principe",
+        "Santo Tomé y Príncipe",
+        "Sao Tomé-et-Principe",
+        "ساو تومي وبرنسيبي"
+      ]
+    },
+    {
+      "region": "Comoros",
+      "iso": "KM",
+      "iso3": "COM",
+      "organization": "The Comoros Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/comoros-red-crescent",
+      "website": "",
+      "aliases": [
+        "Comoros",
+        "Comoras",
+        "Comores",
+        "جزر القمر"
+      ]
+    },
+    {
+      "region": "Democratic Republic of Congo",
+      "iso": "CD",
+      "iso3": "COD",
+      "organization": "Red Cross of the Democratic Republic of the Congo",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-democratic-republic-congo",
+      "website": "https://www.croixrouge-rdc.org/",
+      "aliases": [
+        "Democratic Republic of Congo",
+        "República Democrática del Congo",
+        "République Démocratique du Congo",
+        "جمهورية الكونغو الديمقراطية"
+      ]
+    },
+    {
+      "region": "Eritrea",
+      "iso": "ER",
+      "iso3": "ERI",
+      "organization": "Red Cross Society of Eritrea",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Eritrea",
+        "Eritrea",
+        "Érythrée",
+        "إريتريا"
+      ]
+    },
+    {
+      "region": "Tanzania, United Republic of",
+      "iso": "TZ",
+      "iso3": "TZA",
+      "organization": "Tanzania Red Cross National Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/tanzania-red-cross-national-society",
+      "website": "http://trcs.or.tz",
+      "aliases": [
+        "Tanzania, United Republic of",
+        "Tanzania, República Unida de",
+        "Tanzanie, République-Unie de",
+        "جمهورية تنزانيا الاتحادية"
+      ]
+    },
+    {
+      "region": "Viet Nam",
+      "iso": "VN",
+      "iso3": "VNM",
+      "organization": "Vietnam Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/vietnam-red-cross-society",
+      "website": "http://www.redcross.org.vn/",
+      "aliases": [
+        "Viet Nam",
+        "Viet Nam",
+        "Viet Nam",
+        "فيتنام"
+      ]
+    },
+    {
+      "region": "Republic of Korea",
+      "iso": "KR",
+      "iso3": "KOR",
+      "organization": "The Republic of Korea National Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/republic-korea-national-red-cross",
+      "website": "http://www.redcross.or.kr/",
+      "aliases": [
+        "Republic of Korea",
+        "República de Corea",
+        "République de Corée",
+        "جمهورية كوريا"
+      ]
+    },
+    {
+      "region": "Democratic People's Republic of Korea",
+      "iso": "KP",
+      "iso3": "PRK",
+      "organization": "Red Cross Society of the Democratic People's Republic of Korea",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-democratic-peoples-republic-korea",
+      "website": "http://www.friend.com.kp/dprkrcs",
+      "aliases": [
+        "Democratic People's Republic of Korea",
+        "República Popular Democrática de Corea",
+        "République populaire démocratique de Corée",
+        "جمهورية كوريا الديمقراطية الشعبية"
+      ]
+    },
+    {
+      "region": "Mongolia",
+      "iso": "MN",
+      "iso3": "MNG",
+      "organization": "Mongolian Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/mongolian-red-cross-society",
+      "website": "http://www.redcross.mn/",
+      "aliases": [
+        "Mongolia",
+        "Mongolia",
+        "Mongolie",
+        "منغوليا"
+      ]
+    },
+    {
+      "region": "Micronesia, Federated States of",
+      "iso": "FM",
+      "iso3": "FSM",
+      "organization": "Micronesia Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/micronesia-red-cross",
+      "website": "",
+      "aliases": [
+        "Micronesia, Federated States of",
+        "Micronesia, Estados Federados de",
+        "Micronésie, États fédérés de",
+        "ولايات مايكرونزيا المتحدة"
+      ]
+    },
+    {
+      "region": "Bosnia and Herzegovina",
+      "iso": "BA",
+      "iso3": "BIH",
+      "organization": "The Red Cross Society of Bosnia and Herzegovina",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-bosnia-and-herzegovina",
+      "website": "http://www.rcsbh.org/",
+      "aliases": [
+        "Bosnia and Herzegovina",
+        "Bosnia y Herzegovina",
+        "Bosnie-Herzégovine",
+        "البوسنة والهرسك"
+      ]
+    },
+    {
+      "region": "Poland",
+      "iso": "PL",
+      "iso3": "POL",
+      "organization": "Polish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/polish-red-cross",
+      "website": "http://www.pck.org.pl/",
+      "aliases": [
+        "Poland",
+        "Polonia",
+        "Pologne",
+        "بولندة"
+      ]
+    },
+    {
+      "region": "Azerbaijan",
+      "iso": "AZ",
+      "iso3": "AZE",
+      "organization": "Red Crescent Society of Azerbaijan",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-azerbaijan",
+      "website": "http://www.redcrescent.az/",
+      "aliases": [
+        "Azerbaijan",
+        "Azerbaiyán",
+        "Azerbaïdjan",
+        "أذربيجان"
+      ]
+    },
+    {
+      "region": "Kazakhstan",
+      "iso": "KZ",
+      "iso3": "KAZ",
+      "organization": "Red Crescent Society of the Republic of Kazakhstan",
+      "directory": "https://www.ifrc.org/national-societies-directory/kazakh-red-crescent",
+      "website": "http://www.redcrescent.kz/",
+      "aliases": [
+        "Kazakhstan",
+        "Kazajstán",
+        "Kazakhstan",
+        "كزاخستان"
+      ]
+    },
+    {
+      "region": "Moldova, Republic of",
+      "iso": "MD",
+      "iso3": "MDA",
+      "organization": "Red Cross Society of the Republic of Moldova",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-society-republic-moldova",
+      "website": "http://www.redcross.md/",
+      "aliases": [
+        "Moldova, Republic of",
+        "Moldavia, República de",
+        "Moldavie, République de",
+        "جمهورية مولدوڤا"
+      ]
+    },
+    {
+      "region": "Iran, Islamic Republic of",
+      "iso": "IR",
+      "iso3": "IRN",
+      "organization": "Red Crescent Society of the Islamic Republic of Iran",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-crescent-society-islamic-republic-iran",
+      "website": "http://www.rcs.ir/",
+      "aliases": [
+        "Iran, Islamic Republic of",
+        "Irán, República Islámica del",
+        "Iran, République Islamique d’",
+        "الجمهورية الإسلامية الإيرانية"
+      ]
+    },
+    {
+      "region": "Libya",
+      "iso": "LY",
+      "iso3": "LBY",
+      "organization": "Libyan Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/libyan-red-crescent",
+      "website": "https://lrc.org.ly/",
+      "aliases": [
+        "Libya",
+        "Libia",
+        "Libye",
+        "ليبيا"
+      ]
+    },
+    {
+      "region": "Palestine",
+      "iso": "PS",
+      "iso3": "PSE",
+      "organization": "The Palestine Red Crescent Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/palestine-red-crescent-society",
+      "website": "http://www.palestinercs.org/",
+      "aliases": [
+        "Palestine",
+        "Palestina",
+        "Palestine",
+        "فلسطين"
+      ]
+    },
+    {
+      "region": "Syrian Arab Republic",
+      "iso": "SY",
+      "iso3": "SYR",
+      "organization": "Syrian Arab Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/syrian-arab-red-crescent",
+      "website": "https://sarc.sy/home/",
+      "aliases": [
+        "Syrian Arab Republic",
+        "República Árabe Siria",
+        "République arabe syrienne",
+        "الجمهورية العربية السورية"
+      ]
+    },
+    {
+      "region": "Benin",
+      "iso": "BJ",
+      "iso3": "BEN",
+      "organization": "Red Cross of Benin",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-benin",
+      "website": "http://croixrougebenin.org/",
+      "aliases": [
+        "Benin",
+        "Benin",
+        "Bénin",
+        "بنن"
+      ]
+    },
+    {
+      "region": "Timor-Leste",
+      "iso": "TL",
+      "iso3": "TLS",
+      "organization": "Timor-Leste Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/timor-leste-red-cross-society",
+      "website": "http://www.redcross.tl/",
+      "aliases": [
+        "Timor-Leste",
+        "Timor-Leste",
+        "Timor-Leste",
+        "تيمور- ليشتي"
+      ]
+    },
+    {
+      "region": "Cook Islands",
+      "iso": "CK",
+      "iso3": "COK",
+      "organization": "Cook Islands Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/cook-islands-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Cook Islands",
+        "Islas Cook",
+        "Îles Cook",
+        "جزر كوك"
+      ]
+    },
+    {
+      "region": "Marshall Islands",
+      "iso": "MH",
+      "iso3": "MHL",
+      "organization": "Marshall Islands Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/marshall-islands-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Marshall Islands",
+        "Islas Marshall",
+        "Îles Marshall",
+        "جزر مارشال"
+      ]
+    },
+    {
+      "region": "Tuvalu",
+      "iso": "TV",
+      "iso3": "TUV",
+      "organization": "Tuvalu Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/tuvalu-red-cross-society",
+      "website": "",
+      "aliases": [
+        "Tuvalu",
+        "Tuvalu",
+        "Tuvalu",
+        "توفالو"
+      ]
+    },
+    {
+      "region": "Anguilla",
+      "iso": "AI",
+      "iso3": "AIA",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Anguilla",
+        "Anguila",
+        "Anguilla",
+        "أنغيلا"
+      ]
+    },
+    {
+      "region": "Israel",
+      "iso": "IL",
+      "iso3": "ISR",
+      "organization": "Magen David Adom in Israel",
+      "directory": "https://www.ifrc.org/national-societies-directory/israel-magen-david-adom-israel",
+      "website": "http://www.mdais.org/",
+      "aliases": [
+        "Israel",
+        "Israel",
+        "Israël",
+        "إسرائيل"
+      ]
+    },
+    {
+      "region": "Maldives",
+      "iso": "MV",
+      "iso3": "MDV",
+      "organization": "Maldivian Red Crescent",
+      "directory": "https://www.ifrc.org/national-societies-directory/maldivian-red-crescent",
+      "website": "http://www.redcrescent.org.mv/",
+      "aliases": [
+        "Maldives",
+        "Maldivas",
+        "Maldives",
+        "ملديف"
+      ]
+    },
+    {
+      "region": "Cyprus",
+      "iso": "CY",
+      "iso3": "CYP",
+      "organization": "Cyprus Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/cyprus-red-cross-society",
+      "website": "http://www.redcross.org.cy/",
+      "aliases": [
+        "Cyprus",
+        "Chipre",
+        "Chypre",
+        "قبرص"
+      ]
+    },
+    {
+      "region": "Antarctica",
+      "iso": "AQ",
+      "iso3": "ATA",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Antarctica",
+        "Antártida",
+        "Antarctique",
+        "أنتاركتيكا"
+      ]
+    },
+    {
+      "region": "Aruba",
+      "iso": "AW",
+      "iso3": "ABW",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Aruba",
+        "Aruba",
+        "Aruba",
+        "أروبا"
+      ]
+    },
+    {
+      "region": "Bermuda",
+      "iso": "BM",
+      "iso3": "BMU",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Bermuda",
+        "Bermudas",
+        "Les Bermudes",
+        "برمودا"
+      ]
+    },
+    {
+      "region": "Bhutan",
+      "iso": "BT",
+      "iso3": "BTN",
+      "organization": "Bhutan Red Cross Society",
+      "directory": "https://www.ifrc.org/national-societies-directory/bhutan-red-cross",
+      "website": "",
+      "aliases": [
+        "Bhutan",
+        "Bhután",
+        "Bhoutan",
+        "بوتان"
+      ]
+    },
+    {
+      "region": "Gibraltar",
+      "iso": "GI",
+      "iso3": "GIB",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Gibraltar",
+        "Gibraltar",
+        "Gibraltar",
+        "جبل طارق"
+      ]
+    },
+    {
+      "region": "United States Minor Outlying Islands",
+      "iso": "UM",
+      "iso3": "UMI",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "United States Minor Outlying Islands",
+        "Islas Ultramarinas Menores de los Estados Unidos",
+        "Îles mineures éloignées des États-Unis",
+        "جزر الولايات المتحدة البعيدة الصغرى"
+      ]
+    },
+    {
+      "region": "Nauru",
+      "iso": "NR",
+      "iso3": "NRU",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Nauru",
+        "Nauru",
+        "Nauru",
+        "ناورو"
+      ]
+    },
+    {
+      "region": "Niue",
+      "iso": "NU",
+      "iso3": "NIU",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Niue",
+        "Niue",
+        "Niue",
+        "نيوي"
+      ]
+    },
+    {
+      "region": "Pitcairn",
+      "iso": "PN",
+      "iso3": "PCN",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Pitcairn",
+        "Isla Pitcairn",
+        "Les îles Pitcairn",
+        "بيتكيرن"
+      ]
+    },
+    {
+      "region": "Puerto Rico",
+      "iso": "PR",
+      "iso3": "PRI",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Puerto Rico",
+        "Puerto Rico",
+        "Porto Rico",
+        "بورتوريكو"
+      ]
+    },
+    {
+      "region": "Oman",
+      "iso": "OM",
+      "iso3": "OMN",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Oman",
+        "Omán",
+        "Oman",
+        "سلطنة عمان"
+      ]
+    },
+    {
+      "region": "San Marino",
+      "iso": "SM",
+      "iso3": "SMR",
+      "organization": "Red Cross of the Republic of San Marino",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-republic-san-marino",
+      "website": "https://www.crs.sm/",
+      "aliases": [
+        "San Marino",
+        "Saint Marino",
+        "Saint-Marin",
+        "سان مارينو"
+      ]
+    },
+    {
+      "region": "Saint Helena",
+      "iso": "SH",
+      "iso3": "SHN",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Saint Helena",
+        "Santa Elena",
+        "Sainte-Hélène",
+        "سانت هيلانة"
+      ]
+    },
+    {
+      "region": "Western Sahara",
+      "iso": "EH",
+      "iso3": "ESH",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Western Sahara",
+        "Sahara Occidental",
+        "Sahara occidental",
+        "الصحراء الغربية"
+      ]
+    },
+    {
+      "region": "Montenegro",
+      "iso": "ME",
+      "iso3": "MNE",
+      "organization": "Red Cross of Montenegro",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-montenegro",
+      "website": "http://www.ckcg.co.me/",
+      "aliases": [
+        "Montenegro",
+        "Montenegro",
+        "Monténégro",
+        "الجبل الأسود"
+      ]
+    },
+    {
+      "region": "Serbia",
+      "iso": "RS",
+      "iso3": "SRB",
+      "organization": "The Red Cross of Serbia",
+      "directory": "https://www.ifrc.org/national-societies-directory/red-cross-serbia",
+      "website": "http://www.redcross.org.rs/",
+      "aliases": [
+        "Serbia",
+        "Serbia",
+        "Serbie",
+        "صربيا"
+      ]
+    },
+    {
+      "region": "Holy See (Vatican City State)",
+      "iso": "VA",
+      "iso3": "VAT",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Holy See (Vatican City State)",
+        "Santa Sede (Estado de la Ciudad del Vaticano)",
+        "Saint-Siège (État de la Cité du Vatican)",
+        "الكرسي الرسولي (دولة الفاتيكان)"
+      ]
+    },
+    {
+      "region": "Macao",
+      "iso": "MO",
+      "iso3": "MAC",
+      "organization": "Macau Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "http://www.redcross.org.mo/",
+      "aliases": [
+        "Macao",
+        "Macao",
+        "Macao",
+        "ماكاو"
+      ]
+    },
+    {
+      "region": "South Sudan",
+      "iso": "SS",
+      "iso3": "SSD",
+      "organization": "South Sudan Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory/south-sudan-red-cross",
+      "website": "https://www.ssdredcross.org/",
+      "aliases": [
+        "South Sudan",
+        "Sudán del Sur",
+        "Soudan du Sud",
+        "جنوب السودان"
+      ]
+    },
+    {
+      "region": "Benelux",
+      "iso": "BX",
+      "iso3": "",
+      "organization": "Benelux ERU",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Benelux",
+        "Benelux",
+        "Benelux",
+        "البنلوكس"
+      ]
+    },
+    {
+      "region": "American Samoa",
+      "iso": "AS",
+      "iso3": "ASM",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "American Samoa",
+        "Samoa Americana",
+        "Samoa américaines",
+        "ساموا الأمريكية"
+      ]
+    },
+    {
+      "region": "Bouvet Island",
+      "iso": "BV",
+      "iso3": "BVT",
+      "organization": "Norwegian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Bouvet Island",
+        "Isla Bouvet",
+        "Île Bouvet",
+        "جزيرة بوفيه"
+      ]
+    },
+    {
+      "region": "British Indian Ocean Territory",
+      "iso": "IO",
+      "iso3": "IOT",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "British Indian Ocean Territory",
+        "Territorio Británico del Océano Índico",
+        "Territoire Britannique de l’Océan Indien",
+        "إقليم المحيط الهندي البريطاني"
+      ]
+    },
+    {
+      "region": "British Virgin Islands",
+      "iso": "VG",
+      "iso3": "VGB",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "British Virgin Islands",
+        "Islas Vírgenes Británicas",
+        "Îles Vierges Britanniques",
+        "جزر العذراء البريطانية"
+      ]
+    },
+    {
+      "region": "Cayman Islands",
+      "iso": "KY",
+      "iso3": "CYM",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Cayman Islands",
+        "Islas Caimán",
+        "Îles Caïmans",
+        "جزر كايمان"
+      ]
+    },
+    {
+      "region": "Christmas Island",
+      "iso": "CX",
+      "iso3": "CXR",
+      "organization": "Australian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Christmas Island",
+        "Isla de Navidad",
+        "Île Christmas",
+        "جزيرة كريسماس"
+      ]
+    },
+    {
+      "region": "Cocos (Keeling) Islands",
+      "iso": "CC",
+      "iso3": "CCK",
+      "organization": "Australian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Cocos (Keeling) Islands",
+        "Islas Cocos",
+        "Îles Cocos (Keeling)",
+        "جزر كوكوس (جزر كيلينغ)"
+      ]
+    },
+    {
+      "region": "Falkland Islands (Malvinas)",
+      "iso": "FK",
+      "iso3": "FLK",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Falkland Islands (Malvinas)",
+        "Islas Malvinas (Falkland)",
+        "Îles Malouines",
+        "جزر فوكلاند (مالفيناس)"
+      ]
+    },
+    {
+      "region": "Faroe Islands",
+      "iso": "FO",
+      "iso3": "FRO",
+      "organization": "Danish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Faroe Islands",
+        "Islas Faroe",
+        "Îles Féroé",
+        "جزر فارو"
+      ]
+    },
+    {
+      "region": "Greenland",
+      "iso": "GL",
+      "iso3": "GRL",
+      "organization": "Danish Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Greenland",
+        "Groenlandia",
+        "Groenland",
+        "جرينلاند"
+      ]
+    },
+    {
+      "region": "Guam",
+      "iso": "GU",
+      "iso3": "GUM",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Guam",
+        "Guam",
+        "Guam",
+        "غوام"
+      ]
+    },
+    {
+      "region": "Guernsey",
+      "iso": "GG",
+      "iso3": "GGY",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Guernsey",
+        "Bailía de Guernsey",
+        "Guernesey",
+        "غيرنزي"
+      ]
+    },
+    {
+      "region": "Heard Island and McDonald Islands",
+      "iso": "HM",
+      "iso3": "HMD",
+      "organization": "Australian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Heard Island and McDonald Islands",
+        "Islas Heard y McDonald",
+        "Îles Heard et McDonald",
+        "جزيرة هيرد وجزر ماكدونالد"
+      ]
+    },
+    {
+      "region": "Isle of Man",
+      "iso": "IM",
+      "iso3": "IMN",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Isle of Man",
+        "Isla de Man",
+        "Île de Man",
+        "جزيرة مان"
+      ]
+    },
+    {
+      "region": "Jersey",
+      "iso": "JE",
+      "iso3": "JEY",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Jersey",
+        "Bailía de Jersey",
+        "Jersey",
+        "جيرزي"
+      ]
+    },
+    {
+      "region": "Kosovo",
+      "iso": "XK",
+      "iso3": "XKX",
+      "organization": "The Red Cross of Serbia",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Kosovo",
+        "Kosovo",
+        "Kosovo",
+        "كوسوفو"
+      ]
+    },
+    {
+      "region": "Montserrat",
+      "iso": "MS",
+      "iso3": "MSR",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Montserrat",
+        "Montserrat",
+        "Montserrat",
+        "مونتسرات"
+      ]
+    },
+    {
+      "region": "Norfolk Island",
+      "iso": "NF",
+      "iso3": "NFK",
+      "organization": "Australian Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Norfolk Island",
+        "Isla Norfolk",
+        "Île Norfolk",
+        "جزيرة نورفولك"
+      ]
+    },
+    {
+      "region": "Northern Mariana Islands",
+      "iso": "MP",
+      "iso3": "MNP",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Northern Mariana Islands",
+        "Islas Marianas del Norte",
+        "Îles Mariannes du Nord",
+        "جزر ماريانا الشمالية"
+      ]
+    },
+    {
+      "region": "South Georgia and the South Sandwich Island",
+      "iso": "GS",
+      "iso3": "SGS",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "South Georgia and the South Sandwich Island",
+        "Islas Georgias del Sur y Sandwich del Sur",
+        "Îles Géorgie du Sud et Sandwich du Sud",
+        "جورجيا الجنوبية وجزر ساندويتش الجنوبية"
+      ]
+    },
+    {
+      "region": "Tokelau",
+      "iso": "TK",
+      "iso3": "TKL",
+      "organization": "",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Tokelau",
+        "Tokelau",
+        "Tokélaou",
+        "توكيلاو"
+      ]
+    },
+    {
+      "region": "Turks and Caicos islands",
+      "iso": "TC",
+      "iso3": "TCA",
+      "organization": "British Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "Turks and Caicos islands",
+        "Islas Turcas y Caicos",
+        "Îles Turks-et-Caïcos",
+        "جزر توركس وكايكوس"
+      ]
+    },
+    {
+      "region": "United States Virgin Islands",
+      "iso": "VI",
+      "iso3": "VIR",
+      "organization": "American Red Cross",
+      "directory": "https://www.ifrc.org/national-societies-directory",
+      "website": "",
+      "aliases": [
+        "United States Virgin Islands",
+        "Islas Vírgenes de los Estados Unidos",
+        "Îles Vierges américaines",
+        "جزر العذراء الأمريكية"
+      ]
+    }
+  ]
+}

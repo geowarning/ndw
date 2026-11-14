@@ -27,7 +27,7 @@ function writeJson(file, value) {
   fs.renameSync(tmp, file);
 }
 function readJson(file, fallback) {
-  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (err) { return fallback; }
+  try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch (err) { if (err.code === 'ENOENT') return fallback; throw err; }
 }
 async function fetchJson(url) {
   const res = await fetch(url, {
@@ -50,7 +50,7 @@ async function collectRecent() {
     const p = f.properties || {};
     const c = (f.geometry && f.geometry.coordinates) || [];
     if (!isFinite(p.time) || !isFinite(c[0]) || !isFinite(c[1]) || !isFinite(p.mag)) { return; }
-    rows.push([p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake']);
+    rows.push([p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake', f.id]);
   });
   rows.sort((a, b) => b[0] - a[0]);
   const out = {
@@ -74,9 +74,7 @@ async function collectEarthquakeArchive() {
   const existing = readJson(ARCHIVE_FILE, { rows: [] });
   const map = new Map();
   (existing.rows || []).forEach((r) => {
-    if (Number(r[0]) >= start.getTime()) {
       map.set(r[0] + ':' + Number(r[1]).toFixed(3) + ':' + Number(r[2]).toFixed(3), r);
-    }
   });
   for (let d = start; d <= end; d = nextMonth(d)) {
     const from = isoDate(d);
@@ -91,7 +89,7 @@ async function collectEarthquakeArchive() {
         const c = (f.geometry && f.geometry.coordinates) || [];
         if (!isFinite(p.time) || !isFinite(c[0]) || !isFinite(c[1]) || !isFinite(p.mag)) { return; }
         map.set(p.time + ':' + Number(c[0]).toFixed(3) + ':' + Number(c[1]).toFixed(3),
-          [p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake']);
+          [p.time, c[0], c[1], isFinite(c[2]) ? c[2] : 0, p.mag, p.place || '', p.type || 'earthquake', f.id]);
       });
       console.log('USGS ' + from.slice(0, 7) + ': ' + (data.features || []).length);
     } catch (err) {
@@ -105,10 +103,10 @@ async function collectEarthquakeArchive() {
     timezone: 'UTC',
     generatedAt: NOW.toISOString(),
     count: rows.length,
-    range: [start.getTime(), end.getTime()],
+    range: [rows.length ? rows[rows.length - 1][0] : start.getTime(), end.getTime()],
     rows
   });
-  console.log('USGS 24-month archive: ' + rows.length + ' rows');
+  console.log('USGS retained archive: ' + rows.length + ' rows');
 }
 
 async function collectGdacsHistory() {

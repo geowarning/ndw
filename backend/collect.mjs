@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { archiveWarnings } from './alert-history.mjs';
 import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
@@ -48,6 +49,7 @@ export function reserve(state, now, limit = 450, batch = 4, bootstrap = false, p
 }
 
 export async function collect(state, key, fetcher = fetch, now = Date.now, pause = () => new Promise(resolve => setTimeout(resolve, 300))) {
+  state.alertHistory = archiveWarnings(state.alertHistory, state.entries);
   for (const city of state.pending || []) {
     const route = '/alerts/v1/' + city.key + '.json';
     try {
@@ -58,6 +60,7 @@ export async function collect(state, key, fetcher = fetch, now = Date.now, pause
       const safe = JSON.parse(JSON.stringify(data).split(key).join('[redacted]'));
       validateSnapshot({ version: 1, generatedAt: now(), entries: { [route]: { data: safe, checkedAt: now() } } });
       state.entries[route] = { data: safe, checkedAt: now() };
+      state.alertHistory = archiveWarnings(state.alertHistory, { [route]: state.entries[route] });
     } catch { console.error('City update failed; last good result retained.'); }
     await pause();
   }
@@ -87,12 +90,14 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   } else throw Error('Expected reserve or collect');
   fs.mkdirSync(path.dirname(statePath), { recursive: true });
   fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
+  state.alertHistory = archiveWarnings(state.alertHistory, state.entries);
   fs.writeFileSync(statePath, JSON.stringify(state));
+  fs.writeFileSync(path.join(root, 'public-data/china-warning-history.json'), JSON.stringify({ source: 'WeatherCN', records: Object.values(state.alertHistory) }));
   fs.writeFileSync(snapshotPath, JSON.stringify({ version: 1, generatedAt: Date.now(), entries: state.entries }));
   // A separate index creates a data-only branch without modifying the source checkout.
   process.env.GIT_INDEX_FILE = path.join(root, '.git/ndw-data-index');
   git('read-tree', '--empty');
-  git('add', '-f', 'backend/data/state.json', 'public-data/warnings.json');
+  git('add', '-f', 'backend/data/state.json', 'public-data/warnings.json', 'public-data/china-warning-history.json');
   const tree = git('write-tree');
   const commit = git('commit-tree', tree, ...(parent ? ['-p', parent] : []), '-m', 'Update shared warning ' + phase);
   // Reservation push MUST succeed before the collect phase can spend quota.
