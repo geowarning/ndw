@@ -184,7 +184,7 @@
     chinaSatellite: { zh: 'NASA 卫星底图', en: 'NASA satellite', es: 'Satélite NASA', fr: 'Satellite NASA', it: 'Satellite NASA' },
     chinaHolo: { zh: '全息底图', en: 'Holographic base', es: 'Base holográfica', fr: 'Base holographique', it: 'Base olografica' },
     gdacsEvents: { zh: '灾害事件', en: 'Disaster events', es: 'Eventos de desastre', fr: 'Événements', it: 'Eventi' },
-    gdacsWildfire: { zh: '野火', en: 'Wildfire', es: 'Incendio forestal', fr: 'Feu de forêt', it: 'Incendio' },
+    gdacsWildfire: { zh: '山火', en: 'Wildfire', es: 'Incendio forestal', fr: 'Feu de forêt', it: 'Incendio boschivo' },
     gdacsFlood: { zh: '洪水', en: 'Flood', es: 'Inundación', fr: 'Inondation', it: 'Inondazione' },
     gdacsCyclone: { zh: '热带气旋', en: 'Cyclone', es: 'Ciclón', fr: 'Cyclone', it: 'Ciclone' },
     gdacsDrought: { zh: '干旱', en: 'Drought', es: 'Sequía', fr: 'Sécheresse', it: 'Siccità' },

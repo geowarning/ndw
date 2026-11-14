@@ -321,7 +321,7 @@
     if (globe) {
       var activeHazards = globeHazards.filter(function (g) { return g.status ? GdacsStatus.active(g.status, Date.now()) : Date.now() - g.time < 86400000 && g.time <= Date.now(); });
       globe.setCities(globeCities().concat(activeHazards.map(function(g) {
-        return g.status && !GdacsStatus.fresh(g.status, Date.now()) ? Object.assign({}, g, { color: '#a4b6bc', label: g.label + (lang() === 'zh' ? ' · 上次报告' : ' · Last reported') }) : g;
+        return g.status && !GdacsStatus.fresh(g.status, Date.now()) ? Object.assign({}, g, { color: '#a4b6bc', label: g.label + (window.NDLocale.phrase(' · 上次报告',' · Last reported',lang())) }) : g;
       })));
       globe.setDisasters(activeHazards);
     }
@@ -958,8 +958,8 @@
     var pages = Math.max(1, Math.ceil(records.length / DB_PAGE_SIZE));
     dbState.page = Math.min(dbState.page, pages);
     var start = (dbState.page - 1) * DB_PAGE_SIZE;
-    body.innerHTML = '<p>' + (lang() === 'zh' ? '保留实际采集到的预警及更新版本；不能保证包含采集开始前或两次查询之间的全部预警。' : 'Retains observed alerts and revisions. Alerts before collection began or between queries may be missing.') + '</p>' +
-      '<div class="db-toolbar"><input id="dbSearch" type="search" value="' + esc(dbState.q) + '" placeholder="' + esc(web('dbSearchHint')) + '"><button class="btn btn-outline" data-action="db-search">' + (lang() === 'zh' ? '搜索' : 'Search') + '</button></div>' +
+    body.innerHTML = '<p>' + (window.NDLocale.phrase('保留实际采集到的预警及更新版本；不能保证包含采集开始前或两次查询之间的全部预警。','Retains observed alerts and revisions. Alerts before collection began or between queries may be missing.',lang())) + '</p>' +
+      '<div class="db-toolbar"><input id="dbSearch" type="search" value="' + esc(dbState.q) + '" placeholder="' + esc(web('dbSearchHint')) + '"><button class="btn btn-outline" data-action="db-search">' + (window.NDLocale.phrase('搜索','Search',lang())) + '</button></div>' +
       '<div class="db-table-wrap"><table class="db-table"><thead><tr><th>' + esc(web('dataTime')) + '</th><th>' + esc(web('chinaStatus')) + '</th></tr></thead><tbody>' +
       records.slice(start, start + DB_PAGE_SIZE).map(function (r, i) {
         var a = r.alert;
@@ -1140,7 +1140,7 @@
           weatherCard +
         '</div>' +
 
-        '<div class="china-support-actions"><span>' + (l === 'zh' ? '当地援助与急救资源' : 'Local assistance & first-aid resources') + '</span>' + window.NDRescue.button('China', homeState.city, lang()) + '</div>' +
+        '<div class="china-support-actions"><span>' + window.NDLocale.phrase('当地援助与急救资源','Local assistance & first-aid resources',l) + '</span>' + window.NDRescue.button('China', homeState.city, lang()) + '</div>' +
         '<div class="stat-row">' +
           statBox('lv-red', dataReady ? s.levelStats.red : null, t.redAlert) +
           statBox('lv-orange', dataReady ? s.levelStats.orange : null, t.orangeAlert) +
@@ -2075,7 +2075,7 @@
           materialsList.map(function (m) {
             return '<div class="material-purchase"><button class="material-item ' + (m.checked ? 'checked' : '') + '" data-action="toggle-material" data-index="' + m.index + '">' +
               '<span class="material-check">' + SVG.checkBox + '</span><span>' + esc(m.name) + '</span></button>' +
-              '<a target="_blank" rel="noopener noreferrer" href="' + (l === 'zh' ? 'https://search.jd.com/Search?keyword=' : 'https://www.amazon.com/s?k=') + encodeURIComponent(m.name) + '">' + (l === 'zh' ? '查找购买' : 'Find to buy') + ' ↗</a></div>';
+              '<a target="_blank" rel="noopener noreferrer" href="' + (l === 'zh' ? 'https://search.jd.com/Search?keyword=' : 'https://www.amazon.com/s?k=') + encodeURIComponent(m.name) + '">' + window.NDLocale.phrase('查找购买','Find to buy',l) + ' ↗</a></div>';
           }).join('') +
         '</div>' +
       '</div></div></section>';

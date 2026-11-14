@@ -169,8 +169,8 @@
     if (type === 'WF') { return web('gdacsWildfire'); }
     if (type === 'FL') { return web('gdacsFlood'); }
     if (type === 'TC') { return web('gdacsCyclone'); }
-    if (type === 'VO') return lang() === 'zh' ? '火山' : 'Volcano';
-    if (type === 'TS') return lang() === 'zh' ? '海啸' : 'Tsunami';
+    if (type === 'VO') return window.NDLocale.phrase('火山','Volcano',lang());
+    if (type === 'TS') return window.NDLocale.phrase('海啸','Tsunami',lang());
     return web('gdacsDrought');
   }
   function gdacsAlertLabel(alert) {
@@ -329,7 +329,7 @@
         '<div class="global-layers"><span class="gfl">' + esc(web('layers')) + '</span>' + layers + '</div>' +
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
-        '<span>GDACS · ' + esc(lang() === 'zh' ? '上次采集' : 'Last checked') + ': ' + esc(fmt(gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)))) + ' · ' + esc(lang() === 'zh' ? 'GDACS 当前事件列表；非现场确认' : 'GDACS current-event feed; not on-site confirmation') + '</span>' +
+        '<span>GDACS · ' + esc(window.NDLocale.phrase('上次采集','Last checked',lang())) + ': ' + esc(fmt(gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)))) + ' · ' + esc(window.NDLocale.phrase('GDACS 当前事件列表；非现场确认','GDACS current-event feed; not on-site confirmation',lang())) + '</span>' +
         (state.layers.gdacs && state.gdacsType !== 'EQ' ? '<span>' + esc(hazardTypeLabel(state.gdacsType)) + ' · GDACS ' + gdacs.length + '</span>' : '') +
         (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
@@ -654,14 +654,14 @@
   }
 
   function detailHtml(q) {
-    var tsu = q.tsunami ? 'YES' : 'NO';
+    var tsu = window.NDLocale.text(q.tsunami ? 'Yes' : 'No',lang());
     var mmi = q.mmi == null ? '—' : String(q.mmi);
     var alertBadge = q.alert ? '<span class="galert ' + esc(q.alert) + '">' + esc(String(q.alert).toUpperCase()) + '</span>' : '';
     var actions = [
-      lang() === 'zh' ? '趴下、掩护、抓牢；远离窗户与外墙。' : 'Drop, Cover and Hold On; stay away from windows and outer walls.',
-      lang() === 'zh' ? '强震后如身处海岸，立即向高处转移。' : 'If near the coast after strong shaking, move to high ground immediately.',
-      lang() === 'zh' ? '关注当地应急部门与海啸预警。' : 'Follow local emergency authorities and tsunami warnings.',
-      lang() === 'zh' ? '检查燃气、电力与建筑结构，谨防余震。' : 'Check gas, power and structural damage; expect aftershocks.'
+      window.NDLocale.phrase('趴下、掩护、抓牢；远离窗户与外墙。','Drop, Cover and Hold On; stay away from windows and outer walls.',lang()),
+      window.NDLocale.phrase('强震后如身处海岸，立即向高处转移。','If near the coast after strong shaking, move to high ground immediately.',lang()),
+      window.NDLocale.phrase('关注当地应急部门与海啸预警。','Follow local emergency authorities and tsunami warnings.',lang()),
+      window.NDLocale.phrase('检查燃气、电力与建筑结构，谨防余震。','Check gas, power and structural damage; expect aftershocks.',lang())
     ];
     return '<div class="gdetail">' + window.NDRescue.button(state.country || q.place, q.place, lang()) +
       '<div class="gdetail-top"><div><div class="gkicker">' + esc(web('quakeDetail')) + '</div>' +
@@ -678,8 +678,8 @@
         '<div><span>Significance</span><b>' + esc(q.significance == null ? '—' : q.significance) + '</b></div>' +
         '<div><span>Alert</span><b>' + (alertBadge || '—') + '</b></div>' +
       '</div>' +
-      '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul></div>' +
-      (q.url ? '<a class="btn btn-outline" href="' + esc(q.url) + '" target="_blank" rel="noopener noreferrer">USGS event ↗</a>' : '') +
+      '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(window.NDLocale.text(a,lang())) + '</li>'; }).join('') + '</ul></div>' +
+      (q.url ? '<a class="btn btn-outline" href="' + esc(q.url) + '" target="_blank" rel="noopener noreferrer">' + esc(window.NDLocale.text('USGS event',lang())) + ' ↗</a>' : '') +
       '</div>';
   }
 
@@ -693,7 +693,7 @@
       TC: zh ? ['留在坚固建筑内，远离窗户。', '固定室外物品，准备停电与断水。', '听从当地疏散与避难指令。'] : ['Shelter in a sturdy building, away from windows.', 'Secure outdoor items and prepare for power/water outages.', 'Follow local evacuation and shelter instructions.'],
       DR: zh ? ['节约用水，优先保障饮用与卫生。', '关注当地限水与农业援助政策。', '防范高温与粮食短缺的次生影响。'] : ['Conserve water for drinking and sanitation.', 'Follow local water restrictions and agricultural aid programs.', 'Watch for heat and food-security impacts.']
     }[g.type] || [];
-    return '<div class="gdetail gdacs-detail">' + (!GdacsStatus.fresh(g.status, Date.now()) ? '<p class="history-notice">' + (zh ? '上次报告 · 等待 GDACS 更新' : 'Last reported · awaiting GDACS refresh') + '</p>' : '') + window.NDRescue.button(g.country, g.name, lang()) +
+    return '<div class="gdetail gdacs-detail">' + (!GdacsStatus.fresh(g.status, Date.now()) ? '<p class="history-notice">' + window.NDLocale.phrase('上次报告 · 等待 GDACS 更新','Last reported · awaiting GDACS refresh',lang()) + '</p>' : '') + window.NDRescue.button(g.country, g.name, lang()) +
       '<div class="gdetail-top"><div><div class="gkicker">GDACS · ' + esc(typeLabel) + '</div>' +
         '<h3>' + esc(g.name || '—') + '</h3><div class="gcoords">' + esc(g.country || '') + ' · ' + esc(g.lon.toFixed(2)) + '°, ' + esc(g.lat.toFixed(2)) + '°</div></div>' +
         '<div class="gdacs-badge" style="color:' + gdacsAlertColor(g.alert) + '">' + esc(alertLabel) + '</div></div>' +
@@ -707,10 +707,10 @@
         '<div><span>' + esc(web('gdacsTo')) + '</span><b>' + esc(fmt(gdacsParse(g.to))) + '</b></div>' +
         '<div><span>' + esc(web('gdacsUpdated')) + '</span><b>' + esc(fmt(gdacsParse(g.modified))) + '</b></div>' +
         '<div><span>' + esc(web('sourceLabel')) + '</span><b>' + esc(g.source) + '</b></div>' +
-        (g.severity ? '<div><span>Severity</span><b>' + esc(g.severity) + '</b></div>' : '') +
+        (g.severity ? '<div><span>' + esc(window.NDLocale.text('Severity',lang())) + '</span><b>' + esc(g.severity) + '</b></div>' : '') +
       '</div>' +
-      (g.description ? '<p class="gdacs-desc">' + esc(g.description) + '</p>' : '') +
-      (actions.length ? '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('') + '</ul></div>' : '') +
+      (g.description ? '<p class="rescue-type">' + esc(window.NDLocale.text('Original source text',lang())) + '</p><p class="gdacs-desc">' + esc(g.description) + '</p>' : '') +
+      (actions.length ? '<div class="gactions"><b>' + esc(web('recommended')) + '</b><ul>' + actions.map(function (a) { return '<li>' + esc(window.NDLocale.text(a,lang())) + '</li>'; }).join('') + '</ul></div>' : '') +
       (g.url ? '<a class="btn btn-outline" href="' + esc(g.url) + '" target="_blank" rel="noopener noreferrer">' + esc(web('gdacsReport')) + ' ↗</a>' : '') +
       '</div>';
   }
@@ -749,11 +749,11 @@
 
   function rescueSection() {
     var region = state.country || (state.selected && (state.selected.country || state.selected.place)) || '';
-    return '<section class="rescue-section"><h2>' + (lang() === 'zh' ? '地区救援联系' : 'Regional rescue contacts') + '</h2><p>' +
-      (lang() === 'zh' ? '按国家或地区查询红十字与红新月机构及官方联系方式。' : 'Search national Red Cross / Red Crescent organizations and official contact directories by region.') + '</p>' +
-      '<form data-rescue-form><label>' + (lang() === 'zh' ? '国家或地区' : 'Country or region') +
-      '<input type="search" name="region" value="' + esc(region) + '" placeholder="China, Peru, California…"></label>' +
-      '<button class="btn btn-outline" type="submit">' + (lang() === 'zh' ? '搜索救援联系' : 'Search rescue contacts') + '</button></form></section>';
+    return '<section class="rescue-section"><h2>' + (window.NDLocale.phrase('地区救援联系','Regional rescue contacts',lang())) + '</h2><p>' +
+      (window.NDLocale.phrase('按国家查询已收录的救援机构及官方联系目录。','Search listed rescue organizations and official directories by country.',lang())) + '</p>' +
+      '<form data-rescue-form><label>' + (window.NDLocale.phrase('国家或地区','Country or region',lang())) +
+      '<input type="search" name="region" value="' + esc(region) + '" placeholder="' + esc(window.NDLocale.phrase('中国、秘鲁…','China, Peru…',lang())) + '"></label>' +
+      '<button class="btn btn-outline" type="submit">' + (window.NDLocale.phrase('搜索救援联系','Search rescue contacts',lang())) + '</button></form></section>';
   }
   function paint() {
     if (state.ctx && !state.ctx.embedded && (location.hash || '#/home').split('?')[0] !== '#/global') return;
@@ -775,7 +775,7 @@
     var quakes = filteredQuakes(currentQuakes());
     el.innerHTML = '<section class="global-page"><div class="container">' +
       header(data, quakes) +
-      (Date.now() - gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)) >= 1800000 ? '<p class="history-notice" role="status">' + (lang() === 'zh' ? 'GDACS 更新已延迟。虚线标记为上次报告的位置，当前状态尚未确认；这不代表灾害已结束。' : 'GDACS updates are overdue. Dashed markers show last-reported locations; current status is unconfirmed. A delayed update does not mean the disasters have ended.') + '</p>' : '') +
+      (Date.now() - gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)) >= 1800000 ? '<p class="history-notice" role="status">' + (window.NDLocale.phrase('GDACS 更新已延迟。虚线标记为上次报告的位置，当前状态尚未确认；这不代表灾害已结束。','GDACS updates are overdue. Dashed markers show last-reported locations; current status is unconfirmed. A delayed update does not mean the disasters have ended.',lang())) + '</p>' : '') +
       '<div class="global-layout"><div class="global-map-wrap">' + mapSvg(quakes) +
         '<div class="gzoom">' +
           '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +
@@ -786,7 +786,7 @@
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
         ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
-      '</div><aside class="global-side"><nav class="disaster-list-actions" aria-label="' + (lang() === 'zh' ? '灾害列表' : 'Disaster lists') + '"><a class="btn btn-green" href="#/disasters?mode=' + state.mode + '">' + (state.mode === 'live' ? (lang() === 'zh' ? '查看全部当前灾害' : 'View all live disasters') : (lang() === 'zh' ? '查看灾害历史' : 'Browse disaster history')) + ' →</a></nav>' + sideHtml(quakes) + '</aside></div>' +
+      '</div><aside class="global-side"><nav class="disaster-list-actions" aria-label="' + (window.NDLocale.phrase('灾害列表','Disaster lists',lang())) + '"><a class="btn btn-green" href="#/disasters?mode=' + state.mode + '">' + (state.mode === 'live' ? (window.NDLocale.phrase('查看全部当前灾害','View all live disasters',lang())) : (window.NDLocale.phrase('查看灾害历史','Browse disaster history',lang()))) + ' →</a></nav>' + sideHtml(quakes) + '</aside></div>' +
       rescueSection() +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +

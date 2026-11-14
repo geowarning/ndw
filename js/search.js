@@ -27,7 +27,7 @@
           });
         }
 
-        (ctx.navItems ? ctx.navItems(l) : []).forEach(function(item) { add(item.label, 'Pages', function(){ctx.navigate(item.hash);}, item.hash); });
+        (ctx.navItems ? ctx.navItems(l) : []).forEach(function(item) { add(item.label, window.NDLocale.text('Pages',ctx.lang()), function(){ctx.navigate(item.hash);}, item.hash); });
         add(t.tabIndex, ctx.web('overviewTitle'), function () { ctx.navigate('#/home'); }, 'home index overview 首页 总览 预警');
         add(t.nationalSituation, ctx.web('expandMap'), function () { ctx.navigate('#/map'); }, 'map national 地图 全国 态势');
         add(t.tabGuide, t.tabGuide, function () { ctx.navigate('#/guide'); }, 'guide disaster 指南 防御 灾害');
@@ -97,9 +97,9 @@
           filtered.forEach(function(e){var name=e.labelKey||fold(e.label);e.score=name===q?0:name.startsWith(q)?1:whole.test(e.kw)?2:name.includes(q)?3:4;});
           filtered.sort(function(a,b){return a.score-b.score;});
         }
-        overlay.querySelector('.search-status').textContent = (ctx.lang()==='zh'?'匹配结果：':'Matches: ') + filtered.length + (loading ? (ctx.lang()==='zh'?' · 正在加载全站内容…':' · Loading site content…') : '');
+        overlay.querySelector('.search-status').textContent = (window.NDLocale.phrase('匹配结果：','Matches: ',ctx.lang())) + filtered.length + (loading ? (window.NDLocale.phrase(' · 正在加载全站内容…',' · Loading site content…',ctx.lang())) : '');
         if (q && !filtered.length) {
-          listEl.innerHTML = '<div class="search-empty">' + esc(loading ? (ctx.lang()==='zh'?'正在搜索全站内容…':'Searching site content…') : ctx.web('searchEmpty')) + '</div>';
+          listEl.innerHTML = '<div class="search-empty">' + esc(loading ? (window.NDLocale.phrase('正在搜索全站内容…','Searching site content…',ctx.lang())) : ctx.web('searchEmpty')) + '</div>';
           return;
         }
         filtered = filtered.slice(0, 40);
@@ -147,7 +147,7 @@
         if(!overlay)return;
         documents.forEach(function(doc){
           if(!doc.label || !/^(?:#\/|\.?\/?[\w-]+\.html)/.test(doc.href||''))return;
-          entries.push({label:doc.label,labelKey:fold(doc.label),sub:doc.category||'Site content',kw:fold([doc.label,doc.category,doc.keywords].join(' ')),run:function(){if(doc.href.startsWith('#/'))ctx.navigate(doc.href);else location.assign(doc.href);}});
+          entries.push({label:doc.category==='Countries & regions'?window.NDLocale.country(new URLSearchParams((doc.href.split('?')[1]||'')).get('iso'),doc.label,ctx.lang()):doc.label,labelKey:fold(doc.label),sub:window.NDLocale.text(doc.category||'Site content',ctx.lang()),kw:fold([doc.label,doc.category,doc.keywords].join(' ')),run:function(){if(doc.href.startsWith('#/'))ctx.navigate(doc.href);else location.assign(doc.href);}});
         });
         renderList();
       }
@@ -155,12 +155,12 @@
         if(!overlay || !input.value.trim() || historyAdded || !catalog || !catalog.shards)return;
         historyAdded=true;loading=true;renderList();
         var request=historyCatalog ? Promise.resolve(historyCatalog) : Promise.all(catalog.shards.map(function(url){return fetch(url,{cache:'no-cache'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json();});})).then(function(data){historyCatalog=[].concat.apply([],data.map(function(d){return d.documents;}));return historyCatalog;});
-        request.then(function(docs){if(token!==session||!overlay)return;loading=false;ingest(docs);}).catch(function(){if(token!==session||!overlay)return;loading=false;historyAdded=false;renderList();overlay.querySelector('.search-status').textContent=ctx.lang()==='zh'?'历史内容暂不可用；显示其他匹配。':'History is unavailable; showing other matches.';});
+        request.then(function(docs){if(token!==session||!overlay)return;loading=false;ingest(docs);}).catch(function(){if(token!==session||!overlay)return;loading=false;historyAdded=false;renderList();overlay.querySelector('.search-status').textContent=window.NDLocale.phrase('历史内容暂不可用；显示其他匹配。','History is unavailable; showing other matches.',ctx.lang());});
       }
       function loadContent(token) {
         loading=true;renderList();
         var request=catalog && Date.now()-catalogAt<60000 ? Promise.resolve(catalog) : fetch('public-data/search-index.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw Error(r.status);return r.json();}).then(function(data){catalog=data;historyCatalog=null;catalogAt=Date.now();return catalog;});
-        request.then(function(docs){if(token!==session||!overlay)return;loading=false;ingest(docs.documents);loadHistory(token);}).catch(function(){if(token!==session||!overlay)return;loading=false;renderList();overlay.querySelector('.search-status').textContent=ctx.lang()==='zh'?'部分搜索内容暂不可用，请稍后重试。':'Some searchable content is unavailable. Please retry shortly.';});
+        request.then(function(docs){if(token!==session||!overlay)return;loading=false;ingest(docs.documents);loadHistory(token);}).catch(function(){if(token!==session||!overlay)return;loading=false;renderList();overlay.querySelector('.search-status').textContent=window.NDLocale.phrase('部分搜索内容暂不可用，请稍后重试。','Some searchable content is unavailable. Please retry shortly.',ctx.lang());});
         providers.forEach(function(provider){Promise.resolve().then(provider).then(function(docs){if(token===session)ingest(docs);}).catch(function(){});});
       }
       function open() {

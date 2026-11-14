@@ -18,7 +18,7 @@
     timer=setTimeout(function(){
       if(!el.isConnected)return hide();
       if(!tooltip){tooltip=document.createElement('div');tooltip.id='unit-help-tooltip';tooltip.className='unit-help-tooltip';tooltip.setAttribute('role','tooltip');document.body.appendChild(tooltip);}
-      var language=window.__modules.i18n.getLang();tooltip.textContent=definitions[el.dataset.unit][language==='zh'?0:1];tooltip.hidden=false;el.setAttribute('aria-describedby',tooltip.id);
+      var language=window.__modules.i18n.getLang();tooltip.textContent=window.NDLocale.phrase(definitions[el.dataset.unit][0],definitions[el.dataset.unit][1],language);tooltip.hidden=false;el.setAttribute('aria-describedby',tooltip.id);
       var rect=el.getBoundingClientRect(), box=tooltip.getBoundingClientRect();
       tooltip.style.left=Math.max(8,Math.min(innerWidth-box.width-8,rect.left))+'px';
       tooltip.style.top=(rect.bottom+box.height+12<innerHeight?rect.bottom+8:Math.max(8,rect.top-box.height-8))+'px';
@@ -33,7 +33,7 @@
         fragment.appendChild(document.createTextNode(text.slice(last,match.index)));
         var unit=match[0],key=unit==='MMI'?'MMI':unit[0]==='M'?'M':unit==='km/h'?'speed':/^km[²2]$/.test(unit)?'area':unit==='m/s'?'ms':unit==='°'?'deg':unit;
         var span=document.createElement('span');span.className='unit-help';span.dataset.unit=key;span.tabIndex=0;span.textContent=unit;
-        span.setAttribute('aria-label',unit+' · '+(window.__modules.i18n.getLang()==='zh'?'单位说明':'Unit explanation'));
+        span.setAttribute('aria-label',unit+' · '+window.NDLocale.text('Unit explanation',window.__modules.i18n.getLang()));
         fragment.appendChild(span);last=re.lastIndex;
       }
       if(last){fragment.appendChild(document.createTextNode(text.slice(last)));node.replaceWith(fragment);}
