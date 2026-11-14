@@ -1032,3 +1032,5 @@ a.rescue-button { text-decoration: none; }
 .rescue-org > .resource-symbol, .rescue-detail > .resource-symbol { width: 56px; height: 56px; color: var(--resource-fg,#194455); background: var(--resource-bg,#cfe5f1); }
 .resource-symbol svg, .place-symbol svg { display: block; width: 32px; height: 32px; }
 .country-flag { display: block; width: 48px; height: 36px; object-fit: contain; border-radius: 3px; box-shadow: 0 0 0 1px #0003; }
+.contact-status { color: #ffdcab !important; font-size: .78rem; }
+.contact-pending { border: 1px solid #ac8752; border-radius: 10px; padding: 16px; background: #30281c; color: #ffe4bd; line-height: 1.7; }
