@@ -998,3 +998,32 @@ a.rescue-button { text-decoration: none; }
 .search-status { padding: 10px 16px 4px; font-size: .8rem; color: #c0d8d5; }
 .search-item-label { white-space: normal; text-align: left; line-height: 1.45; }
 .search-item-sub { max-width: 35%; white-space: normal; text-align: right; }
+
+/* Shared Global Hazards panel palette: new panels inherit the KPI-card colors. */
+.global-page {
+  --global-panel-background: linear-gradient(160deg, rgba(14,26,34,.9), rgba(8,14,20,.85));
+  --global-panel-border: var(--border);
+  --global-panel-text: #edf5f8;
+  --global-panel-muted: #c0d1d6;
+  --panel: #0c151b;
+}
+.global-page :is(.gkpi, .global-filters, .global-layers, .global-side, .global-mode, .global-meta, .rescue-section, .gcards > div, .gitem, .global-panel) {
+  background: var(--global-panel-background);
+  border-color: var(--global-panel-border);
+  color: var(--global-panel-text);
+}
+.global-page .rescue-section { box-shadow: none; }
+.global-page .rescue-section p, .global-page .rescue-section label { color: var(--global-panel-muted); }
+.global-page .rescue-section input, .global-page .global-filters select {
+  background: #111d24;
+  color: var(--global-panel-text);
+  border-color: #657b83;
+  color-scheme: dark;
+}
+.global-page .global-filters option { background: #111d24; color: var(--global-panel-text); }
+.global-page .rescue-section input::placeholder { color: #b4c5cb; }
+.global-page .rescue-section .btn { background: #253e46; color: #edf5f8; border-color: #78959e; }
+.global-page .rescue-section .btn:hover { background: #34525b; }
+.global-page .gitem:hover { background: #1a2d35; }
+
+.global-page .global-meta { padding-inline: 18px; }
