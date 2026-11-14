@@ -22,7 +22,7 @@ const EVENTS_FILE = path.join(ROOT, 'public-data', 'gdacs-events.json');
 const HISTORY_FILE = path.join(ROOT, 'public-data', 'gdacs-disaster-history.json');
 
 const API = process.env.GDACS_API_URL || 'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH';
-const TYPES = process.env.GDACS_TYPES || 'WF;FL;TC;DR;VO;TS';
+const TYPES = process.env.GDACS_TYPES || 'WF;FL;TC;DR';
 const DAYS = Math.max(1, Number(process.env.GDACS_DAYS || 60));
 const NOW = new Date();
 const NOW_ISO = NOW.toISOString();
@@ -66,7 +66,9 @@ async function fetchFresh() {
       if (!res.ok) {
         throw new Error('GDACS API HTTP ' + res.status);
       }
-      const data = await res.json();
+      const body = await res.text();
+      if (!body.trim()) throw Error('GDACS SEARCH returned an empty response');
+      const data = JSON.parse(body);
       if (!data || !Array.isArray(data.features)) {
         throw new Error('GDACS API returned no FeatureCollection');
       }
