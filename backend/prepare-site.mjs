@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { buildSearchIndex } from './search-index.mjs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -25,5 +26,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const health = checkSite(root, { requireFresh: process.env.ALLOW_STALE_DATA !== '1' });
   const workerPath = path.join(root, 'sw.js');
   fs.writeFileSync(workerPath, fs.readFileSync(workerPath, 'utf8').replace(/const CACHE = 'ndw-shell-[^']+';/, "const CACHE = 'ndw-shell-" + health.version + "';"));
+  const search = buildSearchIndex(root);
+  const history = search.documents.filter(doc => /history/i.test(doc.category));
+  const primary = search.documents.filter(doc => !/history/i.test(doc.category));
+  fs.writeFileSync(path.join(root, 'public-data/search-index-history.json'), JSON.stringify({ documents: history }));
+  fs.writeFileSync(path.join(root, 'public-data/search-index.json'), JSON.stringify({ version: 1, documents: primary, shards: ['public-data/search-index-history.json'] }));
+  console.log('Search documents:', search.documents.length);
   console.log('Site ready:', JSON.stringify(health));
 }

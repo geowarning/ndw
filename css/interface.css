@@ -995,3 +995,6 @@ a.rescue-button { text-decoration: none; }
 @media(max-width:760px) { .global-page .global-kpis { gap: 12px; } .global-page .global-filters, .global-page .global-layers { width: 100%; box-sizing: border-box; } .global-page .rescue-section { padding: 22px; } }
 /* Unit annotations retain the typography of their numeric parent. */
 .global-page .gkpi .unit-help, .global-page .gitem .unit-help { display: inline; font: inherit; color: inherit; letter-spacing: inherit; text-transform: none; }
+.search-status { padding: 10px 16px 4px; font-size: .8rem; color: #c0d8d5; }
+.search-item-label { white-space: normal; text-align: left; line-height: 1.45; }
+.search-item-sub { max-width: 35%; white-space: normal; text-align: right; }

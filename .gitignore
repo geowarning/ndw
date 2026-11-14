@@ -1,3 +1,6 @@
 backend/data/
 .env
 tools/_screens/
+
+# Generated from published content by prepare-site.mjs
+public-data/search-index*.json

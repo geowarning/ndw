@@ -159,3 +159,22 @@ listed GDACS events when updates are overdue (30 minutes), with dashed markers,
 last-check time and an explicit unconfirmed-status notice. A successful current
 feed refresh still removes events no longer listed from the map and preserves
 them in history. This supersedes the previous 30-minute visibility expiry.
+
+
+## Site-wide search
+
+`node backend/prepare-site.mjs [site-root]` now generates the published search
+catalog from public datasets and static HTML pages. The primary index contains
+countries, organizations and current content; history is a separate lazy shard.
+Both files are generated outputs and should not be committed. For local source
+serving, run `ALLOW_STALE_DATA=1 node backend/prepare-site.mjs` after changing
+content. The browser refreshes the catalog on reopening after one minute.
+
+New records in the existing data schemas are indexed automatically. Future public
+JSON content can expose `{title, href, keywords/body, category}` (or `label/name`
+and `route`) anywhere in its object tree; the index discovers those linked records
+without changes to the search UI. Future custom browser features can register a
+provider using `NDSearch.registerSource(() => [{label, category, href, keywords}])`.
+New navigation items are picked up from the shared navigation list, and headings
+and section text on the current rendered page are also searchable. Keep private
+configuration outside public-data; only published content belongs in the catalog.

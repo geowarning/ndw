@@ -2428,7 +2428,9 @@
       case '/rescue': window.NDRescue.render(viewEl, query); break;
       case '/disasters': window.NDDisasterList.render(viewEl, query); break;
       case '/global': renderGlobal(); break;
-      case '/database': renderDatabase(); break;
+      case '/database':
+        if (query.category) { dbState.category = query.category; dbState.q = query.q || ''; dbState.page = 1; }
+        renderDatabase(); break;
       case '/map': renderExpandedMap(); break;
       case '/detail': renderDetail(query.id); break;
       case '/guide': renderGuide(); break;
@@ -2678,6 +2680,7 @@
       i18n: i18n,
       data: data,
       districts: districts,
+      navItems: navItems,
       SVG: SVG,
       navigate: function (hash) {
         if ((location.hash || '#/home') === hash) { route(); }
