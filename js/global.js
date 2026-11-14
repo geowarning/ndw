@@ -756,16 +756,17 @@
       '<button class="btn btn-outline" type="submit">' + (lang() === 'zh' ? '搜索救援联系' : 'Search rescue contacts') + '</button></form></section>';
   }
   function paint() {
+    if (state.ctx && !state.ctx.embedded && (location.hash || '#/home').split('?')[0] !== '#/global') return;
     if (state.mode === 'live' && state.selected && state.selected.kind === 'gdacs' &&
         !GdacsStatus.active(state.selected.status, Date.now())) { state.selected = null; }
     var el = state.el;
     if (!el) { return; }
     if (state.fullscreen) { exitFullscreen(); }
-    if (state.loading && !state.live) {
+    if (state.loading) {
       el.innerHTML = '<section class="global-page"><div class="container"><div class="global-head"><div><div class="eyebrow">GLOBAL DISASTER MONITOR</div><h1>' + esc(web('globalTitle')) + '</h1><p>' + esc(web('globalSub')) + '</p></div></div><div class="state-box"><div class="spinner"></div>' + esc(web('live')) + '…</div></div></section>';
       return;
     }
-    if (state.error && !state.live) {
+    if (state.error && (!state.live || (state.mode === 'history' && !state.history))) {
       el.innerHTML = '<section class="global-page"><div class="container"><div class="state-box error">' + esc(state.error) + '</div></div></section>';
       return;
     }
@@ -785,7 +786,7 @@
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
         ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
-      '</div><aside class="global-side"><nav class="disaster-list-actions" aria-label="' + (lang() === 'zh' ? '灾害列表' : 'Disaster lists') + '"><a class="btn btn-green" href="#/disasters?mode=live">' + (lang() === 'zh' ? '查看全部当前灾害' : 'View all current disasters') + ' →</a><a class="btn btn-outline" href="#/disasters?mode=history">' + (lang() === 'zh' ? '灾害历史列表' : 'Browse disaster history') + ' →</a></nav>' + sideHtml(quakes) + '</aside></div>' +
+      '</div><aside class="global-side"><nav class="disaster-list-actions" aria-label="' + (lang() === 'zh' ? '灾害列表' : 'Disaster lists') + '"><a class="btn btn-green" href="#/disasters?mode=' + state.mode + '">' + (state.mode === 'live' ? (lang() === 'zh' ? '查看全部当前灾害' : 'View all live disasters') : (lang() === 'zh' ? '查看灾害历史' : 'Browse disaster history')) + ' →</a></nav>' + sideHtml(quakes) + '</aside></div>' +
       rescueSection() +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
@@ -915,7 +916,11 @@
     }
     state.el = viewEl;
     state.ctx = ctx;
-    state.loading = !state.live;
+    var requestedMode = new URLSearchParams((location.hash || '').split('?')[1] || '').get('mode');
+    if ((requestedMode === 'live' || requestedMode === 'history') && requestedMode !== state.mode) {
+      state.mode = requestedMode; state.selected = null; state.country = null; state.gdacsType = 'all'; state.gdacsAlert = 'all';
+    }
+    state.loading = !state.live || !cache.paths || (state.mode === 'history' && !state.history);
     state.error = '';
     if (!viewEl.__ndGlobalBound) {
       viewEl.addEventListener('click', onClick);
@@ -950,20 +955,17 @@
     }
     if (!ctx.embedded) { document.title = ctx.web('globalTitle'); }
     paint();
-    if (!state.live) {
-      Promise.all([fetchJson('public-data/global-earthquakes.json'), ensureGeo()]).then(function (res) {
-        state.live = res[0];
-        cache.live = res[0];
-        state.loading = false;
-        paint();
-      }).catch(function (err) {
-        state.loading = false;
-        state.error = String(err && err.message ? err.message : err);
-        paint();
-      });
-    } else if (!cache.paths) {
-      ensureGeo().then(paint).catch(function () { paint(); });
-    }
+    Promise.all([
+      state.live ? Promise.resolve(state.live) : fetchJson('public-data/global-earthquakes.json'),
+      ensureGeo(),
+      state.mode === 'history' && !state.history ? Promise.all([
+        fetchJson('public-data/global-quakes-recent.json'), fetchJson('public-data/gdacs-disaster-history.json')
+      ]) : Promise.resolve(null)
+    ]).then(function(res) {
+      state.live = res[0]; cache.live = res[0];
+      if(res[2]) { state.history = res[2][0]; cache.history = res[2][0]; cache.gdacsHistory = normalizeGdacs(res[2][1]); }
+      state.loading = false; paint();
+    }).catch(function(err) { state.loading = false; state.error = String(err.message || err); paint(); });
   }
 
   window.NDGlobal = {

@@ -943,3 +943,55 @@ a.rescue-button { text-decoration: none; }
 .disaster-original { white-space: pre-wrap; overflow-wrap: anywhere; }
 .disaster-pager { display: flex; gap: 14px; justify-content: center; padding: 24px 0; }
 .disaster-record summary:focus-visible { outline: 2px solid #b7ead7; outline-offset: 3px; }
+/* Give monitoring controls their own readable sections. */
+.global-page .global-head { margin-bottom: 28px; }
+.global-page .global-kpis { gap: 18px; margin: 24px 0 30px; }
+.global-page .global-toolbar { gap: 18px; margin: 20px 0; align-items: flex-start; }
+.global-page .global-filters, .global-page .global-layers { padding: 16px; gap: 12px; background: #132229; border: 1px solid #49626a; border-radius: 12px; }
+.global-page .global-meta { gap: 14px 24px; margin: 20px 0 26px; padding: 14px 0; border-block: 1px solid #3b5158; line-height: 1.7; }
+.global-page .global-layout { gap: 22px; }
+.global-page .global-side { padding: 20px; }
+.global-page .disaster-list-actions { padding-bottom: 20px; border-bottom: 1px solid #49626a; margin-bottom: 22px; }
+.global-page .global-side .rescue-button { margin-bottom: 18px; }
+.global-page .glist-label { margin-top: 20px; }
+.global-page .gitem { padding: 12px; }
+/* Pastel mint with dark text and deliberate control contrast. */
+.global-page .rescue-section { margin-top: 36px; padding: 28px; background: #d8eee7; color: #17352f; border-color: #9dbdb1; box-shadow: inset 5px 0 #71a892; }
+.global-page .rescue-section p { color: #294d43; }
+.global-page .rescue-section input { background: #f7fcfa; color: #17352f; border-color: #648b7d; }
+.global-page .rescue-section input::placeholder { color: #506d63; }
+.global-page .rescue-section .btn { background: #214f42; color: #fff; border-color: #214f42; }
+.global-page .rescue-section .btn:hover { background: #15392f; }
+.china-support-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin: 22px 0; padding: 18px 20px; border: 1px solid #536e69; border-radius: 12px; background: #162b29; color: #d6ece4; }
+/* Hazard colors show type; alert colors retain the source's severity label. */
+.disaster-record { --hazard: #a7cdd1; border-inline-start: 5px solid var(--hazard); }
+.disaster-record[data-hazard="EQ"] { --hazard: #ceb7fa; }
+.disaster-record[data-hazard="WF"] { --hazard: #ffbd87; }
+.disaster-record[data-hazard="FL"] { --hazard: #99d5fc; }
+.disaster-record[data-hazard="TC"] { --hazard: #bcb4ff; }
+.disaster-record[data-hazard="DR"] { --hazard: #e9d18a; }
+.disaster-record[data-hazard="VO"] { --hazard: #ffa59e; }
+.disaster-record[data-hazard="TS"] { --hazard: #8fe3d5; }
+.disaster-record .rescue-type { color: var(--hazard); font-weight: 600; }
+.disaster-visual-summary { display: grid; gap: 10px; border: 1px solid var(--hazard); border-radius: 10px; padding: 18px; margin: 10px 0 24px; background: #192e36; color: var(--hazard); }
+.disaster-record[data-alert="green"] .disaster-visual-summary { background: #d8efde; color: #1b4b31; border-color: #7dab8a; }
+.disaster-record[data-alert="orange"] .disaster-visual-summary { background: #ffe1bc; color: #633600; border-color: #d6a665; }
+.disaster-record[data-alert="red"] .disaster-visual-summary { background: #f8d1d5; color: #721d2a; border-color: #ce7e89; }
+.disaster-record[data-alert="yellow"] .disaster-visual-summary { background: #f6edb9; color: #554500; border-color: #c1b56b; }
+.disaster-record[data-alert="green"] summary > strong { color: #a9e4b9; }
+.disaster-record[data-alert="orange"] summary > strong { color: #ffd49c; }
+.disaster-record[data-alert="red"] summary > strong { color: #ffb0bb; }
+.disaster-record[data-alert="yellow"] summary > strong { color: #f8e39a; }
+/* Icon badges remain meaningful alongside written country and category names. */
+.place-symbol { display: grid; place-items: center; width: 46px; height: 40px; font-size: 1.7rem; background: #274139; border-radius: 10px; }
+.resource-symbol { display: grid; place-items: center; width: 44px; height: 44px; font-size: 1.6rem; border-radius: 12px; background: var(--resource-bg,#cfe5f1); color: var(--resource-fg,#194455); }
+.resource-directory { --resource-bg: #d7e8fa; --resource-fg: #244764; }
+.resource-rescue { --resource-bg: #ffe1bb; --resource-fg: #613c13; }
+.resource-training { --resource-bg: #f7d4de; --resource-fg: #70283e; }
+.resource-medical { --resource-bg: #d5efe1; --resource-fg: #20553b; }
+.resource-food { --resource-bg: #f2e8bb; --resource-fg: #554717; }
+.rescue-org { border-top: 3px solid var(--resource-bg,#cfe5f1); }
+.rescue-detail .resource-symbol { margin-bottom: 20px; }
+@media(max-width:760px) { .global-page .global-kpis { gap: 12px; } .global-page .global-filters, .global-page .global-layers { width: 100%; box-sizing: border-box; } .global-page .rescue-section { padding: 22px; } }
+/* Unit annotations retain the typography of their numeric parent. */
+.global-page .gkpi .unit-help, .global-page .gitem .unit-help { display: inline; font: inherit; color: inherit; letter-spacing: inherit; text-transform: none; }

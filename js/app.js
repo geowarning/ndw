@@ -1127,7 +1127,7 @@
             '<div class="eyebrow"><span class="pulse-dot"></span>' + esc(s.dataSource || t.loading) + '</div>' +
             '<h1 class="hero-title">' + esc(web('overviewTitle')) + '</h1>' +
             '<p class="hero-sub">' + esc(web('overviewSubtitle')) + '</p></div>' +
-            '<div class="hero-location">' + window.NDRescue.button('China', homeState.city, lang()) +
+            '<div class="hero-location">' +
               '<div class="hero-city">' + esc(displayCity) +
                 '<small>' + esc(displayProvince) + '</small></div>' +
               '<button class="district-pill" data-action="open-district"><span class="status-dot status-' +
@@ -1140,6 +1140,7 @@
           weatherCard +
         '</div>' +
 
+        '<div class="china-support-actions"><span>' + (l === 'zh' ? '当地援助与急救资源' : 'Local assistance & first-aid resources') + '</span>' + window.NDRescue.button('China', homeState.city, lang()) + '</div>' +
         '<div class="stat-row">' +
           statBox('lv-red', dataReady ? s.levelStats.red : null, t.redAlert) +
           statBox('lv-orange', dataReady ? s.levelStats.orange : null, t.orangeAlert) +

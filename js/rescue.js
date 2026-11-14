@@ -25,10 +25,12 @@
     if(query.city)items.push('<a href="'+esc(href({iso:query.iso,state:query.state,city:query.city}))+'">'+esc(query.city)+'</a>');
     return '<nav class="rescue-breadcrumb" aria-label="'+t('位置导航','Location navigation')+'">'+items.join('<span aria-hidden="true">/</span>')+'</nav>';
   }
+  function symbol(k) { return {directory:'◎',rescue:'⌖',training:'♥',medical:'✚',food:'◒'}[k] || '◎'; }
+  function flag(iso) { return /^[A-Z]{2}$/.test(iso || '') ? iso.replace(/./g,function(c){return String.fromCodePoint(127397+c.charCodeAt(0));}) : '🌐'; }
   function orgId(r) { return r.iso + ':' + (r.organization || r.region); }
   function organization(r) {
     var local=r.entryType==='organization';
-    return '<a class="rescue-org" href="'+esc(href({iso:r.iso,state:r.state,city:r.city,org:orgId(r)}))+'"><span class="rescue-type">'+esc(label(kind(r)))+'</span><h3>'+esc(r.organization||r.region)+'</h3><span>'+esc(local?[r.city,r.state].filter(Boolean).join(' · '):t('国家级机构与分支目录','National organization & branch directory'))+'</span><b aria-hidden="true">↗</b></a>';
+    return '<a class="rescue-org resource-'+kind(r)+'" href="'+esc(href({iso:r.iso,state:r.state,city:r.city,org:orgId(r)}))+'"><span class="resource-symbol" aria-hidden="true">'+symbol(kind(r))+'</span><span class="rescue-type">'+esc(label(kind(r)))+'</span><h3>'+esc(r.organization||r.region)+'</h3><span>'+esc(local?[r.city,r.state].filter(Boolean).join(' · '):t('国家级机构与分支目录','National organization & branch directory'))+'</span><b aria-hidden="true">↗</b></a>';
   }
   function results() {
     var input=page.querySelector('[data-rescue-search]'), q=input.value;
@@ -43,7 +45,7 @@
     var section=page.querySelector('[data-rescue-locations]');
     section.innerHTML=locations.length?'<h2>'+({country:t('选择国家或地区','Choose a country or region'),state:t('选择州或省','Choose a state or province'),city:t('选择城市或城镇','Choose a city or town')}[stage])+'</h2><div class="rescue-place-grid">'+locations.map(function(key){
       var values=stage==='country'?{iso:key}:stage==='state'?{iso:query.iso,state:key}:{iso:query.iso,state:query.state,city:key};
-      return '<a class="rescue-place" href="'+esc(href(values))+'"><strong>'+esc(stage==='country'?countryName(key):key)+'</strong><span>'+groups[key].length+' '+t('条资源','resources')+' →</span></a>';
+      return '<a class="rescue-place" href="'+esc(href(values))+'"><span class="place-symbol" aria-hidden="true">'+(stage==='country'?flag(key):stage==='state'?'▧':'⌖')+'</span><strong>'+esc(stage==='country'?countryName(key):key)+'</strong><span>'+groups[key].length+' '+t('条资源','resources')+' →</span></a>';
     }).join('')+'</div>':'';
     // Compact organization cards appear after choosing a city, while searching,
     // or for country-wide directories which have no asserted city location.
@@ -53,7 +55,7 @@
   }
   function detail(r) {
     var local=r.entryType==='organization', url=/^https?:\/\//.test(r.directory||'')?r.directory:'https://www.ifrc.org/national-societies-directory';
-    return '<article class="rescue-detail"><span class="rescue-type">'+esc(label(kind(r)))+'</span><h1>'+esc(r.organization||r.region)+'</h1><p class="rescue-location">'+esc([r.city,r.state,r.region].filter(Boolean).join(' · '))+'</p><dl>'+ (local?'<dt>'+t('服务','Services')+'</dt><dd>'+esc(r.services)+'</dd><dt>'+t('服务范围','Coverage')+'</dt><dd>'+esc(r.coverage)+'</dd>':'<dt>'+t('服务','Services')+'</dt><dd>'+t('国家协会与当地分支的官方目录。','Official national society and local branch directory.')+'</dd>')+'</dl><a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="'+esc(url)+'">'+t('官方联系与服务网站','Official contacts & services')+' ↗</a><p class="rescue-source">'+t('请在官网确认当前联系方式、服务范围及可用性。紧急救援请联系当地应急服务。','Confirm current contacts, coverage and availability on the official site. For immediate rescue, contact local emergency services.')+'</p><details><summary>'+t('来源与收录说明','Source & listing information')+'</summary><p>'+t('机构所在地不代表全域覆盖。培训及人道援助机构不一定接受紧急调度。','Organization location does not establish service coverage. Training and humanitarian groups may not accept emergency dispatch calls.')+'</p><a href="'+esc(local?r.sourceUrl:'https://github.com/IFRCGo/go-api/blob/df5c57512bed7d55aa4042790e0b070f50b579f9/api/fixtures/Countries.json')+'" target="_blank" rel="noopener noreferrer">'+t('查看来源','View source')+' ↗</a></details></article>';
+    return '<article class="rescue-detail resource-'+kind(r)+'"><span class="resource-symbol" aria-hidden="true">'+symbol(kind(r))+'</span><span class="rescue-type">'+esc(label(kind(r)))+'</span><h1>'+esc(r.organization||r.region)+'</h1><p class="rescue-location">'+esc([r.city,r.state,r.region].filter(Boolean).join(' · '))+'</p><dl>'+ (local?'<dt>'+t('服务','Services')+'</dt><dd>'+esc(r.services)+'</dd><dt>'+t('服务范围','Coverage')+'</dt><dd>'+esc(r.coverage)+'</dd>':'<dt>'+t('服务','Services')+'</dt><dd>'+t('国家协会与当地分支的官方目录。','Official national society and local branch directory.')+'</dd>')+'</dl><a class="btn btn-green" target="_blank" rel="noopener noreferrer" href="'+esc(url)+'">'+t('官方联系与服务网站','Official contacts & services')+' ↗</a><p class="rescue-source">'+t('请在官网确认当前联系方式、服务范围及可用性。紧急救援请联系当地应急服务。','Confirm current contacts, coverage and availability on the official site. For immediate rescue, contact local emergency services.')+'</p><details><summary>'+t('来源与收录说明','Source & listing information')+'</summary><p>'+t('机构所在地不代表全域覆盖。培训及人道援助机构不一定接受紧急调度。','Organization location does not establish service coverage. Training and humanitarian groups may not accept emergency dispatch calls.')+'</p><a href="'+esc(local?r.sourceUrl:'https://github.com/IFRCGo/go-api/blob/df5c57512bed7d55aa4042790e0b070f50b579f9/api/fixtures/Countries.json')+'" target="_blank" rel="noopener noreferrer">'+t('查看来源','View source')+' ↗</a></details></article>';
   }
   function draw() {
     if(!location.hash.startsWith('#/rescue'))return;
