@@ -1,6 +1,6 @@
 {
   "source": "GDACS",
-  "updatedAt": "2026-11-14T07:23:19.437Z",
+  "updatedAt": "2026-11-14T07:38:05.591Z",
   "range": [
     "2024-12-01",
     "2026-11-13"
@@ -780,8 +780,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -816,7 +816,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -835,8 +835,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in India",
+        "description": "Forest fires in India",
         "htmldescription": "Green Forest fires in India from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -871,7 +871,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -888,8 +888,8 @@
         "eventtype": "WF",
         "eventid": "1033805",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 06/11/2026, a forest fire started in Australia,  until 12/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -900,7 +900,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033805"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -992,8 +992,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic",
+        "description": "Forest fires in Central African Republic",
         "htmldescription": "Green Forest fires in Central African Republic from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -1028,7 +1028,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1114,8 +1114,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -1150,7 +1150,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1167,8 +1167,8 @@
         "eventtype": "WF",
         "eventid": "1033612",
         "episodeid": "5",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 06/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -1179,7 +1179,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033612"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1196,8 +1196,8 @@
         "eventtype": "WF",
         "eventid": "1033657",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Mali",
+        "description": "On 06/11/2026, a forest fire started in Mali,  until 11/11/2026.",
         "country": "Mali",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -1208,7 +1208,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033657"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1540,8 +1540,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -1576,7 +1576,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1654,8 +1654,8 @@
         "eventtype": "WF",
         "eventid": "1033732",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 07/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -1666,7 +1666,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033732"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -1990,8 +1990,8 @@
         "eventtype": "WF",
         "eventid": "1033753",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Senegal",
+        "description": "On 07/11/2026, a forest fire started in Senegal,  until 12/11/2026.",
         "country": "Senegal",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -2002,7 +2002,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033753"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -2143,8 +2143,8 @@
         "eventtype": "WF",
         "eventid": "1033674",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 08/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -2155,7 +2155,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033674"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -2794,8 +2794,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -2830,7 +2830,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -2971,8 +2971,8 @@
         "eventtype": "WF",
         "eventid": "1033705",
         "episodeid": "5",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Botswana",
+        "description": "On 08/11/2026, a forest fire started in Botswana,  until 11/11/2026.",
         "country": "Botswana",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -2983,7 +2983,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033705"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3248,8 +3248,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -3284,7 +3284,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3364,8 +3364,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -3400,7 +3400,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3480,8 +3480,8 @@
         "eventtype": "WF",
         "eventid": "1033742",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Burkina Faso",
+        "description": "On 09/11/2026, a forest fire started in Burkina Faso,  until 11/11/2026.",
         "country": "Burkina Faso",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -3492,7 +3492,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033742"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3509,8 +3509,8 @@
         "eventtype": "WF",
         "eventid": "1033744",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 09/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -3521,7 +3521,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033744"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3601,8 +3601,8 @@
         "eventtype": "WF",
         "eventid": "1033750",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 09/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -3613,7 +3613,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033750"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -3821,8 +3821,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -3857,7 +3857,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4126,8 +4126,8 @@
         "eventtype": "WF",
         "eventid": "1033745",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan, Sudan",
+        "description": "On 09/11/2026, a forest fire started in South Sudan, Sudan,  until 11/11/2026.",
         "country": "South Sudan, Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -4138,7 +4138,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033745"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4218,8 +4218,8 @@
         "eventtype": "WF",
         "eventid": "1033779",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 09/11/2026, a forest fire started in Australia,  until 12/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -4230,7 +4230,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033779"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4247,8 +4247,8 @@
         "eventtype": "WF",
         "eventid": "1033770",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Mali",
+        "description": "On 10/11/2026, a forest fire started in Mali,  until 12/11/2026.",
         "country": "Mali",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 00:00:00 GMT",
@@ -4259,7 +4259,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033770"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4461,8 +4461,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -4497,7 +4497,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4764,8 +4764,8 @@
         "eventtype": "WF",
         "eventid": "1033774",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 10/11/2026, a forest fire started in Australia,  until 12/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 00:00:00 GMT",
@@ -4776,7 +4776,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033774"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4793,8 +4793,8 @@
         "eventtype": "WF",
         "eventid": "1033695",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 10/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 00:00:00 GMT",
@@ -4805,7 +4805,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033695"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -4953,8 +4953,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 11 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -4989,7 +4989,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -5008,8 +5008,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Flood in Vietnam",
+        "description": "Flood in Vietnam",
         "htmldescription": "Green Flood in Vietnam from: 06 Nov 2026 01 to: 13 Nov 2026 01.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/FL.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/FL.png",
@@ -5044,7 +5044,7 @@
           "severityunit": ""
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -5188,8 +5188,8 @@
         "eventtype": "WF",
         "eventid": "1033652",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Suriname, Brazil",
+        "description": "On 29/10/2026, a forest fire started in Suriname, Brazil,  until 08/11/2026.",
         "country": "Suriname, Brazil",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -5200,7 +5200,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033652"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -5344,8 +5344,8 @@
         "eventtype": "WF",
         "eventid": "1033609",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Bolivia",
+        "description": "On 29/10/2026, a forest fire started in Bolivia,  until 11/11/2026.",
         "country": "Bolivia",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -5356,7 +5356,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033609"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -5619,8 +5619,8 @@
         "eventtype": "WF",
         "eventid": "1033436",
         "episodeid": "13",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 29/10/2026, a forest fire started in South Sudan,  until 09/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -5631,7 +5631,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033436"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -6024,8 +6024,8 @@
         "eventtype": "WF",
         "eventid": "1033551",
         "episodeid": "6",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Mozambique",
+        "description": "On 30/10/2026, a forest fire started in Mozambique,  until 08/11/2026.",
         "country": "Mozambique",
         "alertlevel": "Green",
         "fromdate": "Fri, 30 Oct 2026 00:00:00 GMT",
@@ -6036,7 +6036,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033551"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -6676,8 +6676,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 30 Oct 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -6712,7 +6712,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -7295,8 +7295,8 @@
         "eventtype": "WF",
         "eventid": "1033642",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Tanzania",
+        "description": "On 31/10/2026, a forest fire started in Tanzania,  until 09/11/2026.",
         "country": "Tanzania",
         "alertlevel": "Green",
         "fromdate": "Sat, 31 Oct 2026 00:00:00 GMT",
@@ -7307,7 +7307,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033642"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -7699,8 +7699,8 @@
         "eventtype": "WF",
         "eventid": "1033499",
         "episodeid": "14",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Brazil",
+        "description": "On 31/10/2026, a forest fire started in Brazil,  until 07/11/2026.",
         "country": "Brazil",
         "alertlevel": "Green",
         "fromdate": "Sat, 31 Oct 2026 00:00:00 GMT",
@@ -7711,7 +7711,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033499"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -8035,8 +8035,8 @@
         "eventtype": "WF",
         "eventid": "1033629",
         "episodeid": "8",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 01/11/2026, a forest fire started in Australia,  until 12/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -8047,7 +8047,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033629"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -8064,8 +8064,8 @@
         "eventtype": "WF",
         "eventid": "1033766",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 01/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -8076,7 +8076,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033766"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -8219,8 +8219,8 @@
         "eventtype": "WF",
         "eventid": "1033619",
         "episodeid": "13",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 01/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -8231,7 +8231,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033619"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -8374,8 +8374,8 @@
         "eventtype": "WF",
         "eventid": "1033627",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Brazil",
+        "description": "On 02/11/2026, a forest fire started in Brazil,  until 12/11/2026.",
         "country": "Brazil",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -8386,7 +8386,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033627"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -8912,8 +8912,8 @@
         "eventtype": "WF",
         "eventid": "1033761",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 04/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Wed, 04 Nov 2026 00:00:00 GMT",
@@ -8924,7 +8924,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033761"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -9067,8 +9067,8 @@
         "eventtype": "WF",
         "eventid": "1033715",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Benin, Burkina Faso",
+        "description": "On 05/11/2026, a forest fire started in Benin, Burkina Faso,  until 10/11/2026.",
         "country": "Benin, Burkina Faso",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -9079,7 +9079,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033715"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -9159,8 +9159,8 @@
         "eventtype": "WF",
         "eventid": "1033714",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Senegal",
+        "description": "On 05/11/2026, a forest fire started in Senegal,  until 10/11/2026.",
         "country": "Senegal",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -9171,7 +9171,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033714"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -9314,8 +9314,8 @@
         "eventtype": "WF",
         "eventid": "1033626",
         "episodeid": "8",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -9326,7 +9326,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033626"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -9343,8 +9343,8 @@
         "eventtype": "WF",
         "eventid": "1033613",
         "episodeid": "11",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -9355,7 +9355,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033613"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -9685,8 +9685,8 @@
         "eventtype": "DR",
         "eventid": "1027737",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Drought is on going in New Zealand",
+        "description": "The  Drought notification level is Green.",
         "country": "New Zealand",
         "alertlevel": "Green",
         "fromdate": "Tue, 21 Jul 2026 00:00:00 GMT",
@@ -9697,7 +9697,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=DR&eventid=1027737"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -10392,8 +10392,8 @@
         "eventtype": "DR",
         "eventid": "1023877",
         "episodeid": "14",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Drought is on going in Aruba, , Brazil, Colombia, Costa Rica, , French Guiana, Guyana, Panama, Suriname, Venezuela",
+        "description": "The  Drought notification level is Orange.",
         "country": "Aruba, , Brazil, Colombia, Costa Rica, , French Guiana, Guyana, Panama, Suriname, Venezuela",
         "alertlevel": "Orange",
         "fromdate": "Wed, 21 Sep 2022 00:00:00 GMT",
@@ -10404,7 +10404,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=DR&eventid=1023877"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -10708,8 +10708,8 @@
         "eventtype": "TC",
         "eventid": "1001348",
         "episodeid": "24",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green notification for tropical cyclone PENA-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 0  (0 in Tropical Storm).",
+        "description": "From 06/11/2026 to 12/11/2026, a Tropical Depression (maximum wind speed of 93 km/h) PENA-26 was active in CentralPacific. The cyclone affects these countries: [unknown] (vulnerability [unknown]). Estimated population affected by category 1 (120 km/h) wind speeds or higher is 0  (0 in tropical storm).",
         "country": "",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 21:00:00 GMT",
@@ -10720,7 +10720,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001348"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -10737,8 +10737,8 @@
         "eventtype": "FL",
         "eventid": "1104276",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Portugal",
+        "description": "On 07/11/2026, a flood started in Portugal, lasting until 12/11/2026 (last update). The flood caused 0 deaths and 14 displaced .",
         "country": "Portugal",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 01:00:00 GMT",
@@ -10749,7 +10749,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104276"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -10933,8 +10933,8 @@
         "eventtype": "FL",
         "eventid": "1104280",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Myanmar",
+        "description": "On 10/11/2026, a flood started in Myanmar, lasting until 12/11/2026 (last update). The flood caused 0 deaths and 50 displaced .",
         "country": "Myanmar",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 01:00:00 GMT",
@@ -10945,7 +10945,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104280"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -11277,8 +11277,8 @@
         "eventtype": "WF",
         "eventid": "1033470",
         "episodeid": "11",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 28/10/2026, a forest fire started in South Sudan,  until 09/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Wed, 28 Oct 2026 00:00:00 GMT",
@@ -11289,7 +11289,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033470"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -11306,8 +11306,8 @@
         "eventtype": "WF",
         "eventid": "1033421",
         "episodeid": "10",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 28/10/2026, a forest fire started in South Sudan,  until 09/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Wed, 28 Oct 2026 00:00:00 GMT",
@@ -11318,7 +11318,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033421"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -11335,8 +11335,8 @@
         "eventtype": "WF",
         "eventid": "1033672",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 28/10/2026, a forest fire started in South Sudan,  until 09/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Wed, 28 Oct 2026 00:00:00 GMT",
@@ -11347,7 +11347,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033672"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -11430,8 +11430,8 @@
         "eventtype": "WF",
         "eventid": "1033768",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Chad",
+        "description": "On 28/10/2026, a forest fire started in Chad,  until 11/11/2026.",
         "country": "Chad",
         "alertlevel": "Green",
         "fromdate": "Wed, 28 Oct 2026 00:00:00 GMT",
@@ -11442,7 +11442,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033768"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -11520,8 +11520,8 @@
         "eventtype": "WF",
         "eventid": "1033370",
         "episodeid": "30",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 28/10/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Wed, 28 Oct 2026 00:00:00 GMT",
@@ -11532,7 +11532,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033370"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -120512,8 +120512,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 31 Oct 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -120548,7 +120548,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -120945,8 +120945,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in India",
+        "description": "Forest fires in India",
         "htmldescription": "Green Forest fires in India from: 03 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -120981,7 +120981,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121126,8 +121126,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Sudan, South Sudan",
+        "description": "Forest fires in Sudan, South Sudan",
         "htmldescription": "Green Forest fires in Sudan, South Sudan from: 04 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121167,7 +121167,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121186,8 +121186,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Sudan",
+        "description": "Forest fires in Sudan",
         "htmldescription": "Green Forest fires in Sudan from: 04 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121222,7 +121222,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121304,8 +121304,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in India",
+        "description": "Forest fires in India",
         "htmldescription": "Green Forest fires in India from: 04 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121340,7 +121340,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121359,8 +121359,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan, Sudan",
+        "description": "Forest fires in South Sudan, Sudan",
         "htmldescription": "Green Forest fires in South Sudan, Sudan from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121400,7 +121400,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121419,8 +121419,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121455,7 +121455,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121474,8 +121474,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in India",
+        "description": "Forest fires in India",
         "htmldescription": "Green Forest fires in India from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121510,7 +121510,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121592,8 +121592,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Sudan",
+        "description": "Forest fires in Sudan",
         "htmldescription": "Green Forest fires in Sudan from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121628,7 +121628,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121645,8 +121645,8 @@
         "eventtype": "WF",
         "eventid": "1033636",
         "episodeid": "13",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -121657,7 +121657,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033636"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121676,8 +121676,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121712,7 +121712,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121729,8 +121729,8 @@
         "eventtype": "WF",
         "eventid": "1033677",
         "episodeid": "5",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Botswana",
+        "description": "On 06/11/2026, a forest fire started in Botswana,  until 11/11/2026.",
         "country": "Botswana",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -121741,7 +121741,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033677"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121823,8 +121823,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan, Sudan",
+        "description": "Forest fires in South Sudan, Sudan",
         "htmldescription": "Green Forest fires in South Sudan, Sudan from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121864,7 +121864,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -121946,8 +121946,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic, South Sudan, Sudan",
+        "description": "Forest fires in Central African Republic, South Sudan, Sudan",
         "htmldescription": "Green Forest fires in Central African Republic, South Sudan, Sudan from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -121992,7 +121992,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122009,8 +122009,8 @@
         "eventtype": "WF",
         "eventid": "1033634",
         "episodeid": "12",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Botswana",
+        "description": "On 06/11/2026, a forest fire started in Botswana,  until 11/11/2026.",
         "country": "Botswana",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -122021,7 +122021,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033634"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122040,8 +122040,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Mozambique",
+        "description": "Forest fires in Mozambique",
         "htmldescription": "Green Forest fires in Mozambique from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122076,7 +122076,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122095,8 +122095,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Senegal, Mali",
+        "description": "Forest fires in Senegal, Mali",
         "htmldescription": "Green Forest fires in Senegal, Mali from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122136,7 +122136,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122155,8 +122155,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122191,7 +122191,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122210,8 +122210,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Chad",
+        "description": "Forest fires in Chad",
         "htmldescription": "Green Forest fires in Chad from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122246,7 +122246,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122265,8 +122265,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122301,7 +122301,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122320,8 +122320,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic",
+        "description": "Forest fires in Central African Republic",
         "htmldescription": "Green Forest fires in Central African Republic from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122356,7 +122356,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122375,8 +122375,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in India",
+        "description": "Forest fires in India",
         "htmldescription": "Green Forest fires in India from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122411,7 +122411,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122491,8 +122491,8 @@
         "eventtype": "WF",
         "eventid": "1033675",
         "episodeid": "5",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 08/11/2026, a forest fire started in South Sudan,  until 13/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -122503,7 +122503,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033675"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122648,8 +122648,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122684,7 +122684,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122829,8 +122829,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122865,7 +122865,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122884,8 +122884,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122920,7 +122920,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -122939,8 +122939,8 @@
         "episodeid": "7",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -122975,7 +122975,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123183,8 +123183,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123219,7 +123219,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123238,8 +123238,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123274,7 +123274,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123293,8 +123293,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Chad",
+        "description": "Forest fires in Chad",
         "htmldescription": "Green Forest fires in Chad from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123329,7 +123329,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123474,8 +123474,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Chad",
+        "description": "Forest fires in Chad",
         "htmldescription": "Green Forest fires in Chad from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123510,7 +123510,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123529,8 +123529,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Burkina Faso",
+        "description": "Forest fires in Burkina Faso",
         "htmldescription": "Green Forest fires in Burkina Faso from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123565,7 +123565,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123584,8 +123584,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123620,7 +123620,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123639,8 +123639,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic, Chad",
+        "description": "Forest fires in Central African Republic, Chad",
         "htmldescription": "Green Forest fires in Central African Republic, Chad from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123680,7 +123680,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123762,8 +123762,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123798,7 +123798,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123817,8 +123817,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123853,7 +123853,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123872,8 +123872,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123908,7 +123908,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123927,8 +123927,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic",
+        "description": "Forest fires in Central African Republic",
         "htmldescription": "Green Forest fires in Central African Republic from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -123963,7 +123963,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -123982,8 +123982,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Chad",
+        "description": "Forest fires in Chad",
         "htmldescription": "Green Forest fires in Chad from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124018,7 +124018,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124100,8 +124100,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124136,7 +124136,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124218,8 +124218,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan, Sudan",
+        "description": "Forest fires in South Sudan, Sudan",
         "htmldescription": "Green Forest fires in South Sudan, Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124259,7 +124259,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124278,8 +124278,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124314,7 +124314,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124459,8 +124459,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124495,7 +124495,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124577,8 +124577,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan, Sudan",
+        "description": "Forest fires in South Sudan, Sudan",
         "htmldescription": "Green Forest fires in South Sudan, Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124618,7 +124618,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -124637,8 +124637,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -124673,7 +124673,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -125005,8 +125005,8 @@
         "eventtype": "WF",
         "eventid": "1033631",
         "episodeid": "6",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in India",
+        "description": "On 31/10/2026, a forest fire started in India,  until 13/11/2026.",
         "country": "India",
         "alertlevel": "Green",
         "fromdate": "Sat, 31 Oct 2026 00:00:00 GMT",
@@ -125017,7 +125017,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033631"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -125097,8 +125097,8 @@
         "eventtype": "WF",
         "eventid": "1033618",
         "episodeid": "12",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 01/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -125109,7 +125109,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033618"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -125126,8 +125126,8 @@
         "eventtype": "WF",
         "eventid": "1033628",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 02/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -125138,7 +125138,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033628"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -125155,8 +125155,8 @@
         "eventtype": "WF",
         "eventid": "1033617",
         "episodeid": "11",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 02/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -125167,7 +125167,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033617"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -126131,8 +126131,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -126167,7 +126167,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -126950,8 +126950,8 @@
         "eventtype": "FL",
         "eventid": "1104283",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Thailand",
+        "description": "On 06/11/2026, a flood started in Thailand, lasting until 11/11/2026 (last update). The flood caused 0 deaths and 0 displaced .",
         "country": "Thailand",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 01:00:00 GMT",
@@ -126962,7 +126962,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104283"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -126979,8 +126979,8 @@
         "eventtype": "FL",
         "eventid": "1104253",
         "episodeid": "27",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Indonesia",
+        "description": "On 24/10/2026, a flood started in Indonesia, lasting until 04/11/2026 (last update). The flood caused 2 deaths and 5041 displaced .",
         "country": "Indonesia",
         "alertlevel": "Green",
         "fromdate": "Sat, 24 Oct 2026 01:00:00 GMT",
@@ -126991,7 +126991,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104253"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127008,8 +127008,8 @@
         "eventtype": "WF",
         "eventid": "1033489",
         "episodeid": "24",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 01/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -127020,7 +127020,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033489"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127100,8 +127100,8 @@
         "eventtype": "WF",
         "eventid": "1033563",
         "episodeid": "16",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 02/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -127112,7 +127112,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033563"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127255,8 +127255,8 @@
         "eventtype": "WF",
         "eventid": "1033755",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Central African Republic",
+        "description": "On 06/11/2026, a forest fire started in Central African Republic,  until 11/11/2026.",
         "country": "Central African Republic",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -127267,7 +127267,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033755"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127662,8 +127662,8 @@
         "eventtype": "WF",
         "eventid": "1033771",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 10/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 00:00:00 GMT",
@@ -127674,7 +127674,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033771"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127817,8 +127817,8 @@
         "eventtype": "TC",
         "eventid": "1001347",
         "episodeid": "22",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green notification for tropical cyclone CEMPAKA-26. Population affected by Category 1 (120 km/h) wind speeds or higher is 953 .",
+        "description": "From 06/11/2026 to 11/11/2026, a Hurricane/Typhoon > 74 mph (maximum wind speed of 176 km/h) CEMPAKA-26 was active in NWPacific. The cyclone affects these countries: Japan (vulnerability Low). Estimated population affected by category 1 (120 km/h) wind speeds or higher is 953 .",
         "country": "Japan",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 06:00:00 GMT",
@@ -127829,7 +127829,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=TC&eventid=1001347"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127846,8 +127846,8 @@
         "eventtype": "WF",
         "eventid": "1033764",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 02/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -127858,7 +127858,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033764"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127875,8 +127875,8 @@
         "eventtype": "WF",
         "eventid": "1033763",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 03/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Tue, 03 Nov 2026 00:00:00 GMT",
@@ -127887,7 +127887,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033763"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127904,8 +127904,8 @@
         "eventtype": "WF",
         "eventid": "1033762",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 04/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Wed, 04 Nov 2026 00:00:00 GMT",
@@ -127916,7 +127916,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033762"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -127933,8 +127933,8 @@
         "eventtype": "WF",
         "eventid": "1033759",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 05/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -127945,7 +127945,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033759"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128273,8 +128273,8 @@
         "eventtype": "WF",
         "eventid": "1033749",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 09/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -128285,7 +128285,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033749"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128302,8 +128302,8 @@
         "eventtype": "FL",
         "eventid": "1104269",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Democratic Republic of Congo",
+        "description": "On 01/11/2026, a flood started in Democratic Republic of Congo, lasting until 03/11/2026 (last update). The flood caused 2 deaths and 0 displaced .",
         "country": "Democratic Republic of Congo",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 01:00:00 GMT",
@@ -128314,7 +128314,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104269"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128333,8 +128333,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 11 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128369,7 +128369,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128388,8 +128388,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 12 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128424,7 +128424,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128443,8 +128443,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128479,7 +128479,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128498,8 +128498,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Argentina",
+        "description": "Forest fires in Argentina",
         "htmldescription": "Green Forest fires in Argentina from: 10 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128534,7 +128534,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128553,8 +128553,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 11 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128589,7 +128589,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128608,8 +128608,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 09 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128644,7 +128644,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128663,8 +128663,8 @@
         "episodeid": "7",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128699,7 +128699,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128718,8 +128718,8 @@
         "episodeid": "31",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 30 Oct 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128754,7 +128754,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128773,8 +128773,8 @@
         "episodeid": "32",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 01 Nov 2026 to: 14 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128809,7 +128809,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128828,8 +128828,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128864,7 +128864,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128883,8 +128883,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128919,7 +128919,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128938,8 +128938,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 11 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -128974,7 +128974,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -128993,8 +128993,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Burkina Faso",
+        "description": "Forest fires in Burkina Faso",
         "htmldescription": "Green Forest fires in Burkina Faso from: 12 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129029,7 +129029,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129048,8 +129048,8 @@
         "episodeid": "1",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 13 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129084,7 +129084,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129103,8 +129103,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 04 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129139,7 +129139,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129158,8 +129158,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 07 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129194,7 +129194,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129213,8 +129213,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129249,7 +129249,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129268,8 +129268,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 11 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129304,7 +129304,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129323,8 +129323,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Botswana",
+        "description": "Forest fires in Botswana",
         "htmldescription": "Green Forest fires in Botswana from: 12 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129359,7 +129359,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129378,8 +129378,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic",
+        "description": "Forest fires in Central African Republic",
         "htmldescription": "Green Forest fires in Central African Republic from: 11 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129414,7 +129414,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129433,8 +129433,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 31 Oct 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129469,7 +129469,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129488,8 +129488,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129524,7 +129524,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129543,8 +129543,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129579,7 +129579,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129598,8 +129598,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129634,7 +129634,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129653,8 +129653,8 @@
         "episodeid": "2",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129689,7 +129689,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129708,8 +129708,8 @@
         "episodeid": "3",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Brazil",
+        "description": "Forest fires in Brazil",
         "htmldescription": "Green Forest fires in Brazil from: 02 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129744,7 +129744,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129763,8 +129763,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 03 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129799,7 +129799,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129818,8 +129818,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129854,7 +129854,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129873,8 +129873,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129909,7 +129909,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129928,8 +129928,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Bolivia",
+        "description": "Forest fires in Bolivia",
         "htmldescription": "Green Forest fires in Bolivia from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -129964,7 +129964,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -129983,8 +129983,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130019,7 +130019,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130038,8 +130038,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 01 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130074,7 +130074,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130093,8 +130093,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 04 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130129,7 +130129,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130148,8 +130148,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Central African Republic",
+        "description": "Forest fires in Central African Republic",
         "htmldescription": "Green Forest fires in Central African Republic from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130184,7 +130184,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130203,8 +130203,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130239,7 +130239,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130258,8 +130258,8 @@
         "episodeid": "6",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in South Sudan",
+        "description": "Forest fires in South Sudan",
         "htmldescription": "Green Forest fires in South Sudan from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130294,7 +130294,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130313,8 +130313,8 @@
         "episodeid": "4",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 01 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130349,7 +130349,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130368,8 +130368,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130404,7 +130404,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130423,8 +130423,8 @@
         "episodeid": "5",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 08 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130459,7 +130459,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130478,8 +130478,8 @@
         "episodeid": "6",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 09 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130514,7 +130514,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130533,8 +130533,8 @@
         "episodeid": "7",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 10 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130569,7 +130569,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130588,8 +130588,8 @@
         "episodeid": "9",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 01 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130624,7 +130624,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130643,8 +130643,8 @@
         "episodeid": "9",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 05 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130679,7 +130679,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130698,8 +130698,8 @@
         "episodeid": "9",
         "eventname": "",
         "glide": "",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Forest fires in Australia",
+        "description": "Forest fires in Australia",
         "htmldescription": "Green Forest fires in Australia from: 06 Nov 2026 to: 13 Nov 2026.",
         "icon": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
         "iconoverall": "https://www.gdacs.org/images/gdacs_icons/maps/Green/WF.png",
@@ -130734,7 +130734,7 @@
           "severityunit": "ha"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130751,8 +130751,8 @@
         "eventtype": "WF",
         "eventid": "1033727",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 10/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Tue, 10 Nov 2026 00:00:00 GMT",
@@ -130763,7 +130763,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033727"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130780,8 +130780,8 @@
         "eventtype": "WF",
         "eventid": "1033729",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 09/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 09 Nov 2026 00:00:00 GMT",
@@ -130792,7 +130792,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033729"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130809,8 +130809,8 @@
         "eventtype": "WF",
         "eventid": "1033725",
         "episodeid": "1",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 08/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130821,7 +130821,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033725"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130838,8 +130838,8 @@
         "eventtype": "WF",
         "eventid": "1033659",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 08/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130850,7 +130850,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033659"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130867,8 +130867,8 @@
         "eventtype": "WF",
         "eventid": "1033689",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 08/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130879,7 +130879,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033689"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130896,8 +130896,8 @@
         "eventtype": "WF",
         "eventid": "1033701",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 08/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130908,7 +130908,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033701"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130925,8 +130925,8 @@
         "eventtype": "WF",
         "eventid": "1033703",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Burkina Faso",
+        "description": "On 08/11/2026, a forest fire started in Burkina Faso,  until 11/11/2026.",
         "country": "Burkina Faso",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130937,7 +130937,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033703"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130954,8 +130954,8 @@
         "eventtype": "WF",
         "eventid": "1033704",
         "episodeid": "4",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 08/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130966,7 +130966,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033704"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -130983,8 +130983,8 @@
         "eventtype": "WF",
         "eventid": "1033680",
         "episodeid": "9",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 08/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sun, 08 Nov 2026 00:00:00 GMT",
@@ -130995,7 +130995,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033680"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131012,8 +131012,8 @@
         "eventtype": "WF",
         "eventid": "1033601",
         "episodeid": "8",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 07/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131024,7 +131024,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033601"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131041,8 +131041,8 @@
         "eventtype": "WF",
         "eventid": "1033686",
         "episodeid": "7",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Brazil, Guyana",
+        "description": "On 07/11/2026, a forest fire started in Brazil, Guyana,  until 11/11/2026.",
         "country": "Brazil, Guyana",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131053,7 +131053,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033686"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131070,8 +131070,8 @@
         "eventtype": "WF",
         "eventid": "1033708",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Botswana",
+        "description": "On 07/11/2026, a forest fire started in Botswana,  until 11/11/2026.",
         "country": "Botswana",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131082,7 +131082,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033708"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131099,8 +131099,8 @@
         "eventtype": "WF",
         "eventid": "1033709",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Tanzania",
+        "description": "On 07/11/2026, a forest fire started in Tanzania,  until 11/11/2026.",
         "country": "Tanzania",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131111,7 +131111,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033709"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131128,8 +131128,8 @@
         "eventtype": "WF",
         "eventid": "1033664",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 07/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131140,7 +131140,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033664"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131157,8 +131157,8 @@
         "eventtype": "WF",
         "eventid": "1033647",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 07/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131169,7 +131169,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033647"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131186,8 +131186,8 @@
         "eventtype": "WF",
         "eventid": "1033682",
         "episodeid": "4",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 07/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 07 Nov 2026 00:00:00 GMT",
@@ -131198,7 +131198,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033682"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131215,8 +131215,8 @@
         "eventtype": "WF",
         "eventid": "1033807",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan, Sudan",
+        "description": "On 06/11/2026, a forest fire started in South Sudan, Sudan,  until 12/11/2026.",
         "country": "Chad, Central African Republic",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -131227,7 +131227,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033807"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131244,8 +131244,8 @@
         "eventtype": "WF",
         "eventid": "1033610",
         "episodeid": "15",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 06/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -131256,7 +131256,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033610"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131273,8 +131273,8 @@
         "eventtype": "WF",
         "eventid": "1033683",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 06/11/2026, a forest fire started in Australia,  until 11/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -131285,7 +131285,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033683"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131302,8 +131302,8 @@
         "eventtype": "WF",
         "eventid": "1033726",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 06/11/2026, a forest fire started in South Sudan,  until 11/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -131314,7 +131314,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033726"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131331,8 +131331,8 @@
         "eventtype": "WF",
         "eventid": "1033712",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Burkina Faso, Mali",
+        "description": "On 06/11/2026, a forest fire started in Burkina Faso, Mali,  until 11/11/2026.",
         "country": "Burkina Faso, Mali",
         "alertlevel": "Green",
         "fromdate": "Fri, 06 Nov 2026 00:00:00 GMT",
@@ -131343,7 +131343,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033712"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131360,8 +131360,8 @@
         "eventtype": "WF",
         "eventid": "1033716",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Tanzania",
+        "description": "On 05/11/2026, a forest fire started in Tanzania,  until 10/11/2026.",
         "country": "Tanzania",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131372,7 +131372,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033716"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131389,8 +131389,8 @@
         "eventtype": "WF",
         "eventid": "1033637",
         "episodeid": "4",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Mali",
+        "description": "On 05/11/2026, a forest fire started in Mali,  until 09/11/2026.",
         "country": "Mali",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131401,7 +131401,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033637"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131418,8 +131418,8 @@
         "eventtype": "WF",
         "eventid": "1033614",
         "episodeid": "16",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131430,7 +131430,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033614"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131447,8 +131447,8 @@
         "eventtype": "WF",
         "eventid": "1033615",
         "episodeid": "16",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131459,7 +131459,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033615"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131476,8 +131476,8 @@
         "eventtype": "WF",
         "eventid": "1033573",
         "episodeid": "15",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131488,7 +131488,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033573"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131505,8 +131505,8 @@
         "eventtype": "WF",
         "eventid": "1033574",
         "episodeid": "16",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 05/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131517,7 +131517,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033574"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131534,8 +131534,8 @@
         "eventtype": "WF",
         "eventid": "1033592",
         "episodeid": "18",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Botswana",
+        "description": "On 05/11/2026, a forest fire started in Botswana,  until 10/11/2026.",
         "country": "Botswana",
         "alertlevel": "Green",
         "fromdate": "Thu, 05 Nov 2026 00:00:00 GMT",
@@ -131546,7 +131546,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033592"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131563,8 +131563,8 @@
         "eventtype": "WF",
         "eventid": "1033562",
         "episodeid": "18",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 04/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Wed, 04 Nov 2026 00:00:00 GMT",
@@ -131575,7 +131575,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033562"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131592,8 +131592,8 @@
         "eventtype": "WF",
         "eventid": "1033521",
         "episodeid": "13",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Nigeria",
+        "description": "On 03/11/2026, a forest fire started in Nigeria,  until 10/11/2026.",
         "country": "Nigeria",
         "alertlevel": "Green",
         "fromdate": "Tue, 03 Nov 2026 00:00:00 GMT",
@@ -131604,7 +131604,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033521"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131621,8 +131621,8 @@
         "eventtype": "WF",
         "eventid": "1033651",
         "episodeid": "12",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Guyana",
+        "description": "On 03/11/2026, a forest fire started in Guyana,  until 10/11/2026.",
         "country": "Guyana",
         "alertlevel": "Green",
         "fromdate": "Tue, 03 Nov 2026 00:00:00 GMT",
@@ -131633,7 +131633,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033651"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131650,8 +131650,8 @@
         "eventtype": "WF",
         "eventid": "1033616",
         "episodeid": "15",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 03/11/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Tue, 03 Nov 2026 00:00:00 GMT",
@@ -131662,7 +131662,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033616"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131679,8 +131679,8 @@
         "eventtype": "WF",
         "eventid": "1033668",
         "episodeid": "10",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 02/11/2026, a forest fire started in Australia,  until 13/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131691,7 +131691,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033668"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131708,8 +131708,8 @@
         "eventtype": "WF",
         "eventid": "1033670",
         "episodeid": "4",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Benin, Niger",
+        "description": "On 02/11/2026, a forest fire started in Benin, Niger,  until 11/11/2026.",
         "country": "Benin, Niger",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131720,7 +131720,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033670"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131737,8 +131737,8 @@
         "eventtype": "WF",
         "eventid": "1033720",
         "episodeid": "4",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 02/11/2026, a forest fire started in South Sudan,  until 10/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131749,7 +131749,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033720"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131766,8 +131766,8 @@
         "eventtype": "WF",
         "eventid": "1033721",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan",
+        "description": "On 02/11/2026, a forest fire started in South Sudan,  until 10/11/2026.",
         "country": "South Sudan",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131778,7 +131778,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033721"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131795,8 +131795,8 @@
         "eventtype": "WF",
         "eventid": "1033722",
         "episodeid": "2",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Tanzania",
+        "description": "On 02/11/2026, a forest fire started in Tanzania,  until 10/11/2026.",
         "country": "Tanzania",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131807,7 +131807,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033722"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131824,8 +131824,8 @@
         "eventtype": "WF",
         "eventid": "1033678",
         "episodeid": "3",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Central African Republic",
+        "description": "On 02/11/2026, a forest fire started in Central African Republic,  until 09/11/2026.",
         "country": "Central African Republic",
         "alertlevel": "Green",
         "fromdate": "Mon, 02 Nov 2026 00:00:00 GMT",
@@ -131836,7 +131836,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033678"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131853,8 +131853,8 @@
         "eventtype": "WF",
         "eventid": "1033508",
         "episodeid": "6",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Bolivia",
+        "description": "On 01/11/2026, a forest fire started in Bolivia,  until 07/11/2026.",
         "country": "Bolivia",
         "alertlevel": "Green",
         "fromdate": "Sun, 01 Nov 2026 00:00:00 GMT",
@@ -131865,7 +131865,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033508"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131882,8 +131882,8 @@
         "eventtype": "WF",
         "eventid": "1033549",
         "episodeid": "17",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 31/10/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Sat, 31 Oct 2026 00:00:00 GMT",
@@ -131894,7 +131894,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033549"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131911,8 +131911,8 @@
         "eventtype": "WF",
         "eventid": "1033457",
         "episodeid": "30",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Australia",
+        "description": "On 30/10/2026, a forest fire started in Australia,  until 09/11/2026.",
         "country": "Australia",
         "alertlevel": "Green",
         "fromdate": "Fri, 30 Oct 2026 00:00:00 GMT",
@@ -131923,7 +131923,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033457"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131940,8 +131940,8 @@
         "eventtype": "WF",
         "eventid": "1033389",
         "episodeid": "16",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Brazil",
+        "description": "On 30/10/2026, a forest fire started in Brazil,  until 10/11/2026.",
         "country": "Brazil",
         "alertlevel": "Green",
         "fromdate": "Fri, 30 Oct 2026 00:00:00 GMT",
@@ -131952,7 +131952,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033389"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131969,8 +131969,8 @@
         "eventtype": "WF",
         "eventid": "1033394",
         "episodeid": "40",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Brazil",
+        "description": "On 29/10/2026, a forest fire started in Brazil,  until 10/11/2026.",
         "country": "Brazil",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -131981,7 +131981,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033394"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -131998,8 +131998,8 @@
         "eventtype": "WF",
         "eventid": "1033458",
         "episodeid": "11",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in Indonesia",
+        "description": "On 29/10/2026, a forest fire started in Indonesia,  until 08/11/2026.",
         "country": "Indonesia",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -132010,7 +132010,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033458"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -132027,8 +132027,8 @@
         "eventtype": "WF",
         "eventid": "1033537",
         "episodeid": "8",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green forest fire notification in South Sudan, Sudan",
+        "description": "On 29/10/2026, a forest fire started in South Sudan, Sudan,  until 09/11/2026.",
         "country": "South Sudan, Sudan",
         "alertlevel": "Green",
         "fromdate": "Thu, 29 Oct 2026 00:00:00 GMT",
@@ -132039,7 +132039,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=WF&eventid=1033537"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     },
@@ -132056,8 +132056,8 @@
         "eventtype": "FL",
         "eventid": "1104220",
         "episodeid": "20",
-        "name": "Event in rss format",
-        "description": "Joint Research Center of the European Commission",
+        "name": "Green flood alert in Italy",
+        "description": "On 07/10/2026, a flood started in Italy, lasting until 07/11/2026 (last update). The flood caused 0 deaths and 235 displaced .",
         "country": "Italy",
         "alertlevel": "Green",
         "fromdate": "Wed, 07 Oct 2026 01:00:00 GMT",
@@ -132068,7 +132068,7 @@
           "report": "http://www.gdacs.org/report.aspx?eventtype=FL&eventid=1104220"
         },
         "_currentFeed": true,
-        "_verifiedAt": "2026-11-14T07:23:19.437Z",
+        "_verifiedAt": "2026-11-14T07:38:05.591Z",
         "_active": true
       }
     }
