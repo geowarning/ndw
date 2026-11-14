@@ -121,7 +121,7 @@ export function mergeEvents(existing, fresh, archive, now = Date.now()) {
 
 async function fetchCurrent() {
   const response = await fetch('https://www.gdacs.org/xml/rss.xml', {
-    headers: { Accept: 'application/rss+xml, application/xml' }, signal: AbortSignal.timeout(30000)
+    headers: { 'User-Agent': 'GeoWarning/1.0 (+https://geowarning.cn)', Accept: 'application/rss+xml, application/xml' }, signal: AbortSignal.timeout(30000)
   });
   if (!response.ok) throw Error('GDACS current feed HTTP ' + response.status);
   return JSON.parse(execFileSync('python3', [path.join(HERE, 'parse-gdacs-feed.py')], {
@@ -154,6 +154,6 @@ async function main() {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main().catch((err) => {
-  console.error('GDACS collection failed:', err && err.message ? err.message : err);
+  console.error('::error::GDACS collection failed: ' + String(err?.message || err).replace(/\r/g, '%0D').replace(/\n/g, '%0A'));
   process.exitCode = 1;
 });
