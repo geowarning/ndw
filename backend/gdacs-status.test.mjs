@@ -8,20 +8,20 @@ const now = Date.parse('2026-11-14T12:00:00Z');
 function feature(id, changes = {}) {
   return { type: 'Feature', geometry: { type: 'Point', coordinates: [10, 20] }, properties: {
     eventtype: 'FL', eventid: id, episodeid: 1, iscurrent: 'true',
-    fromdate: '2026-11-10T00:00:00', todate: '2026-11-15T00:00:00', ...changes
+    _currentFeed: true, _verifiedAt: new Date(now).toISOString(), fromdate: '2026-11-10T00:00:00', todate: '2026-11-15T00:00:00', ...changes
   }};
 }
-test('live requires a current, started, unexpired GDACS report with valid dates', () => {
+test('live uses recent current-feed membership rather than reporting-period end dates', () => {
   assert.equal(status.active(feature(1).properties, now), true);
   for (const change of [{ iscurrent: 'false' }, { iscurrent: false }, { iscurrent: undefined },
-    { todate: '2026-11-14T12:00:00Z' }, { todate: 'invalid' }, { todate: '' },
-    { fromdate: '2026-11-16' }, { _active: false }]) {
+    { _currentFeed: false }, { _verifiedAt: 'invalid' }, { _verifiedAt: '2026-11-14T11:00:00Z' }, { _active: false }]) {
     assert.equal(status.active(feature(1, change).properties, now), false, JSON.stringify(change));
   }
+  assert.equal(status.active(feature(1, { todate: '2026-11-13' }).properties, now), true);
   assert.equal(status.time('2026-11-14'), Date.parse('2026-11-14T00:00:00Z'));
 });
 test('collection archives ended, disappeared and superseded episodes with full geometry', () => {
-  const old = feature(1), ended = feature(2, { todate: '2026-11-13' });
+  const old = feature(1), ended = feature(2, { _currentFeed: false, todate: '2026-11-13' });
   const latest = feature(1, { episodeid: 2 });
   const missing = feature(3);
   const result = mergeEvents({ features: [old, missing] }, { features: [old, latest, ended] }, { features: [] }, now);

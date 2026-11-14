@@ -6,10 +6,11 @@
     return Date.parse(/(?:[zZ]|[+-]\d\d:?\d\d)$/.test(s) ? s : s + (s.length === 10 ? 'T00:00:00Z' : 'Z'));
   }
   function active(p, now) {
-    var start = time(p.fromdate), end = time(p.todate);
     var current = p.iscurrent === true || String(p.iscurrent).toLowerCase() === 'true';
-    return p._active !== false && current && isFinite(start) && isFinite(end) &&
-      start <= now && now < end;
+    var verified = time(p._verifiedAt);
+    // todate describes a reporting period; it is not proof of incident closure.
+    return p._active !== false && current && p._currentFeed === true &&
+      isFinite(verified) && verified <= now + 300000 && now - verified < 1800000;
   }
   var api = { time: time, active: active };
   if (typeof module === 'object' && module.exports) module.exports = api;

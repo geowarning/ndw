@@ -170,6 +170,8 @@
     if (type === 'WF') { return web('gdacsWildfire'); }
     if (type === 'FL') { return web('gdacsFlood'); }
     if (type === 'TC') { return web('gdacsCyclone'); }
+    if (type === 'VO') return lang() === 'zh' ? '火山' : 'Volcano';
+    if (type === 'TS') return lang() === 'zh' ? '海啸' : 'Tsunami';
     return web('gdacsDrought');
   }
   function gdacsAlertLabel(alert) {
@@ -276,7 +278,7 @@
     var countryOpts = '<option value="">' + esc(web('countryLabel')) + '</option>' + (cache.paths || []).slice().sort(function (a, b) { return a.name < b.name ? -1 : 1; }).map(function (p) {
       return '<option value="' + esc(p.name) + '"' + (state.country === p.name ? ' selected' : '') + '>' + esc(p.name) + '</option>';
     }).join('');
-    var gdacsTypeOpts = '<option value="all">' + esc(web('gdacsAllTypes')) + '</option>' + [['EQ', web('earthquakeType')], ['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')]].map(function (x) {
+    var gdacsTypeOpts = '<option value="all">' + esc(web('gdacsAllTypes')) + '</option>' + [['EQ', web('earthquakeType')], ['WF', web('gdacsWildfire')], ['FL', web('gdacsFlood')], ['TC', web('gdacsCyclone')], ['DR', web('gdacsDrought')], ['VO', gdacsTypeLabel('VO')], ['TS', gdacsTypeLabel('TS')]].map(function (x) {
       return '<option value="' + x[0] + '"' + (state.gdacsType === x[0] ? ' selected' : '') + '>' + esc(x[1]) + '</option>';
     }).join('');
     var gdacsAlertOpts = '<option value="all">' + esc(web('gdacsAllAlerts')) + '</option>' + [['green', web('gdacsGreen')], ['orange', web('gdacsOrange')], ['red', web('gdacsRed')]].map(function (x) {
@@ -328,6 +330,7 @@
         '<div class="global-layers"><span class="gfl">' + esc(web('layers')) + '</span>' + layers + '</div>' +
       '</div>' +
       '<div class="global-meta"><span>' + esc(web('sourceLabel')) + ': ' + esc(source) + '</span><span>' + esc(web('dataTime')) + ': ' + esc(fmt(dataTime)) + '</span>' +
+        '<span>GDACS · ' + esc(lang() === 'zh' ? '上次采集' : 'Last checked') + ': ' + esc(fmt(gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)))) + ' · ' + esc(lang() === 'zh' ? 'GDACS 当前事件列表；非现场确认' : 'GDACS current-event feed; not on-site confirmation') + '</span>' +
         (state.layers.gdacs && state.gdacsType !== 'EQ' ? '<span>' + esc(hazardTypeLabel(state.gdacsType)) + ' · GDACS ' + gdacs.length + '</span>' : '') +
         (isLive ? '' : '<span>' + esc(web('historyRange')) + ': ' + esc(fmt(data.range && data.range[0], true)) + ' → ' + esc(fmt(data.range && data.range[1], true)) + '</span>') +
         '<span>' + esc(data.note || '') + '</span></div>';
@@ -772,6 +775,7 @@
     var quakes = filteredQuakes(currentQuakes());
     el.innerHTML = '<section class="global-page"><div class="container">' +
       header(data, quakes) +
+      (Date.now() - gdacsParse(cache.gdacsRaw && (cache.gdacsRaw.checkedAt || cache.gdacsRaw.generatedAt)) >= 1800000 ? '<p class="history-notice" role="status">' + (lang() === 'zh' ? 'GDACS 更新已延迟，当前状态无法确认。历史记录仍可查阅。' : 'GDACS updates are overdue; current status is unconfirmed. Previous reports remain in History.') + '</p>' : '') +
       '<div class="global-layout"><div class="global-map-wrap">' + mapSvg(quakes) +
         '<div class="gzoom">' +
           '<button type="button" data-g="zoom" data-v="in" aria-label="' + esc(web('zoomIn')) + '" title="' + esc(web('zoomIn')) + '">+</button>' +
@@ -941,7 +945,7 @@
       window.setInterval(function () {
         if (!state.el || !state.el.isConnected || document.hidden) { return; }
         refreshData();
-      }, 5 * 60 * 1000);
+      }, 60 * 1000);
       document.addEventListener('visibilitychange', function () {
         if (!document.hidden) { refreshData(); }
       });

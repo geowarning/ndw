@@ -134,3 +134,19 @@ were inferred from that dataset. China emergency numbers are separately labeled.
 Refresh the directory against IFRC's current official sources when available;
 retrieval of the public fixture is not verification that each linked contact is
 still operational. No API credentials or personal contact records are included.
+
+
+## Current GDACS publication (2026-11-14)
+
+Live now uses the official https://www.gdacs.org/xml/rss.xml current-event feed,
+enriched with SEARCH API details. `todate` is retained as a reporting-period
+boundary, not treated as confirmed closure. Current membership is verified at
+collection time and expires from Live after 30 minutes without another successful
+check. Removed events remain in the archive. This supersedes the earlier strict
+start/end interval rule above; current listing is not on-site verification.
+
+Collection requests run every five minutes, offset from the top of the hour.
+GitHub schedules remain best-effort and may be delayed. Each collection workflow
+also publishes Pages directly because GITHUB_TOKEN pushes do not trigger another
+workflow. The browser refreshes published data every minute, and shows overdue
+updates explicitly. A strict real-time interval would need an external scheduler.

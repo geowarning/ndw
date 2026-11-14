@@ -11,6 +11,7 @@
  * Complete records are retained in gdacs-disaster-history.json on every run.
  */
 import fs from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import status from '../js/gdacs-status.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,7 @@ const EVENTS_FILE = path.join(ROOT, 'public-data', 'gdacs-events.json');
 const HISTORY_FILE = path.join(ROOT, 'public-data', 'gdacs-disaster-history.json');
 
 const API = process.env.GDACS_API_URL || 'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH';
-const TYPES = process.env.GDACS_TYPES || 'WF;FL;TC;DR';
+const TYPES = process.env.GDACS_TYPES || 'WF;FL;TC;DR;VO;TS';
 const DAYS = Math.max(1, Number(process.env.GDACS_DAYS || 60));
 const NOW = new Date();
 const NOW_ISO = NOW.toISOString();
@@ -118,14 +119,29 @@ export function mergeEvents(existing, fresh, archive, now = Date.now()) {
   return { live: features.filter(f => f.properties._active), history: features };
 }
 
+async function fetchCurrent() {
+  const response = await fetch('https://www.gdacs.org/xml/rss.xml', {
+    headers: { Accept: 'application/rss+xml, application/xml' }, signal: AbortSignal.timeout(30000)
+  });
+  if (!response.ok) throw Error('GDACS current feed HTTP ' + response.status);
+  return JSON.parse(execFileSync('python3', [path.join(HERE, 'parse-gdacs-feed.py')], {
+    input: await response.text(), encoding: 'utf8', maxBuffer: 16 * 1024 * 1024
+  }));
+}
+
 async function main() {
-  const { data: fresh, url } = await fetchFresh();
+  const [{ data: search, url }, current] = await Promise.all([fetchFresh(), fetchCurrent()]);
+  const fresh = { features: current.features.map(f => {
+    const matches = search.features.filter(s => s.properties.eventtype === f.properties.eventtype && String(s.properties.eventid) === String(f.properties.eventid) && (!f.properties.episodeid || String(s.properties.episodeid) === String(f.properties.episodeid)));
+    const detail = matches.sort((a,b) => Number(b.properties.episodeid) - Number(a.properties.episodeid))[0];
+    return { ...f, properties: { ...(detail?.properties || {}), ...f.properties, episodeid: f.properties.episodeid || detail?.properties.episodeid || '', _verifiedAt: NOW_ISO } };
+  }) };
   const existing = readJson(EVENTS_FILE, { features: [] });
   const archive = readJson(HISTORY_FILE, { features: [] });
-  const merged = mergeEvents(existing, fresh, archive, NOW.getTime());
+  const merged = mergeEvents(existing, fresh, { features: [...(archive.features || []), ...search.features] }, NOW.getTime());
   const output = {
     type: 'FeatureCollection', generatedAt: NOW_ISO, source: 'GDACS',
-    endpoint: url, fromDate: FROM, toDate: TO,
+    endpoint: url, currentFeed: 'https://www.gdacs.org/xml/rss.xml', checkedAt: NOW_ISO, fromDate: FROM, toDate: TO,
     count: merged.live.length, bbox: bboxOf(merged.live), features: merged.live
   };
   // Persist history first so removal from Live can never discard a record.
