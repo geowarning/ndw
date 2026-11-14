@@ -670,7 +670,7 @@
         '<div class="gmag" style="color:' + magColor(q.mag) + '">M' + esc(q.mag.toFixed(1)) + '</div></div>' +
       '<div class="gcards">' +
         '<div><span>' + esc(web('depth')) + '</span><b>' + esc(isFinite(q.depth) ? q.depth.toFixed(1) + ' km' : '—') + '</b></div>' +
-        '<div><span>' + esc(web('intensity')) + '</span><b>' + esc(mmi) + '</b></div>' +
+        '<div><span>' + esc(web('intensity')) + ' (MMI)' + '</span><b>' + esc(mmi) + '</b></div>' +
         '<div><span>' + esc(web('tsunami')) + '</span><b>' + esc(tsu) + '</b></div>' +
       '</div>' +
       '<div class="grows">' +
@@ -787,9 +787,6 @@
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
         ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
       '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
-      '<details class="hazard-units"><summary>' + (lang() === 'zh' ? '灾害单位与地图符号' : 'Disaster units & map symbols') + '</summary><p>' +
-      (lang() === 'zh' ? 'M：地震震级（对数尺度），不是当地烈度。MMI：修订麦加利烈度，表示当地震动强度。km：千米；km²：平方千米；ha：公顷（1 ha = 0.01 km²）；km/h：千米/小时。动画圆圈仅为示意影响范围，并非官方灾害边界或疏散区域。' : 'M: earthquake magnitude, a logarithmic measure of event size, not local shaking. MMI: Modified Mercalli Intensity, local shaking intensity. km: kilometres; km²: square kilometres; ha: hectares (1 ha = 0.01 km²); km/h: kilometres per hour. Animated circles are illustrative impact areas, not official hazard boundaries or evacuation zones.') +
-      '</p></details>' +
       rescueSection() +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +
@@ -800,6 +797,7 @@
         '<a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo</a>' +
       '</p>' +
       '</div></section>';
+    if (window.NDUnits) window.NDUnits.enhance(el);
     state.ctx.explainView && state.ctx.explainView();
     wms.key = '';
     applyView();

@@ -144,6 +144,7 @@
       { path: '/china', hash: '#/china', label: web('chinaTab'), icon: SVG.iPin },
       { path: '/global', hash: '#/global', label: web('globalTab'), icon: SVG.iGlobe },
       { path: '/database', hash: '#/database', label: web('database'), icon: SVG.iChart },
+      { path: '/rescue', hash: '#/rescue', label: ({zh:'救援联系',en:'Rescue contacts',es:'Contactos de rescate',fr:'Contacts de secours',it:'Contatti di soccorso'})[l] || 'Rescue contacts', icon: SVG.iPin },
       { path: '/guide', hash: '#/guide', label: i18n.t('tabGuide', l), icon: SVG.iGuide },
       { path: '/tools', hash: '#/tools', label: i18n.t('tabTools', l), icon: SVG.iTools },
       { path: '/products', hash: '#/products', label: i18n.t('navProducts', l), icon: SVG.iProducts },
