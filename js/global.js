@@ -150,9 +150,8 @@
     });
   }
   function gdacsParse(s) {
-    if (!s) { return 0; }
-    var t = Date.parse(/[zZ]|[+-]\d\d:?\d\d$/.test(String(s)) ? String(s) : String(s) + 'Z');
-    return isFinite(t) ? t : 0;
+    var time = GdacsStatus.time(s);
+    return isFinite(time) ? time : 0;
   }
   function gdacsMs(g) { return gdacsParse(g && (g.from || g.modified)); }
   function gdacsColor(type) {
@@ -189,7 +188,7 @@
       if (seen[id] || !isFinite(c[0]) || !isFinite(c[1])) { return; }
       seen[id] = 1;
       out.push({
-        kind: 'gdacs', id: id, type: p.eventtype, name: p.name || p.description || '',
+        kind: 'gdacs', id: id, type: p.eventtype, name: /^event in rss format$/i.test(p.name || '') ? (p.htmldescription || p.eventtype + ' · ' + p.country) : (p.name || p.description || ''),
         country: p.country || '', alert: String(p.alertlevel || '').toLowerCase(),
         active: p._active !== false, status: p,
         from: p.fromdate || '', to: p.todate || '', modified: p.datemodified || '',
@@ -786,7 +785,7 @@
         '<div class="gzoom-hint">' + esc(web('zoomHint')) + '</div>' +
         ((state.gdacsType === 'all' || state.gdacsType === 'EQ') ? '<div class="glegend"><span>M&lt;4</span><span>M4</span><span>M5</span><span>M6</span><span>M7+</span></div>' : '') +
         ((state.layers.gdacs && state.gdacsType !== 'EQ') ? '<div class="gdacs-legend"><span class="wf">WF</span><span class="fl">FL</span><span class="tc">TC</span><span class="dr">DR</span></div>' : '') +
-      '</div><aside class="global-side">' + sideHtml(quakes) + '</aside></div>' +
+      '</div><aside class="global-side"><nav class="disaster-list-actions" aria-label="' + (lang() === 'zh' ? '灾害列表' : 'Disaster lists') + '"><a class="btn btn-green" href="#/disasters?mode=live">' + (lang() === 'zh' ? '查看全部当前灾害' : 'View all current disasters') + ' →</a><a class="btn btn-outline" href="#/disasters?mode=history">' + (lang() === 'zh' ? '灾害历史列表' : 'Browse disaster history') + ' →</a></nav>' + sideHtml(quakes) + '</aside></div>' +
       rescueSection() +
       '<p class="global-foot">' + esc(web('globalNote')) + '</p>' +
       '<p class="global-foot global-credits">' + esc(web('credits')) + ': ' +

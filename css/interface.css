@@ -919,3 +919,27 @@ a.rescue-button { text-decoration: none; }
 .unit-help-tooltip { position: fixed; z-index: 10000; width: max-content; max-width: min(310px,calc(100vw - 32px)); box-sizing: border-box; padding: 12px 15px; border: 1px solid #92b7ae; border-radius: 9px; background: #14252d; color: #f4f8fb; font-size: .88rem; line-height: 1.6; box-shadow: 0 8px 30px #0008; pointer-events: none; }
 .gdacs-overdue .gmarker-inner > circle { stroke-dasharray: 2 2; }
 .gdacs-overdue .gmarker-inner { opacity: .7; animation: none; }
+/* Distinct, readable rescue panel beside the global monitoring workflow. */
+.global-page .rescue-section { background: #19343b; border-color: #6f9e9c; color: #f3f8fa; box-shadow: inset 4px 0 #b0e8d4; }
+.global-page .rescue-section p { color: #d2e4e7; }
+.global-page .rescue-section input { background: #0e2028; color: #f3f8fa; border-color: #84aaa9; }
+.disaster-list-actions { display: grid; gap: 10px; margin-bottom: 22px; }
+.disaster-list-actions a { text-decoration: none; text-align: center; min-height: 46px; }
+.disaster-list-page { padding: 34px 0 64px; }
+.disaster-list-page h1 { font-size: clamp(1.9rem,3vw,2.8rem); margin: 12px 0; }
+.disaster-list-page header { margin: 24px 0; }
+.disaster-mode { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.disaster-mode a { padding: 10px 16px; border: 1px solid #789b9b; border-radius: 8px; color: #e4f7f0; text-decoration: none; }
+.disaster-mode a[aria-current] { background: #b7e8d7; color: #0c2026; }
+.disaster-record { margin: 12px 0; background: #101e26; color: #edf5f8; border: 1px solid #536e75; border-radius: 12px; }
+.disaster-record summary { cursor: pointer; padding: 20px; display: grid; gap: 8px; }
+.disaster-record summary h2 { font-size: 1.14rem; line-height: 1.5; margin: 0; }
+.disaster-record summary > span { color: #c0d8dc; }
+.disaster-record summary .record-open { color: #b7ead7; justify-self: end; }
+.disaster-record-body { padding: 0 20px 22px; line-height: 1.7; }
+.disaster-record-body dl { display: grid; grid-template-columns: minmax(110px,1fr) 3fr; gap: 10px; }
+.disaster-record-body dd { margin: 0; overflow-wrap: anywhere; }
+.disaster-record-body dt { color: #bbdbd7; }
+.disaster-original { white-space: pre-wrap; overflow-wrap: anywhere; }
+.disaster-pager { display: flex; gap: 14px; justify-content: center; padding: 24px 0; }
+.disaster-record summary:focus-visible { outline: 2px solid #b7ead7; outline-offset: 3px; }

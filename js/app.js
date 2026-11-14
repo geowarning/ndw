@@ -2407,7 +2407,7 @@
     var path = parts[0] || '/home';
     var query = parseQuery(parts[1]);
     window.scrollTo(0, 0);
-    renderNav(path === '/map' ? '/china' : path);
+    renderNav(path === '/map' ? '/china' : path === '/disasters' ? '/global' : path);
     document.body.classList.toggle('main-page', path === '/home');
     closeDrawer();
     clearInterval(countdownTimer);
@@ -2425,6 +2425,7 @@
         renderHome();
         break;
       case '/rescue': window.NDRescue.render(viewEl, query); break;
+      case '/disasters': window.NDDisasterList.render(viewEl, query); break;
       case '/global': renderGlobal(); break;
       case '/database': renderDatabase(); break;
       case '/map': renderExpandedMap(); break;

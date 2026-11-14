@@ -52,3 +52,8 @@ test('browser preserves last-listed events during collection delays and history 
   state.mode = 'history';
   assert.equal(context.window.testGdacs.current().length, 1);
 });
+
+test('GDACS RSS dates and API dates resolve to the same UTC instant', () => {
+  assert.equal(status.time('Wed, 11 Nov 2026 16:08:02 GMT'), status.time('2026-11-11T16:08:02'));
+  assert.equal(status.time('2026-11-11T16:08:02+00:00'), status.time('2026-11-11T16:08:02Z'));
+});

@@ -3,7 +3,7 @@
   function time(value) {
     if (!value) return NaN;
     var s = String(value);
-    return Date.parse(/(?:[zZ]|[+-]\d\d:?\d\d)$/.test(s) ? s : s + (s.length === 10 ? 'T00:00:00Z' : 'Z'));
+    return Date.parse(/(?:Z|GMT|UTC|[+-]\d\d:?\d\d)$/i.test(s) ? s : s + (s.length === 10 ? 'T00:00:00Z' : 'Z'));
   }
   function active(p, now) {
     var current = p.iscurrent === true || String(p.iscurrent).toLowerCase() === 'true';

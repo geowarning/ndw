@@ -14,8 +14,7 @@
   }
   function label(k) { return {all:t('全部资源','All resources'),directory:t('国家级目录','National directories'),training:t('急救培训','First-aid training'),medical:t('医疗与救护','Medical & ambulance'),food:t('食物援助','Food relief'),rescue:t('救援与灾害响应','Rescue & disaster response')}[k]; }
   function hit(r,q) {
-    var terms=[r.organization,r.region,r.iso,r.city,r.state].concat(r.aliases||[]).filter(Boolean).join(' ').toLowerCase();
-    return q.toLowerCase().trim().split(/\s+/).every(function(w){return !w || terms.split(/[\s.,:;()\/–—-]+/).some(function(term){return term.startsWith(w);});});
+    return window.NDDirectorySearch.matches(r,q);
   }
   function selected() { return records.filter(function(r){return (!query.iso || r.iso===query.iso) && (!query.state || r.state===query.state) && (!query.city || r.city===query.city);}); }
   function countryName(iso) { var r=records.find(function(r){return r.iso===iso && r.entryType==='national-directory';}) || records.find(function(r){return r.iso===iso;});return r ? r.region : iso; }

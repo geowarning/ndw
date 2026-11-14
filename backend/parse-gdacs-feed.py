@@ -8,7 +8,11 @@ if root.tag != 'rss' or root.find('channel') is None:
     raise ValueError('Expected GDACS RSS channel')
 features = []
 for item in root.findall('./channel/item'):
-    fields = {node.tag.split('}')[-1]: (node.text or '').strip() for node in item.iter()}
+    fields = {node.tag.split('}')[-1]: (node.text or '').strip() for node in item}
+    for node in item.iter():
+        tag = node.tag.split('}')[-1]
+        if tag in ('lat', 'long', 'point'):
+            fields[tag] = (node.text or '').strip()
     kind, eventid = fields.get('eventtype'), fields.get('eventid')
     if kind not in ('WF','FL','TC','DR','VO','TS'):
         continue

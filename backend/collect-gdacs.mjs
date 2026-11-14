@@ -136,7 +136,7 @@ async function main() {
   const fresh = { features: current.features.map(f => {
     const matches = search.features.filter(s => s.properties.eventtype === f.properties.eventtype && String(s.properties.eventid) === String(f.properties.eventid) && (!f.properties.episodeid || String(s.properties.episodeid) === String(f.properties.episodeid)));
     const detail = matches.sort((a,b) => Number(b.properties.episodeid) - Number(a.properties.episodeid))[0];
-    return { ...f, properties: { ...(detail?.properties || {}), ...f.properties, episodeid: f.properties.episodeid || detail?.properties.episodeid || '', _verifiedAt: NOW_ISO } };
+    return { ...f, properties: { ...(detail?.properties || {}), ...f.properties, name: detail?.properties.name || f.properties.name, description: detail?.properties.description || f.properties.description, episodeid: f.properties.episodeid || detail?.properties.episodeid || '', _verifiedAt: NOW_ISO } };
   }) };
   const existing = readJson(EVENTS_FILE, { features: [] });
   const archive = readJson(HISTORY_FILE, { features: [] });
